@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="CommStatus" Id="{e95d5f11-0d92-4097-aeba-fc57376b0eed}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM CommStatus
+VAR
+	In_Dummy		:	BOOL;	// Replace per function call with IO point
+
+	DebounceOnTime:	TIME := T#500MS;     // Default Value	
+	DebounceOffTime:	TIME := T#1S;     // Default Value
+		
+	RIO1181_CommFault: FB_DigDebnce;	// Remote IO Block 1181 Communication Fault
+	RIO4172_CommFault: FB_DigDebnce;	// Remote IO Block 4172 Communication Fault
+	RIO5151_CommFault: FB_DigDebnce;	// Remote IO Block 5151 Communication Fault
+	RIO6171_CommFault: FB_DigDebnce;	// Remote IO Block 6171 Communication Fault
+	RIO7161_CommFault: FB_DigDebnce;	// Remote IO Block 7161 Communication Fault
+	RIO8181_CommFault: FB_DigDebnce;	// Remote IO Block 8181 Communication Fault
+	RIO11141_CommFault: FB_DigDebnce;	// Remote IO Block 11141 Communication Fault	
+	RIO12171_CommFault: FB_DigDebnce;	// Remote IO Block 12171 Communication Fault
+	RIO15181_CommFault: FB_DigDebnce;	// Remote IO Block 15181 Communication Fault
+	RIO16171_CommFault: FB_DigDebnce;	// Remote IO Block 16171 Communication Fault
+	
+	BCR10561_CommFault: FB_DigDebnce;;		// Bar Code Reader 10561 Communication Fault
+	
+	Ethernet_CommFault: FB_DigDebnce;;		// Ethernet Adapter Status Communication Fault
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Remote IO Blocks --------------------
+RIO1181_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO4172_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+
+RIO5151_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+
+RIO6171_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO7161_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO8181_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO11141_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO11141_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO12171_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO15181_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+RIO16171_CommFault(
+	In:= In_Dummy, 
+	CFG_OKState:= 0, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+
+// Bar Code Readers --------------------	
+BCR10561_CommFault(
+//	In:= BarCodeReaders.BCR10561.Out_DeviceState = 0, 
+	CFG_OKState:= 1, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+	
+// Ethernet Controller	
+Ethernet_CommFault(
+//	In:= GVL_IO.EthernetAdapter_State = 0, 
+	CFG_OKState:= 1, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+]]></ST>
+    </Implementation>
+    <LineIds Name="CommStatus">
+      <LineId Id="13" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="14" Count="3" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="250" Count="0" />
+      <LineId Id="252" Count="5" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="259" Count="6" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="267" Count="6" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="276" Count="5" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="284" Count="5" />
+      <LineId Id="283" Count="0" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="292" Count="5" />
+      <LineId Id="291" Count="0" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="300" Count="5" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="308" Count="5" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="314" Count="0" />
+      <LineId Id="316" Count="5" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="324" Count="5" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="133" Count="5" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="221" Count="5" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="116" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

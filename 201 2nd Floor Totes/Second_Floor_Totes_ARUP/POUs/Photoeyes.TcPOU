@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Photoeyes" Id="{c8d506e3-bd7f-462d-8ae8-6a3b1568d47d}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'OPC.UA.DA' := '1'}
+
+PROGRAM PhotoEyes
+VAR
+	DebounceOnTime:	TIME := T#500MS;     // Default Value
+	DebounceOffTime:	TIME := T#500MS;     // Default Value
+	JamDetectTime:	TIME := T#5S;     // Default Value
+//----------------------------------------Photoeyes-----------------------------------------		
+PE_1232:  FB_Photoeye;    //P6005 EXIT PE 
+PE_1162:  FB_Photoeye;    //P6010 FULL PE 
+PE_1081:  FB_Photoeye;    //P6015 EXIT PE
+PE_1231:  FB_Photoeye;    //P6020 FIRE GATE OPEN
+PE_1161:  FB_Photoeye;    //P6020 EXIT PE
+PE_4121:  FB_Photoeye;    //P6025 EXIT PE
+PE_6181:  FB_Photoeye;    //P6040 HEIGHT CHECK HIGH  PE
+PE_6201:  FB_Photoeye;    //P6040 HEIGHT CHECK LOW  PE
+PE_6261:  FB_Photoeye;    //P6040 SCANNER TRIGGER PE
+PE_7171:  FB_Photoeye;    //P6040 SORTER INDUCT
+PE_6241:  FB_Photoeye;    //PI6040 PART CLEAR PE
+PE_12261:  FB_Photoeye;    //P7004 HEIGHT CHECK PE
+PE_12221:  FB_Photoeye;    //P7004 SCANNER TRIGGER PE
+PE_16181:  FB_Photoeye;    //P7030 FIRE GATE OPEN PE
+PE_4271:  FB_Photoeye;    //PE6030 EXIT PE 
+PE_4201:  FB_Photoeye;    //PE6035 EXIT PE 
+PE_4071:  FB_Photoeye;    //PE6045 EXIT PE 
+PE_6302:  FB_Photoeye;    //PE6045 FULL PE 
+PE_12301:  FB_Photoeye;    //PE7005 EXIT PE 
+PE_12231:  FB_Photoeye;    //PE7010 EXIT PE 
+PE_15121:  FB_Photoeye;    //PE7015 EXIT PE 
+PE_15181:  FB_Photoeye;    //PE7020 EXIT PE 
+PE_15261:  FB_Photoeye;    //PE7025 EXIT PE 
+PE_16111:  FB_Photoeye;    //PE7030 EXIT PE 
+PE_16301:  FB_Photoeye;    //PE7035 EXIT PE 
+PE_16131:  FB_Photoeye;    //PE7040 EXIT PE 
+PE_16201:  FB_Photoeye;    //PE7045 FULL PE 
+PE_7151:  FB_Photoeye;    //PU6040-01 JAM PE 
+PE_7191:  FB_Photoeye;    //PU6040-01 TRANSFER COMPLETED PE
+PE_7211:  FB_Photoeye;    //PU6040-02 JAM PE
+PE_7241:  FB_Photoeye;    //PU6040-02 TRANSFER COMPLETED PE
+PE_8141:  FB_Photoeye;    //PU6040-03 JAM PE
+PE_8171:  FB_Photoeye;    //PU6040-03 TRANSFER COMPLETED PE
+PE_8181:  FB_Photoeye;    //PU6040-04 JAM PE 
+PE_8221:  FB_Photoeye;    //PU6040-04 TRANSFER COMPLETED PE
+PE_8211:  FB_Photoeye;    //PU6040 SORTER DISCHARGE PE
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//P6005 EXIT PE   
+PE_1232(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6010 FULL PE   
+PE_1162(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6015 EXIT PE   
+PE_1081(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6020 FIRE GATE OPEN  
+PE_1231(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6020 EXIT PE   
+PE_1161(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6025 EXIT PE   
+PE_4121(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6040 HEIGHT CHECK HIGH  PE
+PE_6181(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6040 HEIGHT CHECK LOW  PE
+PE_6201(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6040 SCANNER TRIGGER PE  
+PE_6261(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P6040 SORTER INDUCT 
+PE_7171(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PI6040 PART CLEAR PE  
+PE_6241(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P7004 HEIGHT CHECK   
+PE_12261(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P7004 SCANNER TRIGGER   
+PE_12221(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//P7030 FIRE GATE OPEN  
+PE_16181(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE6030 EXIT PE   
+PE_4271(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE6035 EXIT PE   
+PE_4201(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE6045 FULL PE   
+PE_4071(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE6045 FULL PE   
+PE_6302(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7005 EXIT PE   
+PE_12301(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7010 EXIT PE   
+PE_12231(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7015 EXIT PE   
+PE_15121(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7020 EXIT PE   
+PE_15181(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7025 EXIT PE   
+PE_15261(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7030 EXIT PE   
+PE_16111(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7035 EXIT PE   
+PE_16301(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7040 EXIT PE   
+PE_16131(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE7045 EXIT PE   
+PE_16201(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-01 JAM PE   
+PE_7151(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-01 TRANSFER COMPLETED   
+PE_7191(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-02 JAM PE   
+PE_7211(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-02 TRANSFER COMPLETED   
+PE_7241(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-03 JAM PE   
+PE_8141(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-03 TRANSFER COMPLETED   
+PE_8171(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-04 JAM PE   
+PE_8181(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040-04 TRANSFER COMPLETED   
+PE_8221(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PU6040 SORTER DISCHARGE  
+PE_8211(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="Photoeyes">
+      <LineId Id="1197" Count="88" />
+      <LineId Id="1585" Count="8" />
+      <LineId Id="1584" Count="0" />
+      <LineId Id="1286" Count="249" />
+      <LineId Id="1596" Count="8" />
+      <LineId Id="1595" Count="0" />
+      <LineId Id="1536" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="GVL_IO" Id="{c1c3ca00-a4ff-4270-a218-a7754a85e85c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	INIT						: BOOL := TRUE;		// Initialization Bit
+	
+	PB_SysStart AT %I* 		:BOOL;		//System Start Button
+	PB_SysStop	AT %I*		:BOOL;		//System Stop Button
+	PB_SysReset	AT %I* 		:BOOL; 		//System Reset Button
+	
+	SystemAirPressure AT %I*	:BOOL;
+
+	
+	HornMainPanel				AT %Q* 	:BOOL;	//Panel Tower Horn
+	LT_MainPanelStack_Red		AT %Q*	:BOOL;	//Panel	Tower Red Light
+	LT_MainPanelStack_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	LT_MainPanelStack_Green		AT %Q*	:BOOL;	//Panel	Tower Green Light
+	
+	LT_7221_Red		AT %Q*	:BOOL;	//Panel	Tower Red Light
+	LT_7241_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	LT_7271_Green	AT %Q*	:BOOL;	//Panel	Tower Green Light
+	
+//---------------------------------Motor Outputs-------------------------------------------------	
+
+P6005_RUN            AT %Q*   :BOOL;    //P6005 Run Command
+P6010_RUN            AT %Q*   :BOOL;    //P6010 Run Command
+P6011_RUN            AT %Q*   :BOOL;    //P6011 Run Command
+P6015_RUN            AT %Q*   :BOOL;    //P6015 Run Command
+P6020_RUN            AT %Q*   :BOOL;    //P6020 Run Command
+P6025_RUN            AT %Q*   :BOOL;    //P6025 Run Command
+P6030_RUN            AT %Q*   :BOOL;    //P6030 Run Command
+P6035_RUN            AT %Q*   :BOOL;    //P6035 Run Command
+P6045_RUN            AT %Q*   :BOOL;    //P6045 Run Command
+P6040_RUN            AT %Q*   :BOOL;    //P6040 Run Command
+
+P7004_RUN            AT %Q*   :BOOL;    //P7004 Run Command
+P7005_RUN            AT %Q*   :BOOL;    //P7005 Run Command
+P7010_RUN            AT %Q*   :BOOL;    //P7010 Run Command
+P7015_RUN            AT %Q*   :BOOL;    //P7015 Run Command
+P7020_RUN            AT %Q*   :BOOL;    //P7020 Run Command
+P7025_RUN            AT %Q*   :BOOL;    //P7025 Run Command
+P7030_RUN            AT %Q*   :BOOL;    //P7030 Run Command
+P7035_RUN            AT %Q*   :BOOL;    //P7035 Run Command
+P7040_RUN            AT %Q*   :BOOL;    //P7040 Run Command
+P7041_RUN            AT %Q*   :BOOL;    //P7041 Run Command
+P7045_RUN            AT %Q*   :BOOL;    //P7045 Run Command
+
+ //---------------------------------Motor Feedback-------------------------------------------------
+
+ P6005_Faulted AT %I*: BOOL;		// P6005 Starter Faulted 
+ P6010_Faulted AT %I*: BOOL;		// P6010 VFD Faulted 
+ P6015_Faulted AT %I*: BOOL;	    // P6015 Starter Faulted 
+ P6020_Faulted AT %I*: BOOL;	    // P6020 Starter Faulted 
+ P6025_Faulted AT %I*: BOOL;	    // P6025 Starter Faulted 
+ P6030_Faulted AT %I*: BOOL;	    // P6030 Starter Faulted 
+ P6035_Faulted AT %I*: BOOL;	    // P6035 Starter Faulted 
+ P6045_Faulted AT %I*: BOOL;	    // P6035 VFD Faulted 
+ P6040_Faulted AT %I*: BOOL;	    // P6040 Starter Faulted 
+ 
+ P7004_Faulted AT %I*: BOOL;	    // P7004 Starter Faulted 
+ P7005_Faulted AT %I*: BOOL;	    // P7005 VFD Faulted 
+ P7010_Faulted AT %I*: BOOL;	    // P7010 Starter Faulted 
+ P7015_Faulted AT %I*: BOOL;	    // P7015 Starter Faulted 
+ P7020_Faulted AT %I*: BOOL;	    // P7020 Starter Faulted 
+ P7025_Faulted AT %I*: BOOL;	    // P7025 Starter Faulted 
+ P7030_Faulted AT %I*: BOOL;	    // P7035 Starter Faulted 
+ P7035_Faulted AT %I*: BOOL;	    // P7035 Starter Faulted 
+ P7040_Faulted AT %I*: BOOL;	    // P7040 VFD Faulted 
+ P7045_Faulted AT %I*: BOOL;	    // P7045 Starter Faulted  
+
+//---------------------------------Disconnect Status------------------------------------------------- 
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6005            AT %I*  :BOOL;  //P6005 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6010            AT %I*  :BOOL;  //P6010 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6011            AT %I*  :BOOL;  //P6011 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6015            AT %I*  :BOOL;  //P6015 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6020            AT %I*  :BOOL;  //P6020 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6025            AT %I*  :BOOL;  //P6025 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6030            AT %I*  :BOOL;  //P6030 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6035            AT %I*  :BOOL;  //P6035 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6045            AT %I*  :BOOL;  //P6045 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P6040            AT %I*  :BOOL;  //P6040 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7004            AT %I*  :BOOL;  //P7004 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7005            AT %I*  :BOOL;  //P7005 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7010            AT %I*  :BOOL;  //P7010 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7015            AT %I*  :BOOL;  //P7015 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7020            AT %I*  :BOOL;  //P7020 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7025            AT %I*  :BOOL;  //P7025 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7030            AT %I*  :BOOL;  //P7030 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7035            AT %I*  :BOOL;  //P7035 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7040            AT %I*  :BOOL;  //P7040 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7041            AT %I*  :BOOL;  //P7041 Disconnect
+{attribute 'OPC.UA.DA' := '1'}
+DS_P7045            AT %I*  :BOOL;  //P7045 Disconnect	
+	
+//---------------------------------Solenoid Valves------------------------------------------------- 
+SV_6181_EXT AT %Q* :BOOL; // GR6040-02 BELT GRIPPER
+SV_6211_EXT AT %Q* :BOOL; // GR6040-01 BELT GRIPPER
+SV_6301_RET AT %Q* :BOOL; // PI6040-01 PIN STOP
+SV_6321_EXT AT %Q* :BOOL; // PI6040-01 PIN STOP
+SV_7121_EXT AT %Q* :BOOL; // PU6040-01 PUSH DIVERT
+SV_7181_EXT AT %Q* :BOOL; // PU6040-02 PUSH DIVERT
+SV_8111_EXT AT %Q* :BOOL; // PU6040-03 PUSH DIVERT
+SV_8161_EXT AT %Q* :BOOL; // PU6040-04 "D" GRIPPER
+
+//---------------------------------Encoder------------------------------------------------- 
+{attribute 'OPC.UA.DA' := '1'}
+	ENC_9021_Raw	AT %I*:	UINT;	// Raw Encoder Value
+	{attribute 'OPC.UA.DA' := '1'}
+	ENC_9021_OK			: BOOL;
+	ENC_9021_Period	AT %I*:	UDINT;	// Encoder Period, channel 1, 100ns resolution
+	
+	SorterName				: STRING[5];
+	
+ //---------------------------------EAP-------------------------------------------------
+//Published
+//Subscribed
+ 
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

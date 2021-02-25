@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="DivertCfg" Id="{b234124d-3462-48da-aaee-6006b08e9940}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM DivertCfg
+VAR_INPUT
+//	nLogEnable	:	UDINT;
+END_VAR
+VAR
+	Dummy : BOOL;
+	Divert_RTRIG	:	ARRAY[1..16] OF R_TRIG;
+	Divert_FTRIG	:	ARRAY[1..16] OF F_TRIG;
+	sMessage		:	STRING;
+	
+	PE23201_Full AT %I*	:	BOOL;
+END_VAR
+
+VAR_IN_OUT
+	Diverts			: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_Divert;
+	DivertsCfgs		: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_DivertCfg;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	Initialize Diverts here. 
+	Tie variables commented IO to physical IO address
+*)
+
+//Divert #1
+Diverts[1].Config := DivertsCfgs[1];
+Diverts[1].ConfirmPE := Photoeyes.PE_7191.Out; 			
+Diverts[1].FullPE := Photoeyes.PE_7191.Out;   			
+
+//Divert #2
+Diverts[2].Config := DivertsCfgs[2];
+Diverts[2].ConfirmPE := Photoeyes.PE_7241.Out; 		
+Diverts[2].FullPE := Photoeyes.PE_7241.Out;   		
+
+//Divert #3 
+Diverts[3].Config := DivertsCfgs[3];
+Diverts[3].ConfirmPE := Photoeyes.PE_8171.Out; 		
+Diverts[3].FullPE := Photoeyes.PE_8171.Out;   	
+
+//Divert #4 
+Diverts[4].Config := DivertsCfgs[4];
+Diverts[4].ConfirmPE := Photoeyes.PE_8221.Out; 		
+Diverts[4].FullPE := Photoeyes.PE_8221.Out; 
+
+//Divert #5
+Diverts[5].Config := DivertsCfgs[5];
+//Diverts[5].ConfirmPE := Photoeyes.PE_8221.Out; 		
+//Diverts[5].FullPE := Photoeyes.PE_8221.Out; 	
+
+// Logging
+// Divert 1
+Divert_RTRIG[1](CLK := Diverts[1].Output1);
+IF Divert_RTRIG[1].q THEN
+	IF .nDivertLogEnable.DIVERT1 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[1].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[1].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 1 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+Divert_FTRIG[1](CLK := Diverts[1].Output1);
+IF Divert_FTRIG[1].q THEN
+	IF .nDivertLogEnable.DIVERT1 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[1].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[1].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 1 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+// Divert 2
+Divert_RTRIG[2](CLK := Diverts[2].Output1);
+IF Divert_RTRIG[2].q THEN
+	IF .nDivertLogEnable.DIVERT2 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[2].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[2].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 2 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+Divert_FTRIG[2](CLK := Diverts[2].Output1);
+IF Divert_FTRIG[2].q THEN
+	IF .nDivertLogEnable.DIVERT2 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[2].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[2].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 2 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+// Divert 3
+Divert_RTRIG[3](CLK := Diverts[3].Output1);
+IF Divert_RTRIG[3].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[3].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[3].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 3 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+Divert_FTRIG[3](CLK := Diverts[3].Output1);
+IF Divert_FTRIG[3].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[3].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[3].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 3 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+			
+// Divert 4
+Divert_RTRIG[4](CLK := Diverts[4].Output1);
+IF Divert_RTRIG[4].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[4].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[4].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 4 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+Divert_FTRIG[4](CLK := Diverts[4].Output1);
+IF Divert_FTRIG[4].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[4].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[4].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 4 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+
+// Divert 5
+Divert_RTRIG[5](CLK := Diverts[5].Output1);
+IF Divert_RTRIG[5].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[5].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[5].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 4 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF
+Divert_FTRIG[5](CLK := Diverts[5].Output1);
+IF Divert_FTRIG[5].q THEN
+	IF .nDivertLogEnable.DIVERT3 THEN
+		sMessage := CONCAT(BOOL_TO_STRING(Diverts[5].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,Diverts[5].Item.ID);
+		// Write to the Error List
+		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+			, msgFmtStr := 'Divert 5 Extend : %s'
+			, strArg := sMessage);
+	END_IF
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="DivertCfg">
+      <LineId Id="478" Count="1" />
+      <LineId Id="481" Count="2" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="691" Count="0" />
+      <LineId Id="489" Count="1" />
+      <LineId Id="497" Count="1" />
+      <LineId Id="791" Count="0" />
+      <LineId Id="502" Count="1" />
+      <LineId Id="509" Count="1" />
+      <LineId Id="792" Count="0" />
+      <LineId Id="754" Count="0" />
+      <LineId Id="515" Count="0" />
+      <LineId Id="811" Count="3" />
+      <LineId Id="810" Count="0" />
+      <LineId Id="838" Count="3" />
+      <LineId Id="837" Count="0" />
+      <LineId Id="542" Count="0" />
+      <LineId Id="308" Count="0" />
+      <LineId Id="579" Count="0" />
+      <LineId Id="565" Count="1" />
+      <LineId Id="726" Count="0" />
+      <LineId Id="640" Count="1" />
+      <LineId Id="567" Count="3" />
+      <LineId Id="727" Count="0" />
+      <LineId Id="571" Count="2" />
+      <LineId Id="728" Count="0" />
+      <LineId Id="642" Count="1" />
+      <LineId Id="574" Count="2" />
+      <LineId Id="652" Count="0" />
+      <LineId Id="578" Count="0" />
+      <LineId Id="729" Count="0" />
+      <LineId Id="580" Count="2" />
+      <LineId Id="730" Count="0" />
+      <LineId Id="644" Count="1" />
+      <LineId Id="583" Count="2" />
+      <LineId Id="653" Count="0" />
+      <LineId Id="587" Count="0" />
+      <LineId Id="732" Count="0" />
+      <LineId Id="588" Count="1" />
+      <LineId Id="733" Count="0" />
+      <LineId Id="646" Count="1" />
+      <LineId Id="590" Count="2" />
+      <LineId Id="654" Count="0" />
+      <LineId Id="594" Count="0" />
+      <LineId Id="735" Count="0" />
+      <LineId Id="595" Count="2" />
+      <LineId Id="736" Count="0" />
+      <LineId Id="648" Count="1" />
+      <LineId Id="598" Count="2" />
+      <LineId Id="655" Count="0" />
+      <LineId Id="602" Count="0" />
+      <LineId Id="737" Count="0" />
+      <LineId Id="603" Count="1" />
+      <LineId Id="738" Count="0" />
+      <LineId Id="650" Count="1" />
+      <LineId Id="605" Count="2" />
+      <LineId Id="656" Count="0" />
+      <LineId Id="843" Count="0" />
+      <LineId Id="842" Count="0" />
+      <LineId Id="836" Count="0" />
+      <LineId Id="816" Count="19" />
+      <LineId Id="815" Count="0" />
+      <LineId Id="609" Count="0" />
+      <LineId Id="543" Count="0" />
+      <LineId Id="845" Count="22" />
+      <LineId Id="844" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="ProxSensors" Id="{6b2012d0-0497-4439-b3a2-0fa831370198}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ProxSensors
+VAR
+	DebounceOnTime:	TIME := T#5MS;     // Default Value
+	DebounceOffTime:	TIME := T#500MS;     // Default Value
+	JamDetectTime:	TIME := T#5S;     // Default Value
+
+	
+	In_PX_1281_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_1281_Extended:  FB_DigDebnce;		// P6020 POWER TRANSFER EXTENDED PROX
+//----------------------------------------GR6040_01--------------------------------------------------------------
+	In_PX_6241_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6241_Retracted:  FB_DigDebnce;		// GR6040-01 "D" GRIPPER RETRACTED PROX
+
+	In_PX_6261_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6261_Extended:  FB_DigDebnce;		// GR6040-01 "D" GRIPPER EXTENDED PROX
+//----------------------------------------GR6040_02--------------------------------------------------------------
+	In_PX_6121_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6121_Retracted:  FB_DigDebnce;		// GR6040-02 "D" GRIPPER RETRACTED PROX
+
+	In_PX_6151_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6151_Extended:  FB_DigDebnce;		// GR6040-02 "D" GRIPPER EXTENDED PROX
+//----------------------------------------PI6040_01--------------------------------------------------------------
+	In_PX_6122_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6122_Retracted:  FB_DigDebnce;		// PI6040-01 "D" GRIPPER RETRACTED PROX
+
+	In_PX_6152_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_6152_Extended:  FB_DigDebnce;		// PI6040-01 "D" GRIPPER EXTENDED PROX
+//----------------------------------------PU6040_01--------------------------------------------------------------
+	In_PX_7271_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_7271_Retracted:  FB_DigDebnce;		// PU6040-01 PUSH DIVERT RETRACTED PROX
+
+	In_PX_7301_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_7301_Extended:  FB_DigDebnce;		// PU6040-01 PUSH DIVERT EXTENDED PROX
+//----------------------------------------PU6040_02--------------------------------------------------------------
+	In_PX_7122_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_7122_Retracted:  FB_DigDebnce;		// PU6040-02 PUSH DIVERT RETRACTED PROX
+
+	In_PX_7151_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_7151_Extended:  FB_DigDebnce;		// PU6040-02 PUSH DIVERT EXTENDED PROX
+//----------------------------------------PU6040_03--------------------------------------------------------------
+	In_PX_8321_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_8321_Retracted:  FB_DigDebnce;		// PU6040-03 PUSH DIVERT RETRACTED PROX
+
+	In_PX_8291_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_8291_Extended:  FB_DigDebnce;		// PU6040-03 PUSH DIVERT EXTENDED PROX
+//----------------------------------------PU6040_04--------------------------------------------------------------	
+	In_PX_8091_Retracted AT %I* : BOOL;      // Mapped IO input for PX
+	PX_8091_Retracted:  FB_DigDebnce;		// PU6040-04 PUSH DIVERT RETRACTED PROX
+
+	In_PX_8121_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_8121_Extended:  FB_DigDebnce;		// PU6040-04 PUSH DIVERT EXTENDED PROX
+
+//------------------------------------------------------------------------------------------------------
+	In_PX_16231_Extended AT %I* : BOOL;      // Mapped IO input for PX
+	PX_16231_Extended:  FB_DigDebnce;		// P7035 POWER TRANSFER EXTENDED PROX
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// P6020 POWER TRANSFER Extended
+PX_1281_Extended(
+	In:= In_PX_1281_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+//----------------------------------------GR6040_01--------------------------------------------------------------
+// GR6040-01 "D" GRIPPER Retracted
+PX_6241_Retracted(
+	In:= In_PX_6241_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// GR6040-01 "D" GRIPPER Extended
+PX_6261_Extended(
+	In:= In_PX_6261_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+//----------------------------------------GR6040_02--------------------------------------------------------------
+// GR6040-02 "D" GRIPPER Retracted
+PX_6121_Retracted(
+	In:= In_PX_6121_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// GR6040-02 "D" GRIPPER Extended
+PX_6151_Extended(
+	In:= In_PX_6151_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+//----------------------------------------PI6040_01--------------------------------------------------------------
+// PI6040-01 "D" GRIPPER Retracted
+PX_7122_Retracted(
+	In:= In_PX_6122_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PI6040-01 "D" GRIPPER Extended
+PX_7151_Extended(
+	In:= In_PX_6152_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+//----------------------------------------PU6040_01--------------------------------------------------------------
+// PU6040-01 PUSH DIVERT Retracted
+PX_7271_Retracted(
+	In:= In_PX_7271_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-01 PUSH DIVERT Extended
+PX_7301_Extended(
+	In:= In_PX_7301_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+//----------------------------------------PU6040_02--------------------------------------------------------------
+// PU6040-02 PUSH DIVERT Retracted
+PX_7122_Retracted(
+	In:= In_PX_7122_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-02 PUSH DIVERT Extended
+PX_7151_Extended(
+	In:= In_PX_7151_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+
+
+// PU6040-04 PUSH DIVERT Extended
+PX_8121_Extended(
+	In:= In_PX_8121_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-04 PUSH DIVERT Retracted
+PX_8091_Retracted(
+	In:= In_PX_8091_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-04 "D" GRIPPER Extended
+PX_8121_Extended(
+	In:= In_PX_8121_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-03 PUSH DIVERT Retracted
+PX_8321_Retracted(
+	In:= In_PX_8321_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// PU6040-03 PUSH DIVERT Extended
+PX_8291_Extended(
+	In:= In_PX_8291_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+// P7035 POWER TRANSFER Extended
+PX_16231_Extended(
+	In:= In_PX_16231_Extended,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="ProxSensors">
+      <LineId Id="166" Count="7" />
+      <LineId Id="384" Count="16" />
+      <LineId Id="174" Count="0" />
+      <LineId Id="401" Count="0" />
+      <LineId Id="175" Count="16" />
+      <LineId Id="210" Count="17" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="409" Count="15" />
+      <LineId Id="408" Count="0" />
+      <LineId Id="228" Count="18" />
+      <LineId Id="263" Count="55" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

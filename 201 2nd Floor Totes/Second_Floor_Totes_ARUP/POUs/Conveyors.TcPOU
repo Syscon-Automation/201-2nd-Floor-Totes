@@ -1,0 +1,1732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Conveyors" Id="{45030522-56d5-456c-b3e8-15b2c12a1718}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Conveyors
+VAR
+	DefaultVelocity: INT := 1675;
+	DefaultVelocityThreshold: INT := 500;
+	ResetAllDrives: BOOL;
+	
+//Conveyors Incoming 6000 (Blue line)
+//Transport
+//----------------------------------------P6005--------------------------------------------------------------
+   cfgP6005Label:	STRING(20) :=  'P6005';
+   cfgP6005SleepTime:	TIME := T#180S;
+   cfgP6005JamDetectTime:	TIME := T#30S;
+   P6005SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6005: FB_CnvyrCnfig_1;
+   P6005_StatePB: ST_StateCntrlPB;
+   P6005_Status : ST_EquipmentStatus;
+//Spiral
+//----------------------------------------P6010--------------------------------------------------------------
+   cfgP6010Label:	STRING(20) :=  'P6010';
+   cfgP6010SleepTime:	TIME := T#180S;
+   cfgP6010JamDetectTime:	TIME := T#30S;
+   P6010SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6010: FB_CnvyrCnfig_1;
+   P6010_StatePB: ST_StateCntrlPB;
+   P6010_Status : ST_EquipmentStatus;
+   P6010_VFD	:	VFD;
+   Test_VFD_P6010: BOOL;
+//Spiral
+//----------------------------------------P6011--------------------------------------------------------------
+   cfgP6011Label:	STRING(20) :=  'P6011';
+   cfgP6011SleepTime:	TIME := T#180S;
+   cfgP6011JamDetectTime:	TIME := T#30S;
+   P6011SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6011: FB_CnvyrCnfig_1;
+   P6011_StatePB: ST_StateCntrlPB;
+   P6011_Status : ST_EquipmentStatus;
+   P6011_VFD	:	VFD;
+   Test_VFD_P6011: BOOL;
+//Transport
+//----------------------------------------P6015--------------------------------------------------------------
+   cfgP6015Label:	STRING(20) :=  'P6015';
+   cfgP6015SleepTime:	TIME := T#180S;
+   cfgP6015JamDetectTime:	TIME := T#30S;
+   P6015SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6015: FB_CnvyrCnfig_1;
+   P6015_StatePB: ST_StateCntrlPB;
+   P6015_Status : ST_EquipmentStatus;
+//----------------------------------------P6020--------------------------------------------------------------
+   cfgP6020Label:	STRING(20) :=  'P6020';
+   cfgP6020SleepTime:	TIME := T#180S;
+   cfgP6020JamDetectTime:	TIME := T#30S;
+   P6020SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6020: FB_CnvyrCnfig_1;
+   P6020_StatePB: ST_StateCntrlPB;
+   P6020_Status : ST_EquipmentStatus;
+//----------------------------------------P6025--------------------------------------------------------------
+   cfgP6025Label:	STRING(20) :=  'P6025';
+   cfgP6025SleepTime:	TIME := T#180S;
+   cfgP6025JamDetectTime:	TIME := T#30S;
+   P6025SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6025: FB_CnvyrCnfig_1;
+   P6025_StatePB: ST_StateCntrlPB;
+   P6025_Status : ST_EquipmentStatus;
+//----------------------------------------P6030--------------------------------------------------------------
+   cfgP6030Label:	STRING(20) :=  'P6030';
+   cfgP6030SleepTime:	TIME := T#180S;
+   cfgP6030JamDetectTime:	TIME := T#30S;
+   P6030SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6030: FB_CnvyrCnfig_1;
+   P6030_StatePB: ST_StateCntrlPB;
+   P6030_Status : ST_EquipmentStatus;
+//----------------------------------------P6035--------------------------------------------------------------
+   cfgP6035Label:	STRING(20) :=  'P6035';
+   cfgP6035SleepTime:	TIME := T#180S;
+   cfgP6035JamDetectTime:	TIME := T#30S;
+   P6035SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6035: FB_CnvyrCnfig_1;
+   P6035_StatePB: ST_StateCntrlPB;
+   P6035_Status : ST_EquipmentStatus;
+//Spiral
+//----------------------------------------P6045--------------------------------------------------------------
+   cfgP6045Label:	STRING(20) :=  'P6045';
+   cfgP6045SleepTime:	TIME := T#180S;
+   cfgP6045JamDetectTime:	TIME := T#30S;
+   P6045SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6045: FB_CnvyrCnfig_1;
+   P6045_StatePB: ST_StateCntrlPB;
+   P6045_Status : ST_EquipmentStatus;
+   P6045_VFD	:	VFD;
+   Test_VFD_P6045: BOOL;
+//Sorter
+//----------------------------------------P6040--------------------------------------------------------------
+   cfgP6040Label:	STRING(20) :=  'P6040';
+   cfgP6040SleepTime:	TIME := T#180S;
+   cfgP6040JamDetectTime:	TIME := T#30S;
+   P6040SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P6040: FB_CnvyrCnfig_1;
+   P6040_StatePB: ST_StateCntrlPB;
+   P6040_Status : ST_EquipmentStatus;
+
+//Conveyors Outgoing 7000 (Orange line)
+//Loading Zone
+//----------------------------------------P7004--------------------------------------------------------------
+   cfgP7004Label:	STRING(20) :=  'P7004';
+   cfgP7004SleepTime:	TIME := T#180S;
+   cfgP7004JamDetectTime:	TIME := T#30S;
+   P7004SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7004: FB_CnvyrCnfig_1;
+   P7004_StatePB: ST_StateCntrlPB;
+   P7004_Status : ST_EquipmentStatus;
+//Spiral
+//----------------------------------------P7005--------------------------------------------------------------
+   cfgP7005Label:	STRING(20) :=  'P7005';
+   cfgP7005SleepTime:	TIME := T#180S;
+   cfgP7005JamDetectTime:	TIME := T#30S;
+   P7005SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7005: FB_CnvyrCnfig_1;
+   P7005_StatePB: ST_StateCntrlPB;
+   P7005_Status : ST_EquipmentStatus;
+   P7005_VFD	:	VFD;
+   Test_VFD_P7005: BOOL;
+//Transport
+//----------------------------------------P7010--------------------------------------------------------------
+   cfgP7010Label:	STRING(20) :=  'P7010';
+   cfgP7010SleepTime:	TIME := T#180S;
+   cfgP7010JamDetectTime:	TIME := T#30S;
+   P7010SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7010: FB_CnvyrCnfig_1;
+   P7010_StatePB: ST_StateCntrlPB;
+   P7010_Status : ST_EquipmentStatus;
+//----------------------------------------P7015--------------------------------------------------------------
+   cfgP7015Label:	STRING(20) :=  'P7015';
+   cfgP7015SleepTime:	TIME := T#180S;
+   cfgP7015JamDetectTime:	TIME := T#30S;
+   P7015SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7015: FB_CnvyrCnfig_1;
+   P7015_StatePB: ST_StateCntrlPB;
+   P7015_Status : ST_EquipmentStatus;
+//----------------------------------------P7020--------------------------------------------------------------
+   cfgP7020Label:	STRING(20) :=  'P7020';
+   cfgP7020SleepTime:	TIME := T#180S;
+   cfgP7020JamDetectTime:	TIME := T#30S;
+   P7020SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7020: FB_CnvyrCnfig_1;
+   P7020_StatePB: ST_StateCntrlPB;
+   P7020_Status : ST_EquipmentStatus;
+//----------------------------------------P7025--------------------------------------------------------------
+   cfgP7025Label:	STRING(20) :=  'P7025';
+   cfgP7025SleepTime:	TIME := T#180S;
+   cfgP7025JamDetectTime:	TIME := T#30S;
+   P7025SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7025: FB_CnvyrCnfig_1;
+   P7025_StatePB: ST_StateCntrlPB;
+   P7025_Status : ST_EquipmentStatus;
+//----------------------------------------P7030--------------------------------------------------------------
+   cfgP7030Label:	STRING(20) :=  'P7030';
+   cfgP7030SleepTime:	TIME := T#180S;
+   cfgP7030JamDetectTime:	TIME := T#30S;
+   P7030SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7030: FB_CnvyrCnfig_1;
+   P7030_StatePB: ST_StateCntrlPB;
+   P7030_Status : ST_EquipmentStatus;
+//----------------------------------------P7035--------------------------------------------------------------
+   cfgP7035Label:	STRING(20) :=  'P7035';
+   cfgP7035SleepTime:	TIME := T#180S;
+   cfgP7035JamDetectTime:	TIME := T#30S;
+   P7035SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7035: FB_CnvyrCnfig_1;
+   P7035_StatePB: ST_StateCntrlPB;
+   P7035_Status : ST_EquipmentStatus;
+//Spiral
+//----------------------------------------P7040--------------------------------------------------------------
+   cfgP7040Label:	STRING(20) :=  'P7040';
+   cfgP7040SleepTime:	TIME := T#180S;
+   cfgP7040JamDetectTime:	TIME := T#30S;
+   P7040SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7040: FB_CnvyrCnfig_1;
+   P7040_StatePB: ST_StateCntrlPB;
+   P7040_Status : ST_EquipmentStatus;
+   P7040_VFD	:	VFD;
+   Test_VFD_P7040: BOOL;
+//----------------------------------------P7041--------------------------------------------------------------
+   cfgP7041Label:	STRING(20) :=  'P7041';
+   cfgP7041SleepTime:	TIME := T#180S;
+   cfgP7041JamDetectTime:	TIME := T#30S;
+   P7041SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7041: FB_CnvyrCnfig_1;
+   P7041_StatePB: ST_StateCntrlPB;
+   P7041_Status : ST_EquipmentStatus;
+   P7041_VFD	:	VFD;
+   Test_VFD_P7041: BOOL;
+//Transport
+//----------------------------------------P7045--------------------------------------------------------------
+   cfgP7045Label:	STRING(20) :=  'P7045';
+   cfgP7045SleepTime:	TIME := T#180S;
+   cfgP7045JamDetectTime:	TIME := T#30S;
+   P7045SleepWakeTrig: ARRAY[1..5] OF BOOL;
+   P7045: FB_CnvyrCnfig_1;
+   P7045_StatePB: ST_StateCntrlPB;
+   P7045_Status : ST_EquipmentStatus;
+END_VAR
+
+VAR PERSISTENT
+//Conveyors Incoming 6000 (Blue line)
+//Transport
+//----------------------------------------P6005--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6005IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6005', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Spiral
+//----------------------------------------P6010--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6010IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6010', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Spiral
+//----------------------------------------P6011--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6011IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6011EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6011', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Transport
+//----------------------------------------P6015--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6015IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6015', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P6020--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6020', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P6025--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6025', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P6030--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6030', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P6035--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6035EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6035', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Spiral
+//----------------------------------------P6045--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6045IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6045', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Sorter
+//----------------------------------------P6040--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6040IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Gripper 1 in Auto' , DeviceLabel := 'GR6040_01' , OKState := TRUE),
+   (Description := 'Gripper 2 in Auto' , DeviceLabel := 'GR6040_01' , OKState := TRUE),
+   (Description := 'Pin Stop in Auto' , DeviceLabel := 'GR6040_01' , OKState := TRUE),
+   (Description := 'Divert 1 in Auto' , DeviceLabel := 'PU6040_01' , OKState := TRUE),
+   (Description := 'Divert 2 in Auto' , DeviceLabel := 'PU6040_02' , OKState := TRUE),
+   (Description := 'Divert 3 in Auto' , DeviceLabel := 'PU6040_03' , OKState := TRUE),
+   (Description := 'Divert 4 in Auto' , DeviceLabel := 'PU6040_04' , OKState := TRUE),
+   7(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP6040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS6040', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Conveyors Outgoing 7000 (Orange line)
+//Loading Zone
+//----------------------------------------P7004--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7004IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7004EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS7004', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Height Check Fail', DeviceLabel := 'PE_12261', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.OverHeightFLT),
+   11(())];
+//Spiral
+//----------------------------------------P7005--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7005IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := 'DS7005', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Transport
+//----------------------------------------P7010--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7010IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7015--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7015IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7020--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7025--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7030--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7035--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7035EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Spiral
+//----------------------------------------P7040--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7040IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//----------------------------------------P7041--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7041IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7041EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];
+//Transport
+//----------------------------------------P7045--------------------------------------------------------------
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7045IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
+   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   13(())];
+{attribute 'OPC.UA.DA' := '1'}
+cfgP7045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
+   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
+   (),
+   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
+   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   12(())];			
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//----------------------------------------P6005--------------------------------------------------------------
+P6005_StatePB.AutoPB := System.Cnvyr_Auto;
+P6005_StatePB.ManPB := System.Cnvyr_Manual;
+P6005_StatePB.ResetPB := System.Cnvyr_Reset;
+P6005_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6005SleepWakeTrig[1] := TRUE;		// This conveyor doesn't sleep EAP May Replace
+
+// Initialize the Equipment Type
+P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6005.In_EquipIntlks.2:=
+//Events
+  P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
+  P6005.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6005(
+   In_p_EquipStatePB:= P6005_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6010_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1232.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6005SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6005Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6005IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6005EvntsArry,
+   cfg_JamDetectTime:= cfgP6005JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6005SleepTime,
+   Sts_EquipState := P6005_Status,
+   Out_ConvCrntMtr => GVL_IO.P6005_RUN);
+
+P6005_Status.Sts_IsRunning := GVL_IO.P6005_RUN;
+//----------------------------------------P6010--------------------------------------------------------------
+P6010_StatePB.AutoPB := System.Cnvyr_Auto;
+P6010_StatePB.ManPB := System.Cnvyr_Manual;
+P6010_StatePB.ResetPB := System.Cnvyr_Reset;
+P6010_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6010SleepWakeTrig[1] := PhotoEyes.PE_1232.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6010.In_EquipIntlks.2:=
+//Events
+  P6010.In_EquipEvents.2:= GVL_IO.DS_P6010;
+  P6010.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6010(
+   In_p_EquipStatePB:= P6010_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6011_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1162.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6010SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6010Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6010IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6010EvntsArry,
+   cfg_JamDetectTime:= cfgP6010JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6010SleepTime,
+   Sts_EquipState := P6010_Status);
+
+//Motor Control
+P6010_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P6010.Out_ConvCrntMtr OR Test_VFD_P6010));
+P6010_Status.Sts_IsRunning := P6010_VFD.IsRunning;
+//----------------------------------------P6011--------------------------------------------------------------
+P6011_StatePB.AutoPB := System.Cnvyr_Auto;
+P6011_StatePB.ManPB := System.Cnvyr_Manual;
+P6011_StatePB.ResetPB := System.Cnvyr_Reset;
+P6011_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6011SleepWakeTrig[1] :=  PhotoEyes.PE_1232.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6011_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6011.In_EquipIntlks.2:=
+//Events
+P6011.In_EquipEvents.2:= GVL_IO.DS_P6011;
+P6011.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6011(
+   In_p_EquipStatePB:= P6011_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6015_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6011SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6011Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6011IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6011EvntsArry,
+   cfg_JamDetectTime:= cfgP6011JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6011SleepTime,
+   Sts_EquipState := P6011_Status);
+
+//Motor Control
+P6011_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P6011.Out_ConvCrntMtr OR Test_VFD_P6011));
+P6011_Status.Sts_IsRunning := P6011_VFD.IsRunning;
+//----------------------------------------P6015--------------------------------------------------------------
+P6015_StatePB.AutoPB := System.Cnvyr_Auto;
+P6015_StatePB.ManPB := System.Cnvyr_Manual;
+P6015_StatePB.ResetPB := System.Cnvyr_Reset;
+P6015_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6015SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6015.In_EquipIntlks.2:=
+//Events
+  P6015.In_EquipEvents.2:= GVL_IO.DS_P6015;
+  P6015.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6015(
+   In_p_EquipStatePB:= P6015_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6020_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1081.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6015SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6015Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6015IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6015EvntsArry,
+   cfg_JamDetectTime:= cfgP6015JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6015SleepTime,
+   Sts_EquipState := P6015_Status,
+   Out_ConvCrntMtr => GVL_IO.P6015_RUN);
+
+P6015_Status.Sts_IsRunning := GVL_IO.P6015_RUN;
+//----------------------------------------P6020--------------------------------------------------------------
+P6020_StatePB.AutoPB := System.Cnvyr_Auto;
+P6020_StatePB.ManPB := System.Cnvyr_Manual;
+P6020_StatePB.ResetPB := System.Cnvyr_Reset;
+P6020_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6020SleepWakeTrig[1] := PhotoEyes.PE_1081.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6020.In_EquipIntlks.2:=
+//Events
+  P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
+  P6020.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6020(
+   In_p_EquipStatePB:= P6020_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6025_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1161.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6020SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6020Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6020IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6020EvntsArry,
+   cfg_JamDetectTime:= cfgP6020JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6020SleepTime,
+   Sts_EquipState := P6020_Status,
+   Out_ConvCrntMtr => GVL_IO.P6020_RUN);
+
+P6020_Status.Sts_IsRunning := GVL_IO.P6020_RUN;
+//----------------------------------------P6025--------------------------------------------------------------
+P6025_StatePB.AutoPB := System.Cnvyr_Auto;
+P6025_StatePB.ManPB := System.Cnvyr_Manual;
+P6025_StatePB.ResetPB := System.Cnvyr_Reset;
+P6025_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6025SleepWakeTrig[1] := PhotoEyes.PE_1161.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6025.In_EquipIntlks.2:=
+//Events
+  P6025.In_EquipEvents.2:= GVL_IO.DS_P6025;
+  P6025.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6025(
+   In_p_EquipStatePB:= P6025_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6030_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4121.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6025SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6025Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6025IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6025EvntsArry,
+   cfg_JamDetectTime:= cfgP6025JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6025SleepTime,
+   Sts_EquipState := P6025_Status,
+   Out_ConvCrntMtr => GVL_IO.P6025_RUN);
+
+P6025_Status.Sts_IsRunning := GVL_IO.P6025_RUN;
+//----------------------------------------P6030--------------------------------------------------------------
+P6030_StatePB.AutoPB := System.Cnvyr_Auto;
+P6030_StatePB.ManPB := System.Cnvyr_Manual;
+P6030_StatePB.ResetPB := System.Cnvyr_Reset;
+P6030_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6030SleepWakeTrig[1] := PhotoEyes.PE_4121.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6030.In_EquipIntlks.2:=
+//Events
+  P6030.In_EquipEvents.2:= GVL_IO.DS_P6030;
+  P6030.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6030(
+   In_p_EquipStatePB:= P6030_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6035_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4271.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6030SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6030Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6030IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6030EvntsArry,
+   cfg_JamDetectTime:= cfgP6030JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6030SleepTime,
+   Sts_EquipState := P6030_Status,
+   Out_ConvCrntMtr => GVL_IO.P6030_RUN);
+
+P6030_Status.Sts_IsRunning := GVL_IO.P6030_RUN;
+//----------------------------------------P6035--------------------------------------------------------------
+P6035_StatePB.AutoPB := System.Cnvyr_Auto;
+P6035_StatePB.ManPB := System.Cnvyr_Manual;
+P6035_StatePB.ResetPB := System.Cnvyr_Reset;
+P6035_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6035SleepWakeTrig[1] := PhotoEyes.PE_4271.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6035.In_EquipIntlks.2:=
+//Events
+  P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
+  P6035.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6035(
+   In_p_EquipStatePB:= P6035_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6045_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4201.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6035SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6035Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6035IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6035EvntsArry,
+   cfg_JamDetectTime:= cfgP6035JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6035SleepTime,
+   Sts_EquipState := P6035_Status,
+   Out_ConvCrntMtr => GVL_IO.P6035_RUN);
+
+P6035_Status.Sts_IsRunning := GVL_IO.P6035_RUN;
+//----------------------------------------P6045--------------------------------------------------------------
+P6045_StatePB.AutoPB := System.Cnvyr_Auto;
+P6045_StatePB.ManPB := System.Cnvyr_Manual;
+P6045_StatePB.ResetPB := System.Cnvyr_Reset;
+P6045_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6045SleepWakeTrig[1] := PhotoEyes.PE_4201.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P6045.In_EquipIntlks.2:=
+//Events
+  P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
+  P6045.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6045(
+   In_p_EquipStatePB:= P6045_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6040_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6045SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6045Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6045IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6045EvntsArry,
+   cfg_JamDetectTime:= cfgP6045JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6045SleepTime,
+   Sts_EquipState := P6045_Status);
+
+//Motor Control
+P6045_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P6045.Out_ConvCrntMtr OR Test_VFD_P6045));
+P6045_Status.Sts_IsRunning := P6045_VFD.IsRunning;
+//----------------------------------------P6040--------------------------------------------------------------
+P6040_StatePB.AutoPB := System.Cnvyr_Auto;
+P6040_StatePB.ManPB := System.Cnvyr_Manual;
+P6040_StatePB.ResetPB := System.Cnvyr_Reset;
+P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+P6040.In_EquipIntlks.2:= Solenoids.GR6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.3:= Solenoids.GR6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.4:= Solenoids.GR6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.5:= Solenoids.PU6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.6:= Solenoids.PU6040_02_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.7:= Solenoids.PU6040_03_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
+//Events
+  P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
+  P6040.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P6040(
+   In_p_EquipStatePB:= P6040_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= TRUE,
+   In_ConvCrntExitPhotoEye:= FALSE,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6040SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6040Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6040IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6040EvntsArry,
+   cfg_JamDetectTime:= cfgP6040JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6040SleepTime,
+   Sts_EquipState := P6040_Status,
+   Out_ConvCrntMtr => GVL_IO.P6040_RUN);
+
+P6040_Status.Sts_IsRunning := GVL_IO.P6040_RUN;
+//----------------------------------------P7004--------------------------------------------------------------
+P7004_StatePB.AutoPB := System.Cnvyr_Auto;
+P7004_StatePB.ManPB := System.Cnvyr_Manual;
+P7004_StatePB.ResetPB := System.Cnvyr_Reset;
+P7004_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7004SleepWakeTrig[1] := TRUE; //This conveyor doesn't sleep
+
+// Initialize the Equipment Type
+P7004_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7004.In_EquipIntlks.2:=
+//Events
+ P7004.In_EquipEvents.2:= GVL_IO.DS_P7004;
+ P7004.In_EquipEvents.3:= System.SysEventsAllOk;
+ P7004.In_EquipEvents.4:= PhotoEyes.PE_12261.Out;
+
+// Function Call
+P7004(
+   In_p_EquipStatePB:= P7004_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7005_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE, //May use scanner Trigger?
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7004SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7004Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7004IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7004EvntsArry,
+   cfg_JamDetectTime:= cfgP7004JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7004SleepTime,
+   Sts_EquipState := P7004_Status,
+   Out_ConvCrntMtr => GVL_IO.P7004_RUN);
+
+P7004_Status.Sts_IsRunning := GVL_IO.P7004_RUN;
+//----------------------------------------P7005--------------------------------------------------------------
+P7005_StatePB.AutoPB := System.Cnvyr_Auto;
+P7005_StatePB.ManPB := System.Cnvyr_Manual;
+P7005_StatePB.ResetPB := System.Cnvyr_Reset;
+P7005_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7005SleepWakeTrig[1] := PhotoEyes.PE_12221.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7005.In_EquipIntlks.2:=
+//Events
+  P7005.In_EquipEvents.2:= GVL_IO.DS_P7005;
+  P7005.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7005(
+   In_p_EquipStatePB:= P7005_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7010_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE, 
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7005SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7005Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7005IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7005EvntsArry,
+   cfg_JamDetectTime:= cfgP7005JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7005SleepTime,
+   Sts_EquipState := P7005_Status);
+
+//Motor Control
+P7005_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P7005.Out_ConvCrntMtr OR Test_VFD_P7005));
+P7005_Status.Sts_IsRunning := P7005_VFD.IsRunning;
+//----------------------------------------P7010--------------------------------------------------------------
+P7010_StatePB.AutoPB := System.Cnvyr_Auto;
+P7010_StatePB.ManPB := System.Cnvyr_Manual;
+P7010_StatePB.ResetPB := System.Cnvyr_Reset;
+P7010_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7010SleepWakeTrig[1] := PhotoEyes.PE_12301.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7010.In_EquipIntlks.2:=
+//Events
+  P7010.In_EquipEvents.2:= GVL_IO.DS_P7010;
+  P7010.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7010(
+   In_p_EquipStatePB:= P7010_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7015_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_12231.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7010SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7010Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7010IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7010EvntsArry,
+   cfg_JamDetectTime:= cfgP7010JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7010SleepTime,
+   Sts_EquipState := P7010_Status,
+   Out_ConvCrntMtr => GVL_IO.P7010_RUN);
+
+P7010_Status.Sts_IsRunning := GVL_IO.P7010_RUN;
+//----------------------------------------P7015--------------------------------------------------------------
+P7015_StatePB.AutoPB := System.Cnvyr_Auto;
+P7015_StatePB.ManPB := System.Cnvyr_Manual;
+P7015_StatePB.ResetPB := System.Cnvyr_Reset;
+P7015_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7015SleepWakeTrig[1] := PhotoEyes.PE_12231.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7015.In_EquipIntlks.2:=
+//Events
+  P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
+  P7015.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7015(
+   In_p_EquipStatePB:= P7015_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7020_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15121.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7015SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7015Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7015IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7015EvntsArry,
+   cfg_JamDetectTime:= cfgP7015JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7015SleepTime,
+   Sts_EquipState := P7015_Status,
+   Out_ConvCrntMtr => GVL_IO.P7015_RUN);
+
+P7015_Status.Sts_IsRunning := GVL_IO.P7015_RUN;
+//----------------------------------------P7020--------------------------------------------------------------
+P7020_StatePB.AutoPB := System.Cnvyr_Auto;
+P7020_StatePB.ManPB := System.Cnvyr_Manual;
+P7020_StatePB.ResetPB := System.Cnvyr_Reset;
+P7020_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7020SleepWakeTrig[1] := PhotoEyes.PE_15121.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7020.In_EquipIntlks.2:=
+//Events
+  P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
+  P7020.In_EquipEvents.3:= System.SysEventsAllOk;
+ 
+
+// Function Call
+P7020(
+   In_p_EquipStatePB:= P7020_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7025_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15181.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7020SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7020Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7020IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7020EvntsArry,
+   cfg_JamDetectTime:= cfgP7020JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7020SleepTime,
+   Sts_EquipState := P7020_Status,
+   Out_ConvCrntMtr => GVL_IO.P7020_RUN);
+
+P7020_Status.Sts_IsRunning := GVL_IO.P7020_RUN;
+//----------------------------------------P7025--------------------------------------------------------------
+P7025_StatePB.AutoPB := System.Cnvyr_Auto;
+P7025_StatePB.ManPB := System.Cnvyr_Manual;
+P7025_StatePB.ResetPB := System.Cnvyr_Reset;
+P7025_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7025SleepWakeTrig[1] := PhotoEyes.PE_15181.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7025.In_EquipIntlks.2:=
+//Events
+  P7025.In_EquipEvents.2:=  GVL_IO.DS_P7025;
+  P7025.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7025(
+   In_p_EquipStatePB:= P7025_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7030_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15261.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7025SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7025Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7025IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7025EvntsArry,
+   cfg_JamDetectTime:= cfgP7025JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7025SleepTime,
+   Sts_EquipState := P7025_Status,
+   Out_ConvCrntMtr => GVL_IO.P7025_RUN);
+
+P7025_Status.Sts_IsRunning := GVL_IO.P7025_RUN;
+//----------------------------------------P7030--------------------------------------------------------------
+P7030_StatePB.AutoPB := System.Cnvyr_Auto;
+P7030_StatePB.ManPB := System.Cnvyr_Manual;
+P7030_StatePB.ResetPB := System.Cnvyr_Reset;
+P7030_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7030SleepWakeTrig[1] := PhotoEyes.PE_15261.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7030.In_EquipIntlks.2:=
+//Events
+  P7030.In_EquipEvents.2:=  GVL_IO.DS_P7030;
+  P7030.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7030(
+   In_p_EquipStatePB:= P7030_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7035_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16111.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7030SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7030Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7030IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7030EvntsArry,
+   cfg_JamDetectTime:= cfgP7030JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7030SleepTime,
+   Sts_EquipState := P7030_Status,
+   Out_ConvCrntMtr => GVL_IO.P7030_RUN);
+
+P7030_Status.Sts_IsRunning := GVL_IO.P7030_RUN;
+//----------------------------------------P7035--------------------------------------------------------------
+P7035_StatePB.AutoPB := System.Cnvyr_Auto;
+P7035_StatePB.ManPB := System.Cnvyr_Manual;
+P7035_StatePB.ResetPB := System.Cnvyr_Reset;
+P7035_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7035SleepWakeTrig[1] := PhotoEyes.PE_16111.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7035.In_EquipIntlks.2:=
+//Events
+  P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
+  P7035.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7035(
+   In_p_EquipStatePB:= P7035_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7040_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16301.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7035SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7035Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7035IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7035EvntsArry,
+   cfg_JamDetectTime:= cfgP7035JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7035SleepTime,
+   Sts_EquipState := P7035_Status,
+   Out_ConvCrntMtr => GVL_IO.P7035_RUN);
+
+P7035_Status.Sts_IsRunning := GVL_IO.P7035_RUN;
+//----------------------------------------P7040--------------------------------------------------------------
+P7040_StatePB.AutoPB := System.Cnvyr_Auto;
+P7040_StatePB.ManPB := System.Cnvyr_Manual;
+P7040_StatePB.ResetPB := System.Cnvyr_Reset;
+P7040_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7040SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7040.In_EquipIntlks.2:=
+//Events
+  P7040.In_EquipEvents.2:=  GVL_IO.DS_P7040;
+  P7040.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7040(
+   In_p_EquipStatePB:= P7040_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7041_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16131.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7040SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7040Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7040IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7040EvntsArry,
+   cfg_JamDetectTime:= cfgP7040JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7040SleepTime,
+   Sts_EquipState := P7040_Status);
+
+//Motor Control
+P7040_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P7040.Out_ConvCrntMtr OR Test_VFD_P7040));
+P7040_Status.Sts_IsRunning := P7040_VFD.IsRunning;
+//----------------------------------------P7041--------------------------------------------------------------
+P7041_StatePB.AutoPB := System.Cnvyr_Auto;
+P7041_StatePB.ManPB := System.Cnvyr_Manual;
+P7041_StatePB.ResetPB := System.Cnvyr_Reset;
+P7041_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7041SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7041_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7041.In_EquipIntlks.2:=
+//Events
+  P7041.In_EquipEvents.2:=  GVL_IO.DS_P7041;
+  P7041.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7041(
+   In_p_EquipStatePB:= P7041_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7045_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7041SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7041Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7041IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7041EvntsArry,
+   cfg_JamDetectTime:= cfgP7041JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7041SleepTime,
+   Sts_EquipState := P7041_Status);
+
+//Motor Control
+P7041_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P7041.Out_ConvCrntMtr OR Test_VFD_P7041));
+P7041_Status.Sts_IsRunning := P7041_VFD.IsRunning;
+//----------------------------------------P7045--------------------------------------------------------------
+P7045_StatePB.AutoPB := System.Cnvyr_Auto;
+P7045_StatePB.ManPB := System.Cnvyr_Manual;
+P7045_StatePB.ResetPB := System.Cnvyr_Reset;
+P7045_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7045SleepWakeTrig[1] := PhotoEyes.PE_16131.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+//P7045.In_EquipIntlks.2:=
+//Events
+  P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
+  P7045.In_EquipEvents.3:= System.SysEventsAllOk;
+
+// Function Call
+P7045(
+   In_p_EquipStatePB:= P7045_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= TRUE,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16201.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7045SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7045Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7045IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7045EvntsArry,
+   cfg_JamDetectTime:= cfgP7045JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7045SleepTime,
+   Sts_EquipState := P7045_Status,
+   Out_ConvCrntMtr => GVL_IO.P7045_RUN);
+
+P7045_Status.Sts_IsRunning := GVL_IO.P7045_RUN;
+
+
+	
+//Equipment arrays
+//Conveyors Incoming 6000 (Blue line)
+//Transport
+//P6005
+//    Remote Index Check
+IF Conveyors.P6005_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6005_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6005_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6005_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6005_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6005_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6005_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6005_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6005_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6005_Status.Sts_EquipmentState.Index] := Conveyors.P6005_Status.Sts_EquipmentState;
+END_IF
+
+//Spiral
+//P6010
+//    Remote Index Check
+IF Conveyors.P6010_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6010_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6010_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6010_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6010_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6010_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6010_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6010_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6010_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6010_Status.Sts_EquipmentState.Index] := Conveyors.P6010_Status.Sts_EquipmentState;
+END_IF
+
+//Spiral
+//P6011
+//    Remote Index Check
+IF Conveyors.P6011_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6011_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6011_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6011_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6011_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6011_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6011_Status.Sts_EquipmentState.Index] := Conveyors.P6011_Status.Sts_EquipmentState;
+END_IF
+
+//Transport
+//P6015
+//    Remote Index Check
+IF Conveyors.P6015_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6015_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6015_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6015_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6015_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6015_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6015_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6015_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6015_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6015_Status.Sts_EquipmentState.Index] := Conveyors.P6015_Status.Sts_EquipmentState;
+END_IF
+
+//P6020
+//    Remote Index Check
+IF Conveyors.P6020_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6020_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6020_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6020_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6020_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6020_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6020_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6020_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6020_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6020_Status.Sts_EquipmentState.Index] := Conveyors.P6020_Status.Sts_EquipmentState;
+END_IF
+
+//P6025
+//    Remote Index Check
+IF Conveyors.P6025_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6025_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6025_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6025_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6025_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6025_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6025_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6025_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6025_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6025_Status.Sts_EquipmentState.Index] := Conveyors.P6025_Status.Sts_EquipmentState;
+END_IF
+
+//P6030
+//    Remote Index Check
+IF Conveyors.P6030_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6030_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6030_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6030_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6030_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6030_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6030_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6030_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6030_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6030_Status.Sts_EquipmentState.Index] := Conveyors.P6030_Status.Sts_EquipmentState;
+END_IF
+
+//P6035
+//    Remote Index Check
+IF Conveyors.P6035_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6035_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6035_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6035_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6035_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6035_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6035_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6035_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6035_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6035_Status.Sts_EquipmentState.Index] := Conveyors.P6035_Status.Sts_EquipmentState;
+END_IF
+
+//Spiral
+//P6045
+//    Remote Index Check
+IF Conveyors.P6045_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6045_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6045_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6045_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6045_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6045_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6045_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6045_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6045_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6045_Status.Sts_EquipmentState.Index] := Conveyors.P6045_Status.Sts_EquipmentState;
+END_IF
+
+//Sorter
+//P6040
+//    Remote Index Check
+IF Conveyors.P6040_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6040_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P6040_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P6040_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6040_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6040_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6040_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P6040_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6040_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6040_Status.Sts_EquipmentState.Index] := Conveyors.P6040_Status.Sts_EquipmentState;
+END_IF
+
+//Conveyors Outgoing 7000 (Orange line)
+//Loading Zone
+//P7004
+//    Remote Index Check
+IF Conveyors.P7004_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7004_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7004_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7004_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7004_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7004_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7004_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7004_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7004_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7004_Status.Sts_EquipmentState.Index] := Conveyors.P7004_Status.Sts_EquipmentState;
+END_IF
+
+//Spiral
+//P7005
+//    Remote Index Check
+IF Conveyors.P7005_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7005_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7005_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7005_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7005_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7005_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7005_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7005_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7005_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7005_Status.Sts_EquipmentState.Index] := Conveyors.P7005_Status.Sts_EquipmentState;
+END_IF
+
+//Transport
+//P7010
+//    Remote Index Check
+IF Conveyors.P7010_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7010_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7010_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7010_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7010_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7010_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7010_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7010_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7010_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7010_Status.Sts_EquipmentState.Index] := Conveyors.P7010_Status.Sts_EquipmentState;
+END_IF
+
+//P7015
+//    Remote Index Check
+IF Conveyors.P7015_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7015_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7015_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7015_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7015_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7015_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7015_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7015_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7015_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7015_Status.Sts_EquipmentState.Index] := Conveyors.P7015_Status.Sts_EquipmentState;
+END_IF
+
+//P7020
+//    Remote Index Check
+IF Conveyors.P7020_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7020_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7020_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7020_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7020_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7020_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7020_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7020_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7020_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7020_Status.Sts_EquipmentState.Index] := Conveyors.P7020_Status.Sts_EquipmentState;
+END_IF
+
+//P7025
+//    Remote Index Check
+IF Conveyors.P7025_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7025_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7025_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7025_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7025_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7025_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7025_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7025_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7025_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7025_Status.Sts_EquipmentState.Index] := Conveyors.P7025_Status.Sts_EquipmentState;
+END_IF
+
+//P7030
+//    Remote Index Check
+IF Conveyors.P7030_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7030_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7030_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7030_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7030_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7030_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7030_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7030_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7030_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7030_Status.Sts_EquipmentState.Index] := Conveyors.P7030_Status.Sts_EquipmentState;
+END_IF
+
+//P7035
+//    Remote Index Check
+IF Conveyors.P7035_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7035_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7035_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7035_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7035_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7035_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7035_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7035_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7035_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7035_Status.Sts_EquipmentState.Index] := Conveyors.P7035_Status.Sts_EquipmentState;
+END_IF
+
+//Spiral
+//P7040
+//    Remote Index Check
+IF Conveyors.P7040_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7040_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7040_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7040_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7040_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7040_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7040_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7040_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7040_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7040_Status.Sts_EquipmentState.Index] := Conveyors.P7040_Status.Sts_EquipmentState;
+END_IF
+
+//P7041
+//    Remote Index Check
+IF Conveyors.P7041_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7041_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7041_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7041_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7041_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7041_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7041_Status.Sts_EquipmentState.Index] := Conveyors.P7041_Status.Sts_EquipmentState;
+END_IF
+
+//Transport
+//P7045
+//    Remote Index Check
+IF Conveyors.P7045_Status.Sts_EquipmentState.Index > 0 THEN
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7045_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
+      IF Conveyors.P7045_Status.Sts_EquipmentState.RemIndex = 0 THEN
+          Conveyors.P7045_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7045_Status.Sts_EquipmentState.Index].RemIndex;
+      END_IF
+  END_IF
+  //    Last Operational State Check
+  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7045_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7045_Status.Sts_EquipmentState.LstOperState THEN
+      Conveyors.P7045_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7045_Status.Sts_EquipmentState.Index].LstOperState;
+  END_IF
+  //Prepare the Equipment Status data item
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7045_Status.Sts_EquipmentState.Index] := Conveyors.P7045_Status.Sts_EquipmentState;
+END_IF
+
+
+	]]></ST>
+    </Implementation>
+    <LineIds Name="Conveyors">
+      <LineId Id="3723" Count="13" />
+      <LineId Id="5649" Count="0" />
+      <LineId Id="3737" Count="35" />
+      <LineId Id="5650" Count="0" />
+      <LineId Id="3773" Count="40" />
+      <LineId Id="5651" Count="0" />
+      <LineId Id="3814" Count="40" />
+      <LineId Id="5652" Count="0" />
+      <LineId Id="3855" Count="35" />
+      <LineId Id="5653" Count="0" />
+      <LineId Id="3891" Count="35" />
+      <LineId Id="5654" Count="0" />
+      <LineId Id="3927" Count="35" />
+      <LineId Id="5655" Count="0" />
+      <LineId Id="3963" Count="35" />
+      <LineId Id="5656" Count="0" />
+      <LineId Id="3999" Count="35" />
+      <LineId Id="5657" Count="0" />
+      <LineId Id="4035" Count="38" />
+      <LineId Id="5633" Count="5" />
+      <LineId Id="4074" Count="1" />
+      <LineId Id="5658" Count="0" />
+      <LineId Id="4076" Count="35" />
+      <LineId Id="5648" Count="0" />
+      <LineId Id="5647" Count="0" />
+      <LineId Id="4112" Count="35" />
+      <LineId Id="5659" Count="0" />
+      <LineId Id="4148" Count="40" />
+      <LineId Id="5660" Count="0" />
+      <LineId Id="4189" Count="35" />
+      <LineId Id="5661" Count="0" />
+      <LineId Id="4225" Count="35" />
+      <LineId Id="5662" Count="0" />
+      <LineId Id="5646" Count="0" />
+      <LineId Id="4261" Count="35" />
+      <LineId Id="5663" Count="0" />
+      <LineId Id="4297" Count="35" />
+      <LineId Id="5664" Count="0" />
+      <LineId Id="4333" Count="35" />
+      <LineId Id="5665" Count="0" />
+      <LineId Id="4369" Count="35" />
+      <LineId Id="5666" Count="0" />
+      <LineId Id="4405" Count="40" />
+      <LineId Id="5667" Count="0" />
+      <LineId Id="4446" Count="40" />
+      <LineId Id="5668" Count="0" />
+      <LineId Id="4487" Count="21" />
+      <LineId Id="2887" Count="0" />
+      <LineId Id="1514" Count="0" />
+      <LineId Id="1468" Count="0" />
+      <LineId Id="1516" Count="0" />
+      <LineId Id="4794" Count="348" />
+      <LineId Id="1769" Count="0" />
+      <LineId Id="1755" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

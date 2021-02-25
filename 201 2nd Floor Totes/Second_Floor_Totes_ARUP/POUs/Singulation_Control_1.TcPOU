@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Singulation_Control_1" Id="{29efa8a8-80d0-4e8c-b871-cc6beb136689}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Singulation_Control_1
+VAR
+	SortSingulation	:	FB_Singulation;
+	RetryLimit		:	UINT := 1;
+	ReleaseDist		:	UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[SortSingulation(
+//	In_ConveyorRunning := Conveyors.P8005_VFD.IsRunning,
+//	In_Grabber_1_Auto := Solenoids.GR8005_1_Status.Sts_EquipmentState.StsAuto,
+//	In_Grabber_1_Extended := ProxSensors.In_PX_22741_Extended,
+//	In_Grabber_1_Retracted := ProxSensors.In_PX_22721_Retracted,
+//	In_Grabber_2_Auto := Solenoids.GR8005_2_Status.Sts_EquipmentState.StsAuto,
+//	In_Grabber_2_Extended := ProxSensors.In_PX_23341_Extended,
+//	In_Grabber_2_Retracted := ProxSensors.In_PX_23321_Retracted,
+//	In_PinStop_Auto := Solenoids.PS8005_Status.Sts_EquipmentState.StsAuto,
+//	In_PinStop_Extended := ProxSensors.In_PX_22541_Extended,
+//	In_PinStop_Retracted := ProxSensors.In_PX_22521_Retracted,
+	In_FaultReset := System.Cnvyr_Reset,
+//	In_EncoderCount := GVL_IO.ENC_11321_Raw,
+//	In_PE_GrabTrigger:= PhotoEyes.PE_22521.Out_OnFltrd, 
+//	In_PE_ToteTrigger:= PhotoEyes.PE_22501.Out_OffFltrd, 
+//	In_PE_ClearedTrigger:= PhotoEyes.PE_22621.Out_OffFltrd,
+	Cfg_GappingDistance := ReleaseDist,
+	Cfg_TimeOutTime:= T#5S,
+	Cfg_RetryLimit:= RetryLimit, 
+);]]></ST>
+    </Implementation>
+    <LineIds Name="Singulation_Control_1">
+      <LineId Id="8" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="71" Count="1" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="51" Count="3" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="45" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
