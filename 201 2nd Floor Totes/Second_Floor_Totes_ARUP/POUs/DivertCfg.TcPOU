@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="DivertCfg" Id="{b234124d-3462-48da-aaee-6006b08e9940}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM DivertCfg
-VAR_INPUT
+(*VAR_INPUT
 //	nLogEnable	:	UDINT;
 END_VAR
 VAR
@@ -17,7 +17,7 @@ END_VAR
 VAR_IN_OUT
 	Diverts			: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_Divert;
 	DivertsCfgs		: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_DivertCfg;
-END_VAR
+END_VAR *)
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[(*
@@ -25,7 +25,7 @@ END_VAR
 	Tie variables commented IO to physical IO address
 *)
 
-//Divert #1
+(*//Divert #1
 Diverts[1].Config := DivertsCfgs[1];
 Diverts[1].ConfirmPE := Photoeyes.PE_7191.Out; 			
 Diverts[1].FullPE := Photoeyes.PE_7191.Out;   			
@@ -167,7 +167,7 @@ IF Divert_FTRIG[5].q THEN
 			, msgFmtStr := 'Divert 5 Extend : %s'
 			, strArg := sMessage);
 	END_IF
-END_IF]]></ST>
+END_IF *)]]></ST>
     </Implementation>
     <LineIds Name="DivertCfg">
       <LineId Id="478" Count="1" />

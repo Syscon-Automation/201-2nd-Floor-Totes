@@ -12,8 +12,8 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Divert 1
-r_DivertExtend[1](CLK := SORTER.aSorterDiverts[1].Output1);
-f_DivertExtend[1](CLK := SORTER.aSorterDiverts[1].Output1);
+r_DivertExtend[1](CLK := SORTER.Diverts[1].Output1);
+f_DivertExtend[1](CLK := SORTER.Diverts[1].Output1);
 
 IF r_DivertExtend[1].Q THEN
 	IF .nDivertLogEnable.DIVERT1 THEN
@@ -31,8 +31,8 @@ IF f_DivertExtend[1].Q THEN
 END_IF
 
 // Confirm 1
-r_ConfirmPE[1](CLK := SORTER.aSorterDiverts[1].ConfirmPE);
-f_ConfirmPE[1](CLK := SORTER.aSorterDiverts[1].ConfirmPE);
+r_ConfirmPE[1](CLK := SORTER.Diverts[1].ConfirmPE);
+f_ConfirmPE[1](CLK := SORTER.Diverts[1].ConfirmPE);
 
 IF r_ConfirmPE[1].Q THEN
 	IF .nDivertLogEnable.CONFIRM1 THEN
@@ -50,8 +50,8 @@ IF f_ConfirmPE[1].Q THEN
 END_IF
 
 // Divert 2
-r_DivertExtend[2](CLK := SORTER.aSorterDiverts[2].Output1);
-f_DivertExtend[2](CLK := SORTER.aSorterDiverts[2].Output1);
+r_DivertExtend[2](CLK := SORTER.Diverts[2].Output1);
+f_DivertExtend[2](CLK := SORTER.Diverts[2].Output1);
 
 IF r_DivertExtend[2].Q THEN
 	IF .nDivertLogEnable.DIVERT2 THEN
@@ -69,8 +69,8 @@ IF f_DivertExtend[2].Q THEN
 END_IF
 
 // Confirm 2
-r_ConfirmPE[2](CLK := SORTER.aSorterDiverts[2].ConfirmPE);
-f_ConfirmPE[2](CLK := SORTER.aSorterDiverts[2].ConfirmPE);
+r_ConfirmPE[2](CLK := SORTER.Diverts[2].ConfirmPE);
+f_ConfirmPE[2](CLK := SORTER.Diverts[2].ConfirmPE);
 
 IF r_ConfirmPE[2].Q THEN
 	IF .nDivertLogEnable.CONFIRM2 THEN
@@ -89,8 +89,8 @@ END_IF
 
 // Sorter Discharge "Divert"
 // Divert 3
-r_DivertExtend[3](CLK := SORTER.aSorterDiverts[3].Output1);
-f_DivertExtend[3](CLK := SORTER.aSorterDiverts[3].Output1);
+r_DivertExtend[3](CLK := SORTER.Diverts[3].Output1);
+f_DivertExtend[3](CLK := SORTER.Diverts[3].Output1);
 
 IF r_DivertExtend[3].Q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
@@ -108,8 +108,8 @@ IF f_DivertExtend[3].Q THEN
 END_IF
 
 // Confirm 3
-r_ConfirmPE[3](CLK := SORTER.aSorterDiverts[3].ConfirmPE);
-f_ConfirmPE[3](CLK := SORTER.aSorterDiverts[3].ConfirmPE);
+r_ConfirmPE[3](CLK := SORTER.Diverts[3].ConfirmPE);
+f_ConfirmPE[3](CLK := SORTER.Diverts[3].ConfirmPE);
 
 IF r_ConfirmPE[3].Q THEN
 	IF .nDivertLogEnable.CONFIRM3 THEN

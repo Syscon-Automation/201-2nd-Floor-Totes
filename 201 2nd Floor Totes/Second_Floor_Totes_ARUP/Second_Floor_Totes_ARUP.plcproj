@@ -398,6 +398,9 @@
     <Compile Include="POUs\ProxSensors.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\P_PulseCountDist.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ServerControl.TcPOU">
       <SubType>Code</SubType>
     </Compile>

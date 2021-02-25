@@ -19,7 +19,8 @@ VAR
 	RIO15181_CommFault: FB_DigDebnce;	// Remote IO Block 15181 Communication Fault
 	RIO16171_CommFault: FB_DigDebnce;	// Remote IO Block 16171 Communication Fault
 	
-	BCR10561_CommFault: FB_DigDebnce;;		// Bar Code Reader 10561 Communication Fault
+	BCR_S6040_01_CommFault: FB_DigDebnce;;		// Bar Code Reader 6040_01 Communication Fault
+	BCR_S7004_01_CommFault: FB_DigDebnce;;		// Bar Code Reader 7004_01 Communication Fault
 	
 	Ethernet_CommFault: FB_DigDebnce;;		// Ethernet Adapter Status Communication Fault
 	
@@ -116,7 +117,14 @@ RIO16171_CommFault(
 	);
 
 // Bar Code Readers --------------------	
-BCR10561_CommFault(
+BCR_S6040_01_CommFault(
+//	In:= BarCodeReaders.BCR10561.Out_DeviceState = 0, 
+	CFG_OKState:= 1, 
+	CFG_OnDlyTime:= DebounceOnTime, 
+	CFG_OffDlyTime:= DebounceOffTime, 
+	In_Sim:= , 
+	);
+BCR_S7004_01_CommFault(
 //	In:= BarCodeReaders.BCR10561.Out_DeviceState = 0, 
 	CFG_OKState:= 1, 
 	CFG_OnDlyTime:= DebounceOnTime, 
@@ -172,6 +180,8 @@ Ethernet_CommFault(
       <LineId Id="52" Count="0" />
       <LineId Id="133" Count="5" />
       <LineId Id="53" Count="0" />
+      <LineId Id="332" Count="5" />
+      <LineId Id="331" Count="0" />
       <LineId Id="139" Count="0" />
       <LineId Id="219" Count="0" />
       <LineId Id="221" Count="5" />

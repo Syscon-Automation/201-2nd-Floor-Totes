@@ -9,15 +9,15 @@ VAR
 		
 	Arrival_Item 			: ST_Item;		// Output Item (Bar code read) To Sort PLC
 	LastArrival_Item		: ST_Item;		// Last Output Item (Bar code read) To Sort PLC
-	ReadID_P8005_Old		: UDINT;
+	ReadID_P6040_Old		: UDINT;
 
 	st_SorterArrivalBuffer AT %Q*	: ST_ItemBuffer;		// Output from the Barcode Reader to the sorter
 	st_ArrivalFdbkIn AT %I*			: ST_ItemBufferFdbk;
 	st_ArrivalFdbkOut 				: ST_ItemBufferFdbk;
 	fb_SorterArrivalBuffer			: FB_ItemBuffer;	// Function to Process the SorterArrivalBuffer
 	
-	sBcr10563Log			: STRING;
-	tpBcr10563Trig					: TP;	// Pulse timer for BCR Reader
+	sBcr_S6040_01Log			: STRING;
+	tpBcr_S6040_01Trig					: TP;	// Pulse timer for BCR Reader
 
 	rSorterPE					: R_TRIG; 	// Capture the Rising edge of the Sorter BCR PE
 	fSorterPE					: F_TRIG; 	// Capture the Falling edge of the Sorter BCR PE
@@ -47,13 +47,13 @@ END_IF
 IF MAIN.In_ResetAllMetrics THEN
 	BCR_S6040_01.In_ResetCounts := MAIN.In_ResetAllMetrics;
 	BCR_S7004_01.In_ResetCounts := MAIN.In_ResetAllMetrics;
-
 END_IF
 
 // Set up Bar Code Readers
-BCR10561.LogEntries := .nBarcodeLogEnable.BCR10561_LOG;
-BCR10561(
-//	In_ReadTrig:= PhotoEyes.PE_22221.Out_OnFltrd(*PhotoEyes.PE_22241.Out_OnFltrd*), 
+//----------------------------------------P6040--------------------------------------------------------------
+BCR_S6040_01.LogEntries := .nBarcodeLogEnable.BCR_S6040_01_LOG;
+BCR_S6040_01(
+	In_ReadTrig:= PhotoEyes.PE_6261.Out_OnFltrd, 
 	In_ResetCounts:= , 
 	In_TriggerOnTime := T#20MS ,
 	In_EquipID := '00001',
@@ -64,27 +64,14 @@ BCR10561(
 	MisreadCount=> , 
 	GoodreadCount=> );
 	
-BCR10562.LogEntries := .nBarcodeLogEnable.BCR10562_LOG;
-BCR10562(
-//	In_ReadTrig:= PhotoEyes.PE_22241.Out_OnFltrd, 
-	In_ResetCounts:= , 
-	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00002',
-	Out_NewReadTrig=> , 
-	Out_ReadString=> , 
-	Out_ReadStatus=> ,
-	Out_ResultID=>, 
-	MisreadCount=> , 
-	GoodreadCount=> );
-	
-BCR10563.LogEntries := .nBarcodeLogEnable.BCR10563_LOG;
-tpBcr10563Trig(
-//	IN := PhotoEyes.PE_22621.Out,
+BCR_S6040_01.LogEntries := .nBarcodeLogEnable.BCR_S6040_01_LOG;
+tpBcr_S6040_01Trig(
+	IN := PhotoEyes.PE_6261.Out,
 				PT := T#10MS,
 				Q =>);
 // Capture rising and falling edge Triggers of the Sorter BCR Trigger PE
-//rSorterPE(CLK:= PhotoEyes.PE_22621.Out, Q =>);
-//fSorterPE(CLK:= PhotoEyes.PE_22621.Out, Q =>);
+ rSorterPE(CLK:= PhotoEyes.PE_6261.Out, Q =>);
+ fSorterPE(CLK:= PhotoEyes.PE_6261.Out, Q =>);
 
 // Log the rising edge of the Trigger
 IF rSorterPE.Q THEN
@@ -92,7 +79,7 @@ IF rSorterPE.Q THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
 			msgFmtStr := 'Sort BCR PE Blocked : %s',
-//			strArg := BOOL_TO_STRING(PhotoEyes.PE_22621.Out)
+//			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
 			strArg := BOOL_TO_STRING(TRUE)
 			); 
 	END_IF
@@ -104,117 +91,60 @@ IF fSorterPE.Q THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
 			msgFmtStr := 'Sort BCR PE Blocked : %s',
-//			strArg := BOOL_TO_STRING(PhotoEyes.PE_22621.Out)
+//			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
 			strArg := BOOL_TO_STRING(TRUE)
 		);
 	END_IF
 END_IF
 
-BCR10563(
-//	In_ReadTrig:= PhotoEyes.PE_22621.Out, 
-	In_ResetCounts:= , 
-	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00007',
-	Out_NewReadTrig=> , 
-	Out_ReadString=> , 
-	Out_ReadStatus=> ,
-	Out_ResultID=>, 
-	MisreadCount=> , 
-	GoodreadCount=> );
 
 // Capture rising and falling edge Triggers of the Sorter BCR Trigger PE
-r_BCR10565TriggerOn(CLK:= BCR10563.Out_TriggerState, Q =>);
-f_BCR10565TriggerOn(CLK:= BCR10563.Out_TriggerState, Q =>);
+r_BCR_S6040_01TriggerOn(CLK:= BCR_S6040_01.Out_TriggerState, Q =>);
+f_BCR_S6040_01TriggerOn(CLK:= BCR_S6040_01.Out_TriggerState, Q =>);
 
 // Log the rising edge of the Trigger
-IF r_BCR10565TriggerOn.Q THEN
+IF r_BCR_S6040_01TriggerOn.Q THEN
 	IF nBarcodeLogEnable.TRIGGER THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Sort BCR Trigger : %s'
-			, strArg := BOOL_TO_STRING(BCR10563.Out_TriggerState)); 
+			, strArg := BOOL_TO_STRING(BCR_S6040_01.Out_TriggerState)); 
 	END_IF
 END_IF
 
-// Log the falling edge of the Trigger
-IF f_BCR10565TriggerOn.Q THEN
-	IF nBarcodeLogEnable.TRIGGER THEN
-		// Write to the Error List
-		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
-			, msgFmtStr := 'Sort BCR Trigger : %s'
-			, strArg := BOOL_TO_STRING(BCR10563.Out_TriggerState));
-	END_IF
-END_IF
 
 // Send Read Information to Sorter	
 //	Creates Arrival message at sorter
-IF ReadID_P8005_Old <> BarCodeReaders.BCR10563.GoodreadCount THEN
-	Arrival_Item.UniqueID := BCR10563.Out_ResultID;
-	Arrival_Item.ID := BCR10563.Out_ReadString;
+IF ReadID_P6040_Old <> BarCodeReaders.BCR_S6040_01.GoodreadCount THEN
+	Arrival_Item.UniqueID := BCR_S6040_01.Out_ResultID;
+	Arrival_Item.ID := BCR_S6040_01.Out_ReadString;
 	Arrival_Item.Status := E_StatusCode.UpdateRequested;
-//	Arrival_Item.DeviceID := GVL_IO.SorterName;
+	Arrival_Item.DeviceID := GVL_IO.SorterName;
 	Arrival_Item.MessageType := E_MessageIds.Arrival_23;
 	Arrival_Item.Destination := MsgControl.DefDestination;
 	Arrival_Item.Length := 0;
 	LastArrival_Item := Arrival_Item;
 	fb_SorterArrivalBuffer.AddItem(Arrival_Item);
-	ReadID_P8005_Old := BarCodeReaders.BCR10563.GoodreadCount;
+	ReadID_P6040_Old := BarCodeReaders.BCR_S6040_01.GoodreadCount;
 ELSE 
 	Arrival_Item := MsgControl.BlankItem;
 	Arrival_Item.Status := E_StatusCode.UpdateRequested;
-END_IF
-	
-BCR10564.LogEntries := .nBarcodeLogEnable.BCR10564_LOG;
-BCR10564(
-//	In_ReadTrig:= PhotoEyes.PE_22641.Out_OnFltrd, 
+END_IF	
+
+//----------------------------------------P7004--------------------------------------------------------------	
+BCR_S7004_01.LogEntries := .nBarcodeLogEnable.BCR_S7004_01_LOG;
+BCR_S7004_01(
+	In_ReadTrig:= PhotoEyes.PE_12221.Out_OnFltrd, 
 	In_ResetCounts:= , 
 	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00016',
-	Out_NewReadTrig=> , 
-	Out_ReadString=> , 
-	Out_ReadStatus=> ,
-	Out_ResultID=>,
-	MisreadCount=> , 
-	GoodreadCount=> );
-	
-BCR10565.LogEntries := .nBarcodeLogEnable.BCR10565_LOG;
-BCR10565(
-//	In_ReadTrig:= PhotoEyes.PE_23281.Out_OnFltrd, 
-	In_ResetCounts:= , 
-	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00017',
+	In_EquipID := '00002',
 	Out_NewReadTrig=> , 
 	Out_ReadString=> , 
 	Out_ReadStatus=> ,
 	Out_ResultID=>, 
 	MisreadCount=> , 
 	GoodreadCount=> );
-	
-BCR10566.LogEntries := .nBarcodeLogEnable.BCR10566_LOG;
-BCR10566(
-//	In_ReadTrig:= PhotoEyes.PE_24201.Out_OnFltrd, 
-	In_ResetCounts:= , 
-	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00018',
-	Out_NewReadTrig=> , 
-	Out_ReadString=> , 
-	Out_ReadStatus=> ,
-	Out_ResultID=>, 
-	MisreadCount=> , 
-	GoodreadCount=> );
-	
-BCR10567.LogEntries := .nBarcodeLogEnable.BCR10567_LOG;
-BCR10567(
-//	In_ReadTrig:= PhotoEyes.PE_24221.Out_OnFltrd, 
-	In_ResetCounts:= , 
-	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00019',
-	Out_NewReadTrig=> , 
-	Out_ReadString=> , 
-	Out_ReadStatus=> ,
-	Out_ResultID=>, 
-	MisreadCount=> , 
-	GoodreadCount=> );]]></ST>
+]]></ST>
     </Implementation>
     <LineIds Name="BarCodeReaders">
       <LineId Id="384" Count="0" />
@@ -228,19 +158,15 @@ BCR10567(
       <LineId Id="542" Count="3" />
       <LineId Id="742" Count="2" />
       <LineId Id="746" Count="0" />
-      <LineId Id="751" Count="0" />
       <LineId Id="745" Count="0" />
       <LineId Id="386" Count="1" />
+      <LineId Id="960" Count="0" />
       <LineId Id="817" Count="0" />
       <LineId Id="389" Count="2" />
       <LineId Id="595" Count="0" />
       <LineId Id="851" Count="0" />
-      <LineId Id="392" Count="6" />
-      <LineId Id="818" Count="0" />
-      <LineId Id="399" Count="2" />
-      <LineId Id="596" Count="0" />
-      <LineId Id="852" Count="0" />
-      <LineId Id="402" Count="6" />
+      <LineId Id="392" Count="5" />
+      <LineId Id="408" Count="0" />
       <LineId Id="568" Count="0" />
       <LineId Id="592" Count="0" />
       <LineId Id="886" Count="0" />
@@ -261,46 +187,20 @@ BCR10567(
       <LineId Id="890" Count="0" />
       <LineId Id="889" Count="0" />
       <LineId Id="783" Count="0" />
-      <LineId Id="657" Count="1" />
-      <LineId Id="409" Count="0" />
-      <LineId Id="712" Count="0" />
-      <LineId Id="411" Count="0" />
-      <LineId Id="597" Count="0" />
-      <LineId Id="853" Count="0" />
-      <LineId Id="412" Count="6" />
+      <LineId Id="657" Count="0" />
+      <LineId Id="417" Count="1" />
       <LineId Id="713" Count="0" />
       <LineId Id="691" Count="4" />
       <LineId Id="784" Count="0" />
       <LineId Id="696" Count="3" />
       <LineId Id="785" Count="0" />
-      <LineId Id="700" Count="3" />
-      <LineId Id="786" Count="0" />
-      <LineId Id="704" Count="3" />
-      <LineId Id="787" Count="0" />
-      <LineId Id="708" Count="1" />
+      <LineId Id="700" Count="1" />
+      <LineId Id="709" Count="0" />
       <LineId Id="419" Count="0" />
       <LineId Id="919" Count="0" />
-      <LineId Id="420" Count="15" />
-      <LineId Id="819" Count="0" />
-      <LineId Id="436" Count="2" />
-      <LineId Id="598" Count="0" />
-      <LineId Id="854" Count="0" />
-      <LineId Id="439" Count="6" />
-      <LineId Id="820" Count="0" />
-      <LineId Id="446" Count="2" />
-      <LineId Id="599" Count="0" />
-      <LineId Id="855" Count="0" />
-      <LineId Id="449" Count="6" />
-      <LineId Id="821" Count="0" />
-      <LineId Id="456" Count="2" />
-      <LineId Id="600" Count="0" />
-      <LineId Id="921" Count="0" />
-      <LineId Id="459" Count="6" />
-      <LineId Id="822" Count="0" />
-      <LineId Id="466" Count="2" />
-      <LineId Id="601" Count="0" />
-      <LineId Id="857" Count="0" />
-      <LineId Id="469" Count="4" />
+      <LineId Id="420" Count="14" />
+      <LineId Id="947" Count="12" />
+      <LineId Id="946" Count="0" />
       <LineId Id="92" Count="0" />
     </LineIds>
   </POU>

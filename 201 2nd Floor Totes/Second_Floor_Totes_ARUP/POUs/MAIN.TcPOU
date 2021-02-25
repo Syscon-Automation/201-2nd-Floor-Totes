@@ -9,11 +9,14 @@ VAR
 	tonPersistentSave	:	TON := (PT := T#1M);
 	tpBroadcastSave		:	TP	:= (PT := T#100MS);
 	PLCPersistentSave			AT %Q*	: BOOL;
-	
+	ADSPort						:	UINT := 0;
+	In_ResetAllMetrics			: 	BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[Conveyors();
+      <ST><![CDATA[BarCodeReaders();
+CommStatus();
+Conveyors();
 Log_Diverts();
 MsgControl();
 Photoeyes();
@@ -44,6 +47,7 @@ IF rStartPersistentSave.Q THEN
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="64" Count="1" />
       <LineId Id="45" Count="0" />
       <LineId Id="47" Count="1" />
       <LineId Id="13" Count="0" />

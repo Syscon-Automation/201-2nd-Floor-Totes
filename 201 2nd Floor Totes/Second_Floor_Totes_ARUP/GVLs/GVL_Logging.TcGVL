@@ -21,8 +21,8 @@ VAR_GLOBAL CONSTANT
 	// Barcode Logging
 	TRIGGER_PE		:	INT := 0;
 	TRIGGER			:	INT := 1;
-	BCR6040_LOG	:	INT := 2;
-	BCR7004_LOG	:	INT := 3;
+	BCR_S6040_01_LOG	:	INT := 2;
+	BCR_S7004_01_LOG	:	INT := 3;
 	
 	// Barcode Logging
 	BUFFER_LOG	:	INT := 0;	
