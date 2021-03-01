@@ -90,7 +90,7 @@ ItemsArrayMax		:= Sorter.SORTERENCODERMAX;
 nItemArraySize := ItemsArrayMax - ItemsArrayMin + 1;
 
 FOR divertIndex := Sorter.DIVERTMIN TO Sorter.NUMBEROFDIVERTS DO
-	fb_DivertFullMonitor(Divert := Sorter.Diverts[divertIndex]);
+	fb_DivertFullMonitor(Divert := Sorter.aSorterDiverts[divertIndex]);
 END_FOR
 
 (*

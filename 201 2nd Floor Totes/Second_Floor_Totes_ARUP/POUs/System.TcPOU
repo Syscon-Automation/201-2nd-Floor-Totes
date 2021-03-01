@@ -52,7 +52,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Send out reset PB put here in case added logic was needed
-SysStateCntrl_StatePB.ResetPB := GVL_IO.PB_SysReset OR HMI_PBSysReset; 
+SysStateCntrl_StatePB.ResetPB := GVL_IO.PB_SysReset OR HMI_PBSysReset OR GVL_IO.PB_RemoteReset_12181 OR GVL_IO.PB_RemoteReset_7281; 
 SysStateCntrl_StatePB.AutoPB := (HMI_PBSysStart OR GVL_IO.PB_SysStart) AND SysIntlksAllOk;
 SysStateCntrl_StatePB.StopPB := HMI_PBSysStop OR (NOT GVL_IO.PB_SysStop);
 
@@ -76,9 +76,9 @@ cfgSysStateIntlksArry[0].OKState := TRUE;
 
 // Set up System Events
 
-//SysState.In_SystemEvents.0 := GVL_IO.Panel_Estop_Button;
-//SysState.In_SystemEvents.1 := GVL_IO.P5031_Estop_Button;
-//SysState.In_SystemEvents.2 := GVL_IO.P5032_Estop_Button;
+ SysState.In_SystemEvents.0 := GVL_IO.PanelEstop_OK;
+ SysState.In_SystemEvents.1 := GVL_IO.Remote_PullCord6040_OK;
+ SysState.In_SystemEvents.2 := GVL_IO.Remote_PullCord7004_OK;
 
 // Setup the EventArray since persistent data items cannot by initilaized the same
 // Index 0
@@ -87,20 +87,20 @@ cfgSysStateEvntsArry[0].DeviceLabel := 'PB1';
 cfgSysStateEvntsArry[0].OKState := TRUE;
 cfgSysStateEvntsArry[0].StopCode := E_StopCodes.SystemStop;
 // Index 1
-cfgSysStateEvntsArry[1].Description := 'P5031 E-Stop Button';
-cfgSysStateEvntsArry[1].DeviceLabel := 'P5031';
+cfgSysStateEvntsArry[1].Description := 'PullCord 6040';
+cfgSysStateEvntsArry[1].DeviceLabel := 'P6040';
 cfgSysStateEvntsArry[1].OKState := TRUE;
 cfgSysStateEvntsArry[1].StopCode := E_StopCodes.SystemStop;
 // Index 2
-cfgSysStateEvntsArry[2].Description := 'P5032 E-Stop Button';
-cfgSysStateEvntsArry[2].DeviceLabel := 'P5032';
+cfgSysStateEvntsArry[2].Description := 'PullCord 7004';
+cfgSysStateEvntsArry[2].DeviceLabel := 'P7004';
 cfgSysStateEvntsArry[2].OKState := TRUE;
 cfgSysStateEvntsArry[2].StopCode := E_StopCodes.SystemStop;
 
 // Function Call
 SysState(
     In_p_EquipStatePB:= SysStateCntrl_StatePB,
-	Cfg_EquipLabel := '4th Floor Large Box',  
+	Cfg_EquipLabel := '2nd Floor Totes',  
     Cfg_EquipIntlksArry:= cfgSysStateIntlksArry,
     Cfg_EquipEvntsArry:= cfgSysStateEvntsArry, 
     Sts_EquipState := SysStateCntrlSts,
@@ -183,7 +183,6 @@ IF GVL_EquipArrays.nSystemEquip_Count <> 0 THEN
 END_IF
 
 // Initialise the Stack Light, only changing values as required
-//GVL_IO.LT_MainPanelStack_Blue := FALSE;
 GVL_IO.LT_MainPanelStack_Green := FALSE;
 GVL_IO.LT_MainPanelStack_Yellow := FALSE;
 GVL_IO.LT_MainPanelStack_Red := FALSE;
@@ -208,6 +207,58 @@ ELSE
 		GVL_IO.LT_MainPanelStack_Yellow := SysShrtPulseTmr.Output;
 	END_IF;
 END_IF
+
+// Initialise the Stack Light, only changing values as required
+GVL_IO.LT_7271_Green := FALSE;
+GVL_IO.LT_7241_Yellow := FALSE;
+GVL_IO.LT_7221_Red := FALSE;
+	
+IF ConveyorHasFault OR NOT SystemSafety.Safety_SystemEstopsOK THEN
+	// Red light SOLID ON
+	GVL_IO.LT_7221_Red := TRUE;
+ELSE
+	IF ConveyorHasWarn THEN
+		// Orange Light SOLID ON
+		GVL_IO.LT_7241_Yellow := TRUE;
+	ELSE
+		IF ConveyorInAuto THEN
+			// Green Light SOLID ON
+			GVL_IO.LT_7271_Green := TRUE;
+		ELSE
+			GVL_IO.LT_7271_Green := SysShrtPulseTmr.Output;
+		END_IF
+	END_IF
+	IF GVL_IO.HornMainPanel THEN
+		// Orange Light FLASHING ON
+		GVL_IO.LT_7241_Yellow := SysShrtPulseTmr.Output;
+	END_IF;
+END_IF
+
+// Initialise the Stack Light, only changing values as required
+GVL_IO.LT_12161_Green := FALSE;
+GVL_IO.LT_12131_Yellow := FALSE;
+GVL_IO.LT_12121_Red := FALSE;
+	
+IF ConveyorHasFault OR NOT SystemSafety.Safety_SystemEstopsOK THEN
+	// Red light SOLID ON
+	GVL_IO.LT_12121_Red := TRUE;
+ELSE
+	IF ConveyorHasWarn THEN
+		// Orange Light SOLID ON
+		GVL_IO.LT_12131_Yellow := TRUE;
+	ELSE
+		IF ConveyorInAuto THEN
+			// Green Light SOLID ON
+			GVL_IO.LT_12161_Green := TRUE;
+		ELSE
+			GVL_IO.LT_12161_Green := SysShrtPulseTmr.Output;
+		END_IF
+	END_IF
+	IF GVL_IO.HornMainPanel THEN
+		// Orange Light FLASHING ON
+		GVL_IO.LT_12131_Yellow := SysShrtPulseTmr.Output;
+	END_IF;
+END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="System">
@@ -221,7 +272,12 @@ END_IF
       <LineId Id="865" Count="0" />
       <LineId Id="868" Count="3" />
       <LineId Id="536" Count="17" />
-      <LineId Id="717" Count="79" />
+      <LineId Id="717" Count="54" />
+      <LineId Id="773" Count="23" />
+      <LineId Id="1013" Count="24" />
+      <LineId Id="1012" Count="0" />
+      <LineId Id="987" Count="24" />
+      <LineId Id="986" Count="0" />
       <LineId Id="419" Count="0" />
     </LineIds>
   </POU>

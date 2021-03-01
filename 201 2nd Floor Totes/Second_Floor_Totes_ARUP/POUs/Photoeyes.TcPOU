@@ -320,7 +320,7 @@ PE_16201(
 
 //PU6040-01 JAM PE   
 PE_7151(
-   In_Status:= ,
+   In_Status:= Conveyors.P6040_Status.Sts_IsRunning ,
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
@@ -340,7 +340,7 @@ PE_7191(
 
 //PU6040-02 JAM PE   
 PE_7211(
-   In_Status:= ,
+   In_Status:= Conveyors.P6040_Status.Sts_IsRunning ,
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
@@ -360,7 +360,7 @@ PE_7241(
 
 //PU6040-03 JAM PE   
 PE_8141(
-   In_Status:= ,
+   In_Status:= Conveyors.P6040_Status.Sts_IsRunning,
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
@@ -380,7 +380,7 @@ PE_8171(
 
 //PU6040-04 JAM PE   
 PE_8181(
-   In_Status:= ,
+   In_Status:= Conveyors.P6040_Status.Sts_IsRunning ,
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
    CFG_OffDlyTime:= DebounceOffTime,

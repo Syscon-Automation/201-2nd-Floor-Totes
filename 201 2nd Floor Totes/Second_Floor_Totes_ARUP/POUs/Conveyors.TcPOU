@@ -122,6 +122,7 @@ VAR
    P7005_Status : ST_EquipmentStatus;
    P7005_VFD	:	VFD;
    Test_VFD_P7005: BOOL;
+   P7005_ResetWakeTmr : TON ; //Timer for holding the reset button to wake up Incline Conveyor
 //Transport
 //----------------------------------------P7010--------------------------------------------------------------
    cfgP7010Label:	STRING(20) :=  'P7010';
@@ -219,7 +220,8 @@ cfgP6005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := 'DS6005', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Fire Door Closed', DeviceLabel := 'PE_16181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   11(())];
+   (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //Spiral
 //----------------------------------------P6010--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -234,7 +236,8 @@ cfgP6010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6010', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //Spiral
 //----------------------------------------P6011--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -249,7 +252,8 @@ cfgP6011EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6011', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //Transport
 //----------------------------------------P6015--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -265,7 +269,8 @@ cfgP6015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := 'DS6015', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Fire Door Closed', DeviceLabel := 'PE_1231', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   11(())];
+   (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------P6020--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -278,7 +283,8 @@ cfgP6020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6020', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P6025--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -291,7 +297,8 @@ cfgP6025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6025', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P6030--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -304,7 +311,8 @@ cfgP6030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6030', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P6035--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -317,7 +325,8 @@ cfgP6035EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6035', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //Spiral
 //----------------------------------------P6045--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -332,7 +341,8 @@ cfgP6045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6045', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //Sorter
 //----------------------------------------P6040--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -353,7 +363,14 @@ cfgP6040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := 'DS6040', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO6171 Comm Fault', DeviceLabel := 'RIO6171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   (Description := 'RIO7161 Comm Fault', DeviceLabel := 'RIO7161', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   (Description := 'RIO8181 Comm Fault', DeviceLabel := 'RIO8081', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   (Description := 'Pusher 1 Jam', DeviceLabel := 'PU6040_01', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.ProductJam),
+   (Description := 'Pusher 2 Jam', DeviceLabel := 'PU6040_02', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.ProductJam),
+   (Description := 'Pusher 3 Jam', DeviceLabel := 'PU6040_03', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.ProductJam),
+   (Description := 'Pusher 4 Jam', DeviceLabel := 'PU6040_04', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.ProductJam),
+   5(())];
 //Conveyors Outgoing 7000 (Orange line)
 //Loading Zone
 //----------------------------------------P7004--------------------------------------------------------------
@@ -411,7 +428,8 @@ cfgP7015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO15181 Comm Fault', DeviceLabel := 'RIO15181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P7020--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -424,7 +442,8 @@ cfgP7020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO15181 Comm Fault', DeviceLabel := 'RIO15181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P7025--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -437,7 +456,8 @@ cfgP7025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO15181 Comm Fault', DeviceLabel := 'RIO15181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P7030--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -450,7 +470,8 @@ cfgP7030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P7035--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -465,7 +486,8 @@ cfgP7035EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Fire Door Closed', DeviceLabel := 'PE_16181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   11(())];
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //Spiral
 //----------------------------------------P7040--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -480,7 +502,8 @@ cfgP7040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //----------------------------------------P7041--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7041IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -494,7 +517,8 @@ cfgP7041EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (),
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   12(())];
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   11(())];
 //Transport
 //----------------------------------------P7045--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -509,7 +533,8 @@ cfgP7045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Fire Door Closed', DeviceLabel := 'PE_16181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   11(())];			
+   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];			
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -529,6 +554,7 @@ P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6005.In_EquipEvents.3:= System.SysEventsAllOk;
   P6005.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
+  P6005.In_EquipEvents.5:= CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6005(
@@ -557,6 +583,7 @@ P6010_StatePB.ManPB := System.Cnvyr_Manual;
 P6010_StatePB.ResetPB := System.Cnvyr_Reset;
 P6010_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6010SleepWakeTrig[1] := PhotoEyes.PE_1232.Out_OffFltrd;
+// ADD an EAP photoeye from 3rd floor
 
 // Initialize the Equipment Type
 P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -566,12 +593,14 @@ P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6010.In_EquipEvents.2:= GVL_IO.DS_P6010;
   P6010.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6010.In_EquipEvents.4:= CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6010(
    In_p_EquipStatePB:= P6010_StatePB,
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P6011_VFD.IsRunning,
+   Cfg_ConvType:= E_ConvType.slave,
    In_ConvCrntExitPhotoEye:= Photoeyes.PE_1162.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -599,6 +628,7 @@ P6011_StatePB.ManPB := System.Cnvyr_Manual;
 P6011_StatePB.ResetPB := System.Cnvyr_Reset;
 P6011_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6011SleepWakeTrig[1] :=  PhotoEyes.PE_1232.Out_OffFltrd;
+// ADD an EAP photoeye from 3rd floor
 
 // Initialize the Equipment Type
 P6011_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -608,6 +638,7 @@ P6011.In_EquipIntlks.2:= P6011_VFD.Run_OK;
 //Events
 P6011.In_EquipEvents.2:= GVL_IO.DS_P6011;
 P6011.In_EquipEvents.3:= System.SysEventsAllOk;
+P6011.In_EquipEvents.4:= CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6011(
@@ -641,6 +672,7 @@ P6015_StatePB.ManPB := System.Cnvyr_Manual;
 P6015_StatePB.ResetPB := System.Cnvyr_Reset;
 P6015_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6015SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+P6015SleepWakeTrig[2] :=  PhotoEyes.PE_1232.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -650,7 +682,8 @@ P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6015.In_EquipEvents.2:= GVL_IO.DS_P6015;
   P6015.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6005.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
+  P6015.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
+  P6015.In_EquipEvents.5:= CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6015(
@@ -679,6 +712,7 @@ P6020_StatePB.ManPB := System.Cnvyr_Manual;
 P6020_StatePB.ResetPB := System.Cnvyr_Reset;
 P6020_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6020SleepWakeTrig[1] := PhotoEyes.PE_1081.Out_OffFltrd;
+P6020SleepWakeTrig[2] := PhotoEyes.PE_1162.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -688,6 +722,7 @@ P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
   P6020.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6020.In_EquipEvents.3:= CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6020(
@@ -716,6 +751,7 @@ P6025_StatePB.ManPB := System.Cnvyr_Manual;
 P6025_StatePB.ResetPB := System.Cnvyr_Reset;
 P6025_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6025SleepWakeTrig[1] := PhotoEyes.PE_1161.Out_OffFltrd;
+P6025SleepWakeTrig[2] := PhotoEyes.PE_1081.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -725,6 +761,7 @@ P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6025.In_EquipEvents.2:= GVL_IO.DS_P6025;
   P6025.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6025.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6025(
@@ -753,6 +790,7 @@ P6030_StatePB.ManPB := System.Cnvyr_Manual;
 P6030_StatePB.ResetPB := System.Cnvyr_Reset;
 P6030_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6030SleepWakeTrig[1] := PhotoEyes.PE_4121.Out_OffFltrd;
+P6030SleepWakeTrig[2] := PhotoEyes.PE_1161.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -762,6 +800,7 @@ P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6030.In_EquipEvents.2:= GVL_IO.DS_P6030;
   P6030.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6030.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6030(
@@ -790,15 +829,17 @@ P6035_StatePB.ManPB := System.Cnvyr_Manual;
 P6035_StatePB.ResetPB := System.Cnvyr_Reset;
 P6035_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6035SleepWakeTrig[1] := PhotoEyes.PE_4271.Out_OffFltrd;
+P6035SleepWakeTrig[2] := PhotoEyes.PE_4121.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6035.In_EquipIntlks.2:=
+//P6035.In_EquipIntlks.2:= ADD FULL FOR SPIRAL 
 //Events
   P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6035.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6035.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6035(
@@ -827,15 +868,18 @@ P6045_StatePB.ManPB := System.Cnvyr_Manual;
 P6045_StatePB.ResetPB := System.Cnvyr_Reset;
 P6045_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6045SleepWakeTrig[1] := PhotoEyes.PE_4201.Out_OffFltrd;
+P6045SleepWakeTrig[2] := PhotoEyes.PE_4271.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
   P6045.In_EquipIntlks.2:= P6045_VFD.RUN_OK;
+  // ADD FULL FOR SORTER 
 //Events
   P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
   P6045.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6045.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6045(
@@ -869,6 +913,8 @@ P6040_StatePB.ManPB := System.Cnvyr_Manual;
 P6040_StatePB.ResetPB := System.Cnvyr_Reset;
 P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
+
 
 // Initialize the Equipment Type
 P6040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -881,10 +927,17 @@ P6040.In_EquipIntlks.5:= Solenoids.PU6040_01_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.6:= Solenoids.PU6040_02_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.7:= Solenoids.PU6040_03_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
+//add fulls 
 //Events
   P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
   P6040.In_EquipEvents.3:= System.SysEventsAllOk;
-  //P6040.In_EquipEvents.4:= Sorter Lane Jams???;
+  P6040.In_EquipEvents.4:= CommStatus.RIO6171_CommFault.Out;
+  P6040.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
+  P6040.In_EquipEvents.6:= CommStatus.RIO8181_CommFault.Out;
+  P6040.In_EquipEvents.7:= Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
+  P6040.In_EquipEvents.8:= Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
+  P6040.In_EquipEvents.9:= Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
+  P6040.In_EquipEvents.10:= Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
 
 // Function Call
 P6040(
@@ -929,7 +982,8 @@ P7004(
    In_p_EquipStatePB:= P7004_StatePB,
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P7005_VFD.IsRunning,
-   In_ConvCrntExitPhotoEye:= FALSE, //May use scanner Trigger?
+   In_ConvCrntExitPhotoEye:= FALSE, 
+   Cfg_ConvType:= E_ConvType.slave,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
    In_WakeSlpTrigArry:= P7004SleepWakeTrig,
@@ -950,7 +1004,9 @@ P7005_StatePB.AutoPB := System.Cnvyr_Auto;
 P7005_StatePB.ManPB := System.Cnvyr_Manual;
 P7005_StatePB.ResetPB := System.Cnvyr_Reset;
 P7005_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7005_ResetWakeTmr(IN:= GVL_IO.PB_RemoteReset_12181, PT:= T#3S, Q=> );
 P7005SleepWakeTrig[1] := PhotoEyes.PE_12221.Out_OffFltrd;
+P7005SleepWakeTrig[2] := P7005_ResetWakeTmr.Q; //RESET BUTTON
 
 // Initialize the Equipment Type
 P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -966,7 +1022,7 @@ P7005(
    In_p_EquipStatePB:= P7005_StatePB,
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P7010_Status.Sts_IsRunning,
-   In_ConvCrntExitPhotoEye:= FALSE, 
+   In_ConvCrntExitPhotoEye:= PhotoEyes.PE_12301.Out, 
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
    In_WakeSlpTrigArry:= P7005SleepWakeTrig,
@@ -993,6 +1049,7 @@ P7010_StatePB.ManPB := System.Cnvyr_Manual;
 P7010_StatePB.ResetPB := System.Cnvyr_Reset;
 P7010_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7010SleepWakeTrig[1] := PhotoEyes.PE_12301.Out_OffFltrd;
+P7010SleepWakeTrig[2] := PhotoEyes.PE_12221.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1030,6 +1087,7 @@ P7015_StatePB.ManPB := System.Cnvyr_Manual;
 P7015_StatePB.ResetPB := System.Cnvyr_Reset;
 P7015_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7015SleepWakeTrig[1] := PhotoEyes.PE_12231.Out_OffFltrd;
+P7015SleepWakeTrig[2] := PhotoEyes.PE_12301.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1039,6 +1097,7 @@ P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
   P7015.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7015.In_EquipEvents.3:= CommStatus.RIO15181_CommFault.Out;
 
 // Function Call
 P7015(
@@ -1067,6 +1126,7 @@ P7020_StatePB.ManPB := System.Cnvyr_Manual;
 P7020_StatePB.ResetPB := System.Cnvyr_Reset;
 P7020_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7020SleepWakeTrig[1] := PhotoEyes.PE_15121.Out_OffFltrd;
+P7020SleepWakeTrig[2] := PhotoEyes.PE_12231.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1076,6 +1136,7 @@ P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7020.In_EquipEvents.4:= CommStatus.RIO15181_CommFault.Out;
  
 
 // Function Call
@@ -1105,6 +1166,7 @@ P7025_StatePB.ManPB := System.Cnvyr_Manual;
 P7025_StatePB.ResetPB := System.Cnvyr_Reset;
 P7025_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7025SleepWakeTrig[1] := PhotoEyes.PE_15181.Out_OffFltrd;
+P7025SleepWakeTrig[2] := PhotoEyes.PE_15121.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1114,6 +1176,7 @@ P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7025.In_EquipEvents.2:=  GVL_IO.DS_P7025;
   P7025.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7025.In_EquipEvents.4:= CommStatus.RIO15181_CommFault.Out;
 
 // Function Call
 P7025(
@@ -1142,6 +1205,7 @@ P7030_StatePB.ManPB := System.Cnvyr_Manual;
 P7030_StatePB.ResetPB := System.Cnvyr_Reset;
 P7030_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7030SleepWakeTrig[1] := PhotoEyes.PE_15261.Out_OffFltrd;
+P7030SleepWakeTrig[2] := PhotoEyes.PE_15181.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1151,6 +1215,7 @@ P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7030.In_EquipEvents.2:=  GVL_IO.DS_P7030;
   P7030.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7030.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7030(
@@ -1179,6 +1244,7 @@ P7035_StatePB.ManPB := System.Cnvyr_Manual;
 P7035_StatePB.ResetPB := System.Cnvyr_Reset;
 P7035_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7035SleepWakeTrig[1] := PhotoEyes.PE_16111.Out_OffFltrd;
+P7035SleepWakeTrig[2] := PhotoEyes.PE_15261.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1189,6 +1255,7 @@ P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
   P7035.In_EquipEvents.3:= System.SysEventsAllOk;
   P7035.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
+  P7030.In_EquipEvents.5:= CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7035(
@@ -1217,6 +1284,7 @@ P7040_StatePB.ManPB := System.Cnvyr_Manual;
 P7040_StatePB.ResetPB := System.Cnvyr_Reset;
 P7040_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7040SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
+P7040SleepWakeTrig[2] := PhotoEyes.PE_16111.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1226,6 +1294,7 @@ P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7040.In_EquipEvents.2:=  GVL_IO.DS_P7040;
   P7040.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7040.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7040(
@@ -1259,6 +1328,7 @@ P7041_StatePB.ManPB := System.Cnvyr_Manual;
 P7041_StatePB.ResetPB := System.Cnvyr_Reset;
 P7041_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7041SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
+P7041SleepWakeTrig[2] := PhotoEyes.PE_16111.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7041_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1268,12 +1338,14 @@ P7041_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7041.In_EquipEvents.2:=  GVL_IO.DS_P7041;
   P7041.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7041.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7041(
    In_p_EquipStatePB:= P7041_StatePB,
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P7045_Status.Sts_IsRunning,
+   Cfg_ConvType:= E_ConvType.slave,
    In_ConvCrntExitPhotoEye:= FALSE,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -1301,6 +1373,7 @@ P7045_StatePB.ManPB := System.Cnvyr_Manual;
 P7045_StatePB.ResetPB := System.Cnvyr_Reset;
 P7045_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7045SleepWakeTrig[1] := PhotoEyes.PE_16131.Out_OffFltrd;
+P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1311,6 +1384,7 @@ P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
   P7045.In_EquipEvents.3:= System.SysEventsAllOk;
   P7045.In_EquipEvents.4:= ProxSensors.PX_16231_Extended.Out;
+  P7045.In_EquipEvents.5:= CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7045(
@@ -1693,54 +1767,124 @@ END_IF
       <LineId Id="3723" Count="13" />
       <LineId Id="5649" Count="0" />
       <LineId Id="6167" Count="0" />
-      <LineId Id="3737" Count="35" />
+      <LineId Id="6720" Count="0" />
+      <LineId Id="3737" Count="27" />
+      <LineId Id="7274" Count="0" />
+      <LineId Id="3765" Count="7" />
       <LineId Id="5650" Count="0" />
-      <LineId Id="3773" Count="40" />
+      <LineId Id="6716" Count="0" />
+      <LineId Id="3773" Count="5" />
+      <LineId Id="7295" Count="0" />
+      <LineId Id="3779" Count="26" />
+      <LineId Id="7275" Count="0" />
+      <LineId Id="3806" Count="7" />
       <LineId Id="5651" Count="0" />
-      <LineId Id="3814" Count="40" />
+      <LineId Id="6719" Count="0" />
+      <LineId Id="3814" Count="32" />
+      <LineId Id="7276" Count="0" />
+      <LineId Id="3847" Count="7" />
       <LineId Id="5652" Count="0" />
       <LineId Id="6171" Count="0" />
-      <LineId Id="3855" Count="35" />
+      <LineId Id="6713" Count="0" />
+      <LineId Id="3855" Count="27" />
+      <LineId Id="7277" Count="0" />
+      <LineId Id="3883" Count="7" />
       <LineId Id="5653" Count="0" />
-      <LineId Id="3891" Count="35" />
+      <LineId Id="6711" Count="0" />
+      <LineId Id="3891" Count="27" />
+      <LineId Id="7278" Count="0" />
+      <LineId Id="3919" Count="7" />
       <LineId Id="5654" Count="0" />
-      <LineId Id="3927" Count="35" />
+      <LineId Id="6728" Count="0" />
+      <LineId Id="3927" Count="27" />
+      <LineId Id="7279" Count="0" />
+      <LineId Id="3955" Count="7" />
       <LineId Id="5655" Count="0" />
-      <LineId Id="3963" Count="35" />
+      <LineId Id="6726" Count="0" />
+      <LineId Id="3963" Count="27" />
+      <LineId Id="7280" Count="0" />
+      <LineId Id="3991" Count="7" />
       <LineId Id="5656" Count="0" />
-      <LineId Id="3999" Count="35" />
+      <LineId Id="6724" Count="0" />
+      <LineId Id="3999" Count="27" />
+      <LineId Id="7281" Count="0" />
+      <LineId Id="4027" Count="5" />
+      <LineId Id="6194" Count="0" />
+      <LineId Id="4033" Count="1" />
       <LineId Id="5657" Count="0" />
-      <LineId Id="4035" Count="38" />
+      <LineId Id="6722" Count="0" />
+      <LineId Id="4035" Count="32" />
+      <LineId Id="7284" Count="0" />
+      <LineId Id="7282" Count="0" />
+      <LineId Id="4068" Count="5" />
       <LineId Id="5633" Count="5" />
+      <LineId Id="6195" Count="0" />
       <LineId Id="4074" Count="1" />
       <LineId Id="5658" Count="0" />
-      <LineId Id="6183" Count="0" />
+      <LineId Id="6731" Count="0" />
+      <LineId Id="6733" Count="0" />
+      <LineId Id="7256" Count="0" />
+      <LineId Id="7828" Count="3" />
       <LineId Id="4076" Count="35" />
       <LineId Id="5648" Count="0" />
       <LineId Id="5647" Count="0" />
-      <LineId Id="4112" Count="35" />
+      <LineId Id="4112" Count="6" />
+      <LineId Id="6197" Count="0" />
+      <LineId Id="4119" Count="19" />
+      <LineId Id="6709" Count="0" />
+      <LineId Id="4139" Count="0" />
+      <LineId Id="6710" Count="0" />
+      <LineId Id="4140" Count="7" />
       <LineId Id="5659" Count="0" />
-      <LineId Id="4148" Count="40" />
+      <LineId Id="4148" Count="32" />
+      <LineId Id="7285" Count="0" />
+      <LineId Id="4181" Count="7" />
       <LineId Id="5660" Count="0" />
-      <LineId Id="4189" Count="35" />
+      <LineId Id="4189" Count="27" />
+      <LineId Id="7286" Count="0" />
+      <LineId Id="4217" Count="7" />
       <LineId Id="5661" Count="0" />
-      <LineId Id="4225" Count="35" />
+      <LineId Id="7258" Count="0" />
+      <LineId Id="4225" Count="27" />
+      <LineId Id="7287" Count="0" />
+      <LineId Id="4253" Count="7" />
       <LineId Id="5662" Count="0" />
+      <LineId Id="7260" Count="0" />
       <LineId Id="5646" Count="0" />
-      <LineId Id="4261" Count="35" />
+      <LineId Id="4261" Count="27" />
+      <LineId Id="7288" Count="0" />
+      <LineId Id="4289" Count="7" />
       <LineId Id="5663" Count="0" />
-      <LineId Id="4297" Count="35" />
+      <LineId Id="7262" Count="0" />
+      <LineId Id="4297" Count="27" />
+      <LineId Id="7289" Count="0" />
+      <LineId Id="4325" Count="7" />
       <LineId Id="5664" Count="0" />
-      <LineId Id="4333" Count="35" />
+      <LineId Id="7264" Count="0" />
+      <LineId Id="4333" Count="27" />
+      <LineId Id="7290" Count="0" />
+      <LineId Id="4361" Count="7" />
       <LineId Id="5665" Count="0" />
       <LineId Id="6185" Count="0" />
-      <LineId Id="4369" Count="35" />
+      <LineId Id="7265" Count="0" />
+      <LineId Id="4369" Count="27" />
+      <LineId Id="7291" Count="0" />
+      <LineId Id="4397" Count="7" />
       <LineId Id="5666" Count="0" />
-      <LineId Id="4405" Count="40" />
+      <LineId Id="7268" Count="0" />
+      <LineId Id="4405" Count="32" />
+      <LineId Id="7293" Count="0" />
+      <LineId Id="4438" Count="7" />
       <LineId Id="5667" Count="0" />
-      <LineId Id="4446" Count="40" />
+      <LineId Id="7270" Count="0" />
+      <LineId Id="4446" Count="5" />
+      <LineId Id="7296" Count="0" />
+      <LineId Id="4452" Count="26" />
+      <LineId Id="7294" Count="0" />
+      <LineId Id="4479" Count="7" />
       <LineId Id="5668" Count="0" />
       <LineId Id="6191" Count="0" />
+      <LineId Id="7272" Count="0" />
       <LineId Id="4487" Count="21" />
       <LineId Id="2887" Count="0" />
       <LineId Id="1514" Count="0" />

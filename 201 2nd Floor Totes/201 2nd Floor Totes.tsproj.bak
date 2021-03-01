@@ -2,6 +2,15 @@
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.10">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..25] OF BYTE</Name>
+			<BitSize>208</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>26</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{475BB302-20EA-0F51-7FAD-5140BB425113}" AutoDeleteType="true">ST_ItemBufferFdbk</Name>
 			<BitSize>8</BitSize>
 			<SubItem>
@@ -628,7 +637,7 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
+			<Name GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
 			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 			<BitSize>22400</BitSize>
 			<BaseType GUID="{45893F60-17ED-F8B3-C0FA-66300A1E1DF8}">ST_StateCntrlSts</BaseType>
@@ -644,6 +653,11 @@
 				<Cpu CpuId="10"/>
 				<Cpu CpuId="11"/>
 			</Settings>
+			<Licenses>
+				<Target>
+					<LicenseDevice DongleHardwareId="2"/>
+				</Target>
+			</Licenses>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
 					<Name>PlcTask</Name>
@@ -651,12 +665,136 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{DFBE0123-1AB2-46C7-B5EA-1B63380D5990}" Name="Second_Floor_Totes_ARUP" PrjFilePath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.plcproj" TmcFilePath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+			<Project GUID="{DFBE0123-1AB2-46C7-B5EA-1B63380D5990}" Name="Second_Floor_Totes_ARUP" PrjFilePath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.plcproj" TmcFilePath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
 				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.tmc">
 					<Name>Second_Floor_Totes_ARUP Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.DeviceState</Name>
+							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerReady</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Acquiring</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Decoding</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.DecodeComplete</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultsAvail</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultCode</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultLength</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultData</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.DeviceState</Name>
+							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerReady</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Acquiring</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Decoding</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.DecodeComplete</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultsAvail</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultCode</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultLength</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultData</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.st_ArrivalFdbkIn</Name>
+							<Type GUID="{475BB302-20EA-0F51-7FAD-5140BB425113}">ST_ItemBufferFdbk</Type>
+						</Var>
 						<Var>
 							<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
@@ -718,6 +856,14 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>ProxSensors.In_PX_7301_Extended</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
@@ -736,14 +882,6 @@
 							<Name>ProxSensors.In_PX_8321_Retracted</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.StatusWord</Name>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>ProxSensors.In_PX_8291_Extended</Name>
@@ -766,16 +904,16 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Sorter.ENC_Raw</Name>
-							<Comment><![CDATA[ Raw Encoder Value]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Conveyors.P7005_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Sorter.ENC_Raw</Name>
+							<Comment><![CDATA[ Raw Encoder Value]]></Comment>
 							<Type>UINT</Type>
 						</Var>
 						<Var>
@@ -807,6 +945,11 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
+							<Name>MsgControl.st_SorterUpdateBuffer</Name>
+							<Comment><![CDATA[ Input from the sorter to update the host messaging (MsgControl)]]></Comment>
+							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.PB_SysStart</Name>
 							<Comment><![CDATA[System Start Button]]></Comment>
 							<Type>BOOL</Type>
@@ -820,11 +963,6 @@
 							<Name>GVL_IO.PB_SysReset</Name>
 							<Comment><![CDATA[System Reset Button]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MsgControl.st_SorterUpdateBuffer</Name>
-							<Comment><![CDATA[ Input from the sorter to update the host messaging (MsgControl)]]></Comment>
-							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
 						</Var>
 						<Var>
 							<Name>PhotoEyes.PE_1232.In_PE</Name>
@@ -1007,7 +1145,29 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.PB_RemoteReset_7281</Name>
+							<Comment><![CDATA[P6040 Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_RemoteReset_12181</Name>
+							<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.SystemAirPressure</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PanelEstop_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1045,11 +1205,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.P6020_Faulted</Name>
-							<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.P6010_Faulted</Name>
 							<Comment><![CDATA[ P6010 VFD Faulted ]]></Comment>
 							<Type>BOOL</Type>
@@ -1057,6 +1212,11 @@
 						<Var>
 							<Name>GVL_IO.P6015_Faulted</Name>
 							<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6020_Faulted</Name>
+							<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1250,6 +1410,71 @@
 							<Type>UDINT</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.RIO1181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO4172_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO5151_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO6171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 6171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO7161_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 7161]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO8181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 8181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO11141_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 11141]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO12171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 12171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO15181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 15181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO16171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.BCR_S6040_01_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.BCR_S7004_01_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.EthernetAdapter_State</Name>
+							<Comment><![CDATA[ Ethernet Adapter State]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
@@ -1284,16 +1509,47 @@
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
-						<Var>
-							<Name>Sorter.PE23201_Full</Name>
-							<Type>BOOL</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerEnable</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Trigger</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultsAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerEnable</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Trigger</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultsAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.st_SorterArrivalBuffer</Name>
+							<Comment><![CDATA[ Output from the Barcode Reader to the sorter]]></Comment>
+							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
 						</Var>
 						<Var>
 							<Name>Conveyors.P6010_VFD.ControlWord</Name>
@@ -1324,11 +1580,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>System.SysIntlksAllOk</Name>
-							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P7005_VFD.ControlWord</Name>
 							<Type>UINT</Type>
 						</Var>
@@ -1337,19 +1588,24 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>System.SysEventsAllOk</Name>
-							<Comment><![CDATA[ Bit to show that Syetem events are all OK If system events are needed use event manager FB tie to here]]></Comment>
+							<Name>System.SysIntlksAllOk</Name>
+							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>System.Sys_SimActive</Name>
-							<Comment><![CDATA[ Bit for simulation]]></Comment>
+							<Name>System.SysEventsAllOk</Name>
+							<Comment><![CDATA[ Bit to show that Syetem events are all OK If system events are needed use event manager FB tie to here]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>System.ConvDefaultState</Name>
 							<Comment><![CDATA[ The default state of all conveyors]]></Comment>
 							<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+						</Var>
+						<Var>
+							<Name>System.Sys_SimActive</Name>
+							<Comment><![CDATA[ Bit for simulation]]></Comment>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>System.Cnvyr_Auto</Name>
@@ -1441,6 +1697,21 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.LT_12121_Red</Name>
+							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_12131_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_12161_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.P6005_RUN</Name>
 							<Comment><![CDATA[P6005 Run Command]]></Comment>
 							<Type>BOOL</Type>
@@ -1479,6 +1750,26 @@
 							<Name>GVL_IO.P6035_RUN</Name>
 							<Comment><![CDATA[P6035 Run Command]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Reset</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Run</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProcessBuffers.st_UpdateBuffer</Name>
+							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.P6045_RUN</Name>
@@ -1521,22 +1812,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>SystemSafety.System_SafetyState.Reset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Run</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.P7030_RUN</Name>
 							<Comment><![CDATA[P7030 Run Command]]></Comment>
 							<Type>BOOL</Type>
@@ -1550,10 +1825,6 @@
 							<Name>GVL_IO.P7040_RUN</Name>
 							<Comment><![CDATA[P7040 Run Command]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProcessBuffers.st_UpdateBuffer</Name>
-							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.P7041_RUN</Name>

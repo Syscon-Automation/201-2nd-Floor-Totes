@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <GVL Name="Onsite_Checklist" Id="{c5126634-2486-4771-9f2b-16daed8ff773}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// Air pressure inupt, System Event? 
+	// Air pressure for each valve
+	// Barcode In_EquipID Get from ARUP
+	// Link CommFault
+	// Air pressure event for all solenoids valves 
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

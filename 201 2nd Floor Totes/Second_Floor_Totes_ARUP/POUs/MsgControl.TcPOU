@@ -4,6 +4,7 @@
     <Declaration><![CDATA[PROGRAM MsgControl
 VAR_INPUT
 	TransmitEnable 				: BOOL;
+	nConnectionIndex			: UDINT;
 END_VAR
 VAR
 	MsgID						: DINT;			// TCP/IP Message ID as per Communication protocol defined in FA 
@@ -41,17 +42,14 @@ VAR
 	BlankItem					: ST_Item := (ID := '', UniqueID := 0
 													, Destination := 0
 													, Status := E_StatusCode.No_Status
+													, ExtStatus := E_StatusCode.No_Status
 													, DeviceID := ''
 													, MessageType := E_MessageIds.NoMessage_00);
 	Out_DefaultDestination AT %Q* : DINT;  // Update default destination location from Host(Send to Sorter PLC)
 
-	ReadBCRID_10561_Old			: UDINT;		// Bar Code watch variable
-	ReadBCRID_10562_Old			: UDINT;		// Bar Code watch variable
-	ReadBCRID_10563_Old			: UDINT;		// Bar Code watch variable	
-	ReadBCRID_10564_Old			: UDINT;		// Bar Code watch variable
-	ReadBCRID_10565_Old			: UDINT;		// Bar Code watch variable
-	ReadBCRID_10566_Old			: UDINT;		// Bar Code watch variable
-	ReadBCRID_10567_Old			: UDINT;		// Bar Code watch variable	
+	ReadBCRID_S6040_01_Old			: UDINT;		// Bar Code watch variable
+	ReadBCRID_S7004_01_Old			: UDINT;		// Bar Code watch variable
+
 		
 	TransmittedArray			: ARRAY[0..10] OF STRING(55);
 	x							: DINT;
@@ -61,7 +59,7 @@ VAR
 	
 	fb_CheckStopRegister		: FB_ManageCodes;	// Used to test for a specific Stop Code to report to the Host
 	bOverHeight					: BOOL; 	// Detect OverHeight to report to the Host
-	st_UpdateMessageToSEnd		: ST_Item;			// Message to Send to Host
+	st_UpdateMessageToSend		: ST_Item;			// Message to Send to Host
 
 	st_SorterUpdateBuffer AT %I*	: ST_ItemBuffer;  	// Input from the sorter to update the host messaging (MsgControl)
 	st_UpdateFdbkIn 				: ST_ItemBufferFdbk;
@@ -72,11 +70,15 @@ VAR
 	st_TransportFdbkIn AT %I*		: ST_ItemBufferFdbk;
 	st_TransportFdbkOut				: ST_ItemBufferFdbk;
 	fb_SorterTransportBuffer		: FB_ItemBuffer;	// Function to Process the SorterTransportBuffer
+
+	sMessage	:	STRING;
 	
 END_VAR
 
 VAR CONSTANT
-	TransmitMsgBuffer_Size:	INT :=	25;		// Number of Messages to hold in buffer
+	SEND_ARRIVAL			:	INT := 5;
+	SEND_LOCATION			:	INT := 7;
+	TransmitMsgBuffer_Size	:	INT :=	25;		// Number of Messages to hold in buffer
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -85,8 +87,8 @@ fb_SorterUpdateBuffer.Master := FALSE;
 fb_SorterTransportBuffer.Master := TRUE;
 
 // Activate or de-activate logging
-fb_SorterUpdateBuffer.LogEntries := TRUE;
-fb_SorterTransportBuffer.LogEntries := TRUE;
+fb_SorterUpdateBuffer.LogEntries := .nItemBufferLogEnable.UPDATE;
+fb_SorterTransportBuffer.LogEntries := .nItemBufferLogEnable.TRANSPORT;
 
 // Setup Buffer names for Logging purposes
 fb_SorterUpdateBuffer.Name := 'SYS UPDATE';
@@ -100,9 +102,9 @@ fb_SorterTransportBuffer(st_BufferData := st_SorterTransportBuffer
 					, st_BufferFdbkOut => st_TransportFdbkOut);
 
 (* -------------------- On Receive Message Process the data -------------------- *)
-IF RxCounter_Old <> ServerControl.fbServer.aApplications[1].RxCounter  THEN
+IF RxCounter_Old <> ServerControl.fbServer.aApplications[nConnectionIndex].RxCounter  THEN
 	RECEIVE();
-	RxCounter_Old := ServerControl.fbServer.aApplications[1].RxCounter;
+	RxCounter_Old := ServerControl.fbServer.aApplications[nConnectionIndex].RxCounter;
 END_IF
 
 (* -------------------- Transmit Messages if any are waiting in the buffer --------------------- *)
@@ -111,7 +113,16 @@ IF SendingMsg_Index <> TransmitMsgBuffer_Index THEN
 END_IF
 
 (* -------------------- Watch Bar code readers and send message when load is read -------------------- *)
-BarCodeMessages();
+
+(* ----- BCR10563: P6040_01 Divert 1 ----- *)	
+ReadBCRID_S6040_01_Old := BarCodeMessage(cDatamanReader := BarCodeReaders.BCR_S6040_01
+									, nOldCount := ReadBCRID_S6040_01_Old
+									, nMessageToSend := SEND_ARRIVAL);
+(* ----- BCR10564: P8015 Lane Confirm ----- *)	
+ReadBCRID_S7004_01_Old := BarCodeMessage(cDatamanReader := BarCodeReaders.BCR_S7004_01
+									, nOldCount := ReadBCRID_S7004_01_Old
+									, nMessageToSend := SEND_LOCATION);
+
 
 (* -------------------- Watch Sorter and Device Status and transmit on change -------------------- *)
 // Transmit On update from Sorter
@@ -124,7 +135,7 @@ IF st_SorterUpdateBuffer.nInPointer <> fb_SorterUpdateBuffer.OutPointer THEN
 		E_MessageIds.TransportResponse_25:			// Response to a Transport Command
 
 			CASE st_UpdateMessageToSend.Status OF
-				E_StatusCode.Assign_Accepted:		// Assignment Acepted
+				E_StatusCode.Assign_Accepted:		// Assignment Accepted
 					TransmitMsgStatus := E_TransportResponse.Accepted; 
 				E_StatusCode.Assign_Full:			// Assigned Lane Unavailable
 					TransmitMsgStatus := E_TransportResponse.DivertLaneUnavailable; 
@@ -132,6 +143,21 @@ IF st_SorterUpdateBuffer.nInPointer <> fb_SorterUpdateBuffer.OutPointer THEN
 					TransmitMsgStatus := E_TransportResponse.LoadIdNotFound; 
 				E_StatusCode.Assign_NotInducted:	// Assigned Load Not Inducted
 					TransmitMsgStatus := E_TransportResponse.NextLoadReady; 
+				E_StatusCode.Diverting:	// Assigned Load already Inducting
+					TransmitMsgStatus := E_TransportResponse.LateInduction; 
+			ELSE
+				TransmitMsgStatus := E_TransportResponse.UnknownFailure; // Capture any other failures
+				IF nMessageLogEnable.TransportResponse_25 THEN
+					sMessage := CONCAT(' Item: ', st_UpdateMessageToSend.ID);
+					sMessage := CONCAT(sMessage,' Destination: ');
+					sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateMessageToSend.Destination));
+					sMessage := CONCAT(sMessage,' TR Status: ');
+					sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateMessageToSend.Status));
+					// Write to the Error List
+					ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
+						, msgFmtStr := 'Unhandled Transport Response Status: %s'
+						, strArg := sMessage);
+				END_IF
 			END_CASE
 			TransmitMsgBuffer[TransmitMsgBuffer_Index] := TransportResponse(Device := st_UpdateMessageToSend.DeviceID
 																			, Barcode := st_UpdateMessageToSend.ID
@@ -143,18 +169,20 @@ IF st_SorterUpdateBuffer.nInPointer <> fb_SorterUpdateBuffer.OutPointer THEN
 			CASE st_UpdateMessageToSend.Status OF
 				E_StatusCode.Divert_Success:		// Divert Success Message
 					TransmitMsgStatus := E_TransportComplete.Success; 
+				E_StatusCode.Divert_Complete:		// Divert Success Message
+					TransmitMsgStatus := E_TransportComplete.Success; 
+			ELSE 									// Catch all other failures
+				TransmitMsgStatus := E_TransportComplete.Faulted; 
+			END_CASE			
+			CASE st_UpdateMessageToSend.ExtStatus OF
 				E_StatusCode.Divert_Full:			// Divert Full/Unavailable
 					TransmitMsgStatus := E_TransportComplete.Unavailable; 
 				E_StatusCode.Divert_Offline:		// Divert Offline
 					TransmitMsgStatus := E_TransportComplete.Offline; 
 				E_StatusCode.Divert_Missed:		// Divert Missed
 					TransmitMsgStatus := E_TransportComplete.Passed; 
-				//E_StatusCode.Divert_Failed:		// Divert failed to detect item on divert
-					//TransmitMsgStatus := E_TransportComplete.ConfirmFailed; 
-				E_StatusCode.Divert_NotInducted:	// Item failed to induct
-					TransmitMsgStatus := E_TransportComplete.InductFailed; 
-			ELSE 									// Catch all other failures
-				TransmitMsgStatus := E_TransportComplete.Faulted; 
+				E_StatusCode.Divert_Recirculated:		// Divert Missed
+					TransmitMsgStatus := E_TransportComplete.Success; 
 			END_CASE			
 			TransmitMsgBuffer[TransmitMsgBuffer_Index] := TransportComplete(Device:= st_UpdateMessageToSend.DeviceID
 																			, BarCode:= st_UpdateMessageToSend.ID
@@ -169,13 +197,30 @@ END_IF
 DeviceStatus();
 
 (* -------------------- Reset The Transmit Triger after the message is succesfully added to the buffer ------------------- *)
-IF ((ServerControl.fbServer.aApplications[1].bTransmitTrigger = TRUE) OR ServerControl.TransmitTrigger = TRUE)  AND (TxCounter_Old <> ServerControl.fbServer.aApplications[1].TxCounter) THEN
+IF ((ServerControl.fbServer.aApplications[nConnectionIndex].bTransmitTrigger = TRUE) OR ServerControl.TransmitTrigger = TRUE)  AND (TxCounter_Old <> ServerControl.fbServer.aApplications[nConnectionIndex].TxCounter) THEN
 	ServerControl.TransmitTrigger := FALSE;
 	TRANSMIT(TransmitEnable:= FALSE);
-	TxCounter_Old := ServerControl.fbServer.aApplications[1].TxCounter;
+	TxCounter_Old := ServerControl.fbServer.aApplications[nConnectionIndex].TxCounter;
 END_IF
 ]]></ST>
     </Implementation>
+    <Action Name="A_BarCodeMessages" Id="{04c21bd4-f328-48ca-a994-bd1dc504296d}">
+      <Implementation>
+        <ST><![CDATA[// Send Read Information to ARUP Host
+(* ----- BCR10561: P8005 Induct Confirm ----- *)	
+IF ReadBCRID_S6040_01_Old <> BarCodeReaders.BCR_S6040_01.GoodreadCount THEN
+	// Send location update message to host
+	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate(BarCodeReaders.BCR_S6040_01.In_EquipID,BarCodeReaders.BCR_S6040_01.Out_ReadString,00);
+//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00001',BarCodeReaders.BCR10561.Out_ReadString,00);
+	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
+	ReadBCRID_S6040_01_Old := BarCodeReaders.BCR_S6040_01.GoodreadCount;
+END_IF
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
     <Method Name="Arrival" Id="{393b8523-a43e-4b0d-b4b5-7c64712e9e9d}">
       <Declaration><![CDATA[METHOD PRIVATE Arrival : STRING(55)
 VAR_INPUT
@@ -249,76 +294,31 @@ String1 := CONCAT(String1,'$03');
 Arrival := String1;]]></ST>
       </Implementation>
     </Method>
-    <Action Name="BarCodeMessages" Id="{04c21bd4-f328-48ca-a994-bd1dc504296d}">
+    <Method Name="BarCodeMessage" Id="{2d1b083e-f12e-4a46-aa5e-2e6d76ae375f}">
+      <Declaration><![CDATA[METHOD PRIVATE BarCodeMessage : UDINT
+VAR_INPUT
+	cDatamanReader	: CognexDataMan260;
+	//sLocation		:	STRING(5);
+	nOldCount		:	UDINT;
+	nMessageToSend	: 	INT;
+END_VAR
+]]></Declaration>
       <Implementation>
-        <ST><![CDATA[//Commented Out and left as example code
-
-(*// Send Read Information to ARUP Host
-(* ----- BCR10561: P8005 Induct Confirm ----- *)	
-IF ReadBCRID_10561_Old <> BarCodeReaders.BCR10561.GoodreadCount THEN
+        <ST><![CDATA[IF nOldCount <> cDatamanReader.GoodreadCount THEN
 	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00001',BarCodeReaders.BCR10561.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00001',BarCodeReaders.BCR10561.Out_ReadString,00);
+	CASE nMessageToSend OF
+		SEND_ARRIVAL:	TransmitMsgBuffer[TransmitMsgBuffer_Index] := Arrival(cDatamanReader.In_EquipID, cDatamanReader.Out_ReadString,00);
+		SEND_LOCATION: TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate(cDatamanReader.In_EquipID, cDatamanReader.Out_ReadString,00);
+	END_CASE
 	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10561_Old := BarCodeReaders.BCR10561.GoodreadCount;
+	BarCodeMessage := cDatamanReader.GoodreadCount;
+ELSE
+	BarCodeMessage := nOldCount;
 END_IF
 
-(* ----- BCR10562: P8010 Induct Confirm ----- *)	
-IF ReadBCRID_10562_Old <> BarCodeReaders.BCR10562.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00002',BarCodeReaders.BCR10562.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00002',BarCodeReaders.BCR10562.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10562_Old := BarCodeReaders.BCR10562.GoodreadCount;
-END_IF
-
-(* ----- BCR10563: P8005 Divert 1 ----- *)	
-IF ReadBCRID_10563_Old <> BarCodeReaders.BCR10563.GoodreadCount THEN
-	// Send Transport message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := Arrival('00007',BarCodeReaders.BCR10563.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := Transport_Msg('00007',BarCodeReaders.BCR10563.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10563_Old := BarCodeReaders.BCR10563.GoodreadCount;
-END_IF
-
-(* ----- BCR10564: P8015 Lane Confirm ----- *)	
-IF ReadBCRID_10564_Old <> BarCodeReaders.BCR10564.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00016',BarCodeReaders.BCR10564.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00016',BarCodeReaders.BCR10564.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10564_Old := BarCodeReaders.BCR10564.GoodreadCount;
-END_IF
-
-(* ----- BCR10565: P8020 Lane Confirm ----- *)	
-IF ReadBCRID_10565_Old <> BarCodeReaders.BCR10565.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00017',BarCodeReaders.BCR10565.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00017',BarCodeReaders.BCR10565.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10565_Old := BarCodeReaders.BCR10565.GoodreadCount;
-END_IF
-
-(* ----- BCR10566: P8040 Lane Confirm ----- *)	
-IF ReadBCRID_10566_Old <> BarCodeReaders.BCR10566.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00018',BarCodeReaders.BCR10566.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00018',BarCodeReaders.BCR10566.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10566_Old := BarCodeReaders.BCR10566.GoodreadCount;
-END_IF
-
-(* ----- BCR10567: P8035 Lane Confirm ----- *)	
-IF ReadBCRID_10567_Old <> BarCodeReaders.BCR10567.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate('00019',BarCodeReaders.BCR10567.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00019',BarCodeReaders.BCR10567.Out_ReadString,00);
-	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
-	ReadBCRID_10567_Old := BarCodeReaders.BCR10567.GoodreadCount;
-END_IF*)
 ]]></ST>
       </Implementation>
-    </Action>
+    </Method>
     <Action Name="DeviceStatus" Id="{6f2ea99a-b2ad-4c65-9c09-93cefc1dbe51}">
       <Implementation>
         <ST><![CDATA[(*
@@ -613,8 +613,8 @@ LocationUpdate := String1;]]></ST>
 	
 	
 	// Fill Appropriate info for each message
-	RawMsgArray[i] := ServerControl.fbServer.aApplications[1].RxRawMessage;	
-	RawMsgLenArray[i] := LEN(ServerControl.fbServer.aApplications[1].RxRawMessage);	
+	RawMsgArray[i] := ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage;	
+	RawMsgLenArray[i] := LEN(ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage);	
 	StrStartPos := FIND(STR1:= RawMsgArray[i], STR2:='$02' );
 	StrEndPos :=  FIND(STR1:= RawMsgArray[i], STR2:='$03' );
 	RawMsgStartPosArray[i] := StrStartPos;
@@ -622,18 +622,18 @@ LocationUpdate := String1;]]></ST>
 	
 {info 'Maybe: Possibly add do while loop here to process the case where more than one message comes in at a time and clean up StrStartPos and end pos with array'}	
 	IF StrStartPos <> 0 THEN
-		MsgString := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 51 , POS:= StrStartPos);
+		MsgString := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 51 , POS:= StrStartPos);
 		MsgArray[i] := MsgString;
-		MsgID := STRING_TO_DINT(MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 2, POS:= StrStartPos+1));
+		MsgID := STRING_TO_DINT(MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 2, POS:= StrStartPos+1));
 	
 		CASE MsgID OF
 			E_MessageIds.TransportCommand_05:  	// Transport Command Message
 //			05:  	// Transport Command Message
-				DeviceID := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage, LEN:= 5, POS:= StrStartPos+3);
-				BarCode := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage, LEN:= 20, POS:= StrStartPos+8);
-				Destination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage, LEN:= 2, POS:= StrStartPos+28));
-				DefDestination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage, LEN:= 2, POS:= StrStartPos+30));
-				Status := STRING_TO_BYTE( MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 2, POS:= StrStartPos+50));
+				DeviceID := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage, LEN:= 5, POS:= StrStartPos+3);
+				BarCode := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage, LEN:= 20, POS:= StrStartPos+8);
+				Destination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage, LEN:= 2, POS:= StrStartPos+28));
+				DefDestination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage, LEN:= 2, POS:= StrStartPos+30));
+				Status := STRING_TO_BYTE( MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 2, POS:= StrStartPos+50));
 
 				//Strip spaces from Bar Code
 				SpacePosition := (FIND(STR1:= BarCode, STR2:=' ' ))+3;
@@ -650,16 +650,16 @@ LocationUpdate := String1;]]></ST>
 
 			E_MessageIds.LocationUpdateResponse_07:		// Location Update Response
 //			07:		// Location Update Response
-				DeviceID := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 5, POS:= StrStartPos+3);
-				BarCode := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 20, POS:= StrStartPos+8);
-				Destination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 2, POS:= StrStartPos+23));
-				Status := STRING_TO_BYTE( MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 2, POS:= StrStartPos+50));
+				DeviceID := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 5, POS:= StrStartPos+3);
+				BarCode := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 20, POS:= StrStartPos+8);
+				Destination := STRING_TO_DINT( MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 2, POS:= StrStartPos+23));
+				Status := STRING_TO_BYTE( MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 2, POS:= StrStartPos+50));
 						
 			E_MessageIds.EquipmentStatusResponse_08:		// Equipment Status Response
 //			08:		// Equipment Status Response
 				FOR j := 0 TO 6 DO
-					Msg_EquipStatArry[j+1].DeviceID := MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 5, POS:= ((StrStartPos+3)+(j*7)));
-					Msg_EquipStatArry[j+1].Status := STRING_TO_BYTE(MID(STR:=ServerControl.fbServer.aApplications[1].RxRawMessage , LEN:= 2, POS:= ((StrStartPos+8)+(j*7))));	
+					Msg_EquipStatArry[j+1].DeviceID := MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 5, POS:= ((StrStartPos+3)+(j*7)));
+					Msg_EquipStatArry[j+1].Status := STRING_TO_BYTE(MID(STR:=ServerControl.fbServer.aApplications[nConnectionIndex].RxRawMessage , LEN:= 2, POS:= ((StrStartPos+8)+(j*7))));	
 				END_FOR
 			
 			E_MessageIds.KeepAlive_09:		// Keep Alive
@@ -850,38 +850,34 @@ TransportResponse := String1;]]></ST>
       </Implementation>
     </Method>
     <LineIds Name="MsgControl">
-      <LineId Id="979" Count="0" />
-      <LineId Id="1200" Count="1" />
-      <LineId Id="1207" Count="0" />
-      <LineId Id="1287" Count="0" />
-      <LineId Id="1208" Count="1" />
-      <LineId Id="1202" Count="0" />
-      <LineId Id="1288" Count="3" />
-      <LineId Id="980" Count="0" />
-      <LineId Id="1203" Count="3" />
-      <LineId Id="981" Count="22" />
-      <LineId Id="1126" Count="0" />
-      <LineId Id="1004" Count="0" />
-      <LineId Id="1127" Count="0" />
-      <LineId Id="1005" Count="10" />
-      <LineId Id="1121" Count="1" />
-      <LineId Id="1016" Count="0" />
-      <LineId Id="1128" Count="0" />
-      <LineId Id="1017" Count="0" />
-      <LineId Id="1129" Count="0" />
-      <LineId Id="1018" Count="16" />
-      <LineId Id="1123" Count="2" />
-      <LineId Id="1035" Count="0" />
-      <LineId Id="1130" Count="0" />
-      <LineId Id="1036" Count="11" />
+      <LineId Id="1370" Count="30" />
+      <LineId Id="1631" Count="0" />
+      <LineId Id="1483" Count="0" />
+      <LineId Id="1534" Count="0" />
+      <LineId Id="1536" Count="0" />
+      <LineId Id="1632" Count="0" />
+      <LineId Id="1492" Count="0" />
+      <LineId Id="1537" Count="0" />
+      <LineId Id="1539" Count="0" />
+      <LineId Id="1633" Count="0" />
+      <LineId Id="1636" Count="0" />
+      <LineId Id="1549" Count="0" />
+      <LineId Id="1403" Count="18" />
+      <LineId Id="1819" Count="6" />
+      <LineId Id="1828" Count="0" />
+      <LineId Id="1836" Count="1" />
+      <LineId Id="1829" Count="4" />
+      <LineId Id="1422" Count="10" />
+      <LineId Id="1734" Count="1" />
+      <LineId Id="1443" Count="2" />
+      <LineId Id="1718" Count="0" />
+      <LineId Id="1721" Count="5" />
+      <LineId Id="1736" Count="1" />
+      <LineId Id="1733" Count="0" />
+      <LineId Id="1446" Count="17" />
       <LineId Id="271" Count="0" />
     </LineIds>
-    <LineIds Name="MsgControl.Arrival">
-      <LineId Id="20" Count="51" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="MsgControl.BarCodeMessages">
-      <LineId Id="86" Count="1" />
+    <LineIds Name="MsgControl.A_BarCodeMessages">
       <LineId Id="4" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="5" Count="0" />
@@ -890,20 +886,18 @@ TransportResponse := String1;]]></ST>
       <LineId Id="11" Count="0" />
       <LineId Id="8" Count="1" />
       <LineId Id="3" Count="0" />
-      <LineId Id="31" Count="3" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="35" Count="8" />
-      <LineId Id="85" Count="0" />
-      <LineId Id="44" Count="6" />
-      <LineId Id="81" Count="0" />
-      <LineId Id="51" Count="7" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="59" Count="7" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="67" Count="7" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="75" Count="3" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="77" Count="1" />
       <LineId Id="30" Count="0" />
+    </LineIds>
+    <LineIds Name="MsgControl.Arrival">
+      <LineId Id="20" Count="51" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="MsgControl.BarCodeMessage">
+      <LineId Id="43" Count="10" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="MsgControl.DeviceStatus">
       <LineId Id="2" Count="0" />

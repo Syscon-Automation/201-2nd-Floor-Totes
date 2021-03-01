@@ -8,18 +8,32 @@ VAR_GLOBAL
 	PB_SysStart AT %I* 		:BOOL;		//System Start Button
 	PB_SysStop	AT %I*		:BOOL;		//System Stop Button
 	PB_SysReset	AT %I* 		:BOOL; 		//System Reset Button
+	PB_RemoteReset_7281 AT %I*		: BOOL;	//P6040 Reset Button
+ 	PB_RemoteReset_12181 AT %I* 	: BOOL;	//P7004 Height check reset Reset Button
 	
 	SystemAirPressure AT %I*	:BOOL;
+	Regulator_AirPressure AT %I*	:BOOL;
 
 	
 	HornMainPanel				AT %Q* 	:BOOL;	//Panel Tower Horn
 	LT_MainPanelStack_Red		AT %Q*	:BOOL;	//Panel	Tower Red Light
 	LT_MainPanelStack_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
 	LT_MainPanelStack_Green		AT %Q*	:BOOL;	//Panel	Tower Green Light
-	
-	LT_7221_Red		AT %Q*	:BOOL;	//Panel	Tower Red Light
+
+	LT_7221_Red	    AT %Q*	:BOOL;	//Panel	Tower Red Light
 	LT_7241_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
 	LT_7271_Green	AT %Q*	:BOOL;	//Panel	Tower Green Light
+	
+	LT_12121_Red	AT %Q*	:BOOL;	//Panel	Tower Red Light
+	LT_12131_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	LT_12161_Green	AT %Q*	:BOOL;	//Panel	Tower Green Light
+	
+	{attribute 'OPC.UA.DA' := '1'}
+	PanelEstop_OK AT %I* : BOOL;
+	{attribute 'OPC.UA.DA' := '1'}
+	Remote_PullCord6040_OK AT %I*: BOOL;
+	{attribute 'OPC.UA.DA' := '1'}
+	Remote_PullCord7004_OK AT %I*: BOOL;
 	
 //---------------------------------Motor Outputs-------------------------------------------------	
 
@@ -132,6 +146,20 @@ SV_8161_EXT AT %Q* :BOOL; // PU6040-04 "D" GRIPPER
 	
 	SorterName				: STRING[5];
 	
+ //---------------------------------WcStates-------------------------------------------------
+ 	RIO1181_WcState AT %I*				: BOOL;		// Remote IO Block 1181
+	RIO4172_WcState AT %I*				: BOOL;		// Remote IO Block 4172
+	RIO5151_WcState AT %I*				: BOOL;		// Remote IO Block 5151
+	RIO6171_WcState AT %I*				: BOOL;		// Remote IO Block 6171
+	RIO7161_WcState AT %I*				: BOOL;		// Remote IO Block 7161
+	RIO8181_WcState AT %I*				: BOOL;		// Remote IO Block 8181
+	RIO11141_WcState AT %I*				: BOOL;		// Remote IO Block 11141
+	RIO12171_WcState AT %I*				: BOOL;		// Remote IO Block 12171
+	RIO15181_WcState AT %I*				: BOOL;		// Remote IO Block 15181
+	RIO16171_WcState AT %I*				: BOOL;		// Remote IO Block 16171
+	BCR_S6040_01_WcState AT %I*			: BOOL;		// Remote IO Block 16171
+	BCR_S7004_01_WcState AT %I*			: BOOL;		// Remote IO Block 16171
+	EthernetAdapter_State AT %I*	    : UINT;		// Ethernet Adapter State
  //---------------------------------EAP-------------------------------------------------
 //Published
 //Subscribed

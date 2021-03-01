@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
-  <POU Name="Sorter" Id="{3b431d4d-c25c-406a-aef2-7598ac3d07f6}" SpecialFunc="None">
+  <POU Name="Sorter" Id="{efb4f521-b93c-401a-8a07-5bbe9c018238}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Sorter
 VAR
 	nSorterClearIdx				: DINT;
@@ -18,8 +18,8 @@ VAR
 	st_InductUpdate				: ST_ItemTemporary;	// This is to update an item already being inducted
 	{attribute 'OPC.UA.DA' := '1'}
 	st_Sorter					: ST_Sorter;
-	//{attribute 'OPC.UA.DA' := '1'}
-	//aSorterDiverts 				: ARRAY[DIVERTMIN..NUMBEROFDIVERTS] OF ST_Divert;
+	{attribute 'OPC.UA.DA' := '1'}
+	aSorterDiverts 				: ARRAY[DIVERTMIN..NUMBEROFDIVERTS] OF ST_Divert;
 
 	st_SorterEncoder 			: ST_Encoder;
 	fb_SorterEncoder 			: FB_ProcessEncoder;
@@ -47,18 +47,11 @@ VAR
 	sMessage			: STRING;
 
 	ClearSorterArray	: BOOL;
-
-//----------------------------------------------DivertCfg---------------------------------------------------------------------
+	//--------------------------------------Divert Config------------------------------------------
 	Dummy : BOOL;
 	Divert_RTRIG	:	ARRAY[1..16] OF R_TRIG;
 	Divert_FTRIG	:	ARRAY[1..16] OF F_TRIG;
 	
-	PE23201_Full AT %I*	:	BOOL;	
-	
-	Diverts			: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_Divert;
-	DivertsCfgs		: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_DivertCfg;
-	
-
 
 END_VAR
 
@@ -109,17 +102,11 @@ st_SorterEncoder.EncoderRawCount := ENC_Raw;
 st_SorterEncoder.BitMaskSize := SORTERMASKSIZE;
 fb_SorterEncoder(Encoder := st_SorterEncoder, Simulate := bSimulate);
 
-(*
-	DivertCfg Initializes the Diverts.  
-*)
-//DivertCfg(Diverts := aSorterDiverts
-		//	, DivertsCfgs := st_DivertCfgs);
-
 fb_CommissionSorterDiverts(
 			InductTrigger := Photoeyes.PE_7171.Out,
 			ReferenceValue := st_SorterEncoder.CurrentCount, 
 			DischargeTrigger := Photoeyes.PE_8211.Out_OffFltrd,
-			TestTime := T#10S, Diverts := Diverts);
+			TestTime := T#10S, Diverts := aSorterDiverts);
 
 // Provide a "hard-coded" default destination.
 IF st_SorterCfg.DefaultDestination <= 0 THEN
@@ -127,7 +114,7 @@ IF st_SorterCfg.DefaultDestination <= 0 THEN
 END_IF						
 
 // Name of the sorter equipment
-st_SorterCfg.Name := Conveyors.cfgP6040Label;
+//st_SorterCfg.Name := Conveyors.cfgP8005Label;
 st_SorterCfg.DivertCount := NUMBEROFDIVERTS;
 IF DivertToCommission > 0 THEN
 	st_SorterCfg.DefaultDestination := DivertToCommission;
@@ -141,10 +128,10 @@ tEncoderOK.IN := (Conveyors.P6040_Status.Sts_IsRunning AND (st_Sorter.EncoderCou
 tEncoderOK(PT:=T#1S);
 
 // OK when Q is not on, but the alarm is reversed
-GVL_IO.ENC_9021_OK := tEncoderOK.Q;
+  GVL_IO.ENC_9021_OK := tEncoderOK.Q;
 
 // Publish the sorter name
-GVL_IO.SorterName := st_SorterCfg.Name;
+  GVL_IO.SorterName := st_SorterCfg.Name;
 
 // Sorter
 (*
@@ -157,7 +144,7 @@ ProcessBuffers(st_NextToInduct := st_ToInduct
 				, st_TempInductItem := st_TempItem
 				, st_UpdateItem := st_Inducting
 				, st_Sorter := st_Sorter
-				, aDiverts := Diverts
+				, aDiverts := aSorterDiverts
 				, aItems := aSorterItems
 				, DivertToCommission := DivertToCommission);
 
@@ -215,58 +202,57 @@ Sorter_P6040(st_Sorter := st_Sorter
 		, In_ItemToInduct := st_ToInduct.Item
 		, In_InductingItem := st_Inducting.Item
 		, aItems := aSorterItems
-		, aDiverts := Diverts
+		, aDiverts := aSorterDiverts
 		, st_tempItem := st_TempItem);
-
-//-------------------------------------------------DivertCfg--------------------------------------------------------------
+//--------------------------------------Divert Config------------------------------------------
 (*
 	Initialize Diverts here. 
 	Tie variables commented IO to physical IO address
 *)
 
 //Divert #1
-Diverts[1].Config := DivertsCfgs[1];
-Diverts[1].ConfirmPE := Photoeyes.PE_7191.Out; 			
-Diverts[1].FullPE := Photoeyes.PE_7191.Out;   			
+aSorterDiverts[1].Config := st_DivertCfgs[1];
+aSorterDiverts[1].ConfirmPE := Photoeyes.PE_7191.Out; 			
+aSorterDiverts[1].FullPE := Photoeyes.PE_7191.Out;   			
 
 //Divert #2
-Diverts[2].Config := DivertsCfgs[2];
-Diverts[2].ConfirmPE := Photoeyes.PE_7241.Out; 		
-Diverts[2].FullPE := Photoeyes.PE_7241.Out;   		
+aSorterDiverts[2].Config := st_DivertCfgs[2];
+aSorterDiverts[2].ConfirmPE := Photoeyes.PE_7241.Out; 		
+aSorterDiverts[2].FullPE := Photoeyes.PE_7241.Out;   		
 
 //Divert #3 
-Diverts[3].Config := DivertsCfgs[3];
-Diverts[3].ConfirmPE := Photoeyes.PE_8171.Out; 		
-Diverts[3].FullPE := Photoeyes.PE_8171.Out;   	
+aSorterDiverts[3].Config := st_DivertCfgs[3];
+aSorterDiverts[3].ConfirmPE := Photoeyes.PE_8171.Out; 		
+aSorterDiverts[3].FullPE := Photoeyes.PE_8171.Out;   	
 
 //Divert #4 
-Diverts[4].Config := DivertsCfgs[4];
-Diverts[4].ConfirmPE := Photoeyes.PE_8221.Out; 		
-Diverts[4].FullPE := Photoeyes.PE_8221.Out; 
+aSorterDiverts[4].Config := st_DivertCfgs[4];
+aSorterDiverts[4].ConfirmPE := Photoeyes.PE_8221.Out; 		
+aSorterDiverts[4].FullPE := Photoeyes.PE_8221.Out; 
 
 //Divert #5
-Diverts[5].Config := DivertsCfgs[5];
-//Diverts[5].ConfirmPE := Photoeyes.PE_8221.Out; 		
-//Diverts[5].FullPE := Photoeyes.PE_8221.Out; 	
+aSorterDiverts[5].Config := st_DivertCfgs[5];
+aSorterDiverts[5].ConfirmPE := Photoeyes.PE_8211.Out; 		
+aSorterDiverts[5].FullPE := Photoeyes.PE_8211.Out; 	
 
 // Logging
 // Divert 1
-Divert_RTRIG[1](CLK := Diverts[1].Output1);
+Divert_RTRIG[1](CLK := aSorterDiverts[1].Output1);
 IF Divert_RTRIG[1].q THEN
 	IF .nDivertLogEnable.DIVERT1 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[1].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[1].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[1].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[1].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 1 Extend : %s'
 			, strArg := sMessage);
 	END_IF
 END_IF
-Divert_FTRIG[1](CLK := Diverts[1].Output1);
+Divert_FTRIG[1](CLK := aSorterDiverts[1].Output1);
 IF Divert_FTRIG[1].q THEN
 	IF .nDivertLogEnable.DIVERT1 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[1].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[1].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[1].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[1].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 1 Extend : %s'
@@ -274,22 +260,22 @@ IF Divert_FTRIG[1].q THEN
 	END_IF
 END_IF
 // Divert 2
-Divert_RTRIG[2](CLK := Diverts[2].Output1);
+Divert_RTRIG[2](CLK := aSorterDiverts[2].Output1);
 IF Divert_RTRIG[2].q THEN
 	IF .nDivertLogEnable.DIVERT2 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[2].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[2].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[2].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[2].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 2 Extend : %s'
 			, strArg := sMessage);
 	END_IF
 END_IF
-Divert_FTRIG[2](CLK := Diverts[2].Output1);
+Divert_FTRIG[2](CLK := aSorterDiverts[2].Output1);
 IF Divert_FTRIG[2].q THEN
 	IF .nDivertLogEnable.DIVERT2 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[2].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[2].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[2].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[2].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 2 Extend : %s'
@@ -297,22 +283,22 @@ IF Divert_FTRIG[2].q THEN
 	END_IF
 END_IF
 // Divert 3
-Divert_RTRIG[3](CLK := Diverts[3].Output1);
+Divert_RTRIG[3](CLK := aSorterDiverts[3].Output1);
 IF Divert_RTRIG[3].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[3].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[3].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[3].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[3].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 3 Extend : %s'
 			, strArg := sMessage);
 	END_IF
 END_IF
-Divert_FTRIG[3](CLK := Diverts[3].Output1);
+Divert_FTRIG[3](CLK := aSorterDiverts[3].Output1);
 IF Divert_FTRIG[3].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[3].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[3].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[3].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[3].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 3 Extend : %s'
@@ -321,22 +307,22 @@ IF Divert_FTRIG[3].q THEN
 END_IF
 			
 // Divert 4
-Divert_RTRIG[4](CLK := Diverts[4].Output1);
+Divert_RTRIG[4](CLK := aSorterDiverts[4].Output1);
 IF Divert_RTRIG[4].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[4].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[4].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[4].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[4].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 4 Extend : %s'
 			, strArg := sMessage);
 	END_IF
 END_IF
-Divert_FTRIG[4](CLK := Diverts[4].Output1);
+Divert_FTRIG[4](CLK := aSorterDiverts[4].Output1);
 IF Divert_FTRIG[4].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[4].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[4].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[4].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[4].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 4 Extend : %s'
@@ -345,30 +331,29 @@ IF Divert_FTRIG[4].q THEN
 END_IF
 
 // Divert 5
-Divert_RTRIG[5](CLK := Diverts[5].Output1);
+Divert_RTRIG[5](CLK := aSorterDiverts[5].Output1);
 IF Divert_RTRIG[5].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[5].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[5].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[5].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[5].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 4 Extend : %s'
 			, strArg := sMessage);
 	END_IF
 END_IF
-Divert_FTRIG[5](CLK := Diverts[5].Output1);
+Divert_FTRIG[5](CLK := aSorterDiverts[5].Output1);
 IF Divert_FTRIG[5].q THEN
 	IF .nDivertLogEnable.DIVERT3 THEN
-		sMessage := CONCAT(BOOL_TO_STRING(Diverts[5].Output1),' Item: ');
-		sMessage := CONCAT(sMessage,Diverts[5].Item.ID);
+		sMessage := CONCAT(BOOL_TO_STRING(aSorterDiverts[5].Output1),' Item: ');
+		sMessage := CONCAT(sMessage,aSorterDiverts[5].Item.ID);
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert 5 Extend : %s'
 			, strArg := sMessage);
 	END_IF
-END_IF
-//---------------------------------------------DivertCfg End------------------------------------------------------------------
-
+END_IF 	
+//--------------------------------------Divert Config------------------------------------------		
 // Log the diverts
 Log_Diverts();
 ]]></ST>
@@ -376,7 +361,8 @@ Log_Diverts();
     <LineIds Name="Sorter">
       <LineId Id="61" Count="18" />
       <LineId Id="5" Count="0" />
-      <LineId Id="100" Count="11" />
+      <LineId Id="100" Count="4" />
+      <LineId Id="111" Count="0" />
       <LineId Id="113" Count="0" />
       <LineId Id="122" Count="1" />
       <LineId Id="114" Count="0" />
@@ -384,12 +370,11 @@ Log_Diverts();
       <LineId Id="129" Count="0" />
       <LineId Id="125" Count="3" />
       <LineId Id="130" Count="35" />
-      <LineId Id="173" Count="56" />
-      <LineId Id="302" Count="0" />
-      <LineId Id="306" Count="146" />
-      <LineId Id="305" Count="0" />
-      <LineId Id="304" Count="0" />
-      <LineId Id="303" Count="0" />
+      <LineId Id="173" Count="55" />
+      <LineId Id="371" Count="0" />
+      <LineId Id="373" Count="146" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="372" Count="0" />
       <LineId Id="231" Count="1" />
       <LineId Id="99" Count="0" />
     </LineIds>

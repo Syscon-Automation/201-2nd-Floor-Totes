@@ -15,6 +15,8 @@
     <Implicit_KindOfTask>{fbe1847d-fcc7-4ccc-b311-4f7c8a256581}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{bf6b89d5-b969-4971-b865-ffffc358c7b3}</Implicit_Jitter_Distribution>
     <LibraryReferences>{355e8d12-a56c-4226-954d-ebbfe6429775}</LibraryReferences>
+    <MultiuserActive>true</MultiuserActive>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DUTs\EAP\ST_EAP_DEVICE.TcDUT">
@@ -76,6 +78,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\Onsite_Checklist.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -86,9 +92,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Conveyors.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="POUs\DivertCfg.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\BarCode\CognexDataMan260.TcPOU">
@@ -268,9 +271,6 @@
     <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_SorterConfig.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FunctionBlocks\Sorter\ProcessBuffers.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\VISUs\ArrayInspection.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -393,6 +393,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Photoeyes.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\ProcessBuffers.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ProxSensors.TcPOU">

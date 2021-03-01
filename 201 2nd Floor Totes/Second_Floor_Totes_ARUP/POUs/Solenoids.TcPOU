@@ -76,7 +76,9 @@ cfgGR6040_02EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Retract TO', DeviceLabel := 'GR6040_02', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------GR6040_01--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgGR6040_01IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -89,7 +91,9 @@ cfgGR6040_01EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Retract TO', DeviceLabel := 'GR6040_01', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------PI6040_01--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgPI6040_01IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -102,59 +106,73 @@ cfgPI6040_01EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Retract TO', DeviceLabel := 'PI6040_01', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------PU6040_01--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_01IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Low Air' , DeviceLabel := 'P6040' , OKState := TRUE, StopCode := E_StopCodes.LowAir),
    (Description := 'System Interlocks OK' , DeviceLabel := 'SYSTEM', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   14(())];
+   (Description := 'Jam Detected' , DeviceLabel := 'PE_7151', OKState := TRUE, StopCode := E_StopCodes.ProductJam),
+   13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_01EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Extend To', DeviceLabel := 'PU6040_01', LatchRequired := TRUE, OKState := FALSE, FaultWarn:= TRUE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'Retract TO', DeviceLabel := 'PU6040_01', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO7161 Comm Fault', DeviceLabel := 'RIO7161', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------PU6040_02--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_02IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Low Air' , DeviceLabel := 'P6040' , OKState := TRUE, StopCode := E_StopCodes.LowAir),
    (Description := 'System Interlocks OK' , DeviceLabel := 'SYSTEM', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   14(())];
+   (Description := 'Jam Detected' , DeviceLabel := 'PE_7211', OKState := TRUE, StopCode := E_StopCodes.ProductJam),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_02EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Extend To', DeviceLabel := 'PU6040_02', LatchRequired := TRUE, OKState := FALSE, FaultWarn:= TRUE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'Retract TO', DeviceLabel := 'PU6040_02', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO7161 Comm Fault', DeviceLabel := 'RIO7161', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------PU6040_03--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_03IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Low Air' , DeviceLabel := 'P6040' , OKState := TRUE, StopCode := E_StopCodes.LowAir),
    (Description := 'System Interlocks OK' , DeviceLabel := 'SYSTEM', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   14(())];
+   (Description := 'Jam Detected' , DeviceLabel := 'PE_8141', OKState := TRUE, StopCode := E_StopCodes.ProductJam),
+   13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_03EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Extend To', DeviceLabel := 'PU6040_03', LatchRequired := TRUE, OKState := FALSE, FaultWarn:= TRUE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'Retract TO', DeviceLabel := 'PU6040_03', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO8181 Comm Fault', DeviceLabel := 'RIO8181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];
 //----------------------------------------PU6040_04--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_04IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Low Air' , DeviceLabel := 'P6040' , OKState := TRUE, StopCode := E_StopCodes.LowAir),
    (Description := 'System Interlocks OK' , DeviceLabel := 'SYSTEM', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   14(())];
+   (Description := 'Jam Detected' , DeviceLabel := 'PE_8181', OKState := TRUE, StopCode := E_StopCodes.ProductJam),
+   13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgPU6040_04EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Extend To', DeviceLabel := 'PU6040_04', LatchRequired := TRUE, OKState := FALSE, FaultWarn:= TRUE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'Retract TO', DeviceLabel := 'PU6040_04', LatchRequired := TRUE, FaultWarn:= TRUE, OKState := FALSE, StopCode := E_StopCodes.ActuatorTO),
    (Description := 'System Fault', DeviceLabel := '', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'Low Air', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.LowAir, EventDelay := T#100MS),
-   11(())];	
+   (Description := 'System Estop', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'RIO8181 Comm Fault', DeviceLabel := 'RIO8181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
+   10(())];	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -175,11 +193,13 @@ GR6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
 GR6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 GR6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 GR6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+GR6040_01.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 GR6040_01(
    In_p_EquipStatePB:= GR6040_01_StatePB,
    In_SimActive:= System.Sys_SimActive,
+   Cfg_UseExtedFdbc:= FALSE,
    In_EquipInit:= GVL_IO.INIT,
    In_P_SVReqExtend:= Singulation_Control.SortSingulation.Out_Grabber_1_Ext,
    In_EquipRtrcdFdbck := ProxSensors.PX_6241_Retracted.OutOnFltrd,
@@ -209,11 +229,13 @@ GR6040_02.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
 GR6040_02.In_EquipEvents.2:= System.SysEventsAllOk;
 GR6040_02.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 GR6040_02.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+GR6040_02.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 GR6040_02(
    In_p_EquipStatePB:= GR6040_02_StatePB,
    In_SimActive:= System.Sys_SimActive,
+   Cfg_UseExtedFdbc:= FALSE,
    In_EquipInit:= GVL_IO.INIT,
    In_P_SVReqExtend:= Singulation_Control.SortSingulation.Out_Grabber_2_Ext,
    In_EquipRtrcdFdbck := ProxSensors.PX_6121_Retracted.OutOnFltrd,
@@ -240,10 +262,12 @@ PI6040_01_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_DA;
 
 // Interlocks
 PI6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
+PI6040_01.In_EquipIntlks.1 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_6241.Out) OR PI6040_01.In_P_SVReqRetract;
 //Events
 PI6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PI6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PI6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+PI6040_01.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 PI6040_01(
@@ -275,17 +299,19 @@ PU6040_01_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
+PU6040_01.In_EquipIntlks.1:= Photoeyes.PE_7151.JamDetected;
 //Events
 PU6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+PU6040_01.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
 
 // Function Call
 PU6040_01(
    In_p_EquipStatePB:= PU6040_01_StatePB,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
-   In_P_SVReqExtend:= Sorter.Diverts[1].Output1,
+   In_P_SVReqExtend:= Sorter.aSorterDiverts[1].Output1,
    In_EquipRtrcdFdbck := ProxSensors.PX_7271_Retracted.OutOnFltrd,
    In_EquipExtdFdbck :=  ProxSensors.PX_7301_Extended.OutOnFltrd,
    Cfg_EquipIndex := nEquipIndex,
@@ -309,17 +335,19 @@ PU6040_02_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_02.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
+PU6040_02.In_EquipIntlks.1:= Photoeyes.PE_7211.JamDetected;
 //Events
 PU6040_02.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_02.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_02.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+PU6040_02.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
 
 // Function Call
 PU6040_02(
    In_p_EquipStatePB:= PU6040_02_StatePB,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
-   In_P_SVReqExtend:= Sorter.Diverts[2].Output1,
+   In_P_SVReqExtend:= Sorter.aSorterDiverts[2].Output1,
    In_EquipRtrcdFdbck := ProxSensors.PX_7122_Retracted.OutOnFltrd,
    In_EquipExtdFdbck :=  ProxSensors.PX_7151_Extended.OutOnFltrd,
    Cfg_EquipIndex := nEquipIndex,
@@ -343,17 +371,19 @@ PU6040_03_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_03.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
+PU6040_03.In_EquipIntlks.1:= Photoeyes.PE_8141.JamDetected;
 //Events
 PU6040_03.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_03.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_03.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+PU6040_03.In_EquipEvents.5:= CommStatus.RIO8181_CommFault.Out;
 
 // Function Call
 PU6040_03(
    In_p_EquipStatePB:= PU6040_03_StatePB,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
-   In_P_SVReqExtend:= Sorter.Diverts[3].Output1,
+   In_P_SVReqExtend:= Sorter.aSorterDiverts[3].Output1,
    In_EquipRtrcdFdbck := ProxSensors.PX_8321_Retracted.OutOnFltrd,
    In_EquipExtdFdbck :=  ProxSensors.PX_8291_Extended.OutOnFltrd,
    Cfg_EquipIndex := nEquipIndex,
@@ -377,17 +407,19 @@ PU6040_04_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_04.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
+PU6040_04.In_EquipIntlks.1:= Photoeyes.PE_8181.JamDetected;
 //Events
 PU6040_04.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_04.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_04.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
+PU6040_04.In_EquipEvents.5:= CommStatus.RIO8181_CommFault.Out;
 
 // Function Call
 PU6040_04(
    In_p_EquipStatePB:= PU6040_04_StatePB,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
-   //In_P_SVReqExtend:= Input to extend actuator if in auto and conditions are met
+   In_P_SVReqExtend:= Sorter.aSorterDiverts[4].Output1,
    In_EquipRtrcdFdbck := ProxSensors.PX_8091_Retracted.OutOnFltrd,
    In_EquipExtdFdbck :=  ProxSensors.PX_8121_Extended.OutOnFltrd,
    Cfg_EquipIndex := nEquipIndex,
@@ -403,22 +435,50 @@ PU6040_04(
 ]]></ST>
     </Implementation>
     <LineIds Name="Solenoids">
-      <LineId Id="2393" Count="33" />
+      <LineId Id="2393" Count="16" />
+      <LineId Id="2900" Count="0" />
+      <LineId Id="2410" Count="4" />
+      <LineId Id="2739" Count="0" />
+      <LineId Id="2415" Count="11" />
       <LineId Id="1844" Count="0" />
       <LineId Id="2427" Count="0" />
-      <LineId Id="1845" Count="20" />
+      <LineId Id="1845" Count="14" />
+      <LineId Id="2896" Count="0" />
+      <LineId Id="1860" Count="4" />
+      <LineId Id="2740" Count="0" />
+      <LineId Id="1865" Count="0" />
       <LineId Id="2385" Count="0" />
       <LineId Id="1866" Count="10" />
-      <LineId Id="1909" Count="22" />
+      <LineId Id="1909" Count="12" />
+      <LineId Id="3079" Count="0" />
+      <LineId Id="1922" Count="3" />
+      <LineId Id="2903" Count="0" />
+      <LineId Id="1926" Count="5" />
       <LineId Id="2387" Count="0" />
       <LineId Id="2583" Count="0" />
-      <LineId Id="1932" Count="32" />
+      <LineId Id="1932" Count="22" />
+      <LineId Id="3249" Count="0" />
+      <LineId Id="1955" Count="3" />
+      <LineId Id="2906" Count="0" />
+      <LineId Id="1959" Count="5" />
       <LineId Id="2388" Count="0" />
-      <LineId Id="1965" Count="32" />
+      <LineId Id="1965" Count="22" />
+      <LineId Id="3253" Count="0" />
+      <LineId Id="1988" Count="3" />
+      <LineId Id="2907" Count="0" />
+      <LineId Id="1992" Count="5" />
       <LineId Id="2389" Count="0" />
-      <LineId Id="1998" Count="32" />
+      <LineId Id="1998" Count="22" />
+      <LineId Id="3255" Count="0" />
+      <LineId Id="2021" Count="3" />
+      <LineId Id="3073" Count="0" />
+      <LineId Id="2025" Count="5" />
       <LineId Id="2391" Count="0" />
-      <LineId Id="2031" Count="32" />
+      <LineId Id="2031" Count="22" />
+      <LineId Id="3257" Count="0" />
+      <LineId Id="2054" Count="3" />
+      <LineId Id="3076" Count="0" />
+      <LineId Id="2058" Count="5" />
       <LineId Id="2392" Count="0" />
       <LineId Id="2064" Count="10" />
       <LineId Id="1730" Count="0" />
