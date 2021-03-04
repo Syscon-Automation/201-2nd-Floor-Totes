@@ -955,16 +955,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.PB_SysStop</Name>
-							<Comment><![CDATA[System Stop Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_SysReset</Name>
-							<Comment><![CDATA[System Reset Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>PhotoEyes.PE_1232.In_PE</Name>
 							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 							<Type>BOOL</Type>
@@ -1145,6 +1135,16 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_IO.PB_SysStop</Name>
+							<Comment><![CDATA[System Stop Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_SysReset</Name>
+							<Comment><![CDATA[System Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.PB_RemoteReset_7281</Name>
 							<Comment><![CDATA[P6040 Reset Button]]></Comment>
 							<Type>BOOL</Type>
@@ -1159,15 +1159,7 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.PanelEstop_OK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+							<Name>GVL_IO.Regulator_AirPressure</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1198,6 +1190,18 @@
 						<Var>
 							<Name>ProcessBuffers.st_TransportBuffer</Name>
 							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PanelEstop_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.P6005_Faulted</Name>
@@ -1405,11 +1409,6 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ENC_9021_Period</Name>
-							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.RIO1181_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
 							<Type>BOOL</Type>
@@ -1423,6 +1422,11 @@
 							<Name>GVL_IO.RIO5151_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ENC_9021_Period</Name>
+							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+							<Type>UDINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.RIO6171_WcState</Name>
@@ -1672,6 +1676,26 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>SystemSafety.System_SafetyState.Reset</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Run</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProcessBuffers.st_UpdateBuffer</Name>
+							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
 							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
 							<Type>BOOL</Type>
@@ -1750,26 +1774,6 @@
 							<Name>GVL_IO.P6035_RUN</Name>
 							<Comment><![CDATA[P6035 Run Command]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Reset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Run</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProcessBuffers.st_UpdateBuffer</Name>
-							<Type GUID="{571043E5-A359-0785-C350-4323CDA37A4B}">ST_ItemBuffer</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.P6045_RUN</Name>

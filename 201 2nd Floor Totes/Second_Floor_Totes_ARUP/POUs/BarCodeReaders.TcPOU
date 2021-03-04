@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM BarCodeReaders
 VAR
 	BCR_S6040_01: CognexDataMan260;		// P8005 Induct Confirm
-	BCR_S7004_01: CognexDataMan260;		// P8010 Induct Confirm
+	BCR_S7004_01: CognexDataMan260;		// P8010 Location Update
 			
 		
 	Arrival_Item 			: ST_Item;		// Output Item (Bar code read) To Sort PLC
@@ -79,8 +79,7 @@ IF rSorterPE.Q THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
 			msgFmtStr := 'Sort BCR PE Blocked : %s',
-//			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
-			strArg := BOOL_TO_STRING(TRUE)
+			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
 			); 
 	END_IF
 END_IF
@@ -91,8 +90,7 @@ IF fSorterPE.Q THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
 			msgFmtStr := 'Sort BCR PE Blocked : %s',
-//			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
-			strArg := BOOL_TO_STRING(TRUE)
+			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
 		);
 	END_IF
 END_IF
@@ -176,7 +174,6 @@ BCR_S7004_01(
       <LineId Id="631" Count="0" />
       <LineId Id="780" Count="0" />
       <LineId Id="632" Count="3" />
-      <LineId Id="888" Count="0" />
       <LineId Id="887" Count="0" />
       <LineId Id="781" Count="0" />
       <LineId Id="645" Count="1" />
@@ -184,7 +181,6 @@ BCR_S7004_01(
       <LineId Id="649" Count="0" />
       <LineId Id="782" Count="0" />
       <LineId Id="650" Count="3" />
-      <LineId Id="890" Count="0" />
       <LineId Id="889" Count="0" />
       <LineId Id="783" Count="0" />
       <LineId Id="657" Count="0" />

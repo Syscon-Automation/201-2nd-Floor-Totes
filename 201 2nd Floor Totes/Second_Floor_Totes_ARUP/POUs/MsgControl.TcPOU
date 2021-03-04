@@ -209,9 +209,9 @@ END_IF
         <ST><![CDATA[// Send Read Information to ARUP Host
 (* ----- BCR10561: P8005 Induct Confirm ----- *)	
 IF ReadBCRID_S6040_01_Old <> BarCodeReaders.BCR_S6040_01.GoodreadCount THEN
-	// Send location update message to host
-	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate(BarCodeReaders.BCR_S6040_01.In_EquipID,BarCodeReaders.BCR_S6040_01.Out_ReadString,00);
-//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := LocationUpdate_Msg('00001',BarCodeReaders.BCR10561.Out_ReadString,00);
+	// Send Transport message to host
+	TransmitMsgBuffer[TransmitMsgBuffer_Index] := Arrival(BarCodeReaders.BCR_S6040_01.In_EquipID,BarCodeReaders.BCR_S6040_01.Out_ReadString,00);
+//	TransmitMsgBuffer[TransmitMsgBuffer_Index] := Transport_Msg('00007',BarCodeReaders.BCR_S2140_01.Out_ReadString,00);
 	TransmitMsgBuffer_Index := IncIndex(TransmitMsgBuffer_Index,1,TransmitMsgBuffer_Size);
 	ReadBCRID_S6040_01_Old := BarCodeReaders.BCR_S6040_01.GoodreadCount;
 END_IF
@@ -881,10 +881,8 @@ TransportResponse := String1;]]></ST>
       <LineId Id="4" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="8" Count="1" />
+      <LineId Id="80" Count="3" />
+      <LineId Id="9" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="31" Count="0" />
       <LineId Id="77" Count="1" />
