@@ -260,11 +260,11 @@ paket-files/
 __pycache__/
 *.pyc
 # TwinCAT  
-_Boot/ 
-_Config/ 
-_CompileInfo/ 
-bin/ 
-TrialLicense.tclrs 
+*_Boot/ 
+*_Config/ 
+*_CompileInfo/ 
+*bin/ 
+*TrialLicense.tclrs 
 *.bk? 
 *.bak 
 *.~u 
