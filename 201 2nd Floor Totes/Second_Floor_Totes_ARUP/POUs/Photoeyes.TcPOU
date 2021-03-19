@@ -26,6 +26,7 @@ PE_16181:  FB_Photoeye;    //P7030 FIRE GATE OPEN PE
 PE_4271:  FB_Photoeye;    //PE6030 EXIT PE 
 PE_4201:  FB_Photoeye;    //PE6035 EXIT PE 
 PE_4071:  FB_Photoeye;    //PE6045 EXIT PE 
+PE_4161:  FB_Photoeye;    //PE6040 FULL PE 
 PE_6302:  FB_Photoeye;    //PE6045 FULL PE 
 PE_12301:  FB_Photoeye;    //PE7005 EXIT PE 
 PE_12231:  FB_Photoeye;    //PE7010 EXIT PE 
@@ -210,6 +211,16 @@ PE_4201(
 
 //PE6045 FULL PE   
 PE_4071(
+   In_Status:= ,
+   CFG_PEOKState:= 1,
+   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OffDlyTime:= DebounceOffTime,
+   CFG_JamDetTime:= JamDetectTime,
+   In_Sim:=
+);
+
+//PE6040 FULL PE   
+PE_4161(
    In_Status:= ,
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
@@ -414,7 +425,10 @@ PE_8211(
       <LineId Id="1197" Count="88" />
       <LineId Id="1585" Count="8" />
       <LineId Id="1584" Count="0" />
-      <LineId Id="1286" Count="249" />
+      <LineId Id="1286" Count="69" />
+      <LineId Id="1652" Count="8" />
+      <LineId Id="1651" Count="0" />
+      <LineId Id="1356" Count="179" />
       <LineId Id="1596" Count="8" />
       <LineId Id="1595" Count="0" />
       <LineId Id="1536" Count="0" />

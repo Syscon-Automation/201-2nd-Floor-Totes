@@ -541,7 +541,9 @@ cfgP7045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//----------------------------------------P6005--------------------------------------------------------------
+      <ST><![CDATA[ResetAllDrives:=System.Cnvyr_Reset;
+
+//----------------------------------------P6005--------------------------------------------------------------
 P6005_StatePB.AutoPB := System.Cnvyr_Auto;
 P6005_StatePB.ManPB := System.Cnvyr_Manual;
 P6005_StatePB.ResetPB := System.Cnvyr_Reset;
@@ -1771,6 +1773,7 @@ END_IF
 	]]></ST>
     </Implementation>
     <LineIds Name="Conveyors">
+      <LineId Id="8911" Count="1" />
       <LineId Id="3723" Count="13" />
       <LineId Id="5649" Count="0" />
       <LineId Id="6167" Count="0" />

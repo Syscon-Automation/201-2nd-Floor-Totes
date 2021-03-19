@@ -18,7 +18,7 @@ END_VAR
 CommStatus();
 Conveyors();
 Log_Diverts();
-MsgControl();
+//MsgControl();
 Photoeyes();
 ProxSensors();
 ServerControl();
