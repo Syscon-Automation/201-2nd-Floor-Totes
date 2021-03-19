@@ -986,14 +986,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6011_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6011_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>ProxSensors.In_PX_7271_Retracted</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
@@ -1084,14 +1076,6 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P7041_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7041_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>PhotoEyes.PE_1232.In_PE</Name>
 							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 							<Type>BOOL</Type>
@@ -1173,11 +1157,6 @@
 						</Var>
 						<Var>
 							<Name>PhotoEyes.PE_4071.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_4161.In_PE</Name>
 							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -1696,14 +1675,6 @@
 							<Type>INT</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6011_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6011_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>System.SysIntlksAllOk</Name>
 							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
 							<Type>BOOL</Type>
@@ -1777,14 +1748,6 @@
 						</Var>
 						<Var>
 							<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7041_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7041_VFD.TargetVelocity</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
@@ -3502,7 +3465,7 @@
 									</Entry>
 								</Pdo>
 								<Pdo Name="Channel 15" Index="#x1a0e" Flags="#x0011" SyncMan="3">
-									<Entry Name="PE-6171(4161)" Index="#x60e0" Sub="#x01">
+									<Entry Name="PE-6302" Index="#x60e0" Sub="#x01">
 										<Type>BIT</Type>
 									</Entry>
 								</Pdo>
@@ -4796,7 +4759,7 @@
 								<ImageId>1005</ImageId>
 								<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04622c52" RevisionNo="#x00120000" PortPhys="4883" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1122 2 port EtherCAT junction" Desc="EK1122" PortABoxInfo="#x0100001a"/>
 								<Box Id="55" BoxType="9099" BoxFlags="#x00000020">
-									<Name>Box 55 (Inverter i550 Cabinet)</Name>
+									<Name>P7040 (Inverter i550 Cabinet)</Name>
 									<ImageId>1008</ImageId>
 									<EtherCAT SlaveType="2" PdiType="#x3080" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="1" FoeType="1" VendorId="#x0000003b" ProductCode="#x69055000" RevisionNo="#x00050004" InfoDataAddr="true" EnableWdDivider0400="true" EnableWdTime0420="true" TimeoutStateChange2="3000" TimeoutStateChange3="3000" TimeoutStateChange4="3000" TimeoutMailbox2="2000" CheckRevisionNoType="2" PortPhys="17" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="i550 Cabinet V05.04.xx" Desc="Inverter i550 Cabinet" PortABoxInfo="#x0300001b">
 										<SyncMan>001080002600010001000000800000018000001026010000</SyncMan>
@@ -4832,7 +4795,7 @@
 									</EtherCAT>
 								</Box>
 								<Box Id="56" BoxType="9099" BoxFlags="#x00000020">
-									<Name>Box 56 (Inverter i550 Cabinet)</Name>
+									<Name>P7005 (Inverter i550 Cabinet)</Name>
 									<ImageId>1008</ImageId>
 									<EtherCAT SlaveType="2" PdiType="#x3080" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="1" FoeType="1" VendorId="#x0000003b" ProductCode="#x69055000" RevisionNo="#x00050004" InfoDataAddr="true" EnableWdDivider0400="true" EnableWdTime0420="true" TimeoutStateChange2="3000" TimeoutStateChange3="3000" TimeoutStateChange4="3000" TimeoutMailbox2="2000" CheckRevisionNoType="2" PortPhys="17" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="i550 Cabinet V05.04.xx" Desc="Inverter i550 Cabinet" PortABoxInfo="#x01000037">
 										<SyncMan>001080002600010001000000800000018000001026010000</SyncMan>
@@ -4868,7 +4831,7 @@
 									</EtherCAT>
 								</Box>
 								<Box Id="57" BoxType="9099" BoxFlags="#x00000020">
-									<Name>Box 57 (Inverter i550 Cabinet)</Name>
+									<Name>P6010 (Inverter i550 Cabinet)</Name>
 									<ImageId>1008</ImageId>
 									<EtherCAT SlaveType="2" PdiType="#x3080" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="1" FoeType="1" VendorId="#x0000003b" ProductCode="#x69055000" RevisionNo="#x00050004" InfoDataAddr="true" EnableWdDivider0400="true" EnableWdTime0420="true" TimeoutStateChange2="3000" TimeoutStateChange3="3000" TimeoutStateChange4="3000" TimeoutMailbox2="2000" CheckRevisionNoType="2" PortPhys="17" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="i550 Cabinet V05.04.xx" Desc="Inverter i550 Cabinet" PortABoxInfo="#x01000038">
 										<SyncMan>001080002600010001000000800000018000001026010000</SyncMan>
@@ -4904,7 +4867,7 @@
 									</EtherCAT>
 								</Box>
 								<Box Id="58" BoxType="9099" BoxFlags="#x00000020">
-									<Name>Box 58 (Inverter i550 Cabinet)</Name>
+									<Name>P6045 (Inverter i550 Cabinet)</Name>
 									<ImageId>1008</ImageId>
 									<EtherCAT SlaveType="2" PdiType="#x3080" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="13" EoeType="1" FoeType="1" VendorId="#x0000003b" ProductCode="#x69055000" RevisionNo="#x00050004" InfoDataAddr="true" EnableWdDivider0400="true" EnableWdTime0420="true" TimeoutStateChange2="3000" TimeoutStateChange3="3000" TimeoutStateChange4="3000" TimeoutMailbox2="2000" CheckRevisionNoType="2" PortPhys="17" IdentificationAdo="308" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="i550 Cabinet V05.04.xx" Desc="Inverter i550 Cabinet" PortABoxInfo="#x01000039">
 										<SyncMan>001080002600010001000000800000018000001026010000</SyncMan>
@@ -4981,7 +4944,9 @@
 				<Link VarA="PlcTask Outputs^GVL_IO.LT_MainPanelStack_Yellow" VarB="Channel 3^LT-8091"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-8431 (EL1918)">
-				<Link VarA="PlcTask Inputs^SystemSafety.Safety_PanelEstop" VarB="StandardInputs^Standard Out Var 9"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.PanelEstop_OK" VarB="StandardInputs^Standard Out Var 9"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord6040_OK" VarB="StandardInputs^Standard Out Var 10"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord7004_OK" VarB="StandardInputs^Standard Out Var 11"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.Safety_SystemEstopsOK" VarB="StandardInputs^Standard Out Var 15"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.ComErr" VarB="StandardInputs^Standard Out Var 16"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.FBErr" VarB="StandardInputs^Standard Out Var 17"/>
@@ -4995,6 +4960,7 @@
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7005" VarB="Channel 8^P7005 Motor Discconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7010" VarB="Channel 11^P7010 Motor Discconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.PB_RemoteReset_12181" VarB="Channel 4^PB-12181"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO12171_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12221.In_PE" VarB="Channel 5^PE-12221"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12231.In_PE" VarB="Channel 12^PE12231"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12261.In_PE" VarB="Channel 6^PE-12261"/>
@@ -5003,14 +4969,75 @@
 				<Link VarA="PlcTask Outputs^GVL_IO.LT_12131_Yellow" VarB="Channel 18^LT-12131"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.LT_12161_Green" VarB="Channel 19^LT-12161"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^SRIO-11141 (EP1908)">
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO11141_WcState" VarB="WcState^WcState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-1008 (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_IO.P6005_Faulted" VarB="Channel 1^P6005 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6015_Faulted" VarB="Channel 2^P6015 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6020_Faulted" VarB="Channel 3^P6020 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6025_Faulted" VarB="Channel 4^P6025 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6030_Faulted" VarB="Channel 5^P6030 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6035_Faulted" VarB="Channel 6^P6035 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6040_Faulted" VarB="Channel 7^P6040 Faulted"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11021 (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_IO.P7010_RUN" VarB="Channel 2^P7010 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7015_RUN" VarB="Channel 3^P7015 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7020_RUN" VarB="Channel 4^P7020 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7025_RUN" VarB="Channel 5^P7025 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7030_RUN" VarB="Channel 6^P7030 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7035_RUN" VarB="Channel 7^P7035 RUN"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11211 (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_IO.P6020_RUN" VarB="Channel 3^P6020 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6025_RUN" VarB="Channel 4^P6025 RUN"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6040_RUN" VarB="Channel 7^P6040 RUN"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11431 (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_IO.P7004_Faulted" VarB="Channel 1^P7004 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7010_Faulted" VarB="Channel 2^P7010 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7015_Faulted" VarB="Channel 3^P7015 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7020_Faulted" VarB="Channel 4^P7020 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7025_Faulted" VarB="Channel 5^P7025 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7030_Faulted" VarB="Channel 6^P7030 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7035_Faulted" VarB="Channel 7^P7035 Faulted"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7045_Faulted" VarB="Channel 8^P7045 Faulted"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P6010 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P6010_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P6010_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6010_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6010_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P6045 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P6045_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P6045_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6045_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6045_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P7005 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P7005_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P7005_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7005_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7005_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P7040 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P7040_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P7040_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7040_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7040_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-1181 (EP2339-0022)">
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6005" VarB="Channel 14^P6005 Motor Disconnect "/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6010" VarB="Channel 12^P6010 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6015" VarB="Channel 10^P6015 Motor Disconnect "/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6020" VarB="Channel 4^P6020 Dissconnect"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO1181_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1081.In_PE" VarB="Channel 9^PE-1081"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1161.In_PE" VarB="Channel 3^PE-1161"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1162.In_PE" VarB="Channel 11^PE-1162"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1231.In_PE" VarB="Channel 5^PE-1231"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1232.In_PE" VarB="Channel 13^PE-1232"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_1281_Extended" VarB="Channel 6^PX-1281"/>
 			</OwnerB>
@@ -5018,6 +5045,7 @@
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7015" VarB="Channel 2^P7015 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7020" VarB="Channel 4^P7020 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7025" VarB="Channel 6^P7025 Motor Disconnect"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO15181_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15121.In_PE" VarB="Channel 1^PE-15121"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15181.In_PE" VarB="Channel 3^PE-15181"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15261.In_PE" VarB="Channel 5^PE-15261"/>
@@ -5027,6 +5055,7 @@
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7035" VarB="Channel 8^P7035 Motor Discconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7040" VarB="Channel 10^P7040 Motor Discconnect "/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7045" VarB="Channel 12^P7045 Motor discconnect "/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO16171_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16111.In_PE" VarB="Channel 1^PE-16111"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16131.In_PE" VarB="Channel 9^PE-16131"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16181.In_PE" VarB="Channel 3^PE-16181"/>
@@ -5039,20 +5068,24 @@
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6030" VarB="Channel 8^P6030 Motor Discconnect "/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6035" VarB="Channel 6^P6035 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6045" VarB="Channel 2^P6045 Motor Discconnect"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO4172_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4071.In_PE" VarB="Channel 1^PE-4071"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4121.In_PE" VarB="Channel 9^PE-4121"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4201.In_PE" VarB="Channel 5^PE-4201"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4271.In_PE" VarB="Channel 7^PE-4271"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-6171 (EP2339-0022)">
-				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4161.In_PE" VarB="Channel 15^PE-6171(4161)"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO6171_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6181.In_PE" VarB="Channel 11^PE-6181"/>
-				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6241.In_PE" VarB="Channel 5^PX-6241"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6201.In_PE" VarB="Channel 12^PE-6201"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6241.In_PE" VarB="Channel 13^PE-6241"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6261.In_PE" VarB="Channel 14^PE-6261"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6302.In_PE" VarB="Channel 15^PE-6302"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6121_Retracted" VarB="Channel 1^PX-6121"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6122_Retracted" VarB="Channel 9^PX-6122"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6151_Extended" VarB="Channel 2^PX-6151"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6152_Extended" VarB="Channel 10^PX-6152"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6241_Retracted" VarB="Channel 5^PX-6241"/>
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6261_Extended" VarB="Channel 6^PX-6261"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.SV_6181_EXT" VarB="Channel 19^SV-6181"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.SV_6211_EXT" VarB="Channel 20^SV-6211"/>
@@ -5061,6 +5094,7 @@
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-7161 (EP2339-0022)">
 				<Link VarA="PlcTask Inputs^GVL_IO.PB_RemoteReset_7281" VarB="Channel 16^PB-7281"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO7161_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7151.In_PE" VarB="Channel 10^PE-7151"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7171.In_PE" VarB="Channel 12^PE7171"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7191.In_PE" VarB="Channel 11^PE-7191"/>
@@ -5078,6 +5112,7 @@
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-8181 (EP2339-0022)">
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6040" VarB="Channel 6^P6040 Motor Disconnect"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO8181_WcState" VarB="WcState^WcState"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8141.In_PE" VarB="Channel 10^PE-8141"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8171.In_PE" VarB="Channel 11^PE-8171"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8181.In_PE" VarB="Channel 4^PE-8181"/>
@@ -5089,6 +5124,9 @@
 				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_8321_Retracted" VarB="Channel 8^PX-8321"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.SV_8111_EXT" VarB="Channel 25^SV-8111"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.SV_8161_EXT" VarB="Channel 19^SV-8161"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^SRIO-5151 (EP1908)">
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO5151_WcState" VarB="WcState^WcState"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

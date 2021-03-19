@@ -193,7 +193,7 @@ GR6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
 GR6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 GR6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 GR6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-GR6040_01.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
+GR6040_01.In_EquipEvents.5:= NOT CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 GR6040_01(
@@ -229,7 +229,7 @@ GR6040_02.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
 GR6040_02.In_EquipEvents.2:= System.SysEventsAllOk;
 GR6040_02.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 GR6040_02.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-GR6040_02.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
+GR6040_02.In_EquipEvents.5:= NOT CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 GR6040_02(
@@ -267,7 +267,7 @@ PI6040_01.In_EquipIntlks.1 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_62
 PI6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PI6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PI6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-PI6040_01.In_EquipEvents.5:= CommStatus.RIO6171_CommFault.Out;
+PI6040_01.In_EquipEvents.5:= NOT CommStatus.RIO6171_CommFault.Out;
 
 // Function Call
 PI6040_01(
@@ -304,7 +304,7 @@ PU6040_01.In_EquipIntlks.1:= Photoeyes.PE_7151.JamDetected;
 PU6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_01.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-PU6040_01.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
+PU6040_01.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
 
 // Function Call
 PU6040_01(
@@ -340,7 +340,7 @@ PU6040_02.In_EquipIntlks.1:= Photoeyes.PE_7211.JamDetected;
 PU6040_02.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_02.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_02.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-PU6040_02.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
+PU6040_02.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
 
 // Function Call
 PU6040_02(
@@ -376,7 +376,7 @@ PU6040_03.In_EquipIntlks.1:= Photoeyes.PE_8141.JamDetected;
 PU6040_03.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_03.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_03.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-PU6040_03.In_EquipEvents.5:= CommStatus.RIO8181_CommFault.Out;
+PU6040_03.In_EquipEvents.5:= NOT CommStatus.RIO8181_CommFault.Out;
 
 // Function Call
 PU6040_03(
@@ -412,7 +412,7 @@ PU6040_04.In_EquipIntlks.1:= Photoeyes.PE_8181.JamDetected;
 PU6040_04.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_04.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
 PU6040_04.In_EquipEvents.4:= SystemSafety.Safety_SystemEstopsOK;
-PU6040_04.In_EquipEvents.5:= CommStatus.RIO8181_CommFault.Out;
+PU6040_04.In_EquipEvents.5:= NOT CommStatus.RIO8181_CommFault.Out;
 
 // Function Call
 PU6040_04(

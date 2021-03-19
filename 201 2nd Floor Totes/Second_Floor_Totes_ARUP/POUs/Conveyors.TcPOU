@@ -28,17 +28,7 @@ VAR
    P6010_Status : ST_EquipmentStatus;
    P6010_VFD	:	VFD;
    Test_VFD_P6010: BOOL;
-//Spiral
-//----------------------------------------P6011--------------------------------------------------------------
-   cfgP6011Label:	STRING(20) :=  'P6011';
-   cfgP6011SleepTime:	TIME := T#180S;
-   cfgP6011JamDetectTime:	TIME := T#30S;
-   P6011SleepWakeTrig: ARRAY[1..5] OF BOOL;
-   P6011: FB_CnvyrCnfig_1;
-   P6011_StatePB: ST_StateCntrlPB;
-   P6011_Status : ST_EquipmentStatus;
-   P6011_VFD	:	VFD;
-   Test_VFD_P6011: BOOL;
+
 //Transport
 //----------------------------------------P6015--------------------------------------------------------------
    cfgP6015Label:	STRING(20) :=  'P6015';
@@ -183,16 +173,7 @@ VAR
    P7040_Status : ST_EquipmentStatus;
    P7040_VFD	:	VFD;
    Test_VFD_P7040: BOOL;
-//----------------------------------------P7041--------------------------------------------------------------
-   cfgP7041Label:	STRING(20) :=  'P7041';
-   cfgP7041SleepTime:	TIME := T#180S;
-   cfgP7041JamDetectTime:	TIME := T#30S;
-   P7041SleepWakeTrig: ARRAY[1..5] OF BOOL;
-   P7041: FB_CnvyrCnfig_1;
-   P7041_StatePB: ST_StateCntrlPB;
-   P7041_Status : ST_EquipmentStatus;
-   P7041_VFD	:	VFD;
-   Test_VFD_P7041: BOOL;
+
 //Transport
 //----------------------------------------P7045--------------------------------------------------------------
    cfgP7045Label:	STRING(20) :=  'P7045';
@@ -238,22 +219,7 @@ cfgP6010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
    11(())];
-//Spiral
-//----------------------------------------P6011--------------------------------------------------------------
-{attribute 'OPC.UA.DA' := '1'}
-cfgP6011IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
-   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
-   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   (Description := 'VFD State Not OK', DeviceLabel := 'P6011', OKState := TRUE, StopCode := E_StopCodes.VFD_Fault),
-   13(())];
-{attribute 'OPC.UA.DA' := '1'}
-cfgP6011EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
-   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
-   (),
-   (Description := 'Disconnect', DeviceLabel := 'DS6011', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
-   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   (Description := 'RIO1181 Comm Fault', DeviceLabel := 'RIO1181', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
-   11(())];
+
 //Transport
 //----------------------------------------P6015--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -507,21 +473,7 @@ cfgP7040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
    11(())];
-//----------------------------------------P7041--------------------------------------------------------------
-{attribute 'OPC.UA.DA' := '1'}
-cfgP7041IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
-   (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
-   (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   (Description := 'VFD State Not OK', DeviceLabel := 'P7041', OKState := TRUE, StopCode := E_StopCodes.VFD_Fault),
-   13(())];
-{attribute 'OPC.UA.DA' := '1'}
-cfgP7041EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
-   (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
-   (),
-   (Description := 'Disconnect', DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
-   (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
-   (Description := 'RIO16171 Comm Fault', DeviceLabel := 'RIO16171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
-   11(())];
+
 //Transport
 //----------------------------------------P7045--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -559,7 +511,7 @@ P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6005.In_EquipEvents.3:= System.SysEventsAllOk;
   P6005.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
-  P6005.In_EquipEvents.5:= CommStatus.RIO1181_CommFault.Out;
+  P6005.In_EquipEvents.5:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6005(
@@ -598,14 +550,13 @@ P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6010.In_EquipEvents.2:= GVL_IO.DS_P6010;
   P6010.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6010.In_EquipEvents.4:= CommStatus.RIO1181_CommFault.Out;
+  P6010.In_EquipEvents.4:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6010(
    In_p_EquipStatePB:= P6010_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P6011_VFD.IsRunning,
-   Cfg_ConvType:= E_ConvType.slave,
+   In_ConvDwnStrmMtrStatus:= P6015_Status.Sts_IsRunning,
    In_ConvCrntExitPhotoEye:= Photoeyes.PE_1162.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -627,50 +578,7 @@ P6010_VFD(
    Reset := ResetAllDrives,
    RunRequest := (P6010.Out_ConvCrntMtr OR Test_VFD_P6010));
 P6010_Status.Sts_IsRunning := P6010_VFD.IsRunning;
-//----------------------------------------P6011--------------------------------------------------------------
-P6011_StatePB.AutoPB := System.Cnvyr_Auto;
-P6011_StatePB.ManPB := System.Cnvyr_Manual;
-P6011_StatePB.ResetPB := System.Cnvyr_Reset;
-P6011_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6011SleepWakeTrig[1] :=  PhotoEyes.PE_1232.Out_OffFltrd;
-// ADD an EAP photoeye from 3rd floor
 
-// Initialize the Equipment Type
-P6011_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
-
-// Interlocks
-P6011.In_EquipIntlks.2:= P6011_VFD.Run_OK;
-//Events
-P6011.In_EquipEvents.2:= GVL_IO.DS_P6011;
-P6011.In_EquipEvents.3:= System.SysEventsAllOk;
-P6011.In_EquipEvents.4:= CommStatus.RIO1181_CommFault.Out;
-
-// Function Call
-P6011(
-   In_p_EquipStatePB:= P6011_StatePB,
-   In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P6015_Status.Sts_IsRunning,
-   In_ConvCrntExitPhotoEye:= FALSE,
-   In_SimActive:= System.Sys_SimActive,
-   In_EquipInit:= GVL_IO.INIT,
-   In_WakeSlpTrigArry:= P6011SleepWakeTrig,
-   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
-   Cfg_EquipLabel := cfgP6011Label,
-   Cfg_EquipDefState:= System.ConvDefaultState,
-   Cfg_EquipIntlksArry:= cfgP6011IntlksArry,
-   Cfg_EquipEvntsArry:= cfgP6011EvntsArry,
-   cfg_JamDetectTime:= cfgP6011JamDetectTime,
-   Cfg_UseSleepTmr := TRUE,
-   Cfg_SleepWaitTime:= cfgP6011SleepTime,
-   Sts_EquipState := P6011_Status);
-
-//Motor Control
-P6011_VFD(
-   RunVelocity := DefaultVelocity,
-   VelocityThreshold := DefaultVelocityThreshold,
-   Reset := ResetAllDrives,
-   RunRequest := (P6011.Out_ConvCrntMtr OR Test_VFD_P6011));
-P6011_Status.Sts_IsRunning := P6011_VFD.IsRunning;
 //----------------------------------------P6015--------------------------------------------------------------
 P6015_StatePB.AutoPB := System.Cnvyr_Auto;
 P6015_StatePB.ManPB := System.Cnvyr_Manual;
@@ -688,7 +596,7 @@ P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6015.In_EquipEvents.2:= GVL_IO.DS_P6015;
   P6015.In_EquipEvents.3:= System.SysEventsAllOk;
   P6015.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
-  P6015.In_EquipEvents.5:= CommStatus.RIO1181_CommFault.Out;
+  P6015.In_EquipEvents.5:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6015(
@@ -727,7 +635,7 @@ P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
   P6020.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6020.In_EquipEvents.3:= CommStatus.RIO1181_CommFault.Out;
+  P6020.In_EquipEvents.3:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6020(
@@ -766,7 +674,7 @@ P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6025.In_EquipEvents.2:= GVL_IO.DS_P6025;
   P6025.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6025.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
+  P6025.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6025(
@@ -805,7 +713,7 @@ P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6030.In_EquipEvents.2:= GVL_IO.DS_P6030;
   P6030.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6030.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
+  P6030.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6030(
@@ -844,7 +752,7 @@ P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6035.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6035.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
+  P6035.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6035(
@@ -884,7 +792,7 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
   P6045.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6045.In_EquipEvents.4:= CommStatus.RIO4172_CommFault.Out;
+  P6045.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
 
 // Function Call
 P6045(
@@ -936,13 +844,13 @@ P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
 //Events
   P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
   P6040.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6040.In_EquipEvents.4:= CommStatus.RIO6171_CommFault.Out;
-  P6040.In_EquipEvents.5:= CommStatus.RIO7161_CommFault.Out;
-  P6040.In_EquipEvents.6:= CommStatus.RIO8181_CommFault.Out;
-  P6040.In_EquipEvents.7:= Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
-  P6040.In_EquipEvents.8:= Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
-  P6040.In_EquipEvents.9:= Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
-  P6040.In_EquipEvents.10:= Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
+  P6040.In_EquipEvents.4:= NOT CommStatus.RIO6171_CommFault.Out;
+  P6040.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
+  P6040.In_EquipEvents.6:= NOT CommStatus.RIO8181_CommFault.Out;
+  // P6040.In_EquipEvents.7:= Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
+  // P6040.In_EquipEvents.8:= Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
+  // P6040.In_EquipEvents.9:= Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
+  // P6040.In_EquipEvents.10:= Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
 
 // Function Call
 P6040(
@@ -982,7 +890,7 @@ P7004_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
  P7004.In_EquipEvents.2:= GVL_IO.DS_P7004;
  P7004.In_EquipEvents.3:= System.SysEventsAllOk;
  P7004.In_EquipEvents.4:= PhotoEyes.PE_12261.Out;
- P7004.In_EquipEvents.4:= CommStatus.RIO12171_CommFault.Out;
+ P7004.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
 
 // Function Call
 P7004(
@@ -1023,7 +931,7 @@ P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7005.In_EquipEvents.2:= GVL_IO.DS_P7005;
   P7005.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7005.In_EquipEvents.4:=CommStatus.RIO12171_CommFault.Out;
+  P7005.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
 
 // Function Call
 P7005(
@@ -1067,7 +975,7 @@ P7010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7010.In_EquipEvents.2:= GVL_IO.DS_P7010;
   P7010.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7010.In_EquipEvents.4:=CommStatus.RIO12171_CommFault.Out;
+  P7010.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
 
 // Function Call
 P7010(
@@ -1106,7 +1014,7 @@ P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
   P7015.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7015.In_EquipEvents.3:= CommStatus.RIO15181_CommFault.Out;
+  P7015.In_EquipEvents.3:= NOT CommStatus.RIO15181_CommFault.Out;
 
 // Function Call
 P7015(
@@ -1145,7 +1053,7 @@ P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7020.In_EquipEvents.4:= CommStatus.RIO15181_CommFault.Out;
+  P7020.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
  
 
 // Function Call
@@ -1185,7 +1093,7 @@ P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7025.In_EquipEvents.2:=  GVL_IO.DS_P7025;
   P7025.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7025.In_EquipEvents.4:= CommStatus.RIO15181_CommFault.Out;
+  P7025.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
 
 // Function Call
 P7025(
@@ -1224,7 +1132,7 @@ P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7030.In_EquipEvents.2:=  GVL_IO.DS_P7030;
   P7030.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7030.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
+  P7030.In_EquipEvents.4:= NOT CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7030(
@@ -1264,7 +1172,7 @@ P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
   P7035.In_EquipEvents.3:= System.SysEventsAllOk;
   P7035.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
-  P7030.In_EquipEvents.5:= CommStatus.RIO16171_CommFault.Out;
+  P7030.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7035(
@@ -1303,13 +1211,13 @@ P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7040.In_EquipEvents.2:=  GVL_IO.DS_P7040;
   P7040.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7040.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
+  P7040.In_EquipEvents.4:= NOT CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7040(
    In_p_EquipStatePB:= P7040_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P7041_VFD.IsRunning,
+   In_ConvDwnStrmMtrStatus:= P7045_Status.Sts_IsRunning,
    In_ConvCrntExitPhotoEye:= Photoeyes.PE_16131.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -1331,51 +1239,7 @@ P7040_VFD(
    Reset := ResetAllDrives,
    RunRequest := (P7040.Out_ConvCrntMtr OR Test_VFD_P7040));
 P7040_Status.Sts_IsRunning := P7040_VFD.IsRunning;
-//----------------------------------------P7041--------------------------------------------------------------
-P7041_StatePB.AutoPB := System.Cnvyr_Auto;
-P7041_StatePB.ManPB := System.Cnvyr_Manual;
-P7041_StatePB.ResetPB := System.Cnvyr_Reset;
-P7041_StatePB.OfflinePB := System.Cnvyr_Offline;
-P7041SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
-P7041SleepWakeTrig[2] := PhotoEyes.PE_16111.Out_OffFltrd;
 
-// Initialize the Equipment Type
-P7041_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
-
-// Interlocks
-  P7041.In_EquipIntlks.2:= P7041_VFD.RUN_OK;
-//Events
-  P7041.In_EquipEvents.2:=  GVL_IO.DS_P7041;
-  P7041.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7041.In_EquipEvents.4:= CommStatus.RIO16171_CommFault.Out;
-
-// Function Call
-P7041(
-   In_p_EquipStatePB:= P7041_StatePB,
-   In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P7045_Status.Sts_IsRunning,
-   Cfg_ConvType:= E_ConvType.slave,
-   In_ConvCrntExitPhotoEye:= FALSE,
-   In_SimActive:= System.Sys_SimActive,
-   In_EquipInit:= GVL_IO.INIT,
-   In_WakeSlpTrigArry:= P7041SleepWakeTrig,
-   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
-   Cfg_EquipLabel := cfgP7041Label,
-   Cfg_EquipDefState:= System.ConvDefaultState,
-   Cfg_EquipIntlksArry:= cfgP7041IntlksArry,
-   Cfg_EquipEvntsArry:= cfgP7041EvntsArry,
-   cfg_JamDetectTime:= cfgP7041JamDetectTime,
-   Cfg_UseSleepTmr := TRUE,
-   Cfg_SleepWaitTime:= cfgP7041SleepTime,
-   Sts_EquipState := P7041_Status);
-
-//Motor Control
-P7041_VFD(
-   RunVelocity := DefaultVelocity,
-   VelocityThreshold := DefaultVelocityThreshold,
-   Reset := ResetAllDrives,
-   RunRequest := (P7041.Out_ConvCrntMtr OR Test_VFD_P7041));
-P7041_Status.Sts_IsRunning := P7041_VFD.IsRunning;
 //----------------------------------------P7045--------------------------------------------------------------
 P7045_StatePB.AutoPB := System.Cnvyr_Auto;
 P7045_StatePB.ManPB := System.Cnvyr_Manual;
@@ -1393,7 +1257,7 @@ P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
   P7045.In_EquipEvents.3:= System.SysEventsAllOk;
   P7045.In_EquipEvents.4:= ProxSensors.PX_16231_Extended.Out;
-  P7045.In_EquipEvents.5:= CommStatus.RIO16171_CommFault.Out;
+  P7045.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7045(
@@ -1455,22 +1319,7 @@ IF Conveyors.P6010_Status.Sts_EquipmentState.Index > 0 THEN
   GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6010_Status.Sts_EquipmentState.Index] := Conveyors.P6010_Status.Sts_EquipmentState;
 END_IF
 
-//Spiral
-//P6011
-//    Remote Index Check
-IF Conveyors.P6011_Status.Sts_EquipmentState.Index > 0 THEN
-  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
-      IF Conveyors.P6011_Status.Sts_EquipmentState.RemIndex = 0 THEN
-          Conveyors.P6011_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].RemIndex;
-      END_IF
-  END_IF
-  //    Last Operational State Check
-  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P6011_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P6011_Status.Sts_EquipmentState.LstOperState THEN
-      Conveyors.P6011_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6011_Status.Sts_EquipmentState.Index].LstOperState;
-  END_IF
-  //Prepare the Equipment Status data item
-  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P6011_Status.Sts_EquipmentState.Index] := Conveyors.P6011_Status.Sts_EquipmentState;
-END_IF
+
 
 //Transport
 //P6015
@@ -1736,21 +1585,7 @@ IF Conveyors.P7040_Status.Sts_EquipmentState.Index > 0 THEN
   GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7040_Status.Sts_EquipmentState.Index] := Conveyors.P7040_Status.Sts_EquipmentState;
 END_IF
 
-//P7041
-//    Remote Index Check
-IF Conveyors.P7041_Status.Sts_EquipmentState.Index > 0 THEN
-  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].RemIndex <> 0 THEN
-      IF Conveyors.P7041_Status.Sts_EquipmentState.RemIndex = 0 THEN
-          Conveyors.P7041_Status.Sts_EquipmentState.RemIndex := GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].RemIndex;
-      END_IF
-  END_IF
-  //    Last Operational State Check
-  IF GVL_EquipArrays.aEquipStatusArray_Out[Conveyors.P7041_Status.Sts_EquipmentState.Index].LstOperState <> Conveyors.P7041_Status.Sts_EquipmentState.LstOperState THEN
-      Conveyors.P7041_Status.Sts_EquipmentState.LstOperState := GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7041_Status.Sts_EquipmentState.Index].LstOperState;
-  END_IF
-  //Prepare the Equipment Status data item
-  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7041_Status.Sts_EquipmentState.Index] := Conveyors.P7041_Status.Sts_EquipmentState;
-END_IF
+
 
 //Transport
 //P7045
@@ -1783,14 +1618,8 @@ END_IF
       <LineId Id="3765" Count="7" />
       <LineId Id="5650" Count="0" />
       <LineId Id="6716" Count="0" />
-      <LineId Id="3773" Count="5" />
-      <LineId Id="7295" Count="0" />
-      <LineId Id="3779" Count="26" />
-      <LineId Id="7275" Count="0" />
-      <LineId Id="3806" Count="7" />
-      <LineId Id="5651" Count="0" />
-      <LineId Id="6719" Count="0" />
-      <LineId Id="3814" Count="32" />
+      <LineId Id="3773" Count="26" />
+      <LineId Id="3840" Count="6" />
       <LineId Id="7276" Count="0" />
       <LineId Id="3847" Count="7" />
       <LineId Id="5652" Count="0" />
@@ -1887,14 +1716,8 @@ END_IF
       <LineId Id="4397" Count="7" />
       <LineId Id="5666" Count="0" />
       <LineId Id="7268" Count="0" />
-      <LineId Id="4405" Count="32" />
-      <LineId Id="7293" Count="0" />
-      <LineId Id="4438" Count="7" />
-      <LineId Id="5667" Count="0" />
-      <LineId Id="7270" Count="0" />
-      <LineId Id="4446" Count="5" />
-      <LineId Id="7296" Count="0" />
-      <LineId Id="4452" Count="26" />
+      <LineId Id="4405" Count="26" />
+      <LineId Id="4472" Count="6" />
       <LineId Id="7294" Count="0" />
       <LineId Id="4479" Count="7" />
       <LineId Id="5668" Count="0" />
@@ -1905,7 +1728,9 @@ END_IF
       <LineId Id="1514" Count="0" />
       <LineId Id="1468" Count="0" />
       <LineId Id="1516" Count="0" />
-      <LineId Id="4794" Count="348" />
+      <LineId Id="4794" Count="34" />
+      <LineId Id="4844" Count="265" />
+      <LineId Id="5124" Count="18" />
       <LineId Id="1769" Count="0" />
       <LineId Id="1755" Count="0" />
     </LineIds>
