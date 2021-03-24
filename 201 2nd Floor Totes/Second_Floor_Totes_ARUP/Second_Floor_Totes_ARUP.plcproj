@@ -78,6 +78,10 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="GVLs\GVL_SorterItems.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="GVLs\Onsite_Checklist.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -146,6 +150,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Divert\Functions\FB_DivertFullMonitor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Divert\Functions\FB_DivertLog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Encoder\DUTs\ST_Encoder.TcDUT">
@@ -265,10 +272,19 @@
     <Compile Include="POUs\FunctionBlocks\Solenoids\Functions\FB_Solenoid_SA.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_RoundRobin.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_Sorter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_SorterConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\Functions\FB_FindDestination.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\Functions\FB_SorterLog.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\VISUs\ArrayInspection.TcVIS">

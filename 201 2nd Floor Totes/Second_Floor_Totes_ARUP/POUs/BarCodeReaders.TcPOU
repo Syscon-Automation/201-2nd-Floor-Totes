@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="BarCodeReaders" Id="{6db726c2-b8f2-4f56-a606-779b1afe45e4}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BarCodeReaders
 VAR
@@ -11,9 +11,6 @@ VAR
 	LastArrival_Item		: ST_Item;		// Last Output Item (Bar code read) To Sort PLC
 	ReadID_P6040_Old		: UDINT;
 
-	st_SorterArrivalBuffer AT %Q*	: ST_ItemBuffer;		// Output from the Barcode Reader to the sorter
-	st_ArrivalFdbkIn AT %I*			: ST_ItemBufferFdbk;
-	st_ArrivalFdbkOut 				: ST_ItemBufferFdbk;
 	fb_SorterArrivalBuffer			: FB_ItemBuffer;	// Function to Process the SorterArrivalBuffer
 	
 	sBcr_S6040_01Log			: STRING;
@@ -36,9 +33,9 @@ fb_SorterArrivalBuffer.LogEntries := .nItemBufferLogEnable.ARRIVALS;
 // Setup Buffer Name for Logging
 fb_SorterArrivalBuffer.Name := 'SYS ARRIVAL';
 
-fb_SorterArrivalBuffer(st_BufferData := st_SorterArrivalBuffer
-					, st_BufferFdbkIn := st_ArrivalFdbkIn
-					, st_BufferFdbkOut => st_ArrivalFdbkOut);
+fb_SorterArrivalBuffer(st_BufferData := st_SorterArrivalBufferP6040
+					, st_BufferFdbkIn := st_ArrivalFdbkInP6040
+					, st_BufferFdbkOut => st_ArrivalFdbkOutP6040);
 
 IF GVL_IO.INIT THEN
 	fb_SorterArrivalBuffer.Clear();
@@ -73,8 +70,8 @@ tpBcr_S6040_01Trig(
  rSorterPE(CLK:= PhotoEyes.PE_6261.Out, Q =>);
  fSorterPE(CLK:= PhotoEyes.PE_6261.Out, Q =>);
 
-// Log the rising edge of the Trigger
-IF rSorterPE.Q THEN
+// Log the rising/falling edge of the Trigger
+IF rSorterPE.Q OR fSorterPE.Q THEN
 	IF nBarcodeLogEnable.TRIGGER_PE THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
@@ -84,24 +81,12 @@ IF rSorterPE.Q THEN
 	END_IF
 END_IF
 
-// Log the falling edge of the Trigger
-IF fSorterPE.Q THEN
-	IF nBarcodeLogEnable.TRIGGER_PE THEN
-		// Write to the Error List
-		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG,
-			msgFmtStr := 'Sort BCR PE Blocked : %s',
-			strArg := BOOL_TO_STRING(PhotoEyes.PE_6261.Out)
-		);
-	END_IF
-END_IF
-
-
 // Capture rising and falling edge Triggers of the Sorter BCR Trigger PE
 r_BCR_S6040_01TriggerOn(CLK:= BCR_S6040_01.Out_TriggerState, Q =>);
 f_BCR_S6040_01TriggerOn(CLK:= BCR_S6040_01.Out_TriggerState, Q =>);
 
 // Log the rising edge of the Trigger
-IF r_BCR_S6040_01TriggerOn.Q THEN
+IF r_BCR_S6040_01TriggerOn.Q OR f_BCR_S6040_01TriggerOn.Q THEN
 	IF nBarcodeLogEnable.TRIGGER THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
@@ -117,7 +102,7 @@ IF ReadID_P6040_Old <> BarCodeReaders.BCR_S6040_01.GoodreadCount THEN
 	Arrival_Item.UniqueID := BCR_S6040_01.Out_ResultID;
 	Arrival_Item.ID := BCR_S6040_01.Out_ReadString;
 	Arrival_Item.Status := E_StatusCode.UpdateRequested;
-	Arrival_Item.DeviceID := GVL_IO.SorterName;
+	Arrival_Item.DeviceID := BArcodeReaders.BCR_S6040_01.In_EquipID;
 	Arrival_Item.MessageType := E_MessageIds.Arrival_23;
 	Arrival_Item.Destination := MsgControl.DefDestination;
 	Arrival_Item.Length := 0;
@@ -125,7 +110,7 @@ IF ReadID_P6040_Old <> BarCodeReaders.BCR_S6040_01.GoodreadCount THEN
 	fb_SorterArrivalBuffer.AddItem(Arrival_Item);
 	ReadID_P6040_Old := BarCodeReaders.BCR_S6040_01.GoodreadCount;
 ELSE 
-	Arrival_Item := MsgControl.BlankItem;
+	Arrival_Item := BlankItem;
 	Arrival_Item.Status := E_StatusCode.UpdateRequested;
 END_IF	
 
@@ -176,15 +161,8 @@ BCR_S7004_01(
       <LineId Id="632" Count="3" />
       <LineId Id="887" Count="0" />
       <LineId Id="781" Count="0" />
-      <LineId Id="645" Count="1" />
-      <LineId Id="711" Count="0" />
-      <LineId Id="649" Count="0" />
-      <LineId Id="782" Count="0" />
-      <LineId Id="650" Count="3" />
-      <LineId Id="889" Count="0" />
-      <LineId Id="783" Count="0" />
-      <LineId Id="657" Count="0" />
-      <LineId Id="417" Count="1" />
+      <LineId Id="645" Count="0" />
+      <LineId Id="418" Count="0" />
       <LineId Id="713" Count="0" />
       <LineId Id="691" Count="4" />
       <LineId Id="784" Count="0" />
