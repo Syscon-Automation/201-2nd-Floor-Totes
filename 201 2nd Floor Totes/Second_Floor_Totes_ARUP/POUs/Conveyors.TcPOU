@@ -510,7 +510,7 @@ P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6005.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6005.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
+  P6005.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
   P6005.In_EquipEvents.5:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
@@ -635,7 +635,7 @@ P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
   P6020.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6020.In_EquipEvents.3:= NOT CommStatus.RIO1181_CommFault.Out;
+  P6020.In_EquipEvents.4:= NOT CommStatus.RIO1181_CommFault.Out;
 
 // Function Call
 P6020(
@@ -857,7 +857,7 @@ P6040(
    In_p_EquipStatePB:= P6040_StatePB,
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= TRUE,
-   In_ConvCrntExitPhotoEye:= FALSE,
+   In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
    Cfg_ConvType:= E_ConvType.end,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -898,7 +898,7 @@ P7004(
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P7005_VFD.IsRunning,
    In_ConvCrntExitPhotoEye:= FALSE, 
-   Cfg_ConvType:= E_ConvType.standard, //E_ConvType.slave,
+   Cfg_ConvType:= E_ConvType.slave,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
    In_WakeSlpTrigArry:= P7004SleepWakeTrig,
