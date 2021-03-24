@@ -798,7 +798,7 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 P6045(
    In_p_EquipStatePB:= P6045_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P6040_Status.Sts_IsRunning,
+   In_ConvDwnStrmMtrStatus:= TRUE, //P6040_Status.Sts_IsRunning,
    In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -842,15 +842,15 @@ P6040.In_EquipIntlks.7:= Solenoids.PU6040_03_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
 //add fulls 
 //Events
-  P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
-  P6040.In_EquipEvents.3:= System.SysEventsAllOk;
-  P6040.In_EquipEvents.4:= NOT CommStatus.RIO6171_CommFault.Out;
-  P6040.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
-  P6040.In_EquipEvents.6:= NOT CommStatus.RIO8181_CommFault.Out;
-  // P6040.In_EquipEvents.7:= Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
-  // P6040.In_EquipEvents.8:= Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
-  // P6040.In_EquipEvents.9:= Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
-  // P6040.In_EquipEvents.10:= Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
+P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
+P6040.In_EquipEvents.3:= System.SysEventsAllOk;
+P6040.In_EquipEvents.4:= NOT CommStatus.RIO6171_CommFault.Out;
+P6040.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
+P6040.In_EquipEvents.6:= NOT CommStatus.RIO8181_CommFault.Out;
+P6040.In_EquipEvents.7:= FALSE; //Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
+P6040.In_EquipEvents.8:= FALSE; // Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
+P6040.In_EquipEvents.9:= FALSE; // Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
+P6040.In_EquipEvents.10:= FALSE; //Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
 
 // Function Call
 P6040(
@@ -890,7 +890,7 @@ P7004_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
  P7004.In_EquipEvents.2:= GVL_IO.DS_P7004;
  P7004.In_EquipEvents.3:= System.SysEventsAllOk;
  P7004.In_EquipEvents.4:= PhotoEyes.PE_12261.Out;
- P7004.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
+ P7004.In_EquipEvents.5:= NOT CommStatus.RIO12171_CommFault.Out;
 
 // Function Call
 P7004(
@@ -898,7 +898,7 @@ P7004(
    In_P_ConvReqRun:= TRUE,
    In_ConvDwnStrmMtrStatus:= P7005_VFD.IsRunning,
    In_ConvCrntExitPhotoEye:= FALSE, 
-   Cfg_ConvType:= E_ConvType.slave,
+   Cfg_ConvType:= E_ConvType.standard, //E_ConvType.slave,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
    In_WakeSlpTrigArry:= P7004SleepWakeTrig,
@@ -1014,7 +1014,7 @@ P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
   P7015.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7015.In_EquipEvents.3:= NOT CommStatus.RIO15181_CommFault.Out;
+  P7015.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
 
 // Function Call
 P7015(
@@ -1171,8 +1171,8 @@ P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 //Events
   P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
   P7035.In_EquipEvents.3:= System.SysEventsAllOk;
-  P7035.In_EquipEvents.4:= Photoeyes.PE_16181.Out; //Goes low when door drops
-  P7030.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
+  P7035.In_EquipEvents.4:= NOT Photoeyes.PE_16181.Out; //Goes low when door drops
+  P7035.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
 
 // Function Call
 P7035(
@@ -1663,7 +1663,8 @@ END_IF
       <LineId Id="6731" Count="0" />
       <LineId Id="6733" Count="0" />
       <LineId Id="7256" Count="0" />
-      <LineId Id="7828" Count="3" />
+      <LineId Id="9403" Count="0" />
+      <LineId Id="7829" Count="2" />
       <LineId Id="4076" Count="6" />
       <LineId Id="8369" Count="0" />
       <LineId Id="4083" Count="28" />
