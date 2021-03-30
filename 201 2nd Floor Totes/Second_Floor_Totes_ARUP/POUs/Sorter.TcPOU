@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Sorter" Id="{efb4f521-b93c-401a-8a07-5bbe9c018238}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Sorter
 VAR
@@ -57,7 +57,7 @@ VAR PERSISTENT
 END_VAR
 
 VAR CONSTANT
-	SORTERMASKSIZE				: UINT := 11;		// Number of bits to mask into the Encoder Count, will define the size of the SORTERENCODERMAX value
+	SORTERMASKSIZE				: UINT := 14;		// Number of bits to mask into the Encoder Count, will define the size of the SORTERENCODERMAX value
 	{attribute 'OPC.UA.DA' := '1'}
 	NUMBEROFDIVERTS				: DINT := 5;
 	DIVERTMIN					: DINT := 1;
