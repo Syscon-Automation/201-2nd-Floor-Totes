@@ -262,7 +262,7 @@ PI6040_01_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_DA;
 
 // Interlocks
 PI6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PI6040_01.In_EquipIntlks.1 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_6241.Out) OR PI6040_01.In_P_SVReqRetract;
+PI6040_01.In_EquipIntlks.2 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_6241.Out) OR PI6040_01.In_P_SVReqRetract;
 //Events
 PI6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PI6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
@@ -299,7 +299,7 @@ PU6040_01_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PU6040_01.In_EquipIntlks.1:= Photoeyes.PE_7151.JamDetected;
+PU6040_01.In_EquipIntlks.2:= Photoeyes.PE_7151.JamDetected;
 //Events
 PU6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
@@ -335,7 +335,7 @@ PU6040_02_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_02.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PU6040_02.In_EquipIntlks.1:= Photoeyes.PE_7211.JamDetected;
+PU6040_02.In_EquipIntlks.2:= Photoeyes.PE_7211.JamDetected;
 //Events
 PU6040_02.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_02.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
@@ -371,7 +371,7 @@ PU6040_03_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_03.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PU6040_03.In_EquipIntlks.1:= Photoeyes.PE_8141.JamDetected;
+PU6040_03.In_EquipIntlks.2:= Photoeyes.PE_8141.JamDetected;
 //Events
 PU6040_03.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_03.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
@@ -407,7 +407,7 @@ PU6040_04_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_SA;
 
 // Interlocks
 PU6040_04.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PU6040_04.In_EquipIntlks.1:= Photoeyes.PE_8181.JamDetected;
+PU6040_04.In_EquipIntlks.2:= Photoeyes.PE_8181.JamDetected;
 //Events
 PU6040_04.In_EquipEvents.2:= System.SysEventsAllOk;
 PU6040_04.In_EquipEvents.3:= GVL_IO.SystemAirPressure;

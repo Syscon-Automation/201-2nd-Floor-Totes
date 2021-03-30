@@ -12,13 +12,16 @@ VAR
 	ADSPort						:	UINT := 0;
 	In_ResetAllMetrics			: 	BOOL;
 END_VAR
+
+VAR PERSISTENT
+	EAP_205 : ST_EAP_DEVICE ;	
+END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[BarCodeReaders();
 CommStatus();
 Conveyors();
 Log_Diverts();
-//MsgControl();
 Photoeyes();
 ProxSensors();
 ServerControl();
@@ -27,6 +30,7 @@ Solenoids();
 Sorter();
 System();
 SystemSafety();
+P_PulseCountDist();
 GVL_IO.INIT := FALSE;
 
 
@@ -49,11 +53,13 @@ END_IF]]></ST>
     <LineIds Name="MAIN">
       <LineId Id="64" Count="1" />
       <LineId Id="45" Count="0" />
-      <LineId Id="47" Count="1" />
+      <LineId Id="47" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="49" Count="3" />
       <LineId Id="14" Count="0" />
-      <LineId Id="16" Count="18" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="18" Count="16" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

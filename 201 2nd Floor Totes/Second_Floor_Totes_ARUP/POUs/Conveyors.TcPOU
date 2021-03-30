@@ -85,7 +85,7 @@ VAR
 //----------------------------------------P6040--------------------------------------------------------------
    cfgP6040Label:	STRING(20) :=  'P6040';
    cfgP6040SleepTime:	TIME := T#180S;
-   cfgP6040JamDetectTime:	TIME := T#30S;
+   cfgP6040JamDetectTime:	TIME := T#5S;
    P6040SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6040: FB_CnvyrCnfig_1;
    P6040_StatePB: ST_StateCntrlPB;
@@ -193,7 +193,8 @@ VAR PERSISTENT
 cfgP6005IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P6005', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -226,8 +227,9 @@ cfgP6010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP6015IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Motor Faulted', DeviceLabel := 'P6015', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
    (Description := 'Powered Transfer Raised' , DeviceLabel := 'PX_1281', OKState := TRUE),
-   12(())];
+   11(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -242,6 +244,7 @@ cfgP6015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP6020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Motor Faulted', DeviceLabel := 'P6020', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
    13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -256,6 +259,7 @@ cfgP6020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP6025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Motor Faulted', DeviceLabel := 'P6025', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
    13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -270,7 +274,8 @@ cfgP6025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP6030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P6030', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -284,7 +289,8 @@ cfgP6030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP6035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P6035', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6035EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -322,7 +328,8 @@ cfgP6040IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'PU6040-02 Auto', DeviceLabel := 'PU6040-02', OKState := TRUE, StopCode := E_StopCodes.DeviceNoInAuto),
    (Description := 'PU6040-03 Auto', DeviceLabel := 'PU6040-03', OKState := TRUE, StopCode := E_StopCodes.DeviceNoInAuto),
    (Description := 'PU6040-04 Auto', DeviceLabel := 'PU6040-04', OKState := TRUE, StopCode := E_StopCodes.DeviceNoInAuto),
-   7(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P6030', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   6(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP6040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -344,7 +351,8 @@ cfgP6040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7004IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P6030', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7004EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -376,7 +384,8 @@ cfgP7005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7010IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P7010', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -390,7 +399,8 @@ cfgP7010EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7015IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P7015', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -404,7 +414,8 @@ cfgP7015EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7020IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P7020', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -418,7 +429,8 @@ cfgP7020EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7025IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P7025', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -432,7 +444,8 @@ cfgP7025EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7030IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
-   13(())];
+   (Description := 'Motor Faulted', DeviceLabel := 'P7030', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
+   12(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Jam Detected', DeviceLabel := '', LatchRequired := TRUE, OKState := FALSE, StopCode := E_StopCodes.ProductJam),   //DeviceLabel: Jam PE
@@ -446,6 +459,7 @@ cfgP7030EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7035IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Motor Faulted', DeviceLabel := 'P7035', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
    (Description := 'Powered Transfer Raised' , DeviceLabel := 'PX_16231', OKState := TRUE),
    12(())];
 {attribute 'OPC.UA.DA' := '1'}
@@ -480,6 +494,7 @@ cfgP7040EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 cfgP7045IntlksArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Exit PE/Downstream MTR status' , DeviceLabel := '' , OKState := TRUE),   //DeviceLabel: Exit PE downstream
    (Description := 'System Interlocks' , DeviceLabel := '', OKState := TRUE, StopCode := E_StopCodes.SystemStop),
+   (Description := 'Motor Faulted', DeviceLabel := 'P7045', OKState := FALSE, StopCode := E_StopCodes.MotorRunTO),
    13(())];
 {attribute 'OPC.UA.DA' := '1'}
 cfgP7045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
@@ -506,7 +521,7 @@ P6005SleepWakeTrig[1] := TRUE;		// Belive this will be an EAP photoeye from 3rd 
 P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6005.In_EquipIntlks.2:=
+P6005.In_EquipIntlks.2:=  NOT GVL_IO.P6005_Faulted;
 //Events
   P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6005.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -591,7 +606,8 @@ P6015SleepWakeTrig[2] :=  PhotoEyes.PE_1232.Out_OffFltrd;
 P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-  P6015.In_EquipIntlks.2:= ProxSensors.PX_1281_Extended.Out; //Powered Transfer Raised 
+  P6015.In_EquipIntlks.2:= NOT GVL_IO.P6015_Faulted;
+  P6015.In_EquipIntlks.3:= ProxSensors.PX_1281_Extended.Out; //Powered Transfer Raised 
 //Events
   P6015.In_EquipEvents.2:= GVL_IO.DS_P6015;
   P6015.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -631,7 +647,7 @@ P6020SleepWakeTrig[2] := PhotoEyes.PE_1162.Out_OffFltrd;
 P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6020.In_EquipIntlks.2:=
+  P6020.In_EquipIntlks.2:= NOT GVL_IO.P6020_Faulted;
 //Events
   P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
   P6020.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -670,7 +686,7 @@ P6025SleepWakeTrig[2] := PhotoEyes.PE_1081.Out_OffFltrd;
 P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6025.In_EquipIntlks.2:=
+  P6025.In_EquipIntlks.2:= NOT GVL_IO.P6025_Faulted;
 //Events
   P6025.In_EquipEvents.2:= GVL_IO.DS_P6025;
   P6025.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -709,7 +725,7 @@ P6030SleepWakeTrig[2] := PhotoEyes.PE_1161.Out_OffFltrd;
 P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6030.In_EquipIntlks.2:=
+  P6030.In_EquipIntlks.2:= NOT GVL_IO.P6030_Faulted;
 //Events
   P6030.In_EquipEvents.2:= GVL_IO.DS_P6030;
   P6030.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -748,7 +764,7 @@ P6035SleepWakeTrig[2] := PhotoEyes.PE_4121.Out_OffFltrd;
 P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P6035.In_EquipIntlks.2:= ADD FULL FOR SPIRAL 
+  P6035.In_EquipIntlks.2:= NOT GVL_IO.P6035_Faulted; 
 //Events
   P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6035.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -840,6 +856,7 @@ P6040.In_EquipIntlks.5:= Solenoids.PU6040_01_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.6:= Solenoids.PU6040_02_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.7:= Solenoids.PU6040_03_Status.Sts_EquipmentState.StsAuto;
 P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.9:= NOT GVL_IO.P6040_Faulted; 
 //add fulls 
 //Events
 P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
@@ -885,7 +902,7 @@ P7004SleepWakeTrig[1] := TRUE; //This conveyor doesn't sleep
 P7004_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7004.In_EquipIntlks.2:=
+  P7004.In_EquipIntlks.2:= NOT GVL_IO.P7004_Faulted;
 //Events
  P7004.In_EquipEvents.2:= GVL_IO.DS_P7004;
  P7004.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -971,7 +988,7 @@ P7010SleepWakeTrig[2] := PhotoEyes.PE_12221.Out_OffFltrd;
 P7010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7010.In_EquipIntlks.2:=
+  P7010.In_EquipIntlks.2:= NOT GVL_IO.P7010_Faulted;
 //Events
   P7010.In_EquipEvents.2:= GVL_IO.DS_P7010;
   P7010.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1010,7 +1027,7 @@ P7015SleepWakeTrig[2] := PhotoEyes.PE_12301.Out_OffFltrd;
 P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7015.In_EquipIntlks.2:=
+  P7015.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
 //Events
   P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
   P7015.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1049,7 +1066,7 @@ P7020SleepWakeTrig[2] := PhotoEyes.PE_12231.Out_OffFltrd;
 P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7020.In_EquipIntlks.2:=
+  P7020.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
 //Events
   P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1089,7 +1106,7 @@ P7025SleepWakeTrig[2] := PhotoEyes.PE_15121.Out_OffFltrd;
 P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7025.In_EquipIntlks.2:=
+  P7025.In_EquipIntlks.2:= NOT GVL_IO.P7025_Faulted;
 //Events
   P7025.In_EquipEvents.2:=  GVL_IO.DS_P7025;
   P7025.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1128,7 +1145,7 @@ P7030SleepWakeTrig[2] := PhotoEyes.PE_15181.Out_OffFltrd;
 P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7030.In_EquipIntlks.2:=
+  P7030.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
 //Events
   P7030.In_EquipEvents.2:=  GVL_IO.DS_P7030;
   P7030.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1167,7 +1184,8 @@ P7035SleepWakeTrig[2] := PhotoEyes.PE_15261.Out_OffFltrd;
 P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-  P7035.In_EquipIntlks.2:= ProxSensors.PX_16231_Extended.Out;
+  P7035.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
+  P7035.In_EquipIntlks.3:= ProxSensors.PX_16231_Extended.Out;
 //Events
   P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
   P7035.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1252,7 +1270,7 @@ P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
 P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-//P7045.In_EquipIntlks.2:=
+  P7045.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
 //Events
   P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
   P7045.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1263,7 +1281,7 @@ P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 P7045(
    In_p_EquipStatePB:= P7045_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= TRUE,
+   In_ConvDwnStrmMtrStatus:= GVL_IO.From205_P2012_IsRunning,
    In_ConvCrntExitPhotoEye:= Photoeyes.PE_16201.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -1609,7 +1627,9 @@ END_IF
     </Implementation>
     <LineIds Name="Conveyors">
       <LineId Id="8911" Count="1" />
-      <LineId Id="3723" Count="13" />
+      <LineId Id="3723" Count="8" />
+      <LineId Id="9897" Count="0" />
+      <LineId Id="3733" Count="3" />
       <LineId Id="5649" Count="0" />
       <LineId Id="6167" Count="0" />
       <LineId Id="6720" Count="0" />
@@ -1621,7 +1641,9 @@ END_IF
       <LineId Id="3773" Count="26" />
       <LineId Id="3840" Count="6" />
       <LineId Id="7276" Count="0" />
-      <LineId Id="3847" Count="7" />
+      <LineId Id="3847" Count="4" />
+      <LineId Id="9898" Count="0" />
+      <LineId Id="3852" Count="2" />
       <LineId Id="5652" Count="0" />
       <LineId Id="6171" Count="0" />
       <LineId Id="6713" Count="0" />
@@ -1656,7 +1678,9 @@ END_IF
       <LineId Id="7284" Count="0" />
       <LineId Id="7282" Count="0" />
       <LineId Id="4068" Count="5" />
-      <LineId Id="5633" Count="5" />
+      <LineId Id="5633" Count="4" />
+      <LineId Id="9906" Count="0" />
+      <LineId Id="9908" Count="0" />
       <LineId Id="6195" Count="0" />
       <LineId Id="4074" Count="1" />
       <LineId Id="5658" Count="0" />
@@ -1708,7 +1732,9 @@ END_IF
       <LineId Id="7264" Count="0" />
       <LineId Id="4333" Count="27" />
       <LineId Id="7290" Count="0" />
-      <LineId Id="4361" Count="7" />
+      <LineId Id="4361" Count="5" />
+      <LineId Id="9918" Count="0" />
+      <LineId Id="4367" Count="1" />
       <LineId Id="5665" Count="0" />
       <LineId Id="6185" Count="0" />
       <LineId Id="7265" Count="0" />

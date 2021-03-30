@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<safetyApplication Crc="3987409693" xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.3.0.0" Id="8f9a3992-352b-4597-8f8b-0d2ffca079d8" name="" mapState="false" mapDiag="false" groupOrderId="0" passificationAllowed="false" temporaryDeactivationAllowed="false" permamentDeactivationAllowed="false" xmlid="0" analogFBOutputReplacementValues="Zero" verifyAnalogFBInputsIfStart="false" userFbId="00000000-0000-0000-0000-000000000000" xmlns="http://schemas.microsoft.com/dsltools/SafetyApplicationLanguage">
+<safetyApplication Crc="1408295255" xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.3.0.0" Id="8f9a3992-352b-4597-8f8b-0d2ffca079d8" name="" mapState="false" mapDiag="false" groupOrderId="0" passificationAllowed="false" temporaryDeactivationAllowed="false" permamentDeactivationAllowed="false" xmlid="0" analogFBOutputReplacementValues="Zero" verifyAnalogFBInputsIfStart="false" userFbId="00000000-0000-0000-0000-000000000000" xmlns="http://schemas.microsoft.com/dsltools/SafetyApplicationLanguage">
   <networks>
     <safetyApplicationHasNetworks Id="174acd44-17d8-459e-9386-c6f459bdda1e">
       <Network Id="e6af0ed8-4288-45b3-b9b6-5a27897b6ebe" name="Network1" networkName="Panel_EStop" intId="1" networkOrderId="0">
@@ -716,7 +716,7 @@
                   <inPort Id="3aa9ad93-5e15-4f69-ba91-94ca3e8290a7" name="EStopIn8" portName="EStopIn8" portNum="11" objectIndex="15" varId="10" filter="2" portDataType="1" channelInterface="Both Deactivated" maxDeviation="0" resetTime="0" />
                 </functioBlockHasInPorts>
                 <functioBlockHasInPorts Id="90fc8503-d585-4740-91e1-d0a1be699c93">
-                  <inPort Id="0f1f709f-be67-417e-884a-a7a019157977" name="EDM1" portName="EDM1" portNum="13" objectIndex="1" varId="12" filter="3" portDataType="1" maxDeviation="0" resetTime="0" />
+                  <inPort Id="0f1f709f-be67-417e-884a-a7a019157977" name="EDM1" portName="EDM1" portNum="13" objectIndex="1" varId="12" filter="3" portDataType="1" maxDeviation="0" resetTime="1000" />
                 </functioBlockHasInPorts>
                 <functioBlockHasInPorts Id="b31d080d-aea5-485e-a31d-8a6364b0e8a6">
                   <inPort Id="5160a417-a6ac-47c9-917d-703656d79210" name="EDM2" portName="EDM2" portNum="14" objectIndex="2" varId="13" filter="3" portDataType="1" maxDeviation="0" resetTime="0" />
@@ -1480,28 +1480,28 @@
         </targetUsages>
       </variable>
     </safetyApplicationHasVariables>
-    <safetyApplicationHasVariables Id="3e23ffd6-2d99-4611-a521-5488fb927ab6">
-      <variable Id="daa50d48-e19b-4329-aaeb-1d850dd25140" name="SafetyEDM" isLocal="false">
+    <safetyApplicationHasVariables Id="7bb1da79-3229-4a59-9542-a43e6083c106">
+      <variable Id="9fd837a4-e88b-4b40-a23f-d145b7a42587" name="EDM" isLocal="false">
         <sourceUsages>
-          <variableHasSourceUsages Id="43346af6-0ce7-42b4-a9d8-f76a5e9cf1f2">
-            <variableUsages Id="60ccb2aa-bfdb-4a07-a86f-a8dd556407e3">
+          <variableHasSourceUsages Id="29af80cd-2e57-422f-ac64-0ad5bbb261f7">
+            <variableUsages Id="6cc331c7-adbd-4d21-8a36-084d34b45cf0">
               <usages>
-                <variableUsagesHasUsages Id="4d58c2ab-3c2c-48f0-9b7b-7012a40678f1">
-                  <aliasDeviceIoUsage Id="28564be1-726d-4883-8614-27f57f8f488e" sdsId="30" channelId="1" functionId="1610678529" />
+                <variableUsagesHasUsages Id="33ecc7a0-e053-4241-825f-51b008a5da13">
+                  <aliasDeviceIoUsage Id="93e61ce6-a402-42ca-b409-27ec258d3799" sdsId="30" channelId="1" functionId="1610678529" />
                 </variableUsagesHasUsages>
               </usages>
             </variableUsages>
           </variableHasSourceUsages>
         </sourceUsages>
         <targetUsages>
-          <variableHasTargetUsages Id="2e677a8e-e175-427b-98d6-72b62fb85f3b">
-            <variableUsages Id="c2251f15-dfc6-49de-8803-3999fb487a24">
+          <variableHasTargetUsages Id="5dfa6535-e32c-4250-b551-a1c906831c57">
+            <variableUsages Id="f371fd96-8741-493a-b9da-628498e50ff1">
               <usages>
-                <variableUsagesHasUsages Id="cc7f3344-c51e-4201-ba35-303c112d0774">
-                  <fbPortUsage Id="b46b4412-3515-4d48-9ddf-d129b0239486">
+                <variableUsagesHasUsages Id="01a74239-882f-4d1d-a808-356f66c34c6a">
+                  <fbPortUsage Id="17518214-10dc-4483-9457-fba6425825a3">
                     <functionBlockPort>
-                      <fbPortUsageReferencesFunctionBlockPort Id="db97a285-656b-4617-abdf-e2089f73a2a0">
-                        <inPortMoniker name="//Network1/FBEstop1/EDM1" />
+                      <fbPortUsageReferencesFunctionBlockPort Id="517e11b8-63ba-468c-93ff-097181e68367">
+                        <inPortMoniker name="//Network7/FBEstop1/EDM1" />
                       </fbPortUsageReferencesFunctionBlockPort>
                     </functionBlockPort>
                   </fbPortUsage>

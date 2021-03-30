@@ -106,7 +106,7 @@ PX_6151_Extended(
 //----------------------------------------PI6040_01--------------------------------------------------------------
 // PI6040-01 "D" GRIPPER Retracted
 PX_7122_Retracted(
-	In:= In_PX_6122_Retracted,
+	In:= In_PX_7122_Retracted,
 	CFG_OKState:= 0,
 	CFG_OnDlyTime:= DebounceOnTime,
 	CFG_OnDlyTime:= DebounceOffTime,
@@ -115,7 +115,7 @@ PX_7122_Retracted(
 
 // PI6040-01 "D" GRIPPER Extended
 PX_7151_Extended(
-	In:= In_PX_6152_Extended,
+	In:= In_PX_7151_Extended,
 	CFG_OKState:= 0,
 	CFG_OnDlyTime:= DebounceOnTime,
 	CFG_OnDlyTime:= DebounceOffTime,
