@@ -14856,6 +14856,10 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.Reset" VarB="StandardOutputs^Standard In Var 5"/>
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.Run" VarB="StandardOutputs^Standard In Var 2"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-9071 (EL5152)">
+				<Link VarA="PlcTask Inputs^GVL_IO.ENC_9021_Period" VarB="ENC Period Channel 1^Period value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.ENC_9021_Raw" VarB="ENC Status compact Channel 1^Counter value"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^RIO-12171 (EP2339-0022)">
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7004" VarB="Channel 9^P7004 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7005" VarB="Channel 8^P7005 Motor Discconnect"/>
