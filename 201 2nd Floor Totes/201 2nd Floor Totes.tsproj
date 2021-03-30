@@ -416,7 +416,7 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
 			<BitSize>1</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
@@ -498,8 +498,8 @@
 			<Licenses>
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
+					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60"/>
 				</Target>
@@ -974,6 +974,10 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>SystemSafety.ZoneSafe_EDM</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
 							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
 						</Var>
@@ -1007,16 +1011,16 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.SystemAirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>Conveyors.P7040_VFD.StatusWord</Name>
 							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SystemAirPressure</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.Regulator_AirPressure</Name>
@@ -1306,6 +1310,41 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.P7045_Faulted</Name>
 							<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
 							<Type>BOOL</Type>
@@ -1421,11 +1460,6 @@
 							<Type>UINT</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ENC_9021_Period</Name>
-							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.RIO1181_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
 							<Type>BOOL</Type>
@@ -1439,6 +1473,11 @@
 							<Name>GVL_IO.RIO5151_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ENC_9021_Period</Name>
+							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+							<Type>UDINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.RIO6171_WcState</Name>
@@ -1493,45 +1532,6 @@
 						<Var>
 							<Name>GVL_IO.From205_P2012_IsRunning</Name>
 							<Comment><![CDATA[Subscribed]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.ZoneSafe_EDM</Name>
 							<Type>BOOL</Type>
 						</Var>
 					</Vars>
@@ -1984,11 +1984,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.P7045_RUN</Name>
-							<Comment><![CDATA[P7045 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>SystemSafety.System_SafetyState.Reset</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -2003,6 +1998,36 @@
 						<Var>
 							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7045_RUN</Name>
+							<Comment><![CDATA[P7045 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.SV_6181_EXT</Name>
@@ -2048,31 +2073,6 @@
 							<Name>GVL_IO.To205_P6005_IsRunning</Name>
 							<Comment><![CDATA[ 5041 TKF Ok to Transfer ]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -12504,10 +12504,10 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 								<Entry Name="Message_31 TxPDO" Index="#x7000" Sub="#x02">
 									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
 								</Entry>
-								<Entry Name="Message_32 TxPDO" Index="#x7000" Sub="#x03" Flags="#x00008000">
+								<Entry Name="Message_32 TxPDO" Index="#x7000" Sub="#x03">
 									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
 								</Entry>
-								<Entry Name="Message_33 TxPDO" Index="#x7000" Sub="#x04" Flags="#x00008000">
+								<Entry Name="Message_33 TxPDO" Index="#x7000" Sub="#x04">
 									<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
 								</Entry>
 							</Pdo>
@@ -15289,30 +15289,19 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-8431 (EL1918)">
 				<Link VarA="Term 1 (EK1200)^Term 17 (EK1122)^SRIO-11141 (EP1908)^Module 1 (FSOE)^FSOE Outputs^FSOE" VarB="ConnectionInputs^Message_33 TxPDO"/>
 				<Link VarA="Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-13051 (EL1918)^Module 1 (FSOE)^FSoE Inputs^FSOE" VarB="ConnectionOutputs^Message_30 RxPDO"/>
+				<Link VarA="Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-13051 (EL1918)^Module 1 (FSOE)^FSoE Outputs^FSOE" VarB="ConnectionInputs^Message_30 TxPDO"/>
+				<Link VarA="Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-13451 (EL2904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_31 RxPDO"/>
+				<Link VarA="Term 1 (EK1200)^Term 7 (EK1122)^SRIO-5151 (EP1908)^Module 1 (FSOE)^FSOE Inputs^FSOE" VarB="ConnectionOutputs^Message_32 RxPDO"/>
 				<Link VarA="Term 1 (EK1200)^Term 7 (EK1122)^SRIO-5151 (EP1908)^Module 1 (FSOE)^FSOE Outputs^FSOE" VarB="ConnectionInputs^Message_32 TxPDO"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^SRIO-11141 (EP1908)">
 				<Link VarA="Term 1 (EK1200)^PLC-8431 (EL1918)^ConnectionOutputs^Message_33 RxPDO" VarB="Module 1 (FSOE)^FSOE Inputs^FSOE"/>
 			</OwnerB>
-			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-13051 (EL1918)">
-				<Link VarA="Term 1 (EK1200)^PLC-8431 (EL1918)^ConnectionInputs^Message_30 TxPDO" VarB="Module 1 (FSOE)^FSoE Outputs^FSOE"/>
-			</OwnerB>
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-13451 (EL2904)">
 				<Link VarA="Term 1 (EK1200)^PLC-8431 (EL1918)^ConnectionInputs^Message_31 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
-				<Link VarA="Term 1 (EK1200)^PLC-8431 (EL1918)^ConnectionOutputs^Message_31 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^SRIO-5151 (EP1908)">
-				<Link VarA="Term 1 (EK1200)^PLC-8431 (EL1918)^ConnectionOutputs^Message_32 RxPDO" VarB="Module 1 (FSOE)^FSOE Inputs^FSOE"/>
 			</OwnerB>
 		</OwnerA>
 		<OwnerA Name="TIPC^Second_Floor_Totes_ARUP^Second_Floor_Totes_ARUP Instance">
-			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)">
-				<Link VarA="PlcTask Inputs^MAIN.EAP_205.DevState" VarB="Inputs^DevState"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.DevCtrl" VarB="Outputs^DevCtrl"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
-				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
-			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (RT-Ethernet Protocol)">
 				<Link VarA="PlcTask Inputs^GVL_IO.EthernetAdapter_State" VarB="Inputs^DevState"/>
 			</OwnerB>
