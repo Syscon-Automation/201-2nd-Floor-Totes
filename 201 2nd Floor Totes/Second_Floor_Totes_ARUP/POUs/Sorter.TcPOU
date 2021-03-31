@@ -16,8 +16,8 @@ VAR
 
 	st_SorterEncoder 			: ST_Encoder;
 	fb_SorterEncoder 			: FB_ProcessEncoder;
-	{attribute 'OPC.UA.DA' := '1'}
-	ENC_Raw	AT %I*:	UINT;	// Raw Encoder Value
+
+
 	tEncoderOK			: TON;
 	nLastEncoderCount	: UDINT;
 
@@ -90,7 +90,7 @@ IF (GVL_IO.INIT AND NOT st_SorterCfg.RetainOnRestart) OR ClearSorterArray THEN
 END_IF
 
 // Setup and process the Sorter Encoder
-st_SorterEncoder.EncoderRawCount := ENC_Raw;
+st_SorterEncoder.EncoderRawCount := GVL_IO.ENC_9021_Raw;
 st_SorterEncoder.BitMaskSize := SORTERMASKSIZE;
 fb_SorterEncoder(Encoder := st_SorterEncoder, Simulate := bSimulate);
 
@@ -126,7 +126,7 @@ aSorterDiverts[5].FullPE := Photoeyes.PE_8211.Out;
 fb_CommissionSorterDiverts(
 			InductTrigger := Photoeyes.PE_7171.Out,
 			ReferenceValue := st_SorterEncoder.CurrentCount, 
-			DischargeTrigger := Photoeyes.PE_8211.Out_OffFltrd,
+			DischargeTrigger := Photoeyes.PE_8211.Out,
 			TestTime := T#10S, Diverts := aSorterDiverts);
 
 // Provide a "hard-coded" default destination.
@@ -135,17 +135,18 @@ IF st_SorterCfg.DefaultDestination <= 0 THEN
 END_IF						
 
 // Name of the sorter equipment
-//st_SorterCfg.Name := Conveyors.cfgP8005Label;
+st_SorterCfg.Name := Conveyors.cfgP6040Label;
 st_SorterCfg.DivertCount := NUMBEROFDIVERTS;
 IF DivertToCommission > 0 THEN
 	st_SorterCfg.DefaultDestination := DivertToCommission;
 END_IF
 st_Sorter.EncoderCounts := st_SorterEncoder.CurrentCount;
-st_Sorter.InductPE := PhotoEyes.PE_7171.Out_OnFltrd;
-st_Sorter.DischargePE := Photoeyes.PE_8211.Out_OnFltrd;
+st_Sorter.InductPE := PhotoEyes.PE_7171.Out;
+st_Sorter.DischargePE := Photoeyes.PE_8211.Out;
 
 // Test the Encoder
 tEncoderOK.IN := (Conveyors.P6040_Status.Sts_IsRunning AND (st_Sorter.EncoderCounts = nLastEncoderCount));
+nLastEncoderCount := st_Sorter.EncoderCounts;
 tEncoderOK(PT:=T#1S);
 
 // OK when Q is not on, but the alarm is reversed
@@ -220,7 +221,9 @@ FB_DivertLog(DivertArray := aSorterDiverts,
       <LineId Id="124" Count="0" />
       <LineId Id="129" Count="0" />
       <LineId Id="125" Count="3" />
-      <LineId Id="130" Count="33" />
+      <LineId Id="130" Count="12" />
+      <LineId Id="710" Count="0" />
+      <LineId Id="143" Count="20" />
       <LineId Id="594" Count="1" />
       <LineId Id="164" Count="1" />
       <LineId Id="629" Count="5" />

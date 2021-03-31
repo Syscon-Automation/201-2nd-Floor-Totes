@@ -2,9 +2,24 @@
 <TcLicenseInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2011/11/TcLicenseInfo">
 	<LicenseInfo>
 		<SystemId>{819D4512-5089-03D2-8997-694F7CA96087}</SystemId>
-		<IssueTime>2021-03-23T22:13:00</IssueTime>
-		<ExpireTime>2021-03-31T00:00:00</ExpireTime>
-		<LicenseKey>38a0dbe94cb7d1c71eea545fb50f51f49ca638e8eac43400aa20179ea545ade8ddea3f3d318e64e393fc34e509df06c0f6ef2b6589847efb57be9643f5963a5c79f4214a2498eca05b058c0fae9bfae44f4463290727713dd5871153338bf8b1efc15fe9452a9ef3875577a191139b55678f6c0fcb55f659b33f365cbb0263227339cbd2d828af2cdc5dde169599b322227ae123afd470adb9e3e259b8a87d2de094c4f86d71b111c6366b756485505e0381f72a0fa16f2d310c463070ed6d9a763546bd245b04fb4e193180371297f0879be570c236cd0cfcdc14d0b8e7b2a35741eecaf940e092ae1b9cf6f50be0aee1f621cbf5e6d4a3baeb290ac7a7cdc5</LicenseKey>
+		<IssueTime>2021-03-31T16:07:00</IssueTime>
+		<ExpireTime>2021-04-08T00:00:00</ExpireTime>
+		<LicenseKey>27f687223473b7262ec137e6781350565b3a43b22bc05c28ff53051e0f799adc2c4ed062cc399c428bb9b597c6353927ffb350e7fd4f024ff0da9e8447d3e5cb3a6c48fda530c6516675ede64413c541c1fd4ad9ed7c9de937a70bb97757955b728a5762bacb78cf8a2ea3bde5752a779d2cb13c956522242f680bc56f00055f8d9e36c3d07c9c481add0f9e370ce7803edb212f50310fa409317916b2b9f5b21c508a1e236ef3f9b3d3bf086039d3f2d6d2fb77528d86357a965f93df9d6bbed20c55d02d61b99d393404694fb319ff79c6e9d267e08bde4c391468d3f99e77a159182b6a7c1cb07f4fdb1bd87206ef0ce513cc60d828ff9f9452019c0d33ed</LicenseKey>
+		<License>
+			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
+			<Name>TC3 ADS</Name>
+			<OrderNo>TC1000</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
+			<Name>TC3 IO</Name>
+			<OrderNo>TC1100</OrderNo>
+		</License>
+		<License>
+			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
+			<Name>TC3 PLC</Name>
+			<OrderNo>TC1200</OrderNo>
+		</License>
 		<License>
 			<LicenseId>{AE83F222-BB78-448F-BDED-7494A70CD776}</LicenseId>
 			<Name>TC3 EtherNet/IP Adapter (Slave)</Name>
@@ -22,24 +37,9 @@
 			<Instances>1</Instances>
 		</License>
 		<License>
-			<LicenseId>{4C256767-E6E6-4AF5-BD68-9F7ABAD0C200}</LicenseId>
-			<Name>TC3 ADS</Name>
-			<OrderNo>TC1000</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{66689887-CCBD-452C-AC9A-039D997C6E66}</LicenseId>
-			<Name>TC3 PLC</Name>
-			<OrderNo>TC1200</OrderNo>
-		</License>
-		<License>
 			<LicenseId>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</LicenseId>
 			<Name>TC3 OPC-UA</Name>
 			<OrderNo>TF6100</OrderNo>
-		</License>
-		<License>
-			<LicenseId>{3FF18E97-7754-401B-93FB-70544DE28A13}</LicenseId>
-			<Name>TC3 IO</Name>
-			<OrderNo>TC1100</OrderNo>
 		</License>
 	</LicenseInfo>
 </TcLicenseInfo>

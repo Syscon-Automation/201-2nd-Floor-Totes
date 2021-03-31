@@ -16,16 +16,25 @@ VAR_GLOBAL
 
 	
 	HornMainPanel				AT %Q* 	:BOOL;	//Panel Tower Horn
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_MainPanelStack_Red		AT %Q*	:BOOL;	//Panel	Tower Red Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_MainPanelStack_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_MainPanelStack_Green		AT %Q*	:BOOL;	//Panel	Tower Green Light
 
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_7221_Red	    AT %Q*	:BOOL;	//Panel	Tower Red Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_7241_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_7271_Green	AT %Q*	:BOOL;	//Panel	Tower Green Light
 	
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_12121_Red	AT %Q*	:BOOL;	//Panel	Tower Red Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_12131_Yellow	AT %Q*	:BOOL;	//Panel	Tower Yellow Light
+	{attribute 'OPC.UA.DA' := '1'}
 	LT_12161_Green	AT %Q*	:BOOL;	//Panel	Tower Green Light
 	
 	{attribute 'OPC.UA.DA' := '1'}
@@ -46,7 +55,6 @@ P6035_RUN            AT %Q*   :BOOL;    //P6035 Run Command
 P6040_RUN            AT %Q*   :BOOL;    //P6040 Run Command
 
 P7004_RUN            AT %Q*   :BOOL;    //P7004 Run Command
-P7005_RUN            AT %Q*   :BOOL;    //P7005 Run Command
 P7010_RUN            AT %Q*   :BOOL;    //P7010 Run Command
 P7015_RUN            AT %Q*   :BOOL;    //P7015 Run Command
 P7020_RUN            AT %Q*   :BOOL;    //P7020 Run Command
@@ -153,8 +161,9 @@ SV_8161_EXT AT %Q* :BOOL; // PU6040-04 "D" GRIPPER
 	EthernetAdapter_State AT %I*	    : UINT;		// Ethernet Adapter State
  //---------------------------------EAP-------------------------------------------------
 //Published
+  To205_P6005_IsRunning	AT %Q*:	BOOL; // 5041 TKF Ok to Transfer 
 //Subscribed
- 
+  From205_P2012_IsRunning AT %I*: BOOL;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
