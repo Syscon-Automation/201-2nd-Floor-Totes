@@ -273,4 +273,5 @@ __pycache__/
 *.tmc 
 *.sln 
 *.suo 
+*.TcGit
 *SYS-* 
