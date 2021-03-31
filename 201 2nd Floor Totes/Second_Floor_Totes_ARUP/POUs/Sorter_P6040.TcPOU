@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Sorter_P6040" Id="{8c10b2bf-75ff-4f5c-af4b-9502e14a05d7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Sorter_P6040
 
@@ -276,7 +276,7 @@ WHILE st_Sorter.EncoderCounts <> exitEncoderCount DO
 	//	that all array elements are processed
 	exitEncoderCount := f_CalculateIndex(Offset := 1, InitialValue:= exitEncoderCount, BufferSize := nItemArraySize);
 	// Process the diverts relative to the current encoder count
-	FOR divertIndex := DivertArrayMin TO DivertArrayMax DO
+	(*FOR divertIndex := DivertArrayMin TO DivertArrayMax DO
 		// Get the distance to each divert, distance is the number of pulses to actuation
 		Divertoffset := aDiverts[divertIndex].Config.Distance;
 		// Calculate the index of the item to test for a divert
@@ -348,7 +348,7 @@ WHILE st_Sorter.EncoderCounts <> exitEncoderCount DO
 					 , bIsDischarge		:= aDiverts[DivertIndex].Config.IsDischarge
 					 , DetectedItem => st_ConfirmItem[DivertIndex]
 					 );
-	END_FOR
+	END_FOR*)
 	
 	// Capture the last item discharged by this sorter section
 	IF st_ConfirmItem[DivertArrayMax].ID <> '' THEN
@@ -372,7 +372,7 @@ WHILE st_Sorter.EncoderCounts <> exitEncoderCount DO
 	END_IF
 	aItems[nIndexToClear] := BlankItem;
 
-END_WHILE
+END_WHILE 
 ]]></ST>
     </Implementation>
     <LineIds Name="Sorter_P6040">
@@ -405,7 +405,9 @@ END_WHILE
       <LineId Id="7802" Count="0" />
       <LineId Id="7036" Count="2" />
       <LineId Id="8040" Count="0" />
-      <LineId Id="7039" Count="50" />
+      <LineId Id="7039" Count="30" />
+      <LineId Id="8109" Count="0" />
+      <LineId Id="7071" Count="18" />
       <LineId Id="7094" Count="3" />
       <LineId Id="7140" Count="0" />
       <LineId Id="7098" Count="0" />

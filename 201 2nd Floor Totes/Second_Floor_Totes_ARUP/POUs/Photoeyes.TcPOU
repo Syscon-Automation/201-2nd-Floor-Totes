@@ -144,7 +144,7 @@ PE_7171(
    CFG_PEOKState:= 1,
    CFG_OnDlyTime:= DebounceOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
-   CFG_JamDetTime:= JamDetectTime,
+   CFG_JamDetTime:= T#30S,
    In_Sim:=
 );
 

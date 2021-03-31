@@ -170,7 +170,7 @@ ProcessBuffers(st_NextToInduct := st_ToInduct
 				, aItems := aSorterItems
 				, DivertToCommission := DivertToCommission
 				, ItemsArrayMax := SORTERENCODERMAX
-				, ItemsArrayMin := SORTERENCODERMIN);
+				, ItemsArrayMin := SORTERENCODERMIN); 
 
 // Sorter log logs induct/discharge PE's and prepares the Temporory Record for unidentified items
 FB_SorterLog(
@@ -192,8 +192,8 @@ Sorter_P6040(st_Sorter := st_Sorter
 		, st_tempItem := st_TempItem
 		, ItemsArrayMax := SORTERENCODERMAX
 		, ItemsArrayMin := SORTERENCODERMIN
-		, DivertArrayMax := DIVERTMIN
-		, DivertArrayMin := NUMBEROFDIVERTS
+		, DivertArrayMax := NUMBEROFDIVERTS
+		, DivertArrayMin := DIVERTMIN
 		, st_DischargeItem => SorterDischargeItem);
 //--------------------------------------Divert Config------------------------------------------
 (*
