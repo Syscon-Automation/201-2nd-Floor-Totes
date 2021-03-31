@@ -495,13 +495,13 @@
 			<Settings MaxCpus="2">
 				<Cpu CpuId="1"/>
 			</Settings>
-			<Licenses>
+			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
 					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
-					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60"/>
+					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
 			</Licenses>
 			<Tasks>
@@ -953,11 +953,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Sorter.ENC_Raw</Name>
-							<Comment><![CDATA[ Raw Encoder Value]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
 						</Var>
@@ -970,11 +965,11 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>SystemSafety.Safety_PanelEstop</Name>
+							<Name>SystemSafety.ZoneSafe_EDM</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>SystemSafety.ZoneSafe_EDM</Name>
+							<Name>SystemSafety.Safety_PanelEstop</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1792,12 +1787,12 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6010_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.ControlWord</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>System.SysIntlksAllOk</Name>
@@ -2119,7 +2114,7 @@
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="1" ImageType="3">
+				<Image Id="1" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>

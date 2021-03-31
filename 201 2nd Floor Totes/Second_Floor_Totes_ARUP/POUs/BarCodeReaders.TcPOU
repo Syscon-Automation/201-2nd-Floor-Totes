@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="BarCodeReaders" Id="{6db726c2-b8f2-4f56-a606-779b1afe45e4}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM BarCodeReaders
 VAR
@@ -53,7 +53,7 @@ BCR_S6040_01(
 	In_ReadTrig:= PhotoEyes.PE_6261.Out_OnFltrd, 
 	In_ResetCounts:= , 
 	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00001',
+	In_EquipID := '00059',
 	Out_NewReadTrig=> , 
 	Out_ReadString=> , 
 	Out_ReadStatus=> ,
@@ -120,7 +120,7 @@ BCR_S7004_01(
 	In_ReadTrig:= PhotoEyes.PE_12221.Out_OnFltrd, 
 	In_ResetCounts:= , 
 	In_TriggerOnTime := T#20MS ,
-	In_EquipID := '00002',
+	In_EquipID := '00062',
 	Out_NewReadTrig=> , 
 	Out_ReadString=> , 
 	Out_ReadStatus=> ,
