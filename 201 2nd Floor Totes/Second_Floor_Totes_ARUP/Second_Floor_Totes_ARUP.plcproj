@@ -411,6 +411,9 @@
     <Compile Include="POUs\Photoeyes.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\POU.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\ProcessBuffers.TcPOU">
       <SubType>Code</SubType>
     </Compile>

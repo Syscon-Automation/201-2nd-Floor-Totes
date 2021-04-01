@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="Sorter_P6040" Id="{8c10b2bf-75ff-4f5c-af4b-9502e14a05d7}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Sorter_P6040
 
@@ -195,7 +195,7 @@ WHILE st_Sorter.EncoderCounts <> testEncoderCount DO
 			In_InductingItem.Status := E_StatusCode.In_Sorter;
 
 			// Check for destination full on the first pass, then ignore it.
-			IF In_InductingItem.Length = 0 THEN
+		IF In_InductingItem.Length = 0 THEN
 				IF aDiverts[In_InductingItem.DestinationIdx].Full THEN
 					IF st_Sorter.Config.RecircUsed THEN
 						In_InductingItem.Destination := st_Sorter.Config.RecircDestination;
@@ -207,7 +207,7 @@ WHILE st_Sorter.EncoderCounts <> testEncoderCount DO
 						In_InductingItem.ExtStatus := E_StatusCode.Divert_Full;
 					END_IF
 				END_IF
-			END_IF
+			END_IF 
 			// Clear the extend counter
 			tailendcount := 0;
 
@@ -219,7 +219,7 @@ WHILE st_Sorter.EncoderCounts <> testEncoderCount DO
 			// Determined by UniqueID = 0
 		ELSE //If the item makes it to the sorter, but is not identified, induct the item with tempItem.Item
 			LastItemInducted := 'UNKNOWN';
-			UpdateSorterLog(Status := E_StatusCode.UnidentifiedItem, ItemID := st_tempItem.Item.UniqueID);
+			(*UpdateSorterLog(Status := E_StatusCode.UnidentifiedItem, ItemID := st_tempItem.Item.UniqueID);*)
 
 			// Process this the first time
 			IF st_tempItem.Item.Length = 0 THEN
@@ -372,7 +372,7 @@ WHILE st_Sorter.EncoderCounts <> exitEncoderCount DO
 	END_IF
 	aItems[nIndexToClear] := BlankItem;
 
-END_WHILE
+END_WHILE 
 ]]></ST>
     </Implementation>
     <LineIds Name="Sorter_P6040">

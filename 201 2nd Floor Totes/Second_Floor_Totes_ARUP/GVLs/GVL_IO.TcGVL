@@ -161,9 +161,12 @@ SV_8161_EXT AT %Q* :BOOL; // PU6040-04 "D" GRIPPER
 	EthernetAdapter_State AT %I*	    : UINT;		// Ethernet Adapter State
  //---------------------------------EAP-------------------------------------------------
 //Published
-  To205_P6005_IsRunning	AT %Q*:	BOOL; // 5041 TKF Ok to Transfer 
+  To205_P6005_IsRunning	AT %Q*:	BOOL; 
+  To205_P6005_SendingProduct AT %Q*: BOOL; 
 //Subscribed
   From205_P2012_IsRunning AT %I*: BOOL;
-END_VAR]]></Declaration>
+  From205_P2012_SendingProduct AT %I*: BOOL;
+END_VAR
+]]></Declaration>
   </GVL>
 </TcPlcObject>

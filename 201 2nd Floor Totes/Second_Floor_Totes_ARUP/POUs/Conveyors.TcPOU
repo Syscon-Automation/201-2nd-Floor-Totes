@@ -522,6 +522,7 @@ P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
 P6005.In_EquipIntlks.2:=  NOT GVL_IO.P6005_Faulted;
+
 //Events
   P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6005.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1629,7 +1630,9 @@ END_IF
       <LineId Id="8911" Count="1" />
       <LineId Id="3723" Count="8" />
       <LineId Id="9897" Count="0" />
-      <LineId Id="3733" Count="3" />
+      <LineId Id="3733" Count="1" />
+      <LineId Id="10428" Count="0" />
+      <LineId Id="3735" Count="1" />
       <LineId Id="5649" Count="0" />
       <LineId Id="6167" Count="0" />
       <LineId Id="6720" Count="0" />

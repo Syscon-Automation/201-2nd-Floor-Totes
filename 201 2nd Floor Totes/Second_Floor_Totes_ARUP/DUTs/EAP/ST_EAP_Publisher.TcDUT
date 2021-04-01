@@ -7,7 +7,8 @@ STRUCT
 	Name				: 	STRING;		// Name of the EAP Publisher
 	FrameState	AT %I*	: 	UINT;		// EAP FrameState, FrameState.0 = Not Transmitting, .1 = Frame too large, .2 = Subscriber Miissing
 	FrameCtrl	AT %Q*	: 	UINT;		// EAP FrameCtrl, FrameCtrl.0 = Disable Sending, .1 = Remove destination MAC from ARP
-	NetID		AT %Q*	: 	AMSNETID;	// EAP Changeable NetID, MAC/AMS NetID/IP depending on setup
+	NetID		AT %Q*	: 	AMSNETID;	// EAP Changeable NetID, 
+	IPaddr		AT %Q*	: 	UDINT;	// EAP Changeable IP address
 	Variables			:	ARRAY[0..9] OF ST_EAP_Pub_Variable;		// Array of Published variables
 END_STRUCT
 END_TYPE

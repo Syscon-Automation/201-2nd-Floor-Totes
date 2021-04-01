@@ -170,7 +170,9 @@ ProcessBuffers(st_NextToInduct := st_ToInduct
 				, aItems := aSorterItems
 				, DivertToCommission := DivertToCommission
 				, ItemsArrayMax := SORTERENCODERMAX
-				, ItemsArrayMin := SORTERENCODERMIN);
+				, ItemsArrayMin := SORTERENCODERMIN
+				,DefaultDestIdx => st_SorterCfg.DefaultDestIdx
+				,RecircDestIdx => st_SorterCfg.RecircDestIdx);
 
 // Sorter log logs induct/discharge PE's and prepares the Temporory Record for unidentified items
 FB_SorterLog(
@@ -192,9 +194,9 @@ Sorter_P6040(st_Sorter := st_Sorter
 		, st_tempItem := st_TempItem
 		, ItemsArrayMax := SORTERENCODERMAX
 		, ItemsArrayMin := SORTERENCODERMIN
-		, DivertArrayMax := DIVERTMIN
-		, DivertArrayMin := NUMBEROFDIVERTS
-		, st_DischargeItem => SorterDischargeItem);
+		, DivertArrayMax := NUMBEROFDIVERTS
+		, DivertArrayMin := DIVERTMIN
+		, st_DischargeItem => SorterDischargeItem); 
 //--------------------------------------Divert Config------------------------------------------
 (*
 	Initialize Diverts here. 
@@ -225,7 +227,9 @@ FB_DivertLog(DivertArray := aSorterDiverts,
       <LineId Id="710" Count="0" />
       <LineId Id="143" Count="20" />
       <LineId Id="594" Count="1" />
-      <LineId Id="164" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="776" Count="1" />
+      <LineId Id="165" Count="0" />
       <LineId Id="629" Count="5" />
       <LineId Id="217" Count="10" />
       <LineId Id="636" Count="4" />

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="ProcessBuffers" Id="{48821c70-aef6-4001-a4d0-b0777e6eb577}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ProcessBuffers
 VAR_IN_OUT
@@ -58,6 +58,11 @@ VAR
 	fb_RecircDestination	: FB_FindDestination;
 	// Created to allow the aDiverts to be used in the FB_FindDestination Function Block
 	aTempDiverts			: ARRAY[Sorter.DIVERTMIN..Sorter.NUMBEROFDIVERTS] OF ST_DIVERT;
+END_VAR
+VAR_OUTPUT
+	DefaultDestIdx : DINT;
+	RecircDestIdx: DINT;
+	
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[
@@ -201,13 +206,13 @@ END_IF
 fb_DefaultDestination(RoundRobin := st_Sorter.Config.RoundRobin
 				, aDiverts := aTempDiverts
 				, DestinationID := st_Sorter.Config.DefaultDestination
-				, DestinationIndex => st_Sorter.Config.DefaultDestIdx);
+				, DestinationIndex => DefaultDestIdx);
 
 // Get the Recirculation Destination Index
 fb_RecircDestination(RoundRobin := st_Sorter.Config.RoundRobin
 				, aDiverts := aTempDiverts
 				, DestinationID := st_Sorter.Config.RecircDestination
-				, DestinationIndex => st_Sorter.Config.RecircDestIdx);
+				, DestinationIndex => RecircDestIdx);
 
 // Test the Item to Update against the Item to Induct and update if they match:
 //	Update the NextItemToInduct with the updated data, then clear the Item to Update
