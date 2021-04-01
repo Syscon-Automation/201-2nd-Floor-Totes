@@ -498,8 +498,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
+					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
@@ -529,221 +529,6 @@
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
-						<Var>
-							<Name>MAIN.EAP_205.DevState</Name>
-							<Comment><![CDATA[ EAP Device State]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.FrameState</Name>
-							<Comment><![CDATA[ EAP FrameState, FrameState.0 = Not Transmitting, .1 = Frame too large, .2 = Subscriber Miissing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[0].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[1].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[2].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[3].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[4].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[5].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[6].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[7].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[8].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[9].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.FrameState</Name>
-							<Comment><![CDATA[ EAP FrameState, unused]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[0].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[0].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[1].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[1].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[2].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[2].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[3].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[3].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[4].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[4].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[5].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[5].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[6].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[6].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[7].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[7].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[8].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[8].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarState</Name>
-							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[9].Quality</Name>
-							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[9].CycleIndex</Name>
-							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
-							<Type>UINT</Type>
-						</Var>
 						<Var>
 							<Name>BarCodeReaders.BCR_S6040_01.DeviceState</Name>
 							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
@@ -1533,237 +1318,227 @@
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.DevState</Name>
+							<Comment><![CDATA[ EAP Device State]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.FrameState</Name>
+							<Comment><![CDATA[ EAP FrameState, FrameState.0 = Not Transmitting, .1 = Frame too large, .2 = Subscriber Miissing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[0].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[1].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[2].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[3].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[4].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[5].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[6].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[7].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[8].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[9].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.FrameState</Name>
+							<Comment><![CDATA[ EAP FrameState, unused]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[0].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[0].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[1].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[1].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[2].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[2].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[3].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[3].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[4].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[4].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[5].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[5].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[6].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[6].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[7].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[7].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[8].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[8].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarState</Name>
+							<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[9].Quality</Name>
+							<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[9].CycleIndex</Name>
+							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+							<Type>UINT</Type>
+						</Var>
 					</Vars>
 					<Vars VarGrpType="2">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.DevCtrl</Name>
-							<Comment><![CDATA[ EAP Device Control]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.FrameCtrl</Name>
-							<Comment><![CDATA[ EAP FrameCtrl, FrameCtrl.0 = Disable Sending, .1 = Remove destination MAC from ARP]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.NetID</Name>
-							<Comment><![CDATA[ EAP Changeable NetID, ]]></Comment>
-							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.IPaddr</Name>
-							<Comment><![CDATA[ EAP Changeable IP address]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[0].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[0].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[1].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[1].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[2].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[2].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[3].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[3].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[4].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[4].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[5].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[5].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[6].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[6].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[7].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[7].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[8].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[8].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[9].VarID</Name>
-							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Publisher.Variables[9].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.FrameCtrl</Name>
-							<Comment><![CDATA[ EAP FrameCtrl, unused]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarId</Name>
-							<Comment><![CDATA[ Changable Variable ID]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarCtrl</Name>
-							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>BarCodeReaders.BCR_S6040_01.TriggerEnable</Name>
@@ -1824,13 +1599,13 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>System.Cnvyr_Manual</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
+							<Name>System.Cnvyr_Auto</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>System.Cnvyr_Auto</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
+							<Name>System.Cnvyr_Manual</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2083,6 +1858,231 @@ Published]]></Comment>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
 							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.DevCtrl</Name>
+							<Comment><![CDATA[ EAP Device Control]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.FrameCtrl</Name>
+							<Comment><![CDATA[ EAP FrameCtrl, FrameCtrl.0 = Disable Sending, .1 = Remove destination MAC from ARP]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.NetID</Name>
+							<Comment><![CDATA[ EAP Changeable NetID, ]]></Comment>
+							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.IPaddr</Name>
+							<Comment><![CDATA[ EAP Changeable IP address]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[0].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[0].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[1].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[1].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[2].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[2].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[3].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[3].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[4].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[4].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[5].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[5].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[6].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[6].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[7].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[7].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[8].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[8].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[9].VarID</Name>
+							<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.Variables[9].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.FrameCtrl</Name>
+							<Comment><![CDATA[ EAP FrameCtrl, unused]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[0].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[1].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[2].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[3].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[4].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[5].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[6].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[7].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[8].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarId</Name>
+							<Comment><![CDATA[ Changable Variable ID]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Subscriber.Variables[9].VarCtrl</Name>
+							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+							<Type>UINT</Type>
+						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
@@ -2128,7 +2128,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="1" ImageType="3">
+				<Image Id="1" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>
@@ -12359,13 +12359,21 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 						<Dma>
 							<Address>0</Address>
 							<Offset>4096</Offset>
-							<Size>256</Size>
+							<Size>12288</Size>
 							<BaseAddr>2</BaseAddr>
 							<RxChn>0</RxChn>
 							<TxChn>1</TxChn>
 						</Dma>
+						<TimeSize>128</TimeSize>
+						<TimeOffs>1024</TimeOffs>
+						<GpioSize>32</GpioSize>
+						<GpioOffs>768</GpioOffs>
+						<EepromSize>64</EepromSize>
+						<EepromOffs>512</EepromOffs>
+						<IntCtrlSize>16</IntCtrlSize>
+						<IntCtrlOffs>640</IntCtrlOffs>
 						<Identification>
-							<Value>498694182</Value>
+							<Value>1795167326</Value>
 							<Version>1</Version>
 							<Size>256</Size>
 						</Identification>
@@ -15215,7 +15223,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				</Box>
 				<EtherCAT EnableVirtualSwitch="true" MaxSwitchPorts="5" MaxSwitchFrames="180"/>
 			</Device>
-			<Device Id="4" Disabled="true" DevType="112" AmsPort="28676" AmsNetId="5.84.5.2.5.1" RemoteName="Communition with 205 (EtherCAT Automation Protocol)">
+			<Device Id="4" DevType="112" AmsPort="28676" AmsNetId="5.84.5.2.5.1" RemoteName="Communition with 205 (EtherCAT Automation Protocol)">
 				<Name>Communition with 205 (EtherCAT Automation Protocol)</Name>
 				<AddressInfo>
 					<TcCom>
@@ -15345,7 +15353,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 						</Var>
 					</Vars>
 					<Eap Publisher="0554050c0b01">
-						<EapVar Id="1" NvId="5" NvLength="1" IdChangeable="true" IdChangeableInTree="true">
+						<EapVar Id="1" NvId="115" NvLength="1" IdChangeable="true" IdChangeableInTree="true">
 							<Name>From205_P2012_IsRunning</Name>
 							<ImageId>98</ImageId>
 							<Vars VarGrpType="1">
@@ -15392,7 +15400,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 								</Var>
 							</Vars>
 						</EapVar>
-						<EapVar Id="2" NvId="6" NvLength="1" IdChangeable="true" IdChangeableInTree="true">
+						<EapVar Id="2" NvId="116" NvLength="1" IdChangeable="true" IdChangeableInTree="true">
 							<Name>From205_P2012_SendingProduct</Name>
 							<ImageId>98</ImageId>
 							<Vars VarGrpType="1">
@@ -15450,6 +15458,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500810000403}" Id="#x02030050"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500820000403}" Id="#x02030030"/>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500830000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2001-0850-0020-500860000403}" Id="#x02030060"/>
 		<MappingInfo Identifier="{00000000-0020-0304-5000-040320000403}" Id="#x02030040"/>
 		<MappingInfo Identifier="{03040030-0030-0304-3000-040330000403}" Id="#x02030010" Watchdog="04000000040000000400000004000000"/>
 		<OwnerA Name="TIID^Device 3 (EtherCAT)">
