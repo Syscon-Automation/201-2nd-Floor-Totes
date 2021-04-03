@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="MAIN" Id="{e23ca17a-3c41-4eb2-b5dd-e3e2c77d05b5}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
@@ -18,7 +18,17 @@ VAR PERSISTENT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[BarCodeReaders();
+      <ST><![CDATA[// Convert HMI EAP IP Address(es) to correct format
+MEMCPY(destAddr	:= ADR(EAP_205.Publisher.HMI_IPAddrDisp),srcaddr :=ADR(EAP_205.Publisher.IPAddr), n := 4);
+IF (EAP_205.Publisher.HMI_IPAddrDisp[0] <> EAP_205.Publisher.HMI_IPAddr[0]) 
+   OR (EAP_205.Publisher.HMI_IPAddrDisp[1] <> EAP_205.Publisher.HMI_IPAddr[1])
+   OR (EAP_205.Publisher.HMI_IPAddrDisp[2] <> EAP_205.Publisher.HMI_IPAddr[2])
+   OR (EAP_205.Publisher.HMI_IPAddrDisp[3] <> EAP_205.Publisher.HMI_IPAddr[3])
+   THEN
+	MEMCPY(destAddr	:= ADR(EAP_205.Publisher.IPAddr),srcaddr :=ADR(EAP_205.Publisher.HMI_IPAddr), n := 4);
+END_IF
+
+BarCodeReaders();
 CommStatus();
 Conveyors();
 Log_Diverts();
@@ -51,6 +61,10 @@ IF rStartPersistentSave.Q THEN
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
+      <LineId Id="97" Count="2" />
+      <LineId Id="105" Count="1" />
+      <LineId Id="103" Count="1" />
+      <LineId Id="100" Count="2" />
       <LineId Id="64" Count="1" />
       <LineId Id="45" Count="0" />
       <LineId Id="47" Count="0" />

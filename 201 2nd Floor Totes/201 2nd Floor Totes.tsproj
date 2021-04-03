@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.10">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.12">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..25] OF BYTE</Name>
@@ -11,7 +11,8 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}" AutoDeleteType="true">E_StateCntrl</Name>
+			<Name GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}" AutoDeleteType="true">E_StateCntrl</Name>
+			<Comment><![CDATA[ {attribute 'strict'}]]></Comment>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
 			<EnumInfo>
@@ -34,9 +35,24 @@
 				<Enum>3</Enum>
 				<Comment><![CDATA[ Allowed to transition to Offline/Manual ]]></Comment>
 			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>textlistenumeration</Name>
+				</Property>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+			</Properties>
+			<Hides>
+				<Hide GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}"/>
+			</Hides>
 		</DataType>
 		<DataType>
-			<Name GUID="{84F1E854-EED7-7ACD-B4CE-3BAD2631D2E4}" AutoDeleteType="true">E_OperStateCntrl</Name>
+			<Name GUID="{DF0EE7B8-94B8-2210-4603-CDBA0E2B1058}" AutoDeleteType="true">E_OperStateCntrl</Name>
+			<Comment><![CDATA[ {attribute 'strict'}]]></Comment>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
 			<EnumInfo>
@@ -75,6 +91,20 @@
 				<Text><![CDATA[unknown]]></Text>
 				<Enum>8</Enum>
 			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>textlistenumeration</Name>
+				</Property>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+			</Properties>
+			<Hides>
+				<Hide GUID="{84F1E854-EED7-7ACD-B4CE-3BAD2631D2E4}"/>
+			</Hides>
 		</DataType>
 		<DataType>
 			<Name GUID="{3AB4C627-A758-0E1E-7675-A1F136EB5998}" AutoDeleteType="true">ST_StateCntrlPB</Name>
@@ -137,11 +167,11 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{45893F60-17ED-F8B3-C0FA-66300A1E1DF8}" AutoDeleteType="true">ST_StateCntrlSts</Name>
+			<Name GUID="{9DD1BB04-677E-9B11-BAF5-0F59A039FFCF}" AutoDeleteType="true">ST_StateCntrlSts</Name>
 			<BitSize>896</BitSize>
 			<SubItem>
 				<Name>CrntState</Name>
-				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+				<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>0</BitOffs>
 				<Properties>
@@ -166,7 +196,7 @@
 			</SubItem>
 			<SubItem>
 				<Name>CrntOperState</Name>
-				<Type GUID="{84F1E854-EED7-7ACD-B4CE-3BAD2631D2E4}">E_OperStateCntrl</Type>
+				<Type GUID="{DF0EE7B8-94B8-2210-4603-CDBA0E2B1058}">E_OperStateCntrl</Type>
 				<Comment><![CDATA[ The Current Operational state]]></Comment>
 				<BitSize>16</BitSize>
 				<BitOffs>192</BitOffs>
@@ -208,13 +238,13 @@
 			</SubItem>
 			<SubItem>
 				<Name>LstState</Name>
-				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+				<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>672</BitOffs>
 			</SubItem>
 			<SubItem>
 				<Name>LstOperState</Name>
-				<Type GUID="{84F1E854-EED7-7ACD-B4CE-3BAD2631D2E4}">E_OperStateCntrl</Type>
+				<Type GUID="{DF0EE7B8-94B8-2210-4603-CDBA0E2B1058}">E_OperStateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>688</BitOffs>
 			</SubItem>
@@ -291,12 +321,15 @@
 				<BitSize>8</BitSize>
 				<BitOffs>888</BitOffs>
 			</SubItem>
+			<Hides>
+				<Hide GUID="{45893F60-17ED-F8B3-C0FA-66300A1E1DF8}"/>
+			</Hides>
 		</DataType>
 		<DataType>
 			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
 			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 			<BitSize>22400</BitSize>
-			<BaseType GUID="{45893F60-17ED-F8B3-C0FA-66300A1E1DF8}">ST_StateCntrlSts</BaseType>
+			<BaseType GUID="{9DD1BB04-677E-9B11-BAF5-0F59A039FFCF}">ST_StateCntrlSts</BaseType>
 			<ArrayInfo>
 				<LBound>1</LBound>
 				<Elements>25</Elements>
@@ -319,6 +352,15 @@
 				<Parameter>[4]</Parameter>
 				<Parameter>[5]</Parameter>
 			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00000000003D}" TcBaseType="true" HideType="true">USINTARR6</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
 		</DataType>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
@@ -1286,7 +1328,7 @@
 						<Var>
 							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
@@ -1296,7 +1338,7 @@
 						<Var>
 							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
@@ -1306,7 +1348,7 @@
 						<Var>
 							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
@@ -1316,7 +1358,7 @@
 						<Var>
 							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.DevState</Name>
@@ -1534,7 +1576,7 @@
 							<Type>UINT</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2">
+					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
@@ -1591,7 +1633,7 @@
 						<Var>
 							<Name>System.ConvDefaultState</Name>
 							<Comment><![CDATA[ The default state of all conveyors]]></Comment>
-							<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+							<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
 						</Var>
 						<Var>
 							<Name>System.Sys_SimActive</Name>
@@ -1841,22 +1883,22 @@ Published]]></Comment>
 						<Var>
 							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{5B5505C6-234E-C564-DABB-F92562CCE33A}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.DevCtrl</Name>
@@ -1870,13 +1912,18 @@ Published]]></Comment>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.Publisher.NetID</Name>
-							<Comment><![CDATA[ EAP Changeable NetID, ]]></Comment>
+							<Comment><![CDATA[ EAP Changeable NetID]]></Comment>
 							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.EAP_205.Publisher.IPaddr</Name>
-							<Comment><![CDATA[ EAP Changeable IP address]]></Comment>
+							<Name>MAIN.EAP_205.Publisher.IPAddr</Name>
+							<Comment><![CDATA[ EAP Changeable IP, stored as a single UDINT]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.MACID</Name>
+							<Comment><![CDATA[ EAP Changeable MAC ID, stored as an array of 6 USINT]]></Comment>
+							<Type GUID="{18071995-0000-0000-0000-00000000003D}">USINTARR6</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.Publisher.Variables[0].VarID</Name>
@@ -2128,7 +2175,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="2" ImageType="3">
+				<Image Id="1" AddrType="1" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>
@@ -12496,7 +12543,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 					<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
 						<Name>PLC-8431 (EL1918)</Name>
 						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="true" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000004">
+						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="1" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000004">
 							<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 							<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
 							<SyncMan>00121c002400010003000000000000000800001224010000</SyncMan>
@@ -14815,7 +14862,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 							<Box Id="25" BoxType="9099" BoxFlags="#x00000020">
 								<Name>PLC-13051 (EL1918)</Name>
 								<ImageId>1003</ImageId>
-								<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="true" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000018">
+								<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="1" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000018">
 									<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 									<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
 									<SyncMan>001208002400010003000000000000000800001224010000</SyncMan>
@@ -15489,7 +15536,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_SendingProduct" VarB="To205_P6005_SendingProduct^Outputs^VarData"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.FrameCtrl" VarB="Outputs^FrameCtrl"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPaddr" VarB="Outputs^IpAddr"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPAddr" VarB="Outputs^IpAddr"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarCtrl" VarB="To205_P6005_IsRunning^Outputs^VarCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarID" VarB="To205_P6005_IsRunning^Outputs^VarId"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarCtrl" VarB="To205_P6005_SendingProduct^Outputs^VarCtrl"/>
