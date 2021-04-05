@@ -402,6 +402,9 @@
     <Compile Include="POUs\FunctionBlocks\VFD\Functions\VFD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\Interlock_Events_Temp.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\Log_Diverts.TcPOU">
       <SubType>Code</SubType>
     </Compile>

@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+  <POU Name="Interlock_Events_Temp" Id="{012ffb62-d0ae-4343-8e9f-9c4ae32af038}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Interlock_Events_Temp
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//----------------------------------------P6005--------------------------------------------------------------
+// Interlocks
+ SysState.In_SystemEvents.0 :=P6005.In_EquipIntlks.2:=  NOT GVL_IO.P6005_Faulted;
+//Events
+  P6005.In_EquipEvents.2:= GVL_IO.DS_P6005;
+  P6005.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6005.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
+  P6005.In_EquipEvents.5:= NOT CommStatus.RIO1181_CommFault.Out;
+//----------------------------------------P6010--------------------------------------------------------------
+P6010_StatePB.AutoPB := System.Cnvyr_Auto;
+P6010_StatePB.ManPB := System.Cnvyr_Manual;
+P6010_StatePB.ResetPB := System.Cnvyr_Reset;
+P6010_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6010SleepWakeTrig[1] := PhotoEyes.PE_1232.Out_OffFltrd;
+// ADD an EAP photoeye from 3rd floor
+
+// Initialize the Equipment Type
+P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6010.In_EquipIntlks.2:=P6010_VFD.Run_OK;
+//Events
+  P6010.In_EquipEvents.2:= GVL_IO.DS_P6010;
+  P6010.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6010.In_EquipEvents.4:= NOT CommStatus.RIO1181_CommFault.Out;
+
+// Function Call
+P6010(
+   In_p_EquipStatePB:= P6010_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6015_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1162.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6010SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6010Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6010IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6010EvntsArry,
+   cfg_JamDetectTime:= cfgP6010JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6010SleepTime,
+   Sts_EquipState := P6010_Status);
+
+//Motor Control
+P6010_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P6010.Out_ConvCrntMtr OR Test_VFD_P6010));
+P6010_Status.Sts_IsRunning := P6010_VFD.IsRunning;
+
+//----------------------------------------P6015--------------------------------------------------------------
+P6015_StatePB.AutoPB := System.Cnvyr_Auto;
+P6015_StatePB.ManPB := System.Cnvyr_Manual;
+P6015_StatePB.ResetPB := System.Cnvyr_Reset;
+P6015_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6015SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+P6015SleepWakeTrig[2] :=  PhotoEyes.PE_1232.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6015.In_EquipIntlks.2:= NOT GVL_IO.P6015_Faulted;
+  P6015.In_EquipIntlks.3:= ProxSensors.PX_1281_Extended.Out; //Powered Transfer Raised 
+//Events
+  P6015.In_EquipEvents.2:= GVL_IO.DS_P6015;
+  P6015.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6015.In_EquipEvents.4:= Photoeyes.PE_1231.Out; //Goes low when door drops
+  P6015.In_EquipEvents.5:= NOT CommStatus.RIO1181_CommFault.Out;
+
+// Function Call
+P6015(
+   In_p_EquipStatePB:= P6015_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6020_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1081.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6015SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6015Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6015IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6015EvntsArry,
+   cfg_JamDetectTime:= cfgP6015JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6015SleepTime,
+   Sts_EquipState := P6015_Status,
+   Out_ConvCrntMtr => GVL_IO.P6015_RUN);
+
+P6015_Status.Sts_IsRunning := GVL_IO.P6015_RUN;
+//----------------------------------------P6020--------------------------------------------------------------
+P6020_StatePB.AutoPB := System.Cnvyr_Auto;
+P6020_StatePB.ManPB := System.Cnvyr_Manual;
+P6020_StatePB.ResetPB := System.Cnvyr_Reset;
+P6020_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6020SleepWakeTrig[1] := PhotoEyes.PE_1081.Out_OffFltrd;
+P6020SleepWakeTrig[2] := PhotoEyes.PE_1162.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6020.In_EquipIntlks.2:= NOT GVL_IO.P6020_Faulted;
+//Events
+  P6020.In_EquipEvents.2:= GVL_IO.DS_P6020;
+  P6020.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6020.In_EquipEvents.4:= NOT CommStatus.RIO1181_CommFault.Out;
+
+// Function Call
+P6020(
+   In_p_EquipStatePB:= P6020_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6025_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_1161.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6020SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6020Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6020IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6020EvntsArry,
+   cfg_JamDetectTime:= cfgP6020JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6020SleepTime,
+   Sts_EquipState := P6020_Status,
+   Out_ConvCrntMtr => GVL_IO.P6020_RUN);
+
+P6020_Status.Sts_IsRunning := GVL_IO.P6020_RUN;
+//----------------------------------------P6025--------------------------------------------------------------
+P6025_StatePB.AutoPB := System.Cnvyr_Auto;
+P6025_StatePB.ManPB := System.Cnvyr_Manual;
+P6025_StatePB.ResetPB := System.Cnvyr_Reset;
+P6025_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6025SleepWakeTrig[1] := PhotoEyes.PE_1161.Out_OffFltrd;
+P6025SleepWakeTrig[2] := PhotoEyes.PE_1081.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6025.In_EquipIntlks.2:= NOT GVL_IO.P6025_Faulted;
+//Events
+  P6025.In_EquipEvents.2:= GVL_IO.DS_P6025;
+  P6025.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6025.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
+
+// Function Call
+P6025(
+   In_p_EquipStatePB:= P6025_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6030_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4121.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6025SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6025Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6025IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6025EvntsArry,
+   cfg_JamDetectTime:= cfgP6025JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6025SleepTime,
+   Sts_EquipState := P6025_Status,
+   Out_ConvCrntMtr => GVL_IO.P6025_RUN);
+
+P6025_Status.Sts_IsRunning := GVL_IO.P6025_RUN;
+//----------------------------------------P6030--------------------------------------------------------------
+P6030_StatePB.AutoPB := System.Cnvyr_Auto;
+P6030_StatePB.ManPB := System.Cnvyr_Manual;
+P6030_StatePB.ResetPB := System.Cnvyr_Reset;
+P6030_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6030SleepWakeTrig[1] := PhotoEyes.PE_4121.Out_OffFltrd;
+P6030SleepWakeTrig[2] := PhotoEyes.PE_1161.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6030.In_EquipIntlks.2:= NOT GVL_IO.P6030_Faulted;
+//Events
+  P6030.In_EquipEvents.2:= GVL_IO.DS_P6030;
+  P6030.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6030.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
+
+// Function Call
+P6030(
+   In_p_EquipStatePB:= P6030_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6035_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4271.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6030SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6030Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6030IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6030EvntsArry,
+   cfg_JamDetectTime:= cfgP6030JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6030SleepTime,
+   Sts_EquipState := P6030_Status,
+   Out_ConvCrntMtr => GVL_IO.P6030_RUN);
+
+P6030_Status.Sts_IsRunning := GVL_IO.P6030_RUN;
+//----------------------------------------P6035--------------------------------------------------------------
+P6035_StatePB.AutoPB := System.Cnvyr_Auto;
+P6035_StatePB.ManPB := System.Cnvyr_Manual;
+P6035_StatePB.ResetPB := System.Cnvyr_Reset;
+P6035_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6035SleepWakeTrig[1] := PhotoEyes.PE_4271.Out_OffFltrd;
+P6035SleepWakeTrig[2] := PhotoEyes.PE_4121.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6035.In_EquipIntlks.2:= NOT GVL_IO.P6035_Faulted; 
+//Events
+  P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
+  P6035.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6035.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
+
+// Function Call
+P6035(
+   In_p_EquipStatePB:= P6035_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P6045_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_4201.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6035SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6035Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6035IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6035EvntsArry,
+   cfg_JamDetectTime:= cfgP6035JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6035SleepTime,
+   Sts_EquipState := P6035_Status,
+   Out_ConvCrntMtr => GVL_IO.P6035_RUN);
+
+P6035_Status.Sts_IsRunning := GVL_IO.P6035_RUN;
+//----------------------------------------P6045--------------------------------------------------------------
+P6045_StatePB.AutoPB := System.Cnvyr_Auto;
+P6045_StatePB.ManPB := System.Cnvyr_Manual;
+P6045_StatePB.ResetPB := System.Cnvyr_Reset;
+P6045_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6045SleepWakeTrig[1] := PhotoEyes.PE_4201.Out_OffFltrd;
+P6045SleepWakeTrig[2] := PhotoEyes.PE_4271.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P6045.In_EquipIntlks.2:= P6045_VFD.RUN_OK;
+  // ADD FULL FOR SORTER 
+//Events
+  P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
+  P6045.In_EquipEvents.3:= System.SysEventsAllOk;
+  P6045.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
+
+// Function Call
+P6045(
+   In_p_EquipStatePB:= P6045_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= TRUE, //P6040_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6045SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6045Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6045IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6045EvntsArry,
+   cfg_JamDetectTime:= cfgP6045JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6045SleepTime,
+   Sts_EquipState := P6045_Status);
+
+//Motor Control
+P6045_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P6045.Out_ConvCrntMtr OR Test_VFD_P6045));
+P6045_Status.Sts_IsRunning := P6045_VFD.IsRunning;
+//----------------------------------------P6040--------------------------------------------------------------
+P6040_StatePB.AutoPB := System.Cnvyr_Auto;
+P6040_StatePB.ManPB := System.Cnvyr_Manual;
+P6040_StatePB.ResetPB := System.Cnvyr_Reset;
+P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
+P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
+
+
+// Initialize the Equipment Type
+P6040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+P6040.In_EquipIntlks.2:= Solenoids.GR6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.3:= Solenoids.GR6040_02_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.4:= Solenoids.PI6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.5:= Solenoids.PU6040_01_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.6:= Solenoids.PU6040_02_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.7:= Solenoids.PU6040_03_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.8:= Solenoids.PU6040_04_Status.Sts_EquipmentState.StsAuto;
+P6040.In_EquipIntlks.9:= NOT GVL_IO.P6040_Faulted; 
+//add fulls 
+//Events
+P6040.In_EquipEvents.2:= GVL_IO.DS_P6040;
+P6040.In_EquipEvents.3:= System.SysEventsAllOk;
+P6040.In_EquipEvents.4:= NOT CommStatus.RIO6171_CommFault.Out;
+P6040.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
+P6040.In_EquipEvents.6:= NOT CommStatus.RIO8181_CommFault.Out;
+P6040.In_EquipEvents.7:= FALSE; //Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
+P6040.In_EquipEvents.8:= FALSE; // Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
+P6040.In_EquipEvents.9:= FALSE; // Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
+P6040.In_EquipEvents.10:= FALSE; //Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
+
+// Function Call
+P6040(
+   In_p_EquipStatePB:= P6040_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= TRUE,
+   In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
+   Cfg_ConvType:= E_ConvType.end,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P6040SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP6040Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP6040IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP6040EvntsArry,
+   cfg_JamDetectTime:= cfgP6040JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP6040SleepTime,
+   Sts_EquipState := P6040_Status,
+   Out_ConvCrntMtr => GVL_IO.P6040_RUN);
+
+P6040_Status.Sts_IsRunning := GVL_IO.P6040_RUN;
+//----------------------------------------P7004--------------------------------------------------------------
+P7004_StatePB.AutoPB := System.Cnvyr_Auto;
+P7004_StatePB.ManPB := System.Cnvyr_Manual;
+P7004_StatePB.ResetPB := System.Cnvyr_Reset;
+P7004_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7004SleepWakeTrig[1] := TRUE; //This conveyor doesn't sleep
+
+// Initialize the Equipment Type
+P7004_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7004.In_EquipIntlks.2:= NOT GVL_IO.P7004_Faulted;
+//Events
+ P7004.In_EquipEvents.2:= GVL_IO.DS_P7004;
+ P7004.In_EquipEvents.3:= System.SysEventsAllOk;
+ P7004.In_EquipEvents.4:= PhotoEyes.PE_12261.Out;
+ P7004.In_EquipEvents.5:= NOT CommStatus.RIO12171_CommFault.Out;
+
+// Function Call
+P7004(
+   In_p_EquipStatePB:= P7004_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7005_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= FALSE, 
+   Cfg_ConvType:= E_ConvType.slave,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7004SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7004Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7004IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7004EvntsArry,
+   cfg_JamDetectTime:= cfgP7004JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7004SleepTime,
+   Sts_EquipState := P7004_Status,
+   Out_ConvCrntMtr => GVL_IO.P7004_RUN);
+
+P7004_Status.Sts_IsRunning := GVL_IO.P7004_RUN;
+//----------------------------------------P7005--------------------------------------------------------------
+P7005_StatePB.AutoPB := System.Cnvyr_Auto;
+P7005_StatePB.ManPB := System.Cnvyr_Manual;
+P7005_StatePB.ResetPB := System.Cnvyr_Reset;
+P7005_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7005_ResetWakeTmr(IN:= GVL_IO.PB_RemoteReset_12181, PT:= T#3S, Q=> );
+P7005SleepWakeTrig[1] := PhotoEyes.PE_12221.Out_OffFltrd;
+P7005SleepWakeTrig[2] := P7005_ResetWakeTmr.Q; //RESET BUTTON
+
+// Initialize the Equipment Type
+P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7005.In_EquipIntlks.2:= P7005_VFD.RUN_OK;
+//Events
+  P7005.In_EquipEvents.2:= GVL_IO.DS_P7005;
+  P7005.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7005.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
+
+// Function Call
+P7005(
+   In_p_EquipStatePB:= P7005_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7010_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= PhotoEyes.PE_12301.Out, 
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7005SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7005Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7005IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7005EvntsArry,
+   cfg_JamDetectTime:= cfgP7005JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7005SleepTime,
+   Sts_EquipState := P7005_Status);
+
+//Motor Control
+P7005_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P7005.Out_ConvCrntMtr OR Test_VFD_P7005));
+P7005_Status.Sts_IsRunning := P7005_VFD.IsRunning;
+//----------------------------------------P7010--------------------------------------------------------------
+P7010_StatePB.AutoPB := System.Cnvyr_Auto;
+P7010_StatePB.ManPB := System.Cnvyr_Manual;
+P7010_StatePB.ResetPB := System.Cnvyr_Reset;
+P7010_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7010SleepWakeTrig[1] := PhotoEyes.PE_12301.Out_OffFltrd;
+P7010SleepWakeTrig[2] := PhotoEyes.PE_12221.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7010.In_EquipIntlks.2:= NOT GVL_IO.P7010_Faulted;
+//Events
+  P7010.In_EquipEvents.2:= GVL_IO.DS_P7010;
+  P7010.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7010.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
+
+// Function Call
+P7010(
+   In_p_EquipStatePB:= P7010_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7015_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_12231.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7010SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7010Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7010IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7010EvntsArry,
+   cfg_JamDetectTime:= cfgP7010JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7010SleepTime,
+   Sts_EquipState := P7010_Status,
+   Out_ConvCrntMtr => GVL_IO.P7010_RUN);
+
+P7010_Status.Sts_IsRunning := GVL_IO.P7010_RUN;
+//----------------------------------------P7015--------------------------------------------------------------
+P7015_StatePB.AutoPB := System.Cnvyr_Auto;
+P7015_StatePB.ManPB := System.Cnvyr_Manual;
+P7015_StatePB.ResetPB := System.Cnvyr_Reset;
+P7015_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7015SleepWakeTrig[1] := PhotoEyes.PE_12231.Out_OffFltrd;
+P7015SleepWakeTrig[2] := PhotoEyes.PE_12301.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7015_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7015.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
+//Events
+  P7015.In_EquipEvents.2:= GVL_IO.DS_P7015;
+  P7015.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7015.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
+
+// Function Call
+P7015(
+   In_p_EquipStatePB:= P7015_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7020_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15121.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7015SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7015Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7015IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7015EvntsArry,
+   cfg_JamDetectTime:= cfgP7015JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7015SleepTime,
+   Sts_EquipState := P7015_Status,
+   Out_ConvCrntMtr => GVL_IO.P7015_RUN);
+
+P7015_Status.Sts_IsRunning := GVL_IO.P7015_RUN;
+//----------------------------------------P7020--------------------------------------------------------------
+P7020_StatePB.AutoPB := System.Cnvyr_Auto;
+P7020_StatePB.ManPB := System.Cnvyr_Manual;
+P7020_StatePB.ResetPB := System.Cnvyr_Reset;
+P7020_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7020SleepWakeTrig[1] := PhotoEyes.PE_15121.Out_OffFltrd;
+P7020SleepWakeTrig[2] := PhotoEyes.PE_12231.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7020.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
+//Events
+  P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
+  P7020.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7020.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
+ 
+
+// Function Call
+P7020(
+   In_p_EquipStatePB:= P7020_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7025_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15181.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7020SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7020Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7020IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7020EvntsArry,
+   cfg_JamDetectTime:= cfgP7020JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7020SleepTime,
+   Sts_EquipState := P7020_Status,
+   Out_ConvCrntMtr => GVL_IO.P7020_RUN);
+
+P7020_Status.Sts_IsRunning := GVL_IO.P7020_RUN;
+//----------------------------------------P7025--------------------------------------------------------------
+P7025_StatePB.AutoPB := System.Cnvyr_Auto;
+P7025_StatePB.ManPB := System.Cnvyr_Manual;
+P7025_StatePB.ResetPB := System.Cnvyr_Reset;
+P7025_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7025SleepWakeTrig[1] := PhotoEyes.PE_15181.Out_OffFltrd;
+P7025SleepWakeTrig[2] := PhotoEyes.PE_15121.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7025_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7025.In_EquipIntlks.2:= NOT GVL_IO.P7025_Faulted;
+//Events
+  P7025.In_EquipEvents.2:=  GVL_IO.DS_P7025;
+  P7025.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7025.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
+
+// Function Call
+P7025(
+   In_p_EquipStatePB:= P7025_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7030_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_15261.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7025SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7025Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7025IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7025EvntsArry,
+   cfg_JamDetectTime:= cfgP7025JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7025SleepTime,
+   Sts_EquipState := P7025_Status,
+   Out_ConvCrntMtr => GVL_IO.P7025_RUN);
+
+P7025_Status.Sts_IsRunning := GVL_IO.P7025_RUN;
+//----------------------------------------P7030--------------------------------------------------------------
+P7030_StatePB.AutoPB := System.Cnvyr_Auto;
+P7030_StatePB.ManPB := System.Cnvyr_Manual;
+P7030_StatePB.ResetPB := System.Cnvyr_Reset;
+P7030_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7030SleepWakeTrig[1] := PhotoEyes.PE_15261.Out_OffFltrd;
+P7030SleepWakeTrig[2] := PhotoEyes.PE_15181.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7030.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
+//Events
+  P7030.In_EquipEvents.2:=  GVL_IO.DS_P7030;
+  P7030.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7030.In_EquipEvents.4:= NOT CommStatus.RIO16171_CommFault.Out;
+
+// Function Call
+P7030(
+   In_p_EquipStatePB:= P7030_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7035_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16111.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7030SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7030Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7030IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7030EvntsArry,
+   cfg_JamDetectTime:= cfgP7030JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7030SleepTime,
+   Sts_EquipState := P7030_Status,
+   Out_ConvCrntMtr => GVL_IO.P7030_RUN);
+
+P7030_Status.Sts_IsRunning := GVL_IO.P7030_RUN;
+//----------------------------------------P7035--------------------------------------------------------------
+P7035_StatePB.AutoPB := System.Cnvyr_Auto;
+P7035_StatePB.ManPB := System.Cnvyr_Manual;
+P7035_StatePB.ResetPB := System.Cnvyr_Reset;
+P7035_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7035SleepWakeTrig[1] := PhotoEyes.PE_16111.Out_OffFltrd;
+P7035SleepWakeTrig[2] := PhotoEyes.PE_15261.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7035.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
+  P7035.In_EquipIntlks.3:= ProxSensors.PX_16231_Extended.Out;
+//Events
+  P7035.In_EquipEvents.2:= GVL_IO.DS_P7035;
+  P7035.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7035.In_EquipEvents.4:= NOT Photoeyes.PE_16181.Out; //Goes low when door drops
+  P7035.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
+
+// Function Call
+P7035(
+   In_p_EquipStatePB:= P7035_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7040_VFD.IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16301.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7035SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7035Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7035IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7035EvntsArry,
+   cfg_JamDetectTime:= cfgP7035JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7035SleepTime,
+   Sts_EquipState := P7035_Status,
+   Out_ConvCrntMtr => GVL_IO.P7035_RUN);
+
+P7035_Status.Sts_IsRunning := GVL_IO.P7035_RUN;
+//----------------------------------------P7040--------------------------------------------------------------
+P7040_StatePB.AutoPB := System.Cnvyr_Auto;
+P7040_StatePB.ManPB := System.Cnvyr_Manual;
+P7040_StatePB.ResetPB := System.Cnvyr_Reset;
+P7040_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7040SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
+P7040SleepWakeTrig[2] := PhotoEyes.PE_16111.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7040.In_EquipIntlks.2:= P7040_VFD.RUN_OK;
+//Events
+  P7040.In_EquipEvents.2:=  GVL_IO.DS_P7040;
+  P7040.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7040.In_EquipEvents.4:= NOT CommStatus.RIO16171_CommFault.Out;
+
+// Function Call
+P7040(
+   In_p_EquipStatePB:= P7040_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= P7045_Status.Sts_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16131.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7040SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7040Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7040IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7040EvntsArry,
+   cfg_JamDetectTime:= cfgP7040JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7040SleepTime,
+   Sts_EquipState := P7040_Status);
+
+//Motor Control
+P7040_VFD(
+   RunVelocity := DefaultVelocity,
+   VelocityThreshold := DefaultVelocityThreshold,
+   Reset := ResetAllDrives,
+   RunRequest := (P7040.Out_ConvCrntMtr OR Test_VFD_P7040));
+P7040_Status.Sts_IsRunning := P7040_VFD.IsRunning;
+
+//----------------------------------------P7045--------------------------------------------------------------
+P7045_StatePB.AutoPB := System.Cnvyr_Auto;
+P7045_StatePB.ManPB := System.Cnvyr_Manual;
+P7045_StatePB.ResetPB := System.Cnvyr_Reset;
+P7045_StatePB.OfflinePB := System.Cnvyr_Offline;
+P7045SleepWakeTrig[1] := PhotoEyes.PE_16131.Out_OffFltrd;
+P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
+
+// Initialize the Equipment Type
+P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
+
+// Interlocks
+  P7045.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
+//Events
+  P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
+  P7045.In_EquipEvents.3:= System.SysEventsAllOk;
+  P7045.In_EquipEvents.4:= ProxSensors.PX_16231_Extended.Out;
+  P7045.In_EquipEvents.5:= NOT CommStatus.RIO16171_CommFault.Out;
+
+// Function Call
+P7045(
+   In_p_EquipStatePB:= P7045_StatePB,
+   In_P_ConvReqRun:= TRUE,
+   In_ConvDwnStrmMtrStatus:= GVL_IO.From205_P2012_IsRunning,
+   In_ConvCrntExitPhotoEye:= Photoeyes.PE_16201.Out,
+   In_SimActive:= System.Sys_SimActive,
+   In_EquipInit:= GVL_IO.INIT,
+   In_WakeSlpTrigArry:= P7045SleepWakeTrig,
+   Cfg_EquipIndex := GVL_EquipArrays.nEquipIndex,
+   Cfg_EquipLabel := cfgP7045Label,
+   Cfg_EquipDefState:= System.ConvDefaultState,
+   Cfg_EquipIntlksArry:= cfgP7045IntlksArry,
+   Cfg_EquipEvntsArry:= cfgP7045EvntsArry,
+   cfg_JamDetectTime:= cfgP7045JamDetectTime,
+   Cfg_UseSleepTmr := TRUE,
+   Cfg_SleepWaitTime:= cfgP7045SleepTime,
+   Sts_EquipState := P7045_Status,
+   Out_ConvCrntMtr => GVL_IO.P7045_RUN);
+
+P7045_Status.Sts_IsRunning := GVL_IO.P7045_RUN;]]></ST>
+    </Implementation>
+    <LineIds Name="Interlock_Events_Temp">
+      <LineId Id="6" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="19" Count="4" />
+      <LineId Id="46" Count="747" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

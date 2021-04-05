@@ -3,6 +3,7 @@
   <POU Name="System" Id="{741af542-e67c-4e6c-b125-8937dbba14b1}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM System
 VAR
+	{attribute 'OPC.UA.DA' := '0'}	
 	SysStateCntrlSts        	:    ST_EquipmentStatus;    // System State/Control/Status Data
     SysState                	:    FB_SystemCntrl;
     SysStateCntrl_StatePB       :    ST_StateCntrlPB;
