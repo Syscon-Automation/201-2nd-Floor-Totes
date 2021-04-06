@@ -293,7 +293,7 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
+			<Name GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
 			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 			<BitSize>22400</BitSize>
 			<BaseType GUID="{45893F60-17ED-F8B3-C0FA-66300A1E1DF8}">ST_StateCntrlSts</BaseType>
@@ -1109,6 +1109,41 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.DS_P6010</Name>
 							<Comment><![CDATA[P6010 Disconnect]]></Comment>
 							<Type>BOOL</Type>
@@ -1291,41 +1326,6 @@
 						<Var>
 							<Name>GVL_IO.From205_P2012_SendingProduct</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.DevState</Name>
@@ -1547,10 +1547,6 @@
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.To205_P7045_SendingProduct</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1797,6 +1793,31 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_EquipArrays.nEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
 							<Name>GVL_IO.SV_6181_EXT</Name>
 							<Comment><![CDATA[ GR6040-02 BELT GRIPPER]]></Comment>
 							<Type>BOOL</Type>
@@ -1843,29 +1864,8 @@ Published]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_EquipArrays.nEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{830D81A2-53DD-A6C6-A0B4-904CC8EB010D}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Name>GVL_IO.To205_P7045_SendingProduct</Name>
+							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.DevCtrl</Name>
@@ -2149,7 +2149,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="1" ImageType="3">
+				<Image Id="1" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>

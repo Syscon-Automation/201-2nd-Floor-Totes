@@ -864,7 +864,7 @@ P6040_StatePB.AutoPB := System.Cnvyr_Auto;
 P6040_StatePB.ManPB := System.Cnvyr_Manual;
 P6040_StatePB.ResetPB := System.Cnvyr_Reset;
 P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
+P6040SleepWakeTrig[1] := PhotoEyes.PE_4071.Out_OffFltrd;
 P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
 
 
