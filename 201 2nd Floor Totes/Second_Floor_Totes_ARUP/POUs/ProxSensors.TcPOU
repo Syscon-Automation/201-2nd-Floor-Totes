@@ -59,7 +59,8 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[// P6020 POWER TRANSFER Extended
+      <ST><![CDATA[//----------------------------------------P6020--------------------------------------------------------------
+// P6020 POWER TRANSFER Extended
 PX_1281_Extended(
 	In:= In_PX_1281_Extended,
 	CFG_OKState:= 0,
@@ -105,8 +106,8 @@ PX_6151_Extended(
 	);
 //----------------------------------------PI6040_01--------------------------------------------------------------
 // PI6040-01 "D" GRIPPER Retracted
-PX_7122_Retracted(
-	In:= In_PX_7122_Retracted,
+PX_6122_Retracted(
+	In:= In_PX_6122_Retracted,
 	CFG_OKState:= 0,
 	CFG_OnDlyTime:= DebounceOnTime,
 	CFG_OnDlyTime:= DebounceOffTime,
@@ -114,8 +115,8 @@ PX_7122_Retracted(
 	);
 
 // PI6040-01 "D" GRIPPER Extended
-PX_7151_Extended(
-	In:= In_PX_7151_Extended,
+PX_6152_Extended(
+	In:= In_PX_6152_Extended,
 	CFG_OKState:= 0,
 	CFG_OnDlyTime:= DebounceOnTime,
 	CFG_OnDlyTime:= DebounceOffTime,
@@ -158,17 +159,25 @@ PX_7151_Extended(
 	In_Sim:= 
 	);
 
-
-
-// PU6040-04 PUSH DIVERT Extended
-PX_8121_Extended(
-	In:= In_PX_8121_Extended,
+//----------------------------------------PU6040_03--------------------------------------------------------------
+// PU6040-03 PUSH DIVERT Retracted
+PX_8321_Retracted(
+	In:= In_PX_8321_Retracted,
+	CFG_OKState:= 0,
+	CFG_OnDlyTime:= DebounceOnTime,
+	CFG_OnDlyTime:= DebounceOffTime,
+	In_Sim:= 
+	);
+// PU6040-03 PUSH DIVERT Extended
+PX_8291_Extended(
+	In:= In_PX_8291_Extended,
 	CFG_OKState:= 0,
 	CFG_OnDlyTime:= DebounceOnTime,
 	CFG_OnDlyTime:= DebounceOffTime,
 	In_Sim:= 
 	);
 
+//----------------------------------------PU6040_04--------------------------------------------------------------
 // PU6040-04 PUSH DIVERT Retracted
 PX_8091_Retracted(
 	In:= In_PX_8091_Retracted,
@@ -187,24 +196,7 @@ PX_8121_Extended(
 	In_Sim:= 
 	);
 
-// PU6040-03 PUSH DIVERT Retracted
-PX_8321_Retracted(
-	In:= In_PX_8321_Retracted,
-	CFG_OKState:= 0,
-	CFG_OnDlyTime:= DebounceOnTime,
-	CFG_OnDlyTime:= DebounceOffTime,
-	In_Sim:= 
-	);
-
-// PU6040-03 PUSH DIVERT Extended
-PX_8291_Extended(
-	In:= In_PX_8291_Extended,
-	CFG_OKState:= 0,
-	CFG_OnDlyTime:= DebounceOnTime,
-	CFG_OnDlyTime:= DebounceOffTime,
-	In_Sim:= 
-	);
-
+//----------------------------------------P7035--------------------------------------------------------------
 // P7035 POWER TRANSFER Extended
 PX_16231_Extended(
 	In:= In_PX_16231_Extended,
@@ -217,6 +209,7 @@ PX_16231_Extended(
 ]]></ST>
     </Implementation>
     <LineIds Name="ProxSensors">
+      <LineId Id="498" Count="0" />
       <LineId Id="166" Count="7" />
       <LineId Id="384" Count="16" />
       <LineId Id="174" Count="0" />
@@ -227,7 +220,15 @@ PX_16231_Extended(
       <LineId Id="409" Count="15" />
       <LineId Id="408" Count="0" />
       <LineId Id="228" Count="18" />
-      <LineId Id="263" Count="55" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="482" Count="6" />
+      <LineId Id="264" Count="8" />
+      <LineId Id="281" Count="1" />
+      <LineId Id="491" Count="6" />
+      <LineId Id="489" Count="1" />
+      <LineId Id="283" Count="7" />
+      <LineId Id="300" Count="0" />
+      <LineId Id="309" Count="9" />
       <LineId Id="5" Count="0" />
     </LineIds>
   </POU>

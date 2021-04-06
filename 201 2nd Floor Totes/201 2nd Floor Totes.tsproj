@@ -1884,13 +1884,13 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
-							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
-							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2102,13 +2102,6 @@ Published]]></Comment>
 						<OwnerA Name="OutputSrc" Prefix="TIPC^Second_Floor_Totes_ARUP^Second_Floor_Totes_ARUP Instance" Type="2">
 							<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
 								<Link VarA="GVL_IO.To205_P6005_SendingProduct" TypeA="BOOL" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="To205_P7045_SendingProduct^Outputs^VarData" RestoreInfo="ANotFound"/>
-							</OwnerB>
-						</OwnerA>
-					</UnrestoredVarLinks>
-					<UnrestoredVarLinks ImportTime="2021-04-06T11:20:15">
-						<OwnerA Name="OutputSrc" Prefix="TIPC^Second_Floor_Totes_ARUP^Second_Floor_Totes_ARUP Instance" Type="2">
-							<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
-								<Link VarA="MAIN.EAP_205.Publisher.IPaddr" TypeA="UDINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000008}" VarB="Outputs^IpAddr" RestoreInfo="ANotFound"/>
 							</OwnerB>
 						</OwnerA>
 					</UnrestoredVarLinks>
@@ -15516,6 +15509,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[1].VarState" VarB="To205_P7045_SendingProduct^Inputs^VarState"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.FrameCtrl" VarB="Outputs^FrameCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPAddr" VarB="Outputs^IpAddr"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarCtrl" VarB="To205_P6005_IsRunning^Outputs^VarCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarID" VarB="To205_P6005_IsRunning^Outputs^VarId"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarCtrl" VarB="To205_P7045_SendingProduct^Outputs^VarCtrl"/>
