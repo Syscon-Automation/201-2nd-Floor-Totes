@@ -12,7 +12,6 @@ VAR_GLOBAL
  	PB_RemoteReset_12181 AT %I* 	: BOOL;	//P7004 Height check reset Reset Button
 	
 	SystemAirPressure AT %I*	:BOOL;
-	Regulator_AirPressure AT %I*	:BOOL;
 
 	
 	HornMainPanel				AT %Q* 	:BOOL;	//Panel Tower Horn
@@ -88,8 +87,6 @@ DS_P6005            AT %I*  :BOOL;  //P6005 Disconnect
 {attribute 'OPC.UA.DA' := '1'}
 DS_P6010            AT %I*  :BOOL;  //P6010 Disconnect
 {attribute 'OPC.UA.DA' := '1'}
-DS_P6011            AT %I*  :BOOL;  //P6011 Disconnect
-{attribute 'OPC.UA.DA' := '1'}
 DS_P6015            AT %I*  :BOOL;  //P6015 Disconnect
 {attribute 'OPC.UA.DA' := '1'}
 DS_P6020            AT %I*  :BOOL;  //P6020 Disconnect
@@ -121,8 +118,6 @@ DS_P7030            AT %I*  :BOOL;  //P7030 Disconnect
 DS_P7035            AT %I*  :BOOL;  //P7035 Disconnect
 {attribute 'OPC.UA.DA' := '1'}
 DS_P7040            AT %I*  :BOOL;  //P7040 Disconnect
-{attribute 'OPC.UA.DA' := '1'}
-DS_P7041            AT %I*  :BOOL;  //P7041 Disconnect
 {attribute 'OPC.UA.DA' := '1'}
 DS_P7045            AT %I*  :BOOL;  //P7045 Disconnect	
 	

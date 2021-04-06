@@ -942,12 +942,12 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>ProxSensors.In_PX_8291_Extended</Name>
+							<Name>ProxSensors.In_PX_8091_Retracted</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>ProxSensors.In_PX_8091_Retracted</Name>
+							<Name>ProxSensors.In_PX_8291_Extended</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
@@ -1016,10 +1016,6 @@
 						</Var>
 						<Var>
 							<Name>GVL_IO.SystemAirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Regulator_AirPressure</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1329,11 +1325,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.DS_P6011</Name>
-							<Comment><![CDATA[P6011 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.DS_P6015</Name>
 							<Comment><![CDATA[P6015 Disconnect]]></Comment>
 							<Type>BOOL</Type>
@@ -1446,11 +1437,6 @@
 						<Var>
 							<Name>GVL_IO.DS_P7040</Name>
 							<Comment><![CDATA[P7040 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7041</Name>
-							<Comment><![CDATA[P7041 Disconnect]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1884,13 +1870,13 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
-							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
-							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2149,7 +2135,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="1" ImageType="3">
+				<Image Id="1" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>
@@ -15792,6 +15778,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-8181 (EP2339-0022)">
 				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6040" VarB="Channel 6^P6040 Motor Disconnect"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.RIO8181_WcState" VarB="WcState^WcState"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.SystemAirPressure" VarB="Channel 15^Air Switch"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8141.In_PE" VarB="Channel 10^PE-8141"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8171.In_PE" VarB="Channel 11^PE-8171"/>
 				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8181.In_PE" VarB="Channel 4^PE-8181"/>

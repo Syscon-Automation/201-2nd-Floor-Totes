@@ -183,12 +183,7 @@ cfgPU6040_04EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//!!!!!!!!!!!!!!!!!!!!CHange!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-GVL_IO.SystemAirPressure := TRUE;
-
-
-
-//----------------------------------------GR6040_01--------------------------------------------------------------
+      <ST><![CDATA[//----------------------------------------GR6040_01--------------------------------------------------------------
 GR6040_01_StatePB.AutoPB := System.Cnvyr_Auto;
 GR6040_01_StatePB.ManPB := System.Cnvyr_Manual;
 GR6040_01_StatePB.ResetPB := System.Cnvyr_Reset;
@@ -447,9 +442,6 @@ PU6040_04(
 ]]></ST>
     </Implementation>
     <LineIds Name="Solenoids">
-      <LineId Id="3431" Count="0" />
-      <LineId Id="3435" Count="0" />
-      <LineId Id="3432" Count="2" />
       <LineId Id="2393" Count="16" />
       <LineId Id="2900" Count="0" />
       <LineId Id="2410" Count="4" />
