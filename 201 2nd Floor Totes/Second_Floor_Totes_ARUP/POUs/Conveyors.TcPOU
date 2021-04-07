@@ -815,7 +815,7 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 P6045(
    In_p_EquipStatePB:= P6045_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= TRUE, //P6040_Status.Sts_IsRunning,
+   In_ConvDwnStrmMtrStatus:= P6040_Status.Sts_IsRunning,
    In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -1069,7 +1069,7 @@ P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 // Interlocks
   P7020.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
 //Events
-  P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
+  P7020.In_EquipEvents.2:= GVL_IO.DS_P7020;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
   P7020.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
  
