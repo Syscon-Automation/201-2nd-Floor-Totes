@@ -19,9 +19,6 @@
     <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DUTs\EAP\E_EAP_PubType.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="DUTs\EAP\ST_EAP_DEVICE.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -402,9 +399,6 @@
     <Compile Include="POUs\FunctionBlocks\VFD\Functions\VFD.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\Interlock_Events_Temp.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="POUs\Log_Diverts.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -554,14 +548,6 @@
     <None Include="Second_Floor_Totes_ARUP.tmc">
       <SubType>Content</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PlaceholderResolution Include="Tc2_System">
-      <Resolution>Tc2_System, 3.4.22.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
-    <PlaceholderResolution Include="Tc2_Utilities">
-      <Resolution>Tc2_Utilities, 3.3.38.0 (Beckhoff Automation GmbH)</Resolution>
-    </PlaceholderResolution>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

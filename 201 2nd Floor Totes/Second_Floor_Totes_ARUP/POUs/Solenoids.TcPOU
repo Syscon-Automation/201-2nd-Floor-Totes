@@ -11,7 +11,6 @@ VAR
    cfgGR6040_02RetractTODetectTime:	TIME := T#5S;
    GR6040_02			: FB_Solenoid_SA;
    GR6040_02_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    GR6040_02_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------GR6040_01--------------------------------------------------------------
@@ -20,7 +19,6 @@ VAR
    cfgGR6040_01RetractTODetectTime:	TIME := T#5S;
    GR6040_01			: FB_Solenoid_SA;
    GR6040_01_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    GR6040_01_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------PI6040_01--------------------------------------------------------------
@@ -29,7 +27,6 @@ VAR
    cfgPI6040_01RetractTODetectTime:	TIME := T#5S;
    PI6040_01			: FB_Solenoid_DA;
    PI6040_01_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    PI6040_01_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------PU6040_01--------------------------------------------------------------
@@ -38,7 +35,6 @@ VAR
    cfgPU6040_01RetractTODetectTime:	TIME := T#5S;
    PU6040_01			: FB_Solenoid_SA;
    PU6040_01_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    PU6040_01_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------PU6040_02--------------------------------------------------------------
@@ -47,7 +43,6 @@ VAR
    cfgPU6040_02RetractTODetectTime:	TIME := T#5S;
    PU6040_02			: FB_Solenoid_SA;
    PU6040_02_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    PU6040_02_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------PU6040_03--------------------------------------------------------------
@@ -56,7 +51,6 @@ VAR
    cfgPU6040_03RetractTODetectTime:	TIME := T#5S;
    PU6040_03			: FB_Solenoid_SA;
    PU6040_03_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    PU6040_03_Status	: ST_EquipmentStatus;		// Gripper State 
 
 //----------------------------------------PU6040_04--------------------------------------------------------------
@@ -65,7 +59,6 @@ VAR
    cfgPU6040_04RetractTODetectTime:	TIME := T#5S;
    PU6040_04			: FB_Solenoid_SA;
    PU6040_04_StatePB	: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    PU6040_04_Status	: ST_EquipmentStatus;		// Gripper State 
 		
 END_VAR
@@ -183,7 +176,12 @@ cfgPU6040_04EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//----------------------------------------GR6040_01--------------------------------------------------------------
+      <ST><![CDATA[//!!!!!!!!!!!!!!!!!!!!CHange!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+GVL_IO.SystemAirPressure := TRUE;
+
+
+
+//----------------------------------------GR6040_01--------------------------------------------------------------
 GR6040_01_StatePB.AutoPB := System.Cnvyr_Auto;
 GR6040_01_StatePB.ManPB := System.Cnvyr_Manual;
 GR6040_01_StatePB.ResetPB := System.Cnvyr_Reset;
@@ -442,6 +440,9 @@ PU6040_04(
 ]]></ST>
     </Implementation>
     <LineIds Name="Solenoids">
+      <LineId Id="3431" Count="0" />
+      <LineId Id="3435" Count="0" />
+      <LineId Id="3432" Count="2" />
       <LineId Id="2393" Count="16" />
       <LineId Id="2900" Count="0" />
       <LineId Id="2410" Count="4" />

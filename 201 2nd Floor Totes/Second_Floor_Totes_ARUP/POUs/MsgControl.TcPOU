@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="MsgControl" Id="{2ad4410f-a5b6-449d-a112-8dab3c58adad}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MsgControl
 VAR_INPUT
@@ -353,7 +353,7 @@ nEquipStatusIndex := 0;
 FOR nSystemStatusIndex := 1 TO gvl_equiparrays.nSystemEquip_Count BY 1 DO
 	// Capture Offline State
 	IF GVL_EquipArrays.aSystemEquipStatusArray[nSystemStatusIndex].CrntState = E_StateCntrl.stOffline THEN
-		nTempOperState := E_EquipmentUpdate.Offline;
+		nTempOperState := E_OperStateCntrl.Offline;
 	ELSE
 		// Capture Faulted State, or a specific Fault (in this instance, OverHeight)
 		IF GVL_EquipArrays.aSystemEquipStatusArray[nSystemStatusIndex].CrntState = E_StateCntrl.stFaulted THEN
@@ -362,10 +362,10 @@ FOR nSystemStatusIndex := 1 TO gvl_equiparrays.nSystemEquip_Count BY 1 DO
 				bCodeSet => bOverHeight);
 			// Set over Height
 			IF bOverHeight THEN
-				nTempOperState := E_EquipmentUpdate.OverHeight;
+				nTempOperState := E_OperStateCntrl.OverHeight;
 			ELSE
 				// Otherwise, set Faulted
-				nTempOperState := E_EquipmentUpdate.Faulted;
+				nTempOperState := E_OperStateCntrl.Faulted;
 			END_IF
 		ELSE
 			// Capture Auto/Manual States and Running/Sleeping states where appropriate
@@ -378,7 +378,7 @@ FOR nSystemStatusIndex := 1 TO gvl_equiparrays.nSystemEquip_Count BY 1 DO
 					nTempOperState := E_OperStateCntrl.sleeping;
 				// Capture Auto
 				ELSE
-					nTempOperState := E_StateCntrl.stAuto;
+					nTempOperState := E_OperStateCntrl.Auto;
 				END_IF
 			else
 				// Capture Manual-Running
@@ -386,7 +386,7 @@ FOR nSystemStatusIndex := 1 TO gvl_equiparrays.nSystemEquip_Count BY 1 DO
 					nTempOperState := E_OperStateCntrl.running;
 				// Capture Manual
 				ELSE
-					nTempOperState := E_StateCntrl.stManual;
+					nTempOperState := E_OperStateCntrl.Manual;
 				END_IF
 			end_if
 		END_IF
@@ -900,86 +900,7 @@ TransportResponse := String1;]]></ST>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="MsgControl.DeviceStatus">
-      <LineId Id="2" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="12" Count="2" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="17" Count="1" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="26" Count="2" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="33" Count="0" />
-      <LineId Id="54" Count="1" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="126" Count="0" />
-      <LineId Id="116" Count="0" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="127" Count="0" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="125" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="128" Count="0" />
-      <LineId Id="124" Count="0" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="71" Count="0" />
-      <LineId Id="92" Count="0" />
-      <LineId Id="73" Count="1" />
-      <LineId Id="93" Count="0" />
-      <LineId Id="76" Count="1" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="78" Count="1" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="72" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="80" Count="1" />
-      <LineId Id="98" Count="0" />
-      <LineId Id="84" Count="2" />
-      <LineId Id="70" Count="0" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="109" Count="0" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="110" Count="1" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="100" Count="1" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="45" Count="1" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="56" Count="0" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="62" Count="0" />
+      <LineId Id="129" Count="94" />
       <LineId Id="60" Count="0" />
     </LineIds>
     <LineIds Name="MsgControl.EquipStatUpdate">

@@ -16,7 +16,6 @@ VAR
    P6005SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6005: FB_CnvyrCnfig_1;
    P6005_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6005_Status : ST_EquipmentStatus;
 //Spiral
 //----------------------------------------P6010--------------------------------------------------------------
@@ -26,7 +25,6 @@ VAR
    P6010SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6010: FB_CnvyrCnfig_1;
    P6010_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6010_Status : ST_EquipmentStatus;
    P6010_VFD	:	VFD;
    Test_VFD_P6010: BOOL;
@@ -39,7 +37,6 @@ VAR
    P6015SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6015: FB_CnvyrCnfig_1;
    P6015_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6015_Status : ST_EquipmentStatus;
 //----------------------------------------P6020--------------------------------------------------------------
    cfgP6020Label:	STRING(20) :=  'P6020';
@@ -48,7 +45,6 @@ VAR
    P6020SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6020: FB_CnvyrCnfig_1;
    P6020_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6020_Status : ST_EquipmentStatus;
 //----------------------------------------P6025--------------------------------------------------------------
    cfgP6025Label:	STRING(20) :=  'P6025';
@@ -57,7 +53,6 @@ VAR
    P6025SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6025: FB_CnvyrCnfig_1;
    P6025_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6025_Status : ST_EquipmentStatus;
 //----------------------------------------P6030--------------------------------------------------------------
    cfgP6030Label:	STRING(20) :=  'P6030';
@@ -66,7 +61,6 @@ VAR
    P6030SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6030: FB_CnvyrCnfig_1;
    P6030_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6030_Status : ST_EquipmentStatus;
 //----------------------------------------P6035--------------------------------------------------------------
    cfgP6035Label:	STRING(20) :=  'P6035';
@@ -75,7 +69,6 @@ VAR
    P6035SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6035: FB_CnvyrCnfig_1;
    P6035_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6035_Status : ST_EquipmentStatus;
 //Spiral
 //----------------------------------------P6045--------------------------------------------------------------
@@ -85,7 +78,6 @@ VAR
    P6045SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6045: FB_CnvyrCnfig_1;
    P6045_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6045_Status : ST_EquipmentStatus;
    P6045_VFD	:	VFD;
    Test_VFD_P6045: BOOL;
@@ -97,7 +89,6 @@ VAR
    P6040SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P6040: FB_CnvyrCnfig_1;
    P6040_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P6040_Status : ST_EquipmentStatus;
 
 //Conveyors Outgoing 7000 (Orange line)
@@ -109,7 +100,6 @@ VAR
    P7004SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7004: FB_CnvyrCnfig_1;
    P7004_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7004_Status : ST_EquipmentStatus;
 //Spiral
 //----------------------------------------P7005--------------------------------------------------------------
@@ -119,7 +109,6 @@ VAR
    P7005SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7005: FB_CnvyrCnfig_1;
    P7005_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7005_Status : ST_EquipmentStatus;
    P7005_VFD	:	VFD;
    Test_VFD_P7005: BOOL;
@@ -132,7 +121,6 @@ VAR
    P7010SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7010: FB_CnvyrCnfig_1;
    P7010_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7010_Status : ST_EquipmentStatus;
 //----------------------------------------P7015--------------------------------------------------------------
    cfgP7015Label:	STRING(20) :=  'P7015';
@@ -141,7 +129,6 @@ VAR
    P7015SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7015: FB_CnvyrCnfig_1;
    P7015_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7015_Status : ST_EquipmentStatus;
 //----------------------------------------P7020--------------------------------------------------------------
    cfgP7020Label:	STRING(20) :=  'P7020';
@@ -150,7 +137,6 @@ VAR
    P7020SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7020: FB_CnvyrCnfig_1;
    P7020_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7020_Status : ST_EquipmentStatus;
 //----------------------------------------P7025--------------------------------------------------------------
    cfgP7025Label:	STRING(20) :=  'P7025';
@@ -159,7 +145,6 @@ VAR
    P7025SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7025: FB_CnvyrCnfig_1;
    P7025_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7025_Status : ST_EquipmentStatus;
 //----------------------------------------P7030--------------------------------------------------------------
    cfgP7030Label:	STRING(20) :=  'P7030';
@@ -168,7 +153,6 @@ VAR
    P7030SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7030: FB_CnvyrCnfig_1;
    P7030_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7030_Status : ST_EquipmentStatus;
 //----------------------------------------P7035--------------------------------------------------------------
    cfgP7035Label:	STRING(20) :=  'P7035';
@@ -177,7 +161,6 @@ VAR
    P7035SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7035: FB_CnvyrCnfig_1;
    P7035_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7035_Status : ST_EquipmentStatus;
 //Spiral
 //----------------------------------------P7040--------------------------------------------------------------
@@ -187,7 +170,6 @@ VAR
    P7040SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7040: FB_CnvyrCnfig_1;
    P7040_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7040_Status : ST_EquipmentStatus;
    P7040_VFD	:	VFD;
    Test_VFD_P7040: BOOL;
@@ -200,7 +182,6 @@ VAR
    P7045SleepWakeTrig: ARRAY[1..5] OF BOOL;
    P7045: FB_CnvyrCnfig_1;
    P7045_StatePB: ST_StateCntrlPB;
-   {attribute 'OPC.UA.DA' := '0'}
    P7045_Status : ST_EquipmentStatus;
 END_VAR
 
@@ -333,8 +314,7 @@ cfgP6045EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := 'DS6045', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'RIO4172 Comm Fault', DeviceLabel := 'RIO4172', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
-   (Description := 'Downstream Conveyor Full', DeviceLabel := 'P6040', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
-   10(())];
+   11(())];
 //Sorter
 //----------------------------------------P6040--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -397,8 +377,7 @@ cfgP7005EvntsArry: ARRAY [0..15] OF ST_CfgEvents := [
    (Description := 'Disconnect', DeviceLabel := 'DS7005', OKState := TRUE, StopCode := E_StopCodes.DisconnectState),   //DeviceLabel: Motor Disconnect
    (Description := 'System Fault', DeviceLabel := 'System', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.SystemStop),
    (Description := 'RIO12171 Comm Fault', DeviceLabel := 'RIO12171', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.FieldIOFLT),
-   (Description := 'Height Check', DeviceLabel := 'PE_12261', OKState := TRUE, FaultWarn:= TRUE, StopCode := E_StopCodes.OverHeightFLT),
-   10(())];
+   11(())];
 //Transport
 //----------------------------------------P7010--------------------------------------------------------------
 {attribute 'OPC.UA.DA' := '1'}
@@ -536,7 +515,7 @@ P6005_StatePB.AutoPB := System.Cnvyr_Auto;
 P6005_StatePB.ManPB := System.Cnvyr_Manual;
 P6005_StatePB.ResetPB := System.Cnvyr_Reset;
 P6005_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6005SleepWakeTrig[1] := GVL_IO.From205_P2012_SendingProduct;
+P6005SleepWakeTrig[1] := TRUE;		// Belive this will be an EAP photoeye from 3rd floor
 
 // Initialize the Equipment Type
 P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -788,7 +767,7 @@ P6035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 // Interlocks
   P6035.In_EquipIntlks.2:= NOT GVL_IO.P6035_Faulted; 
 //Events
-  P6035.In_EquipEvents.2:= GVL_IO.DS_P6035;
+  P6035.In_EquipEvents.2:= GVL_IO.DS_P6005;
   P6035.In_EquipEvents.3:= System.SysEventsAllOk;
   P6035.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
 
@@ -831,7 +810,6 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
   P6045.In_EquipEvents.3:= System.SysEventsAllOk;
   P6045.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
-  P6045.In_EquipEvents.5:= Photoeyes.PE_6302.Out_OnFltrd;
 
 // Function Call
 P6045(
@@ -864,7 +842,7 @@ P6040_StatePB.AutoPB := System.Cnvyr_Auto;
 P6040_StatePB.ManPB := System.Cnvyr_Manual;
 P6040_StatePB.ResetPB := System.Cnvyr_Reset;
 P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6040SleepWakeTrig[1] := PhotoEyes.PE_4071.Out_OffFltrd;
+P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
 P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
 
 
@@ -887,10 +865,10 @@ P6040.In_EquipEvents.3:= System.SysEventsAllOk;
 P6040.In_EquipEvents.4:= NOT CommStatus.RIO6171_CommFault.Out;
 P6040.In_EquipEvents.5:= NOT CommStatus.RIO7161_CommFault.Out;
 P6040.In_EquipEvents.6:= NOT CommStatus.RIO8181_CommFault.Out;
-P6040.In_EquipEvents.7:= Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
-P6040.In_EquipEvents.8:= Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
-P6040.In_EquipEvents.9:= Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
-P6040.In_EquipEvents.10:= Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
+P6040.In_EquipEvents.7:= FALSE; //Photoeyes.PE_7151.JamDetected AND Solenoids.PU6040_01.Out_ExtendCrntSV;
+P6040.In_EquipEvents.8:= FALSE; // Photoeyes.PE_7211.JamDetected AND Solenoids.PU6040_02.Out_ExtendCrntSV;
+P6040.In_EquipEvents.9:= FALSE; // Photoeyes.PE_8141.JamDetected AND Solenoids.PU6040_03.Out_ExtendCrntSV;
+P6040.In_EquipEvents.10:= FALSE; //Photoeyes.PE_8181.JamDetected AND Solenoids.PU6040_04.Out_ExtendCrntSV; 
 
 // Function Call
 P6040(
@@ -972,7 +950,6 @@ P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7005.In_EquipEvents.2:= GVL_IO.DS_P7005;
   P7005.In_EquipEvents.3:= System.SysEventsAllOk;
   P7005.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
-  P7005.In_EquipEvents.5:= PhotoEyes.PE_12261.Out;
 
 // Function Call
 P7005(
@@ -1294,7 +1271,7 @@ P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
 P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
 // Interlocks
-  P7045.In_EquipIntlks.2:= NOT GVL_IO.P7045_Faulted;
+  P7045.In_EquipIntlks.2:= NOT GVL_IO.P7030_Faulted;
 //Events
   P7045.In_EquipEvents.2:=  GVL_IO.DS_P7045;
   P7045.In_EquipEvents.3:= System.SysEventsAllOk;
@@ -1494,6 +1471,8 @@ IF Conveyors.P7004_Status.Sts_EquipmentState.Index > 0 THEN
   END_IF
   //Prepare the Equipment Status data item
   GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7004_Status.Sts_EquipmentState.Index] := Conveyors.P7004_Status.Sts_EquipmentState;
+     // Overwriter Conv label with EquipID
+  GVL_EquipArrays.aEquipStatusArray_In[Conveyors.P7004_Status.Sts_EquipmentState.Index].Label := '00063';
 END_IF
 
 //Spiral
@@ -1700,7 +1679,6 @@ END_IF
       <LineId Id="4033" Count="1" />
       <LineId Id="5657" Count="0" />
       <LineId Id="6722" Count="0" />
-      <LineId Id="10953" Count="0" />
       <LineId Id="4035" Count="32" />
       <LineId Id="7284" Count="0" />
       <LineId Id="7282" Count="0" />
@@ -1731,7 +1709,6 @@ END_IF
       <LineId Id="4140" Count="7" />
       <LineId Id="5659" Count="0" />
       <LineId Id="8371" Count="0" />
-      <LineId Id="10955" Count="0" />
       <LineId Id="4148" Count="32" />
       <LineId Id="7285" Count="0" />
       <LineId Id="4181" Count="7" />
@@ -1784,7 +1761,9 @@ END_IF
       <LineId Id="1468" Count="0" />
       <LineId Id="1516" Count="0" />
       <LineId Id="4794" Count="34" />
-      <LineId Id="4844" Count="265" />
+      <LineId Id="4844" Count="132" />
+      <LineId Id="10934" Count="1" />
+      <LineId Id="4977" Count="132" />
       <LineId Id="5124" Count="18" />
       <LineId Id="1769" Count="0" />
       <LineId Id="1755" Count="0" />

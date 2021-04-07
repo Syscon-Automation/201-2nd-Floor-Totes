@@ -8,7 +8,6 @@ VAR
 	DebounceOnTime:	TIME := T#500MS;     // Default Value
 	DebounceOffTime:	TIME := T#500MS;     // Default Value
 	JamDetectTime:	TIME := T#5S;     // Default Value
-	
 //----------------------------------------Photoeyes-----------------------------------------		
 PE_1232:  FB_Photoeye;    //P6005 EXIT PE 
 PE_1162:  FB_Photoeye;    //P6010 FULL PE 
