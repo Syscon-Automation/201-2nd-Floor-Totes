@@ -520,8 +520,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
 					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
+					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
@@ -2106,6 +2106,13 @@ Published]]></Comment>
 							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2021-04-07T15:19:26">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^Second_Floor_Totes_ARUP^Second_Floor_Totes_ARUP Instance" Type="2">
+							<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
+								<Link VarA="MAIN.EAP_205.Publisher.IPAddr" TypeA="UDINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000008}" VarB="Outputs^IpAddr" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
@@ -2150,7 +2157,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="2" ImageType="3">
+				<Image Id="1" AddrType="1" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>
@@ -15509,9 +15516,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[0].VarState" VarB="To205_P6005_IsRunning^Inputs^VarState"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[1].VarState" VarB="To205_P7045_SendingProduct^Inputs^VarState"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
-				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_SendingProduct" VarB="To205_P7045_SendingProduct^Outputs^VarData"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.FrameCtrl" VarB="Outputs^FrameCtrl"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPaddr" VarB="Outputs^IpAddr"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarCtrl" VarB="To205_P6005_IsRunning^Outputs^VarCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarID" VarB="To205_P6005_IsRunning^Outputs^VarId"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarCtrl" VarB="To205_P7045_SendingProduct^Outputs^VarCtrl"/>
