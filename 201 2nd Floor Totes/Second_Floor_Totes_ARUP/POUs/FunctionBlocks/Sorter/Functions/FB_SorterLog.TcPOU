@@ -35,7 +35,7 @@ rDischargePE(CLK:= SorterToLog.DischargePE, Q =>);
 fDischargePE(CLK:= SorterToLog.DischargePE, Q =>);
 
 // On the rising/falling edge of the Induct PE
-IF rDischargePE.Q OR fDischargePE.Q THEN
+IF rInductPE.Q OR fInductPE.Q THEN
 	IF SorterLogEnable.SORTER_DISCHARGE_PE THEN
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
