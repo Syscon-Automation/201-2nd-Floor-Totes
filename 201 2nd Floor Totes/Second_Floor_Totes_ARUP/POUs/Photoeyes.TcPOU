@@ -8,6 +8,7 @@ VAR
 	DebounceOnTime:	TIME := T#500MS;     // Default Value
 	DebounceOffTime:	TIME := T#500MS;     // Default Value
 	JamDetectTime:	TIME := T#5S;     // Default Value
+	TriggerOnTime: TIME :=T#5S; 
 //----------------------------------------Photoeyes-----------------------------------------		
 PE_1232:  FB_Photoeye;    //P6005 EXIT PE 
 PE_1162:  FB_Photoeye;    //P6010 FULL PE 
@@ -132,7 +133,7 @@ PE_6201(
 PE_6261(
    In_Status:= ,
    CFG_PEOKState:= 1,
-   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OnDlyTime:= TriggerOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
    CFG_JamDetTime:= JamDetectTime,
    In_Sim:=

@@ -262,7 +262,7 @@ PI6040_01_Status.Sts_EquipmentState.EquipType := E_EquipType.Gripper_DA;
 
 // Interlocks
 PI6040_01.In_EquipIntlks.0:= GVL_IO.SystemAirPressure;
-PI6040_01.In_EquipIntlks.2 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_6241.Out) OR PI6040_01.In_P_SVReqRetract;
+PI6040_01.In_EquipIntlks.2 :=(PI6040_01.In_P_SVReqExtend AND NOT PhotoEyes.PE_6241.Out) OR PI6040_01.In_P_SVReqRetract OR (NOT PhotoEyes.PE_6241.Out);
 //Events
 PI6040_01.In_EquipEvents.2:= System.SysEventsAllOk;
 PI6040_01.In_EquipEvents.3:= GVL_IO.SystemAirPressure;
