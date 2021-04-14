@@ -975,12 +975,12 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6045_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
 							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.StatusWord</Name>
+							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>SystemSafety.Safety_SystemEstopsOK</Name>
@@ -1846,13 +1846,13 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>System.Cnvyr_Manual</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
+							<Name>System.Cnvyr_Auto</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>System.Cnvyr_Auto</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
+							<Name>System.Cnvyr_Manual</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
