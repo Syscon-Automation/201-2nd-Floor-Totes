@@ -815,7 +815,7 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 P6045(
    In_p_EquipStatePB:= P6045_StatePB,
    In_P_ConvReqRun:= TRUE,
-   In_ConvDwnStrmMtrStatus:= P6040_Status.Sts_IsRunning,
+   In_ConvDwnStrmMtrStatus:= TRUE, //P6040_Status.Sts_IsRunning,
    In_ConvCrntExitPhotoEye:= PhotoEyes.PE_8211.Out,
    In_SimActive:= System.Sys_SimActive,
    In_EquipInit:= GVL_IO.INIT,
@@ -844,8 +844,6 @@ P6040_StatePB.ResetPB := System.Cnvyr_Reset;
 P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
 P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
-P6040SleepWakeTrig[3] := PhotoEyes.PE_6201.Out_OffFltrd;
-P6040SleepWakeTrig[4] := PhotoEyes.PE_7171.Out_OffFltrd;
 
 
 // Initialize the Equipment Type
@@ -1071,7 +1069,7 @@ P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 // Interlocks
   P7020.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
 //Events
-  P7020.In_EquipEvents.2:= GVL_IO.DS_P7020;
+  P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
   P7020.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
  
@@ -1683,7 +1681,6 @@ END_IF
       <LineId Id="6722" Count="0" />
       <LineId Id="4035" Count="32" />
       <LineId Id="7284" Count="0" />
-      <LineId Id="11441" Count="1" />
       <LineId Id="7282" Count="0" />
       <LineId Id="4068" Count="5" />
       <LineId Id="5633" Count="4" />

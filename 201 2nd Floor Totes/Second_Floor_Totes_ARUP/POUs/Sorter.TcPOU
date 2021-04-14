@@ -155,6 +155,12 @@ tEncoderOK(PT:=T#1S);
 // Publish the sorter name
   GVL_IO.SorterName := st_SorterCfg.Name;
 
+  
+  IF GVL_SorterItems.P6040_DefaultDestination <> st_SorterCfg.DefaultDestination THEN
+	   st_SorterCfg.DefaultDestination := GVL_SorterItems.P6040_DefaultDestination; 
+  END_IF
+  
+  
 // Sorter
 (*
 	ProcessBuffers processes all associated buffers (Sorter/Divert/Arrival/Transport/Update)
@@ -181,6 +187,11 @@ FB_SorterLog(
 				ToInduct := st_ToInduct,
 				TempItem => st_TempItem);
 
+				
+				
+				
+				
+				
 (*
 	SorterProgram is a separate Program
 	Config portion of the st_sorter is separate to allow it be be persistent.
@@ -225,13 +236,22 @@ FB_DivertLog(DivertArray := aSorterDiverts,
       <LineId Id="125" Count="3" />
       <LineId Id="130" Count="12" />
       <LineId Id="710" Count="0" />
-      <LineId Id="143" Count="20" />
+      <LineId Id="143" Count="6" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="850" Count="0" />
+      <LineId Id="853" Count="1" />
+      <LineId Id="851" Count="1" />
+      <LineId Id="151" Count="12" />
       <LineId Id="594" Count="1" />
       <LineId Id="164" Count="0" />
       <LineId Id="776" Count="1" />
       <LineId Id="165" Count="0" />
       <LineId Id="629" Count="5" />
-      <LineId Id="217" Count="10" />
+      <LineId Id="843" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="844" Count="3" />
+      <LineId Id="218" Count="9" />
       <LineId Id="636" Count="4" />
       <LineId Id="228" Count="0" />
       <LineId Id="371" Count="0" />

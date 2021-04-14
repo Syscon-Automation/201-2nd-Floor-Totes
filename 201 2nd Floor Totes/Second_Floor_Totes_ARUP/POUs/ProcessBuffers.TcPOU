@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <POU Name="ProcessBuffers" Id="{48821c70-aef6-4001-a4d0-b0777e6eb577}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ProcessBuffers
 VAR_IN_OUT
@@ -155,7 +155,6 @@ IF st_ArrivalItem.ID <> '' THEN
 	st_NextToInduct.Item.DeviceID := st_Sorter.Config.EquipID;
 	// Set the Default Destination
 	st_NextToInduct.Item.Destination := st_Sorter.Config.DefaultDestination;
-	st_NextToInduct.Item.DestinationIdx := st_Sorter.Config.DefaultDestIdx;
 	// Capture an encoder value that when the encoder count exceeds this value, NextToInduct item will be cleared
 	st_NextToInduct.Counts := st_Sorter.EncoderCounts;
 	// Clear the Last recieved item
@@ -611,9 +610,7 @@ END_IF
       <LineId Id="6468" Count="1" />
       <LineId Id="5597" Count="11" />
       <LineId Id="7225" Count="2" />
-      <LineId Id="5609" Count="0" />
-      <LineId Id="7333" Count="0" />
-      <LineId Id="5610" Count="3" />
+      <LineId Id="5609" Count="4" />
       <LineId Id="5954" Count="1" />
       <LineId Id="5965" Count="0" />
       <LineId Id="5963" Count="1" />

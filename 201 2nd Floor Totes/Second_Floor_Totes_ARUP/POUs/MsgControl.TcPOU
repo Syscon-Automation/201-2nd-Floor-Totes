@@ -99,7 +99,9 @@ IF RxCounter_Old <> ServerControl.fbServer.aApplications[nConnectionIndex].RxCou
 	{warning 'TODO: Update with correct DeviceID/EquipID'}									
 	IF DeviceID = Sorter.st_SorterCfg.EquipID THEN
 		fb_SorterTransportBuffer.AddItem(st_ItemToAdd := ItemTransport);
-		GVL_SorterItems.P6040_DefaultDestination := DefDestination;
+		IF DefDestination <> 0 THEN 
+ 		GVL_SorterItems.P6040_DefaultDestination := DefDestination;
+		END_IF
 	END_IF
 	RxCounter_Old := ServerControl.fbServer.aApplications[nConnectionIndex].RxCounter;
 END_IF
@@ -852,7 +854,10 @@ TransportResponse := String1;]]></ST>
     </Method>
     <LineIds Name="MsgControl">
       <LineId Id="1370" Count="19" />
-      <LineId Id="1917" Count="13" />
+      <LineId Id="1917" Count="9" />
+      <LineId Id="1999" Count="1" />
+      <LineId Id="1998" Count="0" />
+      <LineId Id="1928" Count="2" />
       <LineId Id="1394" Count="6" />
       <LineId Id="1631" Count="0" />
       <LineId Id="1483" Count="0" />
