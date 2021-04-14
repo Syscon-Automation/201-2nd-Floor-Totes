@@ -844,6 +844,8 @@ P6040_StatePB.ResetPB := System.Cnvyr_Reset;
 P6040_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
 P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
+P6040SleepWakeTrig[3] := PhotoEyes.PE_6201.Out_OffFltrd;
+P6040SleepWakeTrig[4] := PhotoEyes.PE_7171.Out_OffFltrd;
 
 
 // Initialize the Equipment Type
@@ -1681,6 +1683,8 @@ END_IF
       <LineId Id="6722" Count="0" />
       <LineId Id="4035" Count="32" />
       <LineId Id="7284" Count="0" />
+      <LineId Id="11442" Count="0" />
+      <LineId Id="11441" Count="0" />
       <LineId Id="7282" Count="0" />
       <LineId Id="4068" Count="5" />
       <LineId Id="5633" Count="4" />
