@@ -259,19 +259,30 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
-# TwinCAT  
+
+# TwinCAT Folders
 *_Boot/ 
 *_Config/ 
 *_CompileInfo/ 
 *bin/ 
+*.TcGit/
+
+#TwinCAT Files
+*.compiled-library
+*.compileinfo
+*.library
+*.tnzip
+*.tpzip
+*.tszip
+*.xti.bk?
+*LineIDs.dbg
 *TrialLicense.tclrs 
-*.bk? 
+*tsproj.bk? 
 *.bak 
-*.~u 
+*.project.~u 
 *.tmcrefac 
 *.tpy 
 *.tmc 
 *.sln 
 *.suo 
-*.TcGit
 *SYS-* 
