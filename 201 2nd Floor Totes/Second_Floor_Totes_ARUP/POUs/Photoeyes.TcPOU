@@ -173,7 +173,7 @@ PE_12261(
 PE_12221(
    In_Status:= ,
    CFG_PEOKState:= 1,
-   CFG_OnDlyTime:= DebounceOnTime,
+   CFG_OnDlyTime:= TriggerOnTime,
    CFG_OffDlyTime:= DebounceOffTime,
    CFG_JamDetTime:= JamDetectTime,
    In_Sim:=
