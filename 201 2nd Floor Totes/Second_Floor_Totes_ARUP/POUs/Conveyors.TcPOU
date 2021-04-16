@@ -895,9 +895,9 @@ P6040(
 
 P6040_Status.Sts_IsRunning := GVL_IO.P6040_RUN;
 //----------------------------------------P7004--------------------------------------------------------------
-P7004_StatePB.AutoPB := System.Cnvyr_Auto;
+P7004_StatePB.AutoPB := System.Cnvyr_Auto OR GVL_IO.PB_RemoteReset_12181;
 P7004_StatePB.ManPB := System.Cnvyr_Manual;
-P7004_StatePB.ResetPB := System.Cnvyr_Reset;
+P7004_StatePB.ResetPB := System.Cnvyr_Reset OR GVL_IO.PB_RemoteReset_12181;
 P7004_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7004SleepWakeTrig[1] := TRUE; //This conveyor doesn't sleep
 
@@ -935,9 +935,9 @@ P7004(
 
 P7004_Status.Sts_IsRunning := GVL_IO.P7004_RUN;
 //----------------------------------------P7005--------------------------------------------------------------
-P7005_StatePB.AutoPB := System.Cnvyr_Auto;
+P7005_StatePB.AutoPB := System.Cnvyr_Auto OR GVL_IO.PB_RemoteReset_12181;
 P7005_StatePB.ManPB := System.Cnvyr_Manual;
-P7005_StatePB.ResetPB := System.Cnvyr_Reset;
+P7005_StatePB.ResetPB := System.Cnvyr_Reset OR GVL_IO.PB_RemoteReset_12181;
 P7005_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7005_ResetWakeTmr(IN:= GVL_IO.PB_RemoteReset_12181, PT:= T#3S, Q=> );
 P7005SleepWakeTrig[1] := PhotoEyes.PE_12221.Out_OffFltrd;
@@ -1071,7 +1071,7 @@ P7020_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 // Interlocks
   P7020.In_EquipIntlks.2:= NOT GVL_IO.P7015_Faulted;
 //Events
-  P7020.In_EquipEvents.2:= GVL_IO.DS_P7004;
+  P7020.In_EquipEvents.2:= GVL_IO.DS_P7020;
   P7020.In_EquipEvents.3:= System.SysEventsAllOk;
   P7020.In_EquipEvents.4:= NOT CommStatus.RIO15181_CommFault.Out;
  
