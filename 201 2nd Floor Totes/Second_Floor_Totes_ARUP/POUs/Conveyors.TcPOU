@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="Conveyors" Id="{45030522-56d5-456c-b3e8-15b2c12a1718}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Conveyors
 VAR
@@ -846,6 +846,7 @@ P6040SleepWakeTrig[1] := PhotoEyes.PE_1162.Out_OffFltrd;
 P6040SleepWakeTrig[2] := PhotoEyes.PE_4201.Out_OffFltrd;
 P6040SleepWakeTrig[3] := PhotoEyes.PE_6201.Out_OffFltrd;
 P6040SleepWakeTrig[4] := PhotoEyes.PE_7171.Out_OffFltrd;
+P6040SleepWakeTrig[5] := PhotoEyes.PE_4071.Out_OffFltrd;
 
 
 // Initialize the Equipment Type
@@ -1685,6 +1686,7 @@ END_IF
       <LineId Id="7284" Count="0" />
       <LineId Id="11442" Count="0" />
       <LineId Id="11441" Count="0" />
+      <LineId Id="11948" Count="0" />
       <LineId Id="7282" Count="0" />
       <LineId Id="4068" Count="5" />
       <LineId Id="5633" Count="4" />

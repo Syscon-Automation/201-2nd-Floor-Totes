@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="ProcessBuffers" Id="{48821c70-aef6-4001-a4d0-b0777e6eb577}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM ProcessBuffers
 VAR_IN_OUT
@@ -155,6 +155,7 @@ IF st_ArrivalItem.ID <> '' THEN
 	st_NextToInduct.Item.DeviceID := st_Sorter.Config.EquipID;
 	// Set the Default Destination
 	st_NextToInduct.Item.Destination := st_Sorter.Config.DefaultDestination;
+	st_NextToInduct.Item.DestinationIdx := st_Sorter.Config.DefaultDestIdx;
 	// Capture an encoder value that when the encoder count exceeds this value, NextToInduct item will be cleared
 	st_NextToInduct.Counts := st_Sorter.EncoderCounts;
 	// Clear the Last recieved item
@@ -186,15 +187,16 @@ IF st_SorterTransportBufferP6040.nInPointer <> fb_TransportBuffer.OutPointer THE
 	fb_TransportBuffer.RemoveItem(st_ItemToReturn => st_ToUpdate.Item);
 	// Lookup the index for the chosen destination
 	fb_FindDestination(RoundRobin := st_Sorter.Config.RoundRobin
+					, SorterLogEnable := .nSorterLogEnable
 					, aDiverts := aTempDiverts
 					, DestinationID := st_ToUpdate.Item.Destination
 					, DestinationIndex => st_ToUpdate.Item.DestinationIdx);
 	IF .nSortBufferLogEnable.BUFFER_DESTINDEX THEN
 		sMessage := CONCAT(' Item: ', st_ToUpdate.Item.ID);
 		sMessage := CONCAT(sMessage,' Destination: ');
-		sMessage := CONCAT(sMessage, UDINT_TO_STRING(TransportSorterIndex));
+		sMessage := CONCAT(sMessage, UDINT_TO_STRING(st_ToUpdate.Item.Destination));
 		sMessage := CONCAT(sMessage,' Index: ');
-		sMessage := CONCAT(sMessage, UDINT_TO_STRING(TransportSorterIndex));
+		sMessage := CONCAT(sMessage, UDINT_TO_STRING(st_ToUpdate.Item.DestinationIdx));
 		// Write to the Error List
 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 			, msgFmtStr := 'Divert Index of Destination: %s'
@@ -299,6 +301,10 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 				sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.Destination));
 				sMessage := CONCAT(sMessage,' New Dest: ');
 				sMessage := CONCAT(sMEssage, DINT_TO_STRING(st_ReplaceItem.Destination));
+				sMessage := CONCAT(sMessage,' Orig Idx: ');
+				sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.DestinationIdx));
+				sMessage := CONCAT(sMessage,' New Idx: ');
+				sMessage := CONCAT(sMEssage, DINT_TO_STRING(st_ReplaceItem.DestinationIdx));
 				// Write to the Error List
 				ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 					, msgFmtStr := 'Item ID Replaced After Induct: %s'
@@ -306,6 +312,7 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 			END_IF
 			TransportItemInSorter.ID := st_NextToInduct.Item.ID;
 			TransportItemInSorter.Destination := st_NextToInduct.Item.Destination;
+			TransportItemInSorter.DestinationIdx := st_NextToInduct.Item.DestinationIdx;
 			TransportItemInSorter.DeviceID := st_NextToInduct.Item.DeviceID;
 			TransportItemInSorter.MessageType := st_NextToInduct.Item.MessageType;
 			TransportItemInSorter.Status := st_NextToInduct.Item.Status;
@@ -367,6 +374,8 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 					sMessage := CONCAT(sMessage, UDINT_TO_STRING(TransportSorterIndex));
 					sMessage := CONCAT(sMessage,' Orig Dest: ');
 					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.Destination));
+					sMessage := CONCAT(sMessage,' Orig Idx: ');
+					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.DestinationIdx));
 					sMessage := CONCAT(sMessage,' Orig DeviceID ');
 					sMessage := CONCAT(sMessage, TransportItemInSorter.DeviceID);
 					// Write to the Error List
@@ -376,6 +385,7 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 				END_IF
 				// Update the Destination. If the destination is unavailable, it has been already been set to the default
 				TransportItemInSorter.Destination := TransportItemFound.Destination;
+				TransportItemInSorter.DestinationIdx := TransportItemFound.DestinationIdx;
 				TransportItemInSorter.DeviceID := TransportItemFound.DeviceID;
 				TransportItemInSorter.MessageType := TransportItemFound.MessageType;
 				TransportItemInSorter.Status := TransportItemFound.Status;
@@ -387,6 +397,8 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 					sMessage := CONCAT(sMessage, UDINT_TO_STRING(TransportSorterIndex));
 					sMessage := CONCAT(sMessage,' New Dest: ');
 					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.Destination));
+					sMessage := CONCAT(sMessage,' New Idx: ');
+					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.DestinationIdx));
 					sMessage := CONCAT(sMessage,' New DeviceID ');
 					sMessage := CONCAT(sMessage, TransportItemInSorter.DeviceID);
 					// Write to the Error List
@@ -406,13 +418,16 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 							sMessage := CONCAT(sMessage, UDINT_TO_STRING(st_Sorter.EncoderCounts));
 							sMessage := CONCAT(sMessage,' Orig Dest: ');
 							sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateItem.Item.Destination));
+							sMessage := CONCAT(sMessage,' Orig Idx: ');
+							sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateItem.Item.DestinationIdx));
 							// Write to the Error List
 							ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 								, msgFmtStr := 'Induct Dest Changed: %s'
 								, strArg := sMessage);
 						END_IF
-						// Update the Destination
+						// Update the Destination and Index
 						st_UpdateItem.Item.Destination := TransportItemFound.Destination;
+						st_UpdateItem.Item.DestinationIdx := TransportItemFound.DestinationIdx;
 						// Log the new destination
 						IF .nSortBufferLogEnable.BUFFER_UPDATEDEST THEN
 							sMessage := CONCAT(' Item: ', st_UpdateItem.Item.ID);
@@ -420,6 +435,8 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 							sMessage := CONCAT(sMessage, UDINT_TO_STRING(st_Sorter.EncoderCounts));
 							sMessage := CONCAT(sMessage,' New Dest: ');
 							sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateItem.Item.Destination));
+							sMessage := CONCAT(sMessage,' New Idx: ');
+							sMessage := CONCAT(sMessage, DINT_TO_STRING(st_UpdateItem.Item.DestinationIdx));
 							// Write to the Error List
 							ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 								, msgFmtStr := 'Induct Dest Changed: %s'
@@ -434,12 +451,13 @@ FOR UpdateIndexCounter := UDINT_TO_DINT(ItemsArrayMin) TO UDINT_TO_DINT(ItemsArr
 					sMessage := CONCAT(sMessage, UDINT_TO_STRING(TransportSorterIndex));
 					sMessage := CONCAT(sMessage,' Orig Dest: ');
 					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.Destination));
+					sMessage := CONCAT(sMessage,' Orig Idx: ');
+					sMessage := CONCAT(sMessage, DINT_TO_STRING(TransportItemInSorter.DestinationIdx));
 					// Write to the Error List
 					ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT OR ADSLOG_MSGTYPE_LOG
 						, msgFmtStr := 'Dest Received After Induct: %s'
 						, strArg := sMessage);
-				END_IF
-				
+				END_IF	
 			END_IF
 		END_IF
 	END_IF
@@ -610,7 +628,9 @@ END_IF
       <LineId Id="6468" Count="1" />
       <LineId Id="5597" Count="11" />
       <LineId Id="7225" Count="2" />
-      <LineId Id="5609" Count="4" />
+      <LineId Id="5609" Count="0" />
+      <LineId Id="7333" Count="0" />
+      <LineId Id="5610" Count="3" />
       <LineId Id="5954" Count="1" />
       <LineId Id="5965" Count="0" />
       <LineId Id="5963" Count="1" />
@@ -624,7 +644,9 @@ END_IF
       <LineId Id="5614" Count="0" />
       <LineId Id="5820" Count="0" />
       <LineId Id="5639" Count="5" />
-      <LineId Id="7228" Count="31" />
+      <LineId Id="7228" Count="3" />
+      <LineId Id="7337" Count="0" />
+      <LineId Id="7232" Count="27" />
       <LineId Id="5649" Count="0" />
       <LineId Id="5952" Count="0" />
       <LineId Id="5650" Count="11" />
@@ -653,9 +675,12 @@ END_IF
       <LineId Id="6074" Count="0" />
       <LineId Id="6070" Count="0" />
       <LineId Id="6075" Count="0" />
+      <LineId Id="7339" Count="3" />
       <LineId Id="6066" Count="3" />
       <LineId Id="6477" Count="0" />
-      <LineId Id="5973" Count="6" />
+      <LineId Id="5973" Count="1" />
+      <LineId Id="7338" Count="0" />
+      <LineId Id="5975" Count="4" />
       <LineId Id="5972" Count="0" />
       <LineId Id="5970" Count="0" />
       <LineId Id="5701" Count="3" />
@@ -688,11 +713,13 @@ END_IF
       <LineId Id="7084" Count="0" />
       <LineId Id="6480" Count="0" />
       <LineId Id="6103" Count="4" />
+      <LineId Id="7343" Count="1" />
       <LineId Id="7266" Count="1" />
       <LineId Id="6110" Count="3" />
       <LineId Id="6481" Count="0" />
       <LineId Id="6131" Count="0" />
       <LineId Id="5728" Count="0" />
+      <LineId Id="7345" Count="0" />
       <LineId Id="7268" Count="0" />
       <LineId Id="5729" Count="1" />
       <LineId Id="6968" Count="0" />
@@ -701,6 +728,7 @@ END_IF
       <LineId Id="6118" Count="2" />
       <LineId Id="6129" Count="0" />
       <LineId Id="6122" Count="0" />
+      <LineId Id="7346" Count="1" />
       <LineId Id="7269" Count="1" />
       <LineId Id="6125" Count="3" />
       <LineId Id="6483" Count="0" />
@@ -710,16 +738,24 @@ END_IF
       <LineId Id="6370" Count="0" />
       <LineId Id="7087" Count="0" />
       <LineId Id="6484" Count="0" />
-      <LineId Id="6371" Count="9" />
+      <LineId Id="6371" Count="5" />
+      <LineId Id="7348" Count="1" />
+      <LineId Id="6377" Count="3" />
       <LineId Id="6485" Count="0" />
-      <LineId Id="6381" Count="2" />
+      <LineId Id="6381" Count="1" />
+      <LineId Id="7354" Count="0" />
+      <LineId Id="6383" Count="0" />
       <LineId Id="6486" Count="0" />
-      <LineId Id="6384" Count="8" />
+      <LineId Id="6384" Count="4" />
+      <LineId Id="7350" Count="1" />
+      <LineId Id="6389" Count="3" />
       <LineId Id="6487" Count="0" />
       <LineId Id="6393" Count="1" />
       <LineId Id="7056" Count="0" />
-      <LineId Id="7059" Count="10" />
-      <LineId Id="7057" Count="1" />
+      <LineId Id="7059" Count="5" />
+      <LineId Id="7352" Count="1" />
+      <LineId Id="7065" Count="4" />
+      <LineId Id="7058" Count="0" />
       <LineId Id="7054" Count="0" />
       <LineId Id="5732" Count="35" />
       <LineId Id="6289" Count="0" />

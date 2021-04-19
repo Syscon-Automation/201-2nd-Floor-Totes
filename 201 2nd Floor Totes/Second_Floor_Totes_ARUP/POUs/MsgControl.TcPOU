@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
   <POU Name="MsgControl" Id="{2ad4410f-a5b6-449d-a112-8dab3c58adad}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MsgControl
 VAR_INPUT
@@ -82,8 +82,8 @@ fb_SorterUpdateBuffer.Name := 'SYS UPDATE';
 fb_SorterTransportBuffer.Name := 'SYS TRANSPORT';
 
 fb_SorterUpdateBuffer(st_BufferData := st_SorterUpdateBuffer
-					, st_BufferFdbkIn := st_UpdateFdbkIn
-					, st_BufferFdbkOut => st_UpdateFdbkOut);
+					, st_BufferFdbkIn := st_UpdateFdbkOut
+					, st_BufferFdbkOut => st_UpdateFdbkIn);
 fb_SorterTransportBuffer(st_BufferData := st_SorterTransportBufferP6040
 					, st_BufferFdbkIn := st_TransportFdbkInP6040
 					, st_BufferFdbkOut => st_TransportFdbkOutP6040);
