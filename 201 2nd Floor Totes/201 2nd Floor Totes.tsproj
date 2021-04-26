@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.12">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.10">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..25] OF BYTE</Name>
@@ -11,8 +11,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}" AutoDeleteType="true">E_StateCntrl</Name>
-			<Comment><![CDATA[ {attribute 'strict'}]]></Comment>
+			<Name GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}" AutoDeleteType="true">E_StateCntrl</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
 			<EnumInfo>
@@ -35,24 +34,9 @@
 				<Enum>3</Enum>
 				<Comment><![CDATA[ Allowed to transition to Offline/Manual ]]></Comment>
 			</EnumInfo>
-			<Properties>
-				<Property>
-					<Name>textlistenumeration</Name>
-				</Property>
-				<Property>
-					<Name>qualified_only</Name>
-				</Property>
-				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
-			</Properties>
-			<Hides>
-				<Hide GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}"/>
-			</Hides>
 		</DataType>
 		<DataType>
-			<Name GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}" AutoDeleteType="true">E_OperStateCntrl</Name>
-			<Comment><![CDATA[ {attribute 'strict'}]]></Comment>
+			<Name GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}" AutoDeleteType="true">E_OperStateCntrl</Name>
 			<BitSize>16</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
 			<EnumInfo>
@@ -107,17 +91,9 @@
 				<Text><![CDATA[faulted]]></Text>
 				<Enum>12</Enum>
 			</EnumInfo>
-			<Properties>
-				<Property>
-					<Name>textlistenumeration</Name>
-				</Property>
-				<Property>
-					<Name>qualified_only</Name>
-				</Property>
-				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
-			</Properties>
+			<Hides>
+				<Hide GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}"/>
+			</Hides>
 		</DataType>
 		<DataType>
 			<Name GUID="{3AB4C627-A758-0E1E-7675-A1F136EB5998}" AutoDeleteType="true">ST_StateCntrlPB</Name>
@@ -180,11 +156,11 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{3CC3F7A1-FF7D-681B-941E-D1A873DDE348}" AutoDeleteType="true">ST_StateCntrlSts</Name>
+			<Name GUID="{EA3728C9-8179-C837-7691-C59BC9D2C219}" AutoDeleteType="true">ST_StateCntrlSts</Name>
 			<BitSize>896</BitSize>
 			<SubItem>
 				<Name>CrntState</Name>
-				<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
+				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>0</BitOffs>
 				<Properties>
@@ -209,7 +185,7 @@
 			</SubItem>
 			<SubItem>
 				<Name>CrntOperState</Name>
-				<Type GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}">E_OperStateCntrl</Type>
+				<Type GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}">E_OperStateCntrl</Type>
 				<Comment><![CDATA[ The Current Operational state]]></Comment>
 				<BitSize>16</BitSize>
 				<BitOffs>192</BitOffs>
@@ -251,13 +227,13 @@
 			</SubItem>
 			<SubItem>
 				<Name>LstState</Name>
-				<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
+				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>672</BitOffs>
 			</SubItem>
 			<SubItem>
 				<Name>LstOperState</Name>
-				<Type GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}">E_OperStateCntrl</Type>
+				<Type GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}">E_OperStateCntrl</Type>
 				<BitSize>16</BitSize>
 				<BitOffs>688</BitOffs>
 			</SubItem>
@@ -334,12 +310,15 @@
 				<BitSize>8</BitSize>
 				<BitOffs>888</BitOffs>
 			</SubItem>
+			<Hides>
+				<Hide GUID="{3CC3F7A1-FF7D-681B-941E-D1A873DDE348}"/>
+			</Hides>
 		</DataType>
 		<DataType>
 			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
 			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 			<BitSize>22400</BitSize>
-			<BaseType GUID="{3CC3F7A1-FF7D-681B-941E-D1A873DDE348}">ST_StateCntrlSts</BaseType>
+			<BaseType GUID="{EA3728C9-8179-C837-7691-C59BC9D2C219}">ST_StateCntrlSts</BaseType>
 			<ArrayInfo>
 				<LBound>1</LBound>
 				<Elements>25</Elements>
@@ -541,8 +520,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
+					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
@@ -953,14 +932,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>ProxSensors.In_PX_7122_Retracted</Name>
 							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
 							<Type>BOOL</Type>
@@ -996,14 +967,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
 							<Name>SystemSafety.Safety_SystemEstopsOK</Name>
 							<Type>BOOL</Type>
 						</Var>
@@ -1014,14 +977,6 @@
 						<Var>
 							<Name>SystemSafety.ZoneSafe_EDM</Name>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.StatusWord</Name>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.PB_SysStart</Name>
@@ -1042,27 +997,6 @@
 							<Name>GVL_IO.PB_RemoteReset_7281</Name>
 							<Comment><![CDATA[P6040 Reset Button]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_RemoteReset_12181</Name>
-							<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SystemAirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Regulator_AirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.StatusWord</Name>
-							<Type>UINT</Type>
 						</Var>
 						<Var>
 							<Name>PhotoEyes.PE_1232.In_PE</Name>
@@ -1245,26 +1179,22 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.PanelEstop_OK</Name>
+							<Name>GVL_IO.PB_RemoteReset_12181</Name>
+							<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+							<Name>GVL_IO.SystemAirPressure</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+							<Name>GVL_IO.Regulator_AirPressure</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>Sorter.In_DefaultDestination</Name>
 							<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
 							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6005_Faulted</Name>
-							<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
 						</Var>
 						<Var>
 							<Name>SystemSafety.System_SafetyState.ComErr</Name>
@@ -1280,6 +1210,23 @@
 						</Var>
 						<Var>
 							<Name>SystemSafety.System_SafetyState.InRun</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PanelEstop_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6005_Faulted</Name>
+							<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1356,21 +1303,6 @@
 							<Name>GVL_IO.DS_P6005</Name>
 							<Comment><![CDATA[P6005 Disconnect]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.DS_P6010</Name>
@@ -1483,11 +1415,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>GVL_IO.ENC_9021_Period</Name>
-							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.RIO4172_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
 							<Type>BOOL</Type>
@@ -1496,6 +1423,11 @@
 							<Name>GVL_IO.RIO5151_WcState</Name>
 							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ENC_9021_Period</Name>
+							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+							<Type>UDINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.RIO6171_WcState</Name>
@@ -1559,25 +1491,72 @@
 						<Var>
 							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
 							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
-					<Vars VarGrpType="2" AreaNo="1">
+					<Vars VarGrpType="2">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
@@ -1839,14 +1818,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6010_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>System.SysIntlksAllOk</Name>
 							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
 							<Type>BOOL</Type>
@@ -1859,7 +1830,7 @@
 						<Var>
 							<Name>System.ConvDefaultState</Name>
 							<Comment><![CDATA[ The default state of all conveyors]]></Comment>
-							<Type GUID="{3960C317-6EDC-5F00-4C7B-F8FAD8AA8743}">E_StateCntrl</Type>
+							<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
 						</Var>
 						<Var>
 							<Name>System.Sys_SimActive</Name>
@@ -1877,14 +1848,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>Conveyors.P6045_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
 							<Name>System.Cnvyr_Offline</Name>
 							<Comment><![CDATA[ Bit to send to all conveyors to put them in Offline mode -- Not used here]]></Comment>
 							<Type>BOOL</Type>
@@ -1893,22 +1856,6 @@
 							<Name>System.Cnvyr_Reset</Name>
 							<Comment><![CDATA[ Bit to send to all conveyors to reset faults, safeties and etc]]></Comment>
 							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
 						</Var>
 						<Var>
 							<Name>GVL_IO.HornMainPanel</Name>
@@ -1933,6 +1880,22 @@
 						<Var>
 							<Name>GVL_IO.LT_7221_Red</Name>
 							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Reset</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Run</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -2036,27 +1999,6 @@
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
-							<Name>SystemSafety.System_SafetyState.Reset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Run</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
 							<Name>GVL_IO.SV_6181_EXT</Name>
 							<Comment><![CDATA[ GR6040-02 BELT GRIPPER]]></Comment>
 							<Type>BOOL</Type>
@@ -2107,24 +2049,61 @@ Published]]></Comment>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
+							<Name>GVL_EquipArrays.nEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
 							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
 						</Var>
 						<Var>
 							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
 							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{FA474963-BB4D-366E-F450-27D4B128FFBD}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
 						</Var>
 					</Vars>
 					<Contexts>
@@ -2171,7 +2150,7 @@ Published]]></Comment>
 						<DeviceData>000105540503</DeviceData>
 					</Pnp>
 				</AddressInfo>
-				<Image Id="1" AddrType="1" ImageType="3">
+				<Image Id="1" AddrType="2" ImageType="3">
 					<Name>Image</Name>
 				</Image>
 				<Ethernet DeviceDesc="ARUP (X000)"/>
@@ -12539,7 +12518,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 					<Box Id="5" BoxType="9099" BoxFlags="#x00000020">
 						<Name>PLC-8431 (EL1918)</Name>
 						<ImageId>1003</ImageId>
-						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="1" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000004">
+						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="true" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000004">
 							<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 							<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
 							<SyncMan>00121c002400010003000000000000000800001224010000</SyncMan>
@@ -14858,7 +14837,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 							<Box Id="25" BoxType="9099" BoxFlags="#x00000020">
 								<Name>PLC-13051 (EL1918)</Name>
 								<ImageId>1003</ImageId>
-								<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="1" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000018">
+								<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x077e3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="true" SafetyLogicSupported="true" MaxSlotCount="2" Type="EL1918, 8Ch. Safety Input 24V, TwinSAFE" Desc="EL1918" PortABoxInfo="#x01000018">
 									<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 									<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
 									<SyncMan>001208002400010003000000000000000800001224010000</SyncMan>
