@@ -60,19 +60,16 @@ SysStateCntrl_StatePB.StopPB := HMI_PBSysStop OR (NOT GVL_IO.PB_SysStop);
 SysShrtPulseTmr(In_Trig:= TRUE , Cfg_OnTime:= SysShrtPlsOnTime, Cfg_OffTime:= SysShrtPlsOffTime, Output=> );
 
 // Set up System Interlocks
-(*
-SysState.In_SystemIntlks.0 := GVL_IO.SystemAirPressure;
-*)
 
- 
+SysState.In_SystemIntlks.0 := GVL_IO.SystemAirPressure;
 
 // Setup the InterlockArray since persistent data items cannot by initilaized the same
 // Index 0
-(*
+
 cfgSysStateIntlksArry[0].Description := 'System Air Pressure';
-cfgSysStateIntlksArry[0].DeviceLabel := 'PS22121';
+cfgSysStateIntlksArry[0].DeviceLabel := 'PS8222';
 cfgSysStateIntlksArry[0].OKState := TRUE;
-*)
+
 
 // Set up System Events
 
@@ -108,7 +105,7 @@ SysState(
 );
 
 SysIntlksAllOk := SysState.Sts_All_Intlks_OK;
-SysEventsAllOk :=  NOT SysState.Sts_FaultActive;
+SysEventsAllOk := SysState.Sts_All_Evnts_OK;
 
 // Set up Start up delay and Auto/Manual control for conveyors
 
@@ -265,7 +262,9 @@ END_IF
       <LineId Id="797" Count="2" />
       <LineId Id="935" Count="1" />
       <LineId Id="800" Count="1" />
-      <LineId Id="815" Count="15" />
+      <LineId Id="815" Count="3" />
+      <LineId Id="821" Count="0" />
+      <LineId Id="823" Count="7" />
       <LineId Id="833" Count="22" />
       <LineId Id="858" Count="6" />
       <LineId Id="937" Count="0" />

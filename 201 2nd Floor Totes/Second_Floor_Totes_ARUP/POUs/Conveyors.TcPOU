@@ -581,7 +581,7 @@ P6010_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6010.In_EquipEvents.2:= GVL_IO.DS_P6010;
   P6010.In_EquipEvents.3:= System.SysEventsAllOk;
   P6010.In_EquipEvents.4:= NOT CommStatus.RIO1181_CommFault.Out;
-  P6010.In_EquipEvents.5:= P6010_VFD.IsFaulted;
+  P6010.In_EquipEvents.5:= NOT P6010_VFD.IsFaulted;
 
 // Function Call
 P6010(
@@ -828,7 +828,7 @@ P6045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P6045.In_EquipEvents.2:= GVL_IO.DS_P6045;
   P6045.In_EquipEvents.3:= System.SysEventsAllOk;
   P6045.In_EquipEvents.4:= NOT CommStatus.RIO4172_CommFault.Out;
-  P6045.In_EquipEvents.5:= P6045_VFD.IsFaulted;
+  P6045.In_EquipEvents.5:= NOT P6045_VFD.IsFaulted;
 
 // Function Call
 P6045(
@@ -972,7 +972,7 @@ P7005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7005.In_EquipEvents.3:= System.SysEventsAllOk;
   P7005.In_EquipEvents.4:= NOT CommStatus.RIO12171_CommFault.Out;
   P7005.In_EquipEvents.5:= PhotoEyes.PE_12261.Out;
-  P7005.In_EquipEvents.6:= P7005_VFD.IsFaulted;
+  P7005.In_EquipEvents.6:= NOT P7005_VFD.IsFaulted;
 
 // Function Call
 P7005(
@@ -1260,7 +1260,7 @@ P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
   P7040.In_EquipEvents.2:=  GVL_IO.DS_P7040;
   P7040.In_EquipEvents.3:= System.SysEventsAllOk;
   P7040.In_EquipEvents.4:= NOT CommStatus.RIO16171_CommFault.Out;
-  P7040.In_EquipEvents.5:= P7040_VFD.IsFaulted;
+  P7040.In_EquipEvents.5:= NOT P7040_VFD.IsFaulted;
 
 // Function Call
 P7040(

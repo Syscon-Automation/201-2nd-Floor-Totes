@@ -315,7 +315,7 @@
 			</Hides>
 		</DataType>
 		<DataType>
-			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
+			<Name GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
 			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 			<BitSize>22400</BitSize>
 			<BaseType GUID="{EA3728C9-8179-C837-7691-C59BC9D2C219}">ST_StateCntrlSts</BaseType>
@@ -520,8 +520,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
 					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
+					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
