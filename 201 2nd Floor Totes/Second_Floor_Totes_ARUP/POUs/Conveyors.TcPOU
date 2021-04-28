@@ -528,7 +528,9 @@ P6005_StatePB.AutoPB := System.Cnvyr_Auto;
 P6005_StatePB.ManPB := System.Cnvyr_Manual;
 P6005_StatePB.ResetPB := System.Cnvyr_Reset;
 P6005_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6005SleepWakeTrig[1] := TRUE;		// Belive this will be an EAP photoeye from 3rd floor
+P6005SleepWakeTrig[1] := GVL_IO.From205_P3130_SendingProduct;		// Belive this will be an EAP photoeye from 3rd floor
+
+GVL_IO.To205_P6005_IsRunning:= P6005_Status.Sts_IsRunning;
 
 // Initialize the Equipment Type
 P6005_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1297,6 +1299,8 @@ P7045_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7045SleepWakeTrig[1] := PhotoEyes.PE_16131.Out_OffFltrd;
 P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
 
+GVL_IO.To205_P7045_SendingProduct:= P7045_Status.Sts_IsRunning;
+
 // Initialize the Equipment Type
 P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
 
@@ -1661,7 +1665,10 @@ END_IF
     </Implementation>
     <LineIds Name="Conveyors">
       <LineId Id="8911" Count="1" />
-      <LineId Id="3723" Count="8" />
+      <LineId Id="3723" Count="5" />
+      <LineId Id="13013" Count="0" />
+      <LineId Id="13012" Count="0" />
+      <LineId Id="3729" Count="2" />
       <LineId Id="9897" Count="0" />
       <LineId Id="3733" Count="1" />
       <LineId Id="10428" Count="0" />
@@ -1800,6 +1807,8 @@ END_IF
       <LineId Id="4405" Count="26" />
       <LineId Id="4472" Count="6" />
       <LineId Id="7294" Count="0" />
+      <LineId Id="13011" Count="0" />
+      <LineId Id="13010" Count="0" />
       <LineId Id="4479" Count="7" />
       <LineId Id="5668" Count="0" />
       <LineId Id="6191" Count="0" />

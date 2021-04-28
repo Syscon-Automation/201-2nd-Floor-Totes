@@ -162,10 +162,10 @@ SV_8161_EXT AT %Q* :BOOL; // PU6040-04 "D" GRIPPER
  //---------------------------------EAP-------------------------------------------------
 //Published
   To205_P6005_IsRunning	AT %Q*:	BOOL; 
-  To205_P6005_SendingProduct AT %Q*: BOOL; 
+  To205_P7045_SendingProduct AT %Q*: BOOL; 
 //Subscribed
   From205_P2012_IsRunning AT %I*: BOOL;
-  From205_P2012_SendingProduct AT %I*: BOOL;
+  From205_P3130_SendingProduct AT %I*: BOOL;
 END_VAR
 ]]></Declaration>
   </GVL>

@@ -343,6 +343,15 @@
 			</Format>
 		</DataType>
 		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00000000003D}" TcBaseType="true" HideType="true">USINTARR6</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
 			<BitSize>4</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -520,8 +529,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
+					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
@@ -551,6 +560,795 @@
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.DeviceState</Name>
+							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerReady</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Acquiring</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Decoding</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.DecodeComplete</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultsAvail</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultCode</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultLength</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultData</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.DeviceState</Name>
+							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerReady</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Acquiring</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Decoding</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.DecodeComplete</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultsAvail</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultID</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultCode</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultLength</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultData</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_1281_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6241_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6261_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6121_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6151_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6122_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_6152_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_7271_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_7301_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_7122_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_7151_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_8321_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_8291_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_8091_Retracted</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_8121_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>ProxSensors.In_PX_16231_Extended</Name>
+							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.Safety_SystemEstopsOK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.Safety_PanelEstop</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.ZoneSafe_EDM</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.StatusWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_1232.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_1162.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_1081.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_1231.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_1161.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_4121.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_6181.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_6201.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_6261.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_7171.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_6241.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_12261.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_12221.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_16181.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_4271.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_4201.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_4071.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_6302.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_12301.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_12231.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_15121.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_15181.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_15261.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_16111.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_16301.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_16131.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_16201.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_7151.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_7191.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_7211.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_7241.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_8141.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_8171.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_8181.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_8221.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>PhotoEyes.PE_8211.In_PE</Name>
+							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_SysStart</Name>
+							<Comment><![CDATA[System Start Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_SysStop</Name>
+							<Comment><![CDATA[System Stop Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_SysReset</Name>
+							<Comment><![CDATA[System Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_RemoteReset_7281</Name>
+							<Comment><![CDATA[P6040 Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PB_RemoteReset_12181</Name>
+							<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Sorter.In_DefaultDestination</Name>
+							<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SystemAirPressure</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.ComErr</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.FBErr</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.OtherErr</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.InRun</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Regulator_AirPressure</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
+							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.PanelEstop_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6005_Faulted</Name>
+							<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6015_Faulted</Name>
+							<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6020_Faulted</Name>
+							<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6025_Faulted</Name>
+							<Comment><![CDATA[ P6025 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6030_Faulted</Name>
+							<Comment><![CDATA[ P6030 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6035_Faulted</Name>
+							<Comment><![CDATA[ P6035 Starter Faulted  ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6040_Faulted</Name>
+							<Comment><![CDATA[ P6040 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7004_Faulted</Name>
+							<Comment><![CDATA[ P7004 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7010_Faulted</Name>
+							<Comment><![CDATA[ P7010 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7015_Faulted</Name>
+							<Comment><![CDATA[ P7015 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7020_Faulted</Name>
+							<Comment><![CDATA[ P7020 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7025_Faulted</Name>
+							<Comment><![CDATA[ P7025 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7030_Faulted</Name>
+							<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7035_Faulted</Name>
+							<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7045_Faulted</Name>
+							<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6005</Name>
+							<Comment><![CDATA[P6005 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6010</Name>
+							<Comment><![CDATA[P6010 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6011</Name>
+							<Comment><![CDATA[P6011 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6015</Name>
+							<Comment><![CDATA[P6015 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6020</Name>
+							<Comment><![CDATA[P6020 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6025</Name>
+							<Comment><![CDATA[P6025 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6030</Name>
+							<Comment><![CDATA[P6030 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6035</Name>
+							<Comment><![CDATA[P6035 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6045</Name>
+							<Comment><![CDATA[P6045 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P6040</Name>
+							<Comment><![CDATA[P6040 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7004</Name>
+							<Comment><![CDATA[P7004 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7005</Name>
+							<Comment><![CDATA[P7005 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7010</Name>
+							<Comment><![CDATA[P7010 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7015</Name>
+							<Comment><![CDATA[P7015 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7020</Name>
+							<Comment><![CDATA[P7020 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7025</Name>
+							<Comment><![CDATA[P7025 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7030</Name>
+							<Comment><![CDATA[P7030 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7035</Name>
+							<Comment><![CDATA[P7035 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7040</Name>
+							<Comment><![CDATA[P7040 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7041</Name>
+							<Comment><![CDATA[P7041 Disconnect]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.DS_P7045</Name>
+							<Comment><![CDATA[P7045 Disconnect	]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ENC_9021_Raw</Name>
+							<Comment><![CDATA[ Raw Encoder Value]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO1181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.ENC_9021_Period</Name>
+							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO4172_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO5151_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO6171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 6171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO7161_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 7161]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO8181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 8181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO11141_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 11141]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO12171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 12171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO15181_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 15181]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.RIO16171_WcState</Name>
+							<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.BCR_S6040_01_WcState</Name>
+							<Comment><![CDATA[ Barcode Reader S6040_01]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.BCR_S7004_01_WcState</Name>
+							<Comment><![CDATA[ Barcode Reader S7004_01]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.EthernetAdapter_State</Name>
+							<Comment><![CDATA[ Ethernet Adapter State]]></Comment>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.From205_P2012_IsRunning</Name>
+							<Comment><![CDATA[Subscribed]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.From205_P3130_SendingProduct</Name>
+							<Type>BOOL</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.DevState</Name>
 							<Comment><![CDATA[ EAP Device State]]></Comment>
@@ -766,800 +1564,329 @@
 							<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
 							<Type>UINT</Type>
 						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.DeviceState</Name>
-							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.TriggerReady</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.TriggerAck</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.Acquiring</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.Decoding</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.DecodeComplete</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultsAvail</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.TriggerID</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultID</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultCode</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultLength</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultData</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
-							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.DeviceState</Name>
-							<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.TriggerReady</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.TriggerAck</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.Acquiring</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.Decoding</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.DecodeComplete</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultsAvail</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.TriggerID</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultID</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultCode</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultLength</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultData</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
-							<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_1281_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6241_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6261_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6121_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6151_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6122_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_6152_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_7271_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_7301_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_7122_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_7151_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_8321_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_8291_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_8091_Retracted</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_8121_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>ProxSensors.In_PX_16231_Extended</Name>
-							<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.Safety_SystemEstopsOK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.Safety_PanelEstop</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.ZoneSafe_EDM</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_SysStart</Name>
-							<Comment><![CDATA[System Start Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_SysStop</Name>
-							<Comment><![CDATA[System Stop Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_SysReset</Name>
-							<Comment><![CDATA[System Reset Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_RemoteReset_7281</Name>
-							<Comment><![CDATA[P6040 Reset Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_1232.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_1162.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_1081.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_1231.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_1161.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_4121.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_6181.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_6201.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_6261.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_7171.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_6241.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_12261.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_12221.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_16181.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_4271.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_4201.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_4071.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_6302.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_12301.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_12231.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_15121.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_15181.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_15261.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_16111.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_16301.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_16131.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_16201.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_7151.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_7191.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_7211.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_7241.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_8141.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_8171.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_8181.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_8221.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>PhotoEyes.PE_8211.In_PE</Name>
-							<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PB_RemoteReset_12181</Name>
-							<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SystemAirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Regulator_AirPressure</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>Sorter.In_DefaultDestination</Name>
-							<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.ComErr</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.FBErr</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.OtherErr</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.InRun</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.PanelEstop_OK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Remote_PullCord6040_OK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.Remote_PullCord7004_OK</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6005_Faulted</Name>
-							<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6015_Faulted</Name>
-							<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6020_Faulted</Name>
-							<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6025_Faulted</Name>
-							<Comment><![CDATA[ P6025 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6030_Faulted</Name>
-							<Comment><![CDATA[ P6030 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6035_Faulted</Name>
-							<Comment><![CDATA[ P6035 Starter Faulted  ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6040_Faulted</Name>
-							<Comment><![CDATA[ P6040 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7004_Faulted</Name>
-							<Comment><![CDATA[ P7004 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7010_Faulted</Name>
-							<Comment><![CDATA[ P7010 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7015_Faulted</Name>
-							<Comment><![CDATA[ P7015 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7020_Faulted</Name>
-							<Comment><![CDATA[ P7020 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7025_Faulted</Name>
-							<Comment><![CDATA[ P7025 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7030_Faulted</Name>
-							<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7035_Faulted</Name>
-							<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7045_Faulted</Name>
-							<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6005</Name>
-							<Comment><![CDATA[P6005 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6010</Name>
-							<Comment><![CDATA[P6010 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6011</Name>
-							<Comment><![CDATA[P6011 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6015</Name>
-							<Comment><![CDATA[P6015 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6020</Name>
-							<Comment><![CDATA[P6020 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6025</Name>
-							<Comment><![CDATA[P6025 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6030</Name>
-							<Comment><![CDATA[P6030 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6035</Name>
-							<Comment><![CDATA[P6035 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6045</Name>
-							<Comment><![CDATA[P6045 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P6040</Name>
-							<Comment><![CDATA[P6040 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7004</Name>
-							<Comment><![CDATA[P7004 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7005</Name>
-							<Comment><![CDATA[P7005 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7010</Name>
-							<Comment><![CDATA[P7010 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7015</Name>
-							<Comment><![CDATA[P7015 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7020</Name>
-							<Comment><![CDATA[P7020 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7025</Name>
-							<Comment><![CDATA[P7025 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7030</Name>
-							<Comment><![CDATA[P7030 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7035</Name>
-							<Comment><![CDATA[P7035 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7040</Name>
-							<Comment><![CDATA[P7040 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7041</Name>
-							<Comment><![CDATA[P7041 Disconnect]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.DS_P7045</Name>
-							<Comment><![CDATA[P7045 Disconnect	]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ENC_9021_Raw</Name>
-							<Comment><![CDATA[ Raw Encoder Value]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO1181_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO4172_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO5151_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.ENC_9021_Period</Name>
-							<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
-							<Type>UDINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO6171_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 6171]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO7161_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 7161]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO8181_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 8181]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO11141_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 11141]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO12171_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 12171]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO15181_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 15181]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.RIO16171_WcState</Name>
-							<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.BCR_S6040_01_WcState</Name>
-							<Comment><![CDATA[ Barcode Reader S6040_01]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.BCR_S7004_01_WcState</Name>
-							<Comment><![CDATA[ Barcode Reader S7004_01]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.EthernetAdapter_State</Name>
-							<Comment><![CDATA[ Ethernet Adapter State]]></Comment>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.From205_P2012_IsRunning</Name>
-							<Comment><![CDATA[Subscribed]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.From205_P2012_SendingProduct</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nOCREquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
-							<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.StatusWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
-							<Type>INT</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2">
 						<Name>PlcTask Outputs</Name>
 						<Var>
 							<Name>MAIN.PLCPersistentSave</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.TriggerEnable</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.Trigger</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S6040_01.ResultsAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.TriggerEnable</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.Trigger</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>BarCodeReaders.BCR_S7004_01.ResultsAck</Name>
+							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>System.SysIntlksAllOk</Name>
+							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>System.SysEventsAllOk</Name>
+							<Comment><![CDATA[ Bit to show that Syetem events are all OK If system events are needed use event manager FB tie to here]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>System.ConvDefaultState</Name>
+							<Comment><![CDATA[ The default state of all conveyors]]></Comment>
+							<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+						</Var>
+						<Var>
+							<Name>System.Sys_SimActive</Name>
+							<Comment><![CDATA[ Bit for simulation]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>System.Cnvyr_Auto</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>System.Cnvyr_Manual</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P6045_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>System.Cnvyr_Offline</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to put them in Offline mode -- Not used here]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>System.Cnvyr_Reset</Name>
+							<Comment><![CDATA[ Bit to send to all conveyors to reset faults, safeties and etc]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7005_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.ControlWord</Name>
+							<Type>UINT</Type>
+						</Var>
+						<Var>
+							<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
+							<Type>INT</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Reset</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.Run</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.HornMainPanel</Name>
+							<Comment><![CDATA[Panel Tower Horn]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_MainPanelStack_Red</Name>
+							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.nEquip_Count</Name>
+							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+							<Type>DINT</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
+							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_7221_Red</Name>
+							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_7241_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_7271_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_12121_Red</Name>
+							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_12131_Yellow</Name>
+							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.LT_12161_Green</Name>
+							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6005_RUN</Name>
+							<Comment><![CDATA[P6005 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6015_RUN</Name>
+							<Comment><![CDATA[P6015 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6020_RUN</Name>
+							<Comment><![CDATA[P6020 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6025_RUN</Name>
+							<Comment><![CDATA[P6025 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6030_RUN</Name>
+							<Comment><![CDATA[P6030 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6035_RUN</Name>
+							<Comment><![CDATA[P6035 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P6040_RUN</Name>
+							<Comment><![CDATA[P6040 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7004_RUN</Name>
+							<Comment><![CDATA[P7004 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7010_RUN</Name>
+							<Comment><![CDATA[P7010 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7015_RUN</Name>
+							<Comment><![CDATA[P7015 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7020_RUN</Name>
+							<Comment><![CDATA[P7020 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7025_RUN</Name>
+							<Comment><![CDATA[P7025 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7030_RUN</Name>
+							<Comment><![CDATA[P7030 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7035_RUN</Name>
+							<Comment><![CDATA[P7035 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.P7045_RUN</Name>
+							<Comment><![CDATA[P7045 Run Command]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_6181_EXT</Name>
+							<Comment><![CDATA[ GR6040-02 BELT GRIPPER]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_6211_EXT</Name>
+							<Comment><![CDATA[ GR6040-01 BELT GRIPPER]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_6301_RET</Name>
+							<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_6321_EXT</Name>
+							<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_7121_EXT</Name>
+							<Comment><![CDATA[ PU6040-01 PUSH DIVERT]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_7181_EXT</Name>
+							<Comment><![CDATA[ PU6040-02 PUSH DIVERT]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_8111_EXT</Name>
+							<Comment><![CDATA[ PU6040-03 PUSH DIVERT]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.SV_8161_EXT</Name>
+							<Comment><![CDATA[ PU6040-04 "D" GRIPPER]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.To205_P6005_IsRunning</Name>
+							<Comment><![CDATA[---------------------------------EAP-------------------------------------------------
+Published]]></Comment>
+							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>GVL_IO.To205_P7045_SendingProduct</Name>
 							<Type>BOOL</Type>
 						</Var>
 						<Var>
@@ -1574,13 +1901,18 @@
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.Publisher.NetID</Name>
-							<Comment><![CDATA[ EAP Changeable NetID, ]]></Comment>
+							<Comment><![CDATA[ EAP Changeable NetID]]></Comment>
 							<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
 						</Var>
 						<Var>
-							<Name>MAIN.EAP_205.Publisher.IPaddr</Name>
-							<Comment><![CDATA[ EAP Changeable IP address]]></Comment>
+							<Name>MAIN.EAP_205.Publisher.IPAddr</Name>
+							<Comment><![CDATA[ EAP Changeable IP, stored as a single UDINT]]></Comment>
 							<Type>UDINT</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.EAP_205.Publisher.MACID</Name>
+							<Comment><![CDATA[ EAP Changeable MAC ID, stored as an array of 6 USINT]]></Comment>
+							<Type GUID="{18071995-0000-0000-0000-00000000003D}">USINTARR6</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.EAP_205.Publisher.Variables[0].VarID</Name>
@@ -1787,325 +2119,14 @@
 							<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
 							<Type>UINT</Type>
 						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.TriggerEnable</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.Trigger</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S6040_01.ResultsAck</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.TriggerEnable</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.Trigger</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>BarCodeReaders.BCR_S7004_01.ResultsAck</Name>
-							<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.SysIntlksAllOk</Name>
-							<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.SysEventsAllOk</Name>
-							<Comment><![CDATA[ Bit to show that Syetem events are all OK If system events are needed use event manager FB tie to here]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.ConvDefaultState</Name>
-							<Comment><![CDATA[ The default state of all conveyors]]></Comment>
-							<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
-						</Var>
-						<Var>
-							<Name>System.Sys_SimActive</Name>
-							<Comment><![CDATA[ Bit for simulation]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.Cnvyr_Auto</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.Cnvyr_Manual</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.Cnvyr_Offline</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to put them in Offline mode -- Not used here]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>System.Cnvyr_Reset</Name>
-							<Comment><![CDATA[ Bit to send to all conveyors to reset faults, safeties and etc]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.HornMainPanel</Name>
-							<Comment><![CDATA[Panel Tower Horn]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Red</Name>
-							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
-							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_MainPanelStack_Green</Name>
-							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_7221_Red</Name>
-							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Reset</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.Run</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.ErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_7241_Yellow</Name>
-							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_7271_Green</Name>
-							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_12121_Red</Name>
-							<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_12131_Yellow</Name>
-							<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.LT_12161_Green</Name>
-							<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6005_RUN</Name>
-							<Comment><![CDATA[P6005 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6015_RUN</Name>
-							<Comment><![CDATA[P6015 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6020_RUN</Name>
-							<Comment><![CDATA[P6020 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6025_RUN</Name>
-							<Comment><![CDATA[P6025 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6030_RUN</Name>
-							<Comment><![CDATA[P6030 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6035_RUN</Name>
-							<Comment><![CDATA[P6035 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P6040_RUN</Name>
-							<Comment><![CDATA[P6040 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7004_RUN</Name>
-							<Comment><![CDATA[P7004 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7010_RUN</Name>
-							<Comment><![CDATA[P7010 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7015_RUN</Name>
-							<Comment><![CDATA[P7015 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7020_RUN</Name>
-							<Comment><![CDATA[P7020 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7025_RUN</Name>
-							<Comment><![CDATA[P7025 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7030_RUN</Name>
-							<Comment><![CDATA[P7030 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7035_RUN</Name>
-							<Comment><![CDATA[P7035 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.P7045_RUN</Name>
-							<Comment><![CDATA[P7045 Run Command]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_6181_EXT</Name>
-							<Comment><![CDATA[ GR6040-02 BELT GRIPPER]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_6211_EXT</Name>
-							<Comment><![CDATA[ GR6040-01 BELT GRIPPER]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_6301_RET</Name>
-							<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_6321_EXT</Name>
-							<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_7121_EXT</Name>
-							<Comment><![CDATA[ PU6040-01 PUSH DIVERT]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_7181_EXT</Name>
-							<Comment><![CDATA[ PU6040-02 PUSH DIVERT]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_8111_EXT</Name>
-							<Comment><![CDATA[ PU6040-03 PUSH DIVERT]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.SV_8161_EXT</Name>
-							<Comment><![CDATA[ PU6040-04 "D" GRIPPER]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.To205_P6005_IsRunning</Name>
-							<Comment><![CDATA[---------------------------------EAP-------------------------------------------------
-Published]]></Comment>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_IO.To205_P6005_SendingProduct</Name>
-							<Type>BOOL</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.nEquip_Count</Name>
-							<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
-							<Type>DINT</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
-							<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
-							<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6045_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P6010_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7005_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.ControlWord</Name>
-							<Type>UINT</Type>
-						</Var>
-						<Var>
-							<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
-							<Type>INT</Type>
-						</Var>
 					</Vars>
+					<UnrestoredVarLinks ImportTime="2021-04-28T16:40:26">
+						<OwnerA Name="OutputSrc" Prefix="TIPC^Second_Floor_Totes_ARUP^Second_Floor_Totes_ARUP Instance" Type="2">
+							<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
+								<Link VarA="MAIN.EAP_205.Publisher.IPaddr" TypeA="UDINT" InOutA="1" GuidA="{18071995-0000-0000-0000-000000000008}" VarB="Outputs^IpAddr" RestoreInfo="ANotFound"/>
+							</OwnerB>
+						</OwnerA>
+					</UnrestoredVarLinks>
 					<Contexts>
 						<Context>
 							<Id NeedCalleeCall="true">0</Id>
@@ -15423,7 +15444,7 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 							</Vars>
 						</EapVar>
 						<EapVar Id="2" NvId="116" NvLength="1" IdChangeable="true" IdChangeableInTree="true">
-							<Name>From205_P2012_SendingProduct</Name>
+							<Name>From205_P3130_SendingProduct</Name>
 							<ImageId>98</ImageId>
 							<Vars VarGrpType="1">
 								<Name>Inputs</Name>
@@ -15509,8 +15530,8 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[0].VarState" VarB="To205_P6005_IsRunning^Inputs^VarState"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[1].VarState" VarB="To205_P7045_SendingProduct^Inputs^VarState"/>
 				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.To205_P7045_SendingProduct" VarB="To205_P7045_SendingProduct^Outputs^VarData"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.FrameCtrl" VarB="Outputs^FrameCtrl"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPaddr" VarB="Outputs^IpAddr"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarCtrl" VarB="To205_P6005_IsRunning^Outputs^VarCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarID" VarB="To205_P6005_IsRunning^Outputs^VarId"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarCtrl" VarB="To205_P7045_SendingProduct^Outputs^VarCtrl"/>
@@ -15518,19 +15539,19 @@ C:\TwinCAT\3.1\Config\Io\EtherNetIP\0678077313070100.eds
 			</OwnerB>
 			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Sub_To_205 (Subscriber)">
 				<Link VarA="PlcTask Inputs^GVL_IO.From205_P2012_IsRunning" VarB="From205_P2012_IsRunning^Inputs^VarData"/>
-				<Link VarA="PlcTask Inputs^GVL_IO.From205_P2012_SendingProduct" VarB="From205_P2012_SendingProduct^Inputs^VarData"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.From205_P3130_SendingProduct" VarB="From205_P3130_SendingProduct^Inputs^VarData"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.FrameState" VarB="Inputs^FrameState"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].CycleIndex" VarB="From205_P2012_IsRunning^Inputs^CycleIndex"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].Quality" VarB="From205_P2012_IsRunning^Inputs^Quality"/>
 				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].VarState" VarB="From205_P2012_IsRunning^Inputs^VarState"/>
-				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].CycleIndex" VarB="From205_P2012_SendingProduct^Inputs^CycleIndex"/>
-				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].Quality" VarB="From205_P2012_SendingProduct^Inputs^Quality"/>
-				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].VarState" VarB="From205_P2012_SendingProduct^Inputs^VarState"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].CycleIndex" VarB="From205_P3130_SendingProduct^Inputs^CycleIndex"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].Quality" VarB="From205_P3130_SendingProduct^Inputs^Quality"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].VarState" VarB="From205_P3130_SendingProduct^Inputs^VarState"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.FrameCtrl" VarB="Outputs^FrameCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[0].VarCtrl" VarB="From205_P2012_IsRunning^Outputs^VarCtrl"/>
 				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[0].VarId" VarB="From205_P2012_IsRunning^Outputs^VarId"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarCtrl" VarB="From205_P2012_SendingProduct^Outputs^VarCtrl"/>
-				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarId" VarB="From205_P2012_SendingProduct^Outputs^VarId"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarCtrl" VarB="From205_P3130_SendingProduct^Outputs^VarCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarId" VarB="From205_P3130_SendingProduct^Outputs^VarId"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 1 (RT-Ethernet Protocol)">
 				<Link VarA="PlcTask Inputs^GVL_IO.EthernetAdapter_State" VarB="Inputs^DevState"/>
