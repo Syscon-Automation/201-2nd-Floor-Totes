@@ -1,0 +1,2251 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.10" ClassName="CNestedPlcProjDef">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}" IecBaseType="true" AutoDeleteType="true">ARRAY [0..25] OF BYTE</Name>
+			<BitSize>208</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>26</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}" AutoDeleteType="true">E_StateCntrl</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[stOffline]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[ Allowed to transition to Manual]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[stAuto]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[ Allowed to transition to Manual/Faulted ]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[stManual]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[ Allowed to transition to Offline/Faulted/Manual ]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[stFaulted]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[ Allowed to transition to Offline/Manual ]]></Comment>
+			</EnumInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}" AutoDeleteType="true">E_OperStateCntrl</Name>
+			<BitSize>16</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000006}">INT</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[stopped]]></Text>
+				<Enum>0</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[running]]></Text>
+				<Enum>1</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[sleeping]]></Text>
+				<Enum>2</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[overheight]]></Text>
+				<Enum>3</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[extended]]></Text>
+				<Enum>4</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[extending]]></Text>
+				<Enum>5</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[retracted]]></Text>
+				<Enum>6</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[retracting]]></Text>
+				<Enum>7</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[unknown]]></Text>
+				<Enum>8</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[offline]]></Text>
+				<Enum>9</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[auto]]></Text>
+				<Enum>10</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[manual]]></Text>
+				<Enum>11</Enum>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[faulted]]></Text>
+				<Enum>12</Enum>
+			</EnumInfo>
+			<Hides>
+				<Hide GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name GUID="{3AB4C627-A758-0E1E-7675-A1F136EB5998}" AutoDeleteType="true">ST_StateCntrlPB</Name>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>OfflinePB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, take related equipment offline		]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>AutoPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, put related equipment into Automatic operation mode]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ManPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, put related equipment into Maunual operation mode]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StopPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, Stop equipment, in manual, execute stop command, in auto, move equipment to manual and stop equipment]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ResetPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, Reset any faults/warnings associated with the equipment]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ManMotorRunPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, manually run motor ]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ManExtendPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, manually execute actuator extend]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>ManRetractPB</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ State control, manually execute actuator retract]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{EA3728C9-8179-C837-7691-C59BC9D2C219}" AutoDeleteType="true">ST_StateCntrlSts</Name>
+			<BitSize>896</BitSize>
+			<SubItem>
+				<Name>CrntState</Name>
+				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+				<Properties>
+					<Property>
+						<Name>OPC.UA.DA</Name>
+						<Value>1</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>CrntStateTxt</Name>
+				<Type GUID="{18071995-0000-0000-0000-000100000014}">STRING(20)</Type>
+				<Comment><![CDATA[ The current state in text string]]></Comment>
+				<BitSize>168</BitSize>
+				<BitOffs>16</BitOffs>
+				<Properties>
+					<Property>
+						<Name>OPC.UA.DA</Name>
+						<Value>1</Value>
+					</Property>
+				</Properties>
+			</SubItem>
+			<SubItem>
+				<Name>CrntOperState</Name>
+				<Type GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}">E_OperStateCntrl</Type>
+				<Comment><![CDATA[ The Current Operational state]]></Comment>
+				<BitSize>16</BitSize>
+				<BitOffs>192</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>CrntOperStateTxt</Name>
+				<Type GUID="{18071995-0000-0000-0000-000100000014}">STRING(20)</Type>
+				<Comment><![CDATA[ The current Operational state in text string]]></Comment>
+				<BitSize>168</BitSize>
+				<BitOffs>208</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>EquipType</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<Comment><![CDATA[ Stores Enumeration type E_EquipType]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>384</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Index</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<Comment><![CDATA[ Local index assigned to this equipment]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>416</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Label</Name>
+				<Type GUID="{18071995-0000-0000-0000-000100000014}">STRING(20)</Type>
+				<Comment><![CDATA[ String value assigned to this equipment for status updates]]></Comment>
+				<BitSize>168</BitSize>
+				<BitOffs>448</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RemIndex</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000009}">DINT</Type>
+				<Comment><![CDATA[ Remote index assigned to this equipment, for system status monitoring]]></Comment>
+				<BitSize>32</BitSize>
+				<BitOffs>640</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>LstState</Name>
+				<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>672</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>LstOperState</Name>
+				<Type GUID="{D347E415-1EF9-6DD2-7D3E-D070CBD869C8}">E_OperStateCntrl</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>688</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>stsStopRegister</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000008}">UDINT</Type>
+				<ArrayInfo>
+					<LBound>0</LBound>
+					<Elements>2</Elements>
+				</ArrayInfo>
+				<Comment><![CDATA[ Stop Register]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>704</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StateRunOK</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>768</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StateChanged</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Single scan output to show that state has changed]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>776</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StsOffline</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Output that shows State is Offline]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>784</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StsAuto</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Output that shows State is in Auto]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>792</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StsMan</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Output that shows State is in Manual]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>800</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StsFaulted</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Output that shows State is Faulted]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>808</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>StsHasWarnings</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Output that shows the Equipment has Warnings (Alerts)]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>816</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Received</Name>
+				<Type GUID="{3AB4C627-A758-0E1E-7675-A1F136EB5998}">ST_StateCntrlPB</Type>
+				<Comment><![CDATA[ Single scan outputs for possible push button events]]></Comment>
+				<BitSize>64</BitSize>
+				<BitOffs>824</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>RcvdFault</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[ Single scan output to show input was received]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>888</BitOffs>
+			</SubItem>
+			<Hides>
+				<Hide GUID="{3CC3F7A1-FF7D-681B-941E-D1A873DDE348}"/>
+			</Hides>
+		</DataType>
+		<DataType>
+			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>
+			<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+			<BitSize>22400</BitSize>
+			<BaseType GUID="{EA3728C9-8179-C837-7691-C59BC9D2C219}">ST_StateCntrlSts</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>25</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00000000003D}" TcBaseType="true" HideType="true">USINTARR6</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<Project GUID="{DFBE0123-1AB2-46C7-B5EA-1B63380D5990}" Name="Second_Floor_Totes_ARUP" PrjFilePath="..\..\Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.plcproj" TmcFilePath="..\..\Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" CopyTmcToTarget="true" CopyTpyToTarget="false" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Second_Floor_Totes_ARUP\Second_Floor_Totes_ARUP.tmc">
+			<Name>Second_Floor_Totes_ARUP Instance</Name>
+			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
+			<Vars VarGrpType="1">
+				<Name>PlcTask Inputs</Name>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.DeviceState</Name>
+					<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.TriggerReady</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.TriggerAck</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.Acquiring</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.Decoding</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.DecodeComplete</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultsAvail</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.TriggerID</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultID</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultCode</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultLength</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultData</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+					<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.DeviceState</Name>
+					<Comment><![CDATA[ Device Connection State -- From mapped DevState ]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.TriggerReady</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.TriggerAck</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.Acquiring</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.Decoding</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.DecodeComplete</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultsAvail</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.TriggerID</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultID</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultCode</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultLength</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultData</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR -- This ARRAY may be increased if more Data is needed ]]></Comment>
+					<Type GUID="{622B47A5-2C8F-FCDB-B43E-364C3DC63FBC}">ARRAY [0..25] OF BYTE</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_1281_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6241_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6261_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6121_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6151_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6122_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_6152_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_7271_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_7301_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.ActualVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.StatusWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_7122_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_7151_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_8321_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_8291_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_8091_Retracted</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_8121_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>ProxSensors.In_PX_16231_Extended</Name>
+					<Comment><![CDATA[ Mapped IO input for PX]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6045_VFD.ActualVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6045_VFD.StatusWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.Safety_SystemEstopsOK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.Safety_PanelEstop</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.ZoneSafe_EDM</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7005_VFD.StatusWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.ActualVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.StatusWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1232.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1162.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1081.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1231.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1161.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4121.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7171.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6241.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12221.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4271.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4071.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6302.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12301.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12231.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15121.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16111.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16301.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16131.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7151.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7191.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7211.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7241.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8141.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8171.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8221.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8211.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PB_SysStart</Name>
+					<Comment><![CDATA[System Start Button]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PB_SysStop</Name>
+					<Comment><![CDATA[System Stop Button]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PB_SysReset</Name>
+					<Comment><![CDATA[System Reset Button]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PB_RemoteReset_7281</Name>
+					<Comment><![CDATA[P6040 Reset Button]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PB_RemoteReset_12181</Name>
+					<Comment><![CDATA[P7004 Height check reset Reset Button]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Sorter.In_DefaultDestination</Name>
+					<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SystemAirPressure</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.ComErr</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.FBErr</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.OtherErr</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.InRun</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.Regulator_AirPressure</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
+					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.nOCREquip_Count</Name>
+					<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aOCREquipStatusArray_In</Name>
+					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.nInspctCnvyrEquip_Count</Name>
+					<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_In</Name>
+					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.nSorterEquip_Count</Name>
+					<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
+					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.PanelEstop_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.Remote_PullCord6040_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.Remote_PullCord7004_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6005_Faulted</Name>
+					<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6015_Faulted</Name>
+					<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6020_Faulted</Name>
+					<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6025_Faulted</Name>
+					<Comment><![CDATA[ P6025 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6030_Faulted</Name>
+					<Comment><![CDATA[ P6030 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6035_Faulted</Name>
+					<Comment><![CDATA[ P6035 Starter Faulted  ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6040_Faulted</Name>
+					<Comment><![CDATA[ P6040 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7004_Faulted</Name>
+					<Comment><![CDATA[ P7004 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7010_Faulted</Name>
+					<Comment><![CDATA[ P7010 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7015_Faulted</Name>
+					<Comment><![CDATA[ P7015 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7020_Faulted</Name>
+					<Comment><![CDATA[ P7020 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7025_Faulted</Name>
+					<Comment><![CDATA[ P7025 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7030_Faulted</Name>
+					<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7035_Faulted</Name>
+					<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7045_Faulted</Name>
+					<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6005</Name>
+					<Comment><![CDATA[P6005 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6010</Name>
+					<Comment><![CDATA[P6010 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6011</Name>
+					<Comment><![CDATA[P6011 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6015</Name>
+					<Comment><![CDATA[P6015 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6020</Name>
+					<Comment><![CDATA[P6020 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6025</Name>
+					<Comment><![CDATA[P6025 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6030</Name>
+					<Comment><![CDATA[P6030 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6035</Name>
+					<Comment><![CDATA[P6035 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6045</Name>
+					<Comment><![CDATA[P6045 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6040</Name>
+					<Comment><![CDATA[P6040 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7004</Name>
+					<Comment><![CDATA[P7004 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7005</Name>
+					<Comment><![CDATA[P7005 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7010</Name>
+					<Comment><![CDATA[P7010 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7015</Name>
+					<Comment><![CDATA[P7015 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7020</Name>
+					<Comment><![CDATA[P7020 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7025</Name>
+					<Comment><![CDATA[P7025 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7030</Name>
+					<Comment><![CDATA[P7030 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7035</Name>
+					<Comment><![CDATA[P7035 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7040</Name>
+					<Comment><![CDATA[P7040 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7041</Name>
+					<Comment><![CDATA[P7041 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P7045</Name>
+					<Comment><![CDATA[P7045 Disconnect	]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.ENC_9021_Raw</Name>
+					<Comment><![CDATA[ Raw Encoder Value]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO1181_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 1181]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.ENC_9021_Period</Name>
+					<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO4172_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO5151_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO6171_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 6171]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO7161_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 7161]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO8181_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 8181]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO11141_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 11141]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO12171_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 12171]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO15181_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 15181]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO16171_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 16171]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.BCR_S6040_01_WcState</Name>
+					<Comment><![CDATA[ Barcode Reader S6040_01]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.BCR_S7004_01_WcState</Name>
+					<Comment><![CDATA[ Barcode Reader S7004_01]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.EthernetAdapter_State</Name>
+					<Comment><![CDATA[ Ethernet Adapter State]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.From205_P2012_IsRunning</Name>
+					<Comment><![CDATA[Subscribed]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.From205_P3130_SendingProduct</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.DevState</Name>
+					<Comment><![CDATA[ EAP Device State]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.FrameState</Name>
+					<Comment><![CDATA[ EAP FrameState, FrameState.0 = Not Transmitting, .1 = Frame too large, .2 = Subscriber Miissing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[0].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[1].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[2].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[3].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[4].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[5].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[6].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[7].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[8].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[9].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Not Sent, 1 = Transmission Suspended, 0 = Transmission OK]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.FrameState</Name>
+					<Comment><![CDATA[ EAP FrameState, unused]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[0].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[0].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[0].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[1].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[1].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[1].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[2].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[2].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[2].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[3].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[3].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[3].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[4].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[4].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[4].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[5].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[5].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[5].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[6].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[6].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[6].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[7].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[7].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[7].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[8].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[8].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[8].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[9].VarState</Name>
+					<Comment><![CDATA[ VarState.0 = Invalid Hash/Version, .1 = Invalid Variable Length]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[9].Quality</Name>
+					<Comment><![CDATA[ <>0, Duration the variable is not refreshed (in 100µs)]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[9].CycleIndex</Name>
+					<Comment><![CDATA[ Incremented each publisher cycle]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+			</Vars>
+			<Vars VarGrpType="2">
+				<Name>PlcTask Outputs</Name>
+				<Var>
+					<Name>MAIN.PLCPersistentSave</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.TriggerEnable</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.Trigger</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S6040_01.ResultsAck</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.TriggerEnable</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.Trigger</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>BarCodeReaders.BCR_S7004_01.ResultsAck</Name>
+					<Comment><![CDATA[ Barcode Reader Mapped VAR]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>System.SysIntlksAllOk</Name>
+					<Comment><![CDATA[ Bit to show that System interlocks are OK   ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>System.SysEventsAllOk</Name>
+					<Comment><![CDATA[ Bit to show that Syetem events are all OK If system events are needed use event manager FB tie to here]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>System.ConvDefaultState</Name>
+					<Comment><![CDATA[ The default state of all conveyors]]></Comment>
+					<Type GUID="{4DFBEA5C-31FD-9D4B-60C4-AD0103B29CFD}">E_StateCntrl</Type>
+				</Var>
+				<Var>
+					<Name>System.Sys_SimActive</Name>
+					<Comment><![CDATA[ Bit for simulation]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>System.Cnvyr_Auto</Name>
+					<Comment><![CDATA[ Bit to send to all conveyors to put them in Auto mode]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>System.Cnvyr_Manual</Name>
+					<Comment><![CDATA[ Bit to send to all conveyors to put them in Manual mode]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6045_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6045_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>System.Cnvyr_Offline</Name>
+					<Comment><![CDATA[ Bit to send to all conveyors to put them in Offline mode -- Not used here]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>System.Cnvyr_Reset</Name>
+					<Comment><![CDATA[ Bit to send to all conveyors to reset faults, safeties and etc]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7005_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7005_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.Reset</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.Run</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.ErrAck</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.System_SafetyState.CommErrAck</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.HornMainPanel</Name>
+					<Comment><![CDATA[Panel Tower Horn]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_MainPanelStack_Red</Name>
+					<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
+					<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_MainPanelStack_Green</Name>
+					<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.nEquip_Count</Name>
+					<Comment><![CDATA[Count of Equipment to Process in System PLC]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aEquipStatusArray_Out</Name>
+					<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aOCREquipStatusArray_Out</Name>
+					<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aInspctCnvyrEquipStatusArray_Out</Name>
+					<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_EquipArrays.aSorterEquipStatusArray_Out</Name>
+					<Comment><![CDATA[Array of Equipment Status Outbound]]></Comment>
+					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_7221_Red</Name>
+					<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_7241_Yellow</Name>
+					<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_7271_Green</Name>
+					<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_12121_Red</Name>
+					<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_12131_Yellow</Name>
+					<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.LT_12161_Green</Name>
+					<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6005_RUN</Name>
+					<Comment><![CDATA[P6005 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6015_RUN</Name>
+					<Comment><![CDATA[P6015 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6020_RUN</Name>
+					<Comment><![CDATA[P6020 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6025_RUN</Name>
+					<Comment><![CDATA[P6025 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6030_RUN</Name>
+					<Comment><![CDATA[P6030 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6035_RUN</Name>
+					<Comment><![CDATA[P6035 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6040_RUN</Name>
+					<Comment><![CDATA[P6040 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7004_RUN</Name>
+					<Comment><![CDATA[P7004 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7010_RUN</Name>
+					<Comment><![CDATA[P7010 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7015_RUN</Name>
+					<Comment><![CDATA[P7015 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7020_RUN</Name>
+					<Comment><![CDATA[P7020 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7025_RUN</Name>
+					<Comment><![CDATA[P7025 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7030_RUN</Name>
+					<Comment><![CDATA[P7030 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7035_RUN</Name>
+					<Comment><![CDATA[P7035 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7045_RUN</Name>
+					<Comment><![CDATA[P7045 Run Command]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_6181_EXT</Name>
+					<Comment><![CDATA[ GR6040-02 BELT GRIPPER]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_6211_EXT</Name>
+					<Comment><![CDATA[ GR6040-01 BELT GRIPPER]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_6301_RET</Name>
+					<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_6321_EXT</Name>
+					<Comment><![CDATA[ PI6040-01 PIN STOP]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_7121_EXT</Name>
+					<Comment><![CDATA[ PU6040-01 PUSH DIVERT]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_7181_EXT</Name>
+					<Comment><![CDATA[ PU6040-02 PUSH DIVERT]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_8111_EXT</Name>
+					<Comment><![CDATA[ PU6040-03 PUSH DIVERT]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.SV_8161_EXT</Name>
+					<Comment><![CDATA[ PU6040-04 "D" GRIPPER]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.To205_P6005_IsRunning</Name>
+					<Comment><![CDATA[---------------------------------EAP-------------------------------------------------
+Published]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.To205_P7045_SendingProduct</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.DevCtrl</Name>
+					<Comment><![CDATA[ EAP Device Control]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.FrameCtrl</Name>
+					<Comment><![CDATA[ EAP FrameCtrl, FrameCtrl.0 = Disable Sending, .1 = Remove destination MAC from ARP]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.NetID</Name>
+					<Comment><![CDATA[ EAP Changeable NetID]]></Comment>
+					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.IPAddr</Name>
+					<Comment><![CDATA[ EAP Changeable IP, stored as a single UDINT]]></Comment>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.MACID</Name>
+					<Comment><![CDATA[ EAP Changeable MAC ID, stored as an array of 6 USINT]]></Comment>
+					<Type GUID="{18071995-0000-0000-0000-00000000003D}">USINTARR6</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[0].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[0].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[1].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[1].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[2].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[2].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[3].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[3].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[4].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[4].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[5].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[5].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[6].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[6].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[7].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[7].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[8].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[8].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[9].VarID</Name>
+					<Comment><![CDATA[ Changeable ID of the variable]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Publisher.Variables[9].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.0 = Disable publishing]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.FrameCtrl</Name>
+					<Comment><![CDATA[ EAP FrameCtrl, unused]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[0].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[0].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[1].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[1].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[2].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[2].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[3].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[3].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[4].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[4].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[5].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[5].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[6].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[6].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[7].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[7].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[8].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[8].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[9].VarId</Name>
+					<Comment><![CDATA[ Changable Variable ID]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>MAIN.EAP_205.Subscriber.Variables[9].VarCtrl</Name>
+					<Comment><![CDATA[ VarCtrl.1 = Ignore Hash/Version]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+			</Vars>
+			<Contexts>
+				<Context>
+					<Id NeedCalleeCall="true">0</Id>
+					<Name>PlcTask</Name>
+					<ManualConfig>
+						<OTCID>#x02010030</OTCID>
+					</ManualConfig>
+					<Priority>20</Priority>
+					<CycleTime>10000000</CycleTime>
+				</Context>
+			</Contexts>
+			<TaskPouOids>
+				<TaskPouOid Prio="20" OTCID="#x08502001"/>
+			</TaskPouOids>
+		</Instance>
+	</Project>
+	<Mappings>
+		<OwnerA Name="Second_Floor_Totes_ARUP Instance">
+			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)">
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.DevState" VarB="Inputs^DevState"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.DevCtrl" VarB="Outputs^DevCtrl"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Pub_To_205 (Publisher)">
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.FrameState" VarB="Inputs^FrameState"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[0].VarState" VarB="To205_P6005_IsRunning^Inputs^VarState"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Publisher.Variables[1].VarState" VarB="To205_P7045_SendingProduct^Inputs^VarState"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.To205_P6005_IsRunning" VarB="To205_P6005_IsRunning^Outputs^VarData"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.To205_P7045_SendingProduct" VarB="To205_P7045_SendingProduct^Outputs^VarData"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.FrameCtrl" VarB="Outputs^FrameCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.IPAddr" VarB="Outputs^IpAddr"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarCtrl" VarB="To205_P6005_IsRunning^Outputs^VarCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[0].VarID" VarB="To205_P6005_IsRunning^Outputs^VarId"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarCtrl" VarB="To205_P7045_SendingProduct^Outputs^VarCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Publisher.Variables[1].VarID" VarB="To205_P7045_SendingProduct^Outputs^VarId"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Communition with 205 (EtherCAT Automation Protocol)^Sub_To_205 (Subscriber)">
+				<Link VarA="PlcTask Inputs^GVL_IO.From205_P2012_IsRunning" VarB="From205_P2012_IsRunning^Inputs^VarData"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.From205_P3130_SendingProduct" VarB="From205_P3130_SendingProduct^Inputs^VarData"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.FrameState" VarB="Inputs^FrameState"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].CycleIndex" VarB="From205_P2012_IsRunning^Inputs^CycleIndex"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].Quality" VarB="From205_P2012_IsRunning^Inputs^Quality"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[0].VarState" VarB="From205_P2012_IsRunning^Inputs^VarState"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].CycleIndex" VarB="From205_P3130_SendingProduct^Inputs^CycleIndex"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].Quality" VarB="From205_P3130_SendingProduct^Inputs^Quality"/>
+				<Link VarA="PlcTask Inputs^MAIN.EAP_205.Subscriber.Variables[1].VarState" VarB="From205_P3130_SendingProduct^Inputs^VarState"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.FrameCtrl" VarB="Outputs^FrameCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[0].VarCtrl" VarB="From205_P2012_IsRunning^Outputs^VarCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[0].VarId" VarB="From205_P2012_IsRunning^Outputs^VarId"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarCtrl" VarB="From205_P3130_SendingProduct^Outputs^VarCtrl"/>
+				<Link VarA="PlcTask Outputs^MAIN.EAP_205.Subscriber.Variables[1].VarId" VarB="From205_P3130_SendingProduct^Outputs^VarId"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (RT-Ethernet Protocol)">
+				<Link VarA="PlcTask Inputs^GVL_IO.EthernetAdapter_State" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 2 (TC3 EIP Scanner)^BCR_S6040_01">
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.Acquiring" VarB="Connection 1 (Input/Output)^Inputs^Acquiring" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.DecodeComplete" VarB="Connection 1 (Input/Output)^Inputs^Decode Complete" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.Decoding" VarB="Connection 1 (Input/Output)^Inputs^Decoding" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.DeviceState" VarB="Inputs^State"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultCode" VarB="Connection 1 (Input/Output)^Inputs^Result Code"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[0]" VarB="Connection 1 (Input/Output)^Inputs^Result Data"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[10]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_10"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[11]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_11"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[12]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_12"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[13]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_13"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[14]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_14"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[15]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_15"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[16]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_16"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[1]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[2]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_2"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[3]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_3"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[4]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_4"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[5]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_5"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[6]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_6"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[7]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_7"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[8]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_8"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultData[9]" VarB="Connection 1 (Input/Output)^Inputs^Result Data_9"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultID" VarB="Connection 1 (Input/Output)^Inputs^Result ID"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultLength" VarB="Connection 1 (Input/Output)^Inputs^Result Length"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.ResultsAvail" VarB="Connection 1 (Input/Output)^Inputs^Results Available" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.TriggerAck" VarB="Connection 1 (Input/Output)^Inputs^Trigger Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.TriggerID" VarB="Connection 1 (Input/Output)^Inputs^Trigger ID"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S6040_01.TriggerReady" VarB="Connection 1 (Input/Output)^Inputs^Trigger Ready" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S6040_01.ResultsAck" VarB="Connection 1 (Input/Output)^Outputs^Results Ack" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S6040_01.Trigger" VarB="Connection 1 (Input/Output)^Outputs^Trigger" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S6040_01.TriggerEnable" VarB="Connection 1 (Input/Output)^Outputs^Trigger Enable" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 2 (TC3 EIP Scanner)^BCR_S7004_01">
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.Acquiring" VarB="Connection 2 (Input/Output)^Inputs^Acquiring" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.DecodeComplete" VarB="Connection 2 (Input/Output)^Inputs^Decode Complete" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.Decoding" VarB="Connection 2 (Input/Output)^Inputs^Decoding" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.DeviceState" VarB="Inputs^State"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultCode" VarB="Connection 2 (Input/Output)^Inputs^Result Code"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[0]" VarB="Connection 2 (Input/Output)^Inputs^Result Data"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[10]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_10"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[11]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_11"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[12]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_12"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[13]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_13"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[14]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_14"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[15]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_15"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[16]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_16"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[1]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[2]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_2"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[3]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_3"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[4]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_4"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[5]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_5"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[6]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_6"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[7]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_7"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[8]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_8"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultData[9]" VarB="Connection 2 (Input/Output)^Inputs^Result Data_9"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultID" VarB="Connection 2 (Input/Output)^Inputs^Result ID"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultLength" VarB="Connection 2 (Input/Output)^Inputs^Result Length"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.ResultsAvail" VarB="Connection 2 (Input/Output)^Inputs^Results Available" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.TriggerAck" VarB="Connection 2 (Input/Output)^Inputs^Trigger Ack" Size="1"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.TriggerID" VarB="Connection 2 (Input/Output)^Inputs^Trigger ID"/>
+				<Link VarA="PlcTask Inputs^BarCodeReaders.BCR_S7004_01.TriggerReady" VarB="Connection 2 (Input/Output)^Inputs^Trigger Ready" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S7004_01.ResultsAck" VarB="Connection 2 (Input/Output)^Outputs^Results Ack" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S7004_01.Trigger" VarB="Connection 2 (Input/Output)^Outputs^Trigger" Size="1"/>
+				<Link VarA="PlcTask Outputs^BarCodeReaders.BCR_S7004_01.TriggerEnable" VarB="Connection 2 (Input/Output)^Outputs^Trigger Enable" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-7021 (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_IO.PB_SysReset" VarB="Channel 3^Reset PB" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.PB_SysStart" VarB="Channel 1^Start PB" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.PB_SysStop" VarB="Channel 2^Stop PB" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-8051 (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_IO.HornMainPanel" VarB="Channel 1^Horn" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_MainPanelStack_Green" VarB="Channel 4^LT-8111" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_MainPanelStack_Red" VarB="Channel 2^LT-8071" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_MainPanelStack_Yellow" VarB="Channel 3^LT-8091" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-8431 (EL1918)">
+				<Link VarA="PlcTask Inputs^GVL_IO.PanelEstop_OK" VarB="StandardInputs^Standard Out Var 9" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord6040_OK" VarB="StandardInputs^Standard Out Var 10" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord7004_OK" VarB="StandardInputs^Standard Out Var 11" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.Safety_SystemEstopsOK" VarB="StandardInputs^Standard Out Var 15" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.ComErr" VarB="StandardInputs^Standard Out Var 16" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.FBErr" VarB="StandardInputs^Standard Out Var 17" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.OtherErr" VarB="StandardInputs^Standard Out Var 18" Size="1"/>
+				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.CommErrAck" VarB="StandardOutputs^Standard In Var 35" Size="1"/>
+				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.ErrAck" VarB="StandardOutputs^Standard In Var 1" Size="1"/>
+				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.Reset" VarB="StandardOutputs^Standard In Var 5" Size="1"/>
+				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.Run" VarB="StandardOutputs^Standard In Var 2" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^PLC-9071 (EL5152)">
+				<Link VarA="PlcTask Inputs^GVL_IO.ENC_9021_Period" VarB="ENC Period Channel 1^Period value"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.ENC_9021_Raw" VarB="ENC Status compact Channel 1^Counter value"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^RIO-12171 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7004" VarB="Channel 9^P7004 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7005" VarB="Channel 8^P7005 Motor Discconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7010" VarB="Channel 11^P7010 Motor Discconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.PB_RemoteReset_12181" VarB="Channel 4^PB-12181" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO12171_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12221.In_PE" VarB="Channel 5^PE-12221" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12231.In_PE" VarB="Channel 12^PE12231" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12261.In_PE" VarB="Channel 6^PE-12261" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_12301.In_PE" VarB="Channel 7^PE-12301" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_12121_Red" VarB="Channel 17^LT-12121" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_12131_Yellow" VarB="Channel 18^LT-12131" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_12161_Green" VarB="Channel 19^LT-12161" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^SRIO-11141 (EP1908)">
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO11141_WcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-1008 (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_IO.P6005_Faulted" VarB="Channel 1^P6005 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6015_Faulted" VarB="Channel 2^P6015 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6020_Faulted" VarB="Channel 3^P6020 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6025_Faulted" VarB="Channel 4^P6025 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6030_Faulted" VarB="Channel 5^P6030 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6035_Faulted" VarB="Channel 6^P6035 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P6040_Faulted" VarB="Channel 7^P6040 Faulted" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11021 (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_IO.P7004_RUN" VarB="Channel 1^P7004 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7010_RUN" VarB="Channel 2^P7010 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7015_RUN" VarB="Channel 3^P7015 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7020_RUN" VarB="Channel 4^P7020 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7025_RUN" VarB="Channel 5^P7025 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7030_RUN" VarB="Channel 6^P7030 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7035_RUN" VarB="Channel 7^P7035 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P7045_RUN" VarB="Channel 8^P7045 RUN" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11211 (EL2008)">
+				<Link VarA="PlcTask Outputs^GVL_IO.P6005_RUN" VarB="Channel 1^P6005 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6015_RUN" VarB="Channel 2^P6015 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6020_RUN" VarB="Channel 3^P6020 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6025_RUN" VarB="Channel 4^P6025 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6030_RUN" VarB="Channel 5^P6030 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6035_RUN" VarB="Channel 6^P6035 RUN" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.P6040_RUN" VarB="Channel 7^P6040 RUN" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^PLC-11431 (EL1008)">
+				<Link VarA="PlcTask Inputs^GVL_IO.P7004_Faulted" VarB="Channel 1^P7004 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7010_Faulted" VarB="Channel 2^P7010 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7015_Faulted" VarB="Channel 3^P7015 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7020_Faulted" VarB="Channel 4^P7020 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7025_Faulted" VarB="Channel 5^P7025 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7030_Faulted" VarB="Channel 6^P7030 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7035_Faulted" VarB="Channel 7^P7035 Faulted" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.P7045_Faulted" VarB="Channel 8^P7045 Faulted" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P6010 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P6010_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P6010_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6010_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6010_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P6045 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P6045_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P6045_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6045_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P6045_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P7005 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P7005_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P7005_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7005_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7005_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 17 (EK1122)^Term 18 (EK1100)^Term 27 (EK1122)^P7040 (Inverter i550 Cabinet)">
+				<Link VarA="PlcTask Inputs^Conveyors.P7040_VFD.ActualVelocity" VarB="TPDO (A) Velocity^Actual speed"/>
+				<Link VarA="PlcTask Inputs^Conveyors.P7040_VFD.StatusWord" VarB="TPDO (A) Velocity^CiA status word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7040_VFD.ControlWord" VarB="RPDO (A) Velocity^CiA control word"/>
+				<Link VarA="PlcTask Outputs^Conveyors.P7040_VFD.TargetVelocity" VarB="RPDO (A) Velocity^Set speed"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-1181 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6005" VarB="Channel 14^P6005 Motor Disconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6010" VarB="Channel 12^P6010 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6015" VarB="Channel 10^P6015 Motor Disconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6020" VarB="Channel 4^P6020 Dissconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO1181_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1081.In_PE" VarB="Channel 9^PE-1081" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1161.In_PE" VarB="Channel 3^PE-1161" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1162.In_PE" VarB="Channel 11^PE-1162" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1231.In_PE" VarB="Channel 5^PE-1231" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_1232.In_PE" VarB="Channel 13^PE-1232" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_1281_Extended" VarB="Channel 6^PX-1281" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-15181 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7015" VarB="Channel 2^P7015 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7020" VarB="Channel 4^P7020 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7025" VarB="Channel 6^P7025 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO15181_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15121.In_PE" VarB="Channel 1^PE-15121" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15181.In_PE" VarB="Channel 3^PE-15181" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_15261.In_PE" VarB="Channel 5^PE-15261" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-16171 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7030" VarB="Channel 2^P7030 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7035" VarB="Channel 8^P7035 Motor Discconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7040" VarB="Channel 10^P7040 Motor Discconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P7045" VarB="Channel 12^P7045 Motor discconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO16171_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16111.In_PE" VarB="Channel 1^PE-16111" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16131.In_PE" VarB="Channel 9^PE-16131" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16181.In_PE" VarB="Channel 3^PE-16181" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16201.In_PE" VarB="Channel 11^PE-16201" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_16301.In_PE" VarB="Channel 7^PE-16301" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_16231_Extended" VarB="Channel 5^PX-16231" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-4172 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6025" VarB="Channel 10^P6025 Motor disconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6030" VarB="Channel 8^P6030 Motor Discconnect " Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6035" VarB="Channel 6^P6035 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6045" VarB="Channel 2^P6045 Motor Discconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO4172_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4071.In_PE" VarB="Channel 1^PE-4071" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4121.In_PE" VarB="Channel 9^PE-4121" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4201.In_PE" VarB="Channel 5^PE-4201" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_4271.In_PE" VarB="Channel 7^PE-4271" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-6171 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO6171_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6181.In_PE" VarB="Channel 11^PE-6181" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6201.In_PE" VarB="Channel 12^PE-6201" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6241.In_PE" VarB="Channel 13^PE-6241" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6261.In_PE" VarB="Channel 14^PE-6261" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_6302.In_PE" VarB="Channel 15^PE-6302" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6121_Retracted" VarB="Channel 1^PX-6121" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6122_Retracted" VarB="Channel 9^PX-6122" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6151_Extended" VarB="Channel 2^PX-6151" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6152_Extended" VarB="Channel 10^PX-6152" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6241_Retracted" VarB="Channel 5^PX-6241" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_6261_Extended" VarB="Channel 6^PX-6261" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_6181_EXT" VarB="Channel 19^SV-6181" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_6211_EXT" VarB="Channel 20^SV-6211" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_6301_RET" VarB="Channel 23^SV-6301" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_6321_EXT" VarB="Channel 24^SV-6321" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-7161 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.PB_RemoteReset_7281" VarB="Channel 16^PB-7281" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO7161_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7151.In_PE" VarB="Channel 10^PE-7151" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7171.In_PE" VarB="Channel 12^PE7171" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7191.In_PE" VarB="Channel 11^PE-7191" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7211.In_PE" VarB="Channel 4^PE-7211" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_7241.In_PE" VarB="Channel 5^PE-7241" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_7122_Retracted" VarB="Channel 1^PX-7122" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_7151_Extended" VarB="Channel 2^PX-7151" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_7271_Retracted" VarB="Channel 7^PX-7271" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_7301_Extended" VarB="Channel 8^PX-7301" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_7221_Red" VarB="Channel 29^LT-7221" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_7241_Yellow" VarB="Channel 30^LT-7241" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.LT_7271_Green" VarB="Channel 31^LT-7271" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_7121_EXT" VarB="Channel 25^SV-7121" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_7181_EXT" VarB="Channel 19^SV-7181" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^RIO-8181 (EP2339-0022)">
+				<Link VarA="PlcTask Inputs^GVL_IO.DS_P6040" VarB="Channel 6^P6040 Motor Disconnect" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO8181_WcState" VarB="WcState^WcState" Size="1"/>
+				<Link VarA="PlcTask Inputs^GVL_IO.SystemAirPressure" VarB="Channel 15^Air Switch" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8141.In_PE" VarB="Channel 10^PE-8141" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8171.In_PE" VarB="Channel 11^PE-8171" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8181.In_PE" VarB="Channel 4^PE-8181" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8211.In_PE" VarB="Channel 13^PE-8211" Size="1"/>
+				<Link VarA="PlcTask Inputs^PhotoEyes.PE_8221.In_PE" VarB="Channel 5^PE-8221" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_8091_Retracted" VarB="Channel 1^PX-8091" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_8121_Extended" VarB="Channel 2^PX-8121" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_8291_Extended" VarB="Channel 7^PX-8291" Size="1"/>
+				<Link VarA="PlcTask Inputs^ProxSensors.In_PX_8321_Retracted" VarB="Channel 8^PX-8321" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_8111_EXT" VarB="Channel 25^SV-8111" Size="1"/>
+				<Link VarA="PlcTask Outputs^GVL_IO.SV_8161_EXT" VarB="Channel 19^SV-8161" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 3 (EtherCAT)^Term 1 (EK1200)^Term 7 (EK1122)^SRIO-5151 (EP1908)">
+				<Link VarA="PlcTask Inputs^GVL_IO.RIO5151_WcState" VarB="WcState^WcState" Size="1"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
+</TcSmItem>
