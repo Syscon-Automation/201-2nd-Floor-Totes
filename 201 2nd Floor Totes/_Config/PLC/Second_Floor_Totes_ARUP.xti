@@ -91,9 +91,6 @@
 				<Text><![CDATA[faulted]]></Text>
 				<Enum>12</Enum>
 			</EnumInfo>
-			<Hides>
-				<Hide GUID="{72531A1A-DF47-0A43-77F0-9B1B043D5136}"/>
-			</Hides>
 		</DataType>
 		<DataType>
 			<Name GUID="{3AB4C627-A758-0E1E-7675-A1F136EB5998}" AutoDeleteType="true">ST_StateCntrlPB</Name>
@@ -310,9 +307,6 @@
 				<BitSize>8</BitSize>
 				<BitOffs>888</BitOffs>
 			</SubItem>
-			<Hides>
-				<Hide GUID="{3CC3F7A1-FF7D-681B-941E-D1A873DDE348}"/>
-			</Hides>
 		</DataType>
 		<DataType>
 			<Name IecBaseType="true">ARRAY [1..25] OF ST_StateCntrlSts</Name>

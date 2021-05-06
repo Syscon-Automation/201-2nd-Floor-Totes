@@ -561,6 +561,8 @@ P6005(
    Cfg_EquipEvntsArry:= cfgP6005EvntsArry,
    cfg_JamDetectTime:= cfgP6005JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6005SleepTime,
    Sts_EquipState := P6005_Status,
    Out_ConvCrntMtr => GVL_IO.P6005_RUN);
@@ -601,6 +603,8 @@ P6010(
    Cfg_EquipEvntsArry:= cfgP6010EvntsArry,
    cfg_JamDetectTime:= cfgP6010JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6010SleepTime,
    Sts_EquipState := P6010_Status);
 
@@ -648,6 +652,8 @@ P6015(
    Cfg_EquipEvntsArry:= cfgP6015EvntsArry,
    cfg_JamDetectTime:= cfgP6015JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6015SleepTime,
    Sts_EquipState := P6015_Status,
    Out_ConvCrntMtr => GVL_IO.P6015_RUN);
@@ -688,6 +694,8 @@ P6020(
    Cfg_EquipEvntsArry:= cfgP6020EvntsArry,
    cfg_JamDetectTime:= cfgP6020JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6020SleepTime,
    Sts_EquipState := P6020_Status,
    Out_ConvCrntMtr => GVL_IO.P6020_RUN);
@@ -728,6 +736,8 @@ P6025(
    Cfg_EquipEvntsArry:= cfgP6025EvntsArry,
    cfg_JamDetectTime:= cfgP6025JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6025SleepTime,
    Sts_EquipState := P6025_Status,
    Out_ConvCrntMtr => GVL_IO.P6025_RUN);
@@ -768,6 +778,8 @@ P6030(
    Cfg_EquipEvntsArry:= cfgP6030EvntsArry,
    cfg_JamDetectTime:= cfgP6030JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6030SleepTime,
    Sts_EquipState := P6030_Status,
    Out_ConvCrntMtr => GVL_IO.P6030_RUN);
@@ -807,6 +819,8 @@ P6035(
    Cfg_EquipEvntsArry:= cfgP6035EvntsArry,
    cfg_JamDetectTime:= cfgP6035JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP6035SleepTime,
    Sts_EquipState := P6035_Status,
    Out_ConvCrntMtr => GVL_IO.P6035_RUN);
@@ -848,6 +862,7 @@ P6045(
    Cfg_EquipEvntsArry:= cfgP6045EvntsArry,
    cfg_JamDetectTime:= cfgP6045JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := FALSE,
    Cfg_SleepWaitTime:= cfgP6045SleepTime,
    Sts_EquipState := P6045_Status);
 
@@ -950,6 +965,8 @@ P7004(
    Cfg_EquipEvntsArry:= cfgP7004EvntsArry,
    cfg_JamDetectTime:= cfgP7004JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7004SleepTime,
    Sts_EquipState := P7004_Status,
    Out_ConvCrntMtr => GVL_IO.P7004_RUN);
@@ -992,6 +1009,8 @@ P7005(
    Cfg_EquipEvntsArry:= cfgP7005EvntsArry,
    cfg_JamDetectTime:= cfgP7005JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7005SleepTime,
    Sts_EquipState := P7005_Status);
 
@@ -1037,6 +1056,8 @@ P7010(
    Cfg_EquipEvntsArry:= cfgP7010EvntsArry,
    cfg_JamDetectTime:= cfgP7010JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7010SleepTime,
    Sts_EquipState := P7010_Status,
    Out_ConvCrntMtr => GVL_IO.P7010_RUN);
@@ -1077,6 +1098,8 @@ P7015(
    Cfg_EquipEvntsArry:= cfgP7015EvntsArry,
    cfg_JamDetectTime:= cfgP7015JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7015SleepTime,
    Sts_EquipState := P7015_Status,
    Out_ConvCrntMtr => GVL_IO.P7015_RUN);
@@ -1118,6 +1141,8 @@ P7020(
    Cfg_EquipEvntsArry:= cfgP7020EvntsArry,
    cfg_JamDetectTime:= cfgP7020JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7020SleepTime,
    Sts_EquipState := P7020_Status,
    Out_ConvCrntMtr => GVL_IO.P7020_RUN);
@@ -1158,6 +1183,8 @@ P7025(
    Cfg_EquipEvntsArry:= cfgP7025EvntsArry,
    cfg_JamDetectTime:= cfgP7025JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7025SleepTime,
    Sts_EquipState := P7025_Status,
    Out_ConvCrntMtr => GVL_IO.P7025_RUN);
@@ -1198,6 +1225,8 @@ P7030(
    Cfg_EquipEvntsArry:= cfgP7030EvntsArry,
    cfg_JamDetectTime:= cfgP7030JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7030SleepTime,
    Sts_EquipState := P7030_Status,
    Out_ConvCrntMtr => GVL_IO.P7030_RUN);
@@ -1240,6 +1269,8 @@ P7035(
    Cfg_EquipEvntsArry:= cfgP7035EvntsArry,
    cfg_JamDetectTime:= cfgP7035JamDetectTime,
    Cfg_UseSleepTmr := TRUE,
+   Cfg_UseStartUpDelay := TRUE,
+   Cfg_StartUpDelayTime := T#500MS,
    Cfg_SleepWaitTime:= cfgP7035SleepTime,
    Sts_EquipState := P7035_Status,
    Out_ConvCrntMtr => GVL_IO.P7035_RUN);
@@ -1279,7 +1310,8 @@ P7040(
    Cfg_EquipIntlksArry:= cfgP7040IntlksArry,
    Cfg_EquipEvntsArry:= cfgP7040EvntsArry,
    cfg_JamDetectTime:= cfgP7040JamDetectTime,
-   Cfg_UseSleepTmr := TRUE,
+   Cfg_UseSleepTmr := TRUE,   
+   Cfg_UseStartUpDelay := FALSE,
    Cfg_SleepWaitTime:= cfgP7040SleepTime,
    Sts_EquipState := P7040_Status);
 
@@ -1661,171 +1693,10 @@ IF Conveyors.P7045_Status.Sts_EquipmentState.Index > 0 THEN
 END_IF
 
 
+
+
+
 	]]></ST>
     </Implementation>
-    <LineIds Name="Conveyors">
-      <LineId Id="8911" Count="1" />
-      <LineId Id="3723" Count="5" />
-      <LineId Id="13013" Count="0" />
-      <LineId Id="13012" Count="0" />
-      <LineId Id="3729" Count="2" />
-      <LineId Id="9897" Count="0" />
-      <LineId Id="3733" Count="1" />
-      <LineId Id="10428" Count="0" />
-      <LineId Id="3735" Count="1" />
-      <LineId Id="5649" Count="0" />
-      <LineId Id="6167" Count="0" />
-      <LineId Id="6720" Count="0" />
-      <LineId Id="12455" Count="0" />
-      <LineId Id="3737" Count="27" />
-      <LineId Id="7274" Count="0" />
-      <LineId Id="3765" Count="7" />
-      <LineId Id="5650" Count="0" />
-      <LineId Id="6716" Count="0" />
-      <LineId Id="12456" Count="0" />
-      <LineId Id="3773" Count="26" />
-      <LineId Id="3840" Count="6" />
-      <LineId Id="7276" Count="0" />
-      <LineId Id="3847" Count="7" />
-      <LineId Id="5652" Count="0" />
-      <LineId Id="6171" Count="0" />
-      <LineId Id="6713" Count="0" />
-      <LineId Id="12459" Count="0" />
-      <LineId Id="3855" Count="27" />
-      <LineId Id="7277" Count="0" />
-      <LineId Id="3883" Count="7" />
-      <LineId Id="5653" Count="0" />
-      <LineId Id="6711" Count="0" />
-      <LineId Id="12461" Count="0" />
-      <LineId Id="3891" Count="27" />
-      <LineId Id="7278" Count="0" />
-      <LineId Id="3919" Count="7" />
-      <LineId Id="5654" Count="0" />
-      <LineId Id="6728" Count="0" />
-      <LineId Id="12463" Count="0" />
-      <LineId Id="3927" Count="27" />
-      <LineId Id="7279" Count="0" />
-      <LineId Id="3955" Count="7" />
-      <LineId Id="5655" Count="0" />
-      <LineId Id="6726" Count="0" />
-      <LineId Id="12465" Count="0" />
-      <LineId Id="3963" Count="27" />
-      <LineId Id="7280" Count="0" />
-      <LineId Id="3991" Count="7" />
-      <LineId Id="5656" Count="0" />
-      <LineId Id="6724" Count="0" />
-      <LineId Id="3999" Count="27" />
-      <LineId Id="7281" Count="0" />
-      <LineId Id="4027" Count="5" />
-      <LineId Id="6194" Count="0" />
-      <LineId Id="4033" Count="1" />
-      <LineId Id="5657" Count="0" />
-      <LineId Id="6722" Count="0" />
-      <LineId Id="12468" Count="0" />
-      <LineId Id="4035" Count="32" />
-      <LineId Id="7284" Count="0" />
-      <LineId Id="11442" Count="0" />
-      <LineId Id="11441" Count="0" />
-      <LineId Id="11948" Count="0" />
-      <LineId Id="7282" Count="0" />
-      <LineId Id="4068" Count="5" />
-      <LineId Id="5633" Count="4" />
-      <LineId Id="9906" Count="0" />
-      <LineId Id="9908" Count="0" />
-      <LineId Id="6195" Count="0" />
-      <LineId Id="4074" Count="1" />
-      <LineId Id="5658" Count="0" />
-      <LineId Id="6731" Count="0" />
-      <LineId Id="6733" Count="0" />
-      <LineId Id="7256" Count="0" />
-      <LineId Id="9403" Count="0" />
-      <LineId Id="7831" Count="0" />
-      <LineId Id="4076" Count="6" />
-      <LineId Id="8369" Count="0" />
-      <LineId Id="4083" Count="28" />
-      <LineId Id="5648" Count="0" />
-      <LineId Id="5647" Count="0" />
-      <LineId Id="8370" Count="0" />
-      <LineId Id="12470" Count="0" />
-      <LineId Id="4112" Count="6" />
-      <LineId Id="6197" Count="0" />
-      <LineId Id="4119" Count="19" />
-      <LineId Id="6709" Count="0" />
-      <LineId Id="4139" Count="0" />
-      <LineId Id="6710" Count="0" />
-      <LineId Id="4140" Count="7" />
-      <LineId Id="5659" Count="0" />
-      <LineId Id="8371" Count="0" />
-      <LineId Id="12491" Count="0" />
-      <LineId Id="12473" Count="0" />
-      <LineId Id="4148" Count="32" />
-      <LineId Id="7285" Count="0" />
-      <LineId Id="4181" Count="7" />
-      <LineId Id="5660" Count="0" />
-      <LineId Id="8372" Count="0" />
-      <LineId Id="12476" Count="0" />
-      <LineId Id="4189" Count="27" />
-      <LineId Id="7286" Count="0" />
-      <LineId Id="4217" Count="7" />
-      <LineId Id="5661" Count="0" />
-      <LineId Id="7258" Count="0" />
-      <LineId Id="12477" Count="0" />
-      <LineId Id="4225" Count="27" />
-      <LineId Id="7287" Count="0" />
-      <LineId Id="4253" Count="7" />
-      <LineId Id="5662" Count="0" />
-      <LineId Id="7260" Count="0" />
-      <LineId Id="12479" Count="0" />
-      <LineId Id="5646" Count="0" />
-      <LineId Id="4261" Count="27" />
-      <LineId Id="7288" Count="0" />
-      <LineId Id="4289" Count="7" />
-      <LineId Id="5663" Count="0" />
-      <LineId Id="7262" Count="0" />
-      <LineId Id="12481" Count="0" />
-      <LineId Id="4297" Count="27" />
-      <LineId Id="7289" Count="0" />
-      <LineId Id="4325" Count="7" />
-      <LineId Id="5664" Count="0" />
-      <LineId Id="7264" Count="0" />
-      <LineId Id="12483" Count="0" />
-      <LineId Id="4333" Count="27" />
-      <LineId Id="7290" Count="0" />
-      <LineId Id="4361" Count="5" />
-      <LineId Id="9918" Count="0" />
-      <LineId Id="4367" Count="1" />
-      <LineId Id="5665" Count="0" />
-      <LineId Id="6185" Count="0" />
-      <LineId Id="7265" Count="0" />
-      <LineId Id="12485" Count="0" />
-      <LineId Id="4369" Count="27" />
-      <LineId Id="7291" Count="0" />
-      <LineId Id="4397" Count="7" />
-      <LineId Id="5666" Count="0" />
-      <LineId Id="7268" Count="0" />
-      <LineId Id="12487" Count="0" />
-      <LineId Id="4405" Count="26" />
-      <LineId Id="4472" Count="6" />
-      <LineId Id="7294" Count="0" />
-      <LineId Id="13011" Count="0" />
-      <LineId Id="13010" Count="0" />
-      <LineId Id="4479" Count="7" />
-      <LineId Id="5668" Count="0" />
-      <LineId Id="6191" Count="0" />
-      <LineId Id="7272" Count="0" />
-      <LineId Id="12489" Count="0" />
-      <LineId Id="4487" Count="21" />
-      <LineId Id="2887" Count="0" />
-      <LineId Id="1514" Count="0" />
-      <LineId Id="1468" Count="0" />
-      <LineId Id="1516" Count="0" />
-      <LineId Id="4794" Count="34" />
-      <LineId Id="4844" Count="132" />
-      <LineId Id="10934" Count="1" />
-      <LineId Id="4977" Count="132" />
-      <LineId Id="5124" Count="18" />
-      <LineId Id="1769" Count="0" />
-      <LineId Id="1755" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
