@@ -164,7 +164,7 @@ Conv_IntlksArry[11] := In_EquipIntlks.11;
 Conv_IntlksArry[12] := In_EquipIntlks.12;
 Conv_IntlksArry[13] := In_EquipIntlks.13;
 Conv_IntlksArry[14] := In_EquipIntlks.14;
-Conv_IntlksArry[15] := In_EquipIntlks.15;
+Conv_IntlksArry[15] := Conv_StartAllowed;
 	
 // Call Interlock block
 Conv_fbIntrlks(
@@ -250,7 +250,7 @@ Sts_ConvSleepingActive := Sts_EquipState.Sts_SleepingActive;
 *)
 IF Sts_EquipState.Sts_EquipmentState.StsAuto THEN
 	IF NOT Conv_StartAllowed THEN
-		Conv_StartAllowed := In_ConvDwnStrmMtrStatus OR In_o_EquipStatePB.AutoPB;
+		Conv_StartAllowed := In_ConvDwnStrmMtrStatus OR In_o_EquipStatePB.AutoPB OR (Cfg_ConvType = E_ConvType.end) OR (NOT Cfg_UseStartUpDelay);
 	END_IF
 ELSE
 	Conv_StartAllowed := FALSE;
