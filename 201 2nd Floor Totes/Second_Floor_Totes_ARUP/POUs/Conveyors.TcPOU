@@ -1197,6 +1197,7 @@ P7030_StatePB.ResetPB := System.Cnvyr_Reset;
 P7030_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7030SleepWakeTrig[1] := PhotoEyes.PE_15261.Out_OffFltrd;
 P7030SleepWakeTrig[2] := PhotoEyes.PE_15181.Out_OffFltrd;
+P7030SleepWakeTrig[3] := PhotoEyes.PE_16111.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7030_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1239,6 +1240,7 @@ P7035_StatePB.ResetPB := System.Cnvyr_Reset;
 P7035_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7035SleepWakeTrig[1] := PhotoEyes.PE_16111.Out_OffFltrd;
 P7035SleepWakeTrig[2] := PhotoEyes.PE_15261.Out_OffFltrd;
+P7035SleepWakeTrig[3] := PhotoEyes.PE_16301.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7035_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1283,6 +1285,7 @@ P7040_StatePB.ResetPB := System.Cnvyr_Reset;
 P7040_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7040SleepWakeTrig[1] := PhotoEyes.PE_16301.Out_OffFltrd;
 P7040SleepWakeTrig[2] := PhotoEyes.PE_16111.Out_OffFltrd;
+P7040SleepWakeTrig[3] := PhotoEyes.PE_16131.Out_OffFltrd;
 
 // Initialize the Equipment Type
 P7040_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;
@@ -1331,7 +1334,7 @@ P7045_StatePB.OfflinePB := System.Cnvyr_Offline;
 P7045SleepWakeTrig[1] := PhotoEyes.PE_16131.Out_OffFltrd;
 P7045SleepWakeTrig[2] := PhotoEyes.PE_16301.Out_OffFltrd;
 
-GVL_IO.To205_P7045_SendingProduct:= P7045_Status.Sts_IsRunning;
+GVL_IO.To205_P7045_SendingProduct:= P7045_Status.Sts_IsRunning OR P7040_Status.Sts_IsRunning OR P7035_Status.Sts_IsRunning OR PhotoEyes.PE_16301.Out OR PhotoEyes.PE_16131.Out_OffFltrd;;
 
 // Initialize the Equipment Type
 P7045_Status.Sts_EquipmentState.EquipType := E_EquipType.Conveyor;

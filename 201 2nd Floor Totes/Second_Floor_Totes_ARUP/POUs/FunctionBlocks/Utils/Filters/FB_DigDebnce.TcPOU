@@ -33,6 +33,7 @@ VAR
 	OnDly_Ton: TON;
 	OffDlyTof: TOF;
 	OnOffDlyTof: TOF;
+	OnOffDly_SR: SR;
 	
 END_VAR
 ]]></Declaration>
@@ -49,25 +50,10 @@ OffDlyTof(IN:= Out , PT:= CFG_OffDlyTime , Q=> OutOffFltrd , ET=> );
 Sts_OffDlyActive := Out <> OutOffFltrd;
 
 //Setup Both On and Off Delayed
-OnOffDlyTof(IN:= OutOnFltrd , PT:= CFG_OffDlyTime , Q=> OutOnOffFltrd , ET=> );
+//OnOffDlyTof(IN:= OutOnFltrd , PT:= CFG_OffDlyTime , Q=> OutOnOffFltrd , ET=> );
+OnOffDly_SR(SET1 := OutOnFltrd, RESET := (NOT OffDlyTof.Q), Q1 => OutOnOffFltrd);
 Sts_OnOffDlyActive := Out <> OutOnOffFltrd;
 ]]></ST>
     </Implementation>
-    <LineIds Name="FB_DigDebnce">
-      <LineId Id="39" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="47" Count="0" />
-      <LineId Id="55" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="57" Count="0" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="92" Count="1" />
-      <LineId Id="56" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
