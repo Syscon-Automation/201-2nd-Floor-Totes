@@ -865,6 +865,11 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>PhotoEyes.PE_1161.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>PhotoEyes.PE_4121.In_PE</Name>
 					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 					<Type>BOOL</Type>
@@ -876,11 +881,6 @@
 				</Var>
 				<Var>
 					<Name>PhotoEyes.PE_6201.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_1161.In_PE</Name>
 					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
