@@ -796,6 +796,14 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>SystemSafety.SecondFloorShaft_Estop_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>SystemSafety.ThirdFloorShaft_Estop_OK</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>Conveyors.P7005_VFD.ActualVelocity</Name>
 					<Type>INT</Type>
 				</Var>
@@ -1037,6 +1045,11 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>Sorter.In_DefaultDestination</Name>
+					<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
+					<Type>DINT</Type>
+				</Var>
+				<Var>
 					<Name>GVL_IO.P6005_Faulted</Name>
 					<Comment><![CDATA[ P6005 Starter Faulted ]]></Comment>
 					<Type>BOOL</Type>
@@ -1047,23 +1060,8 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Sorter.In_DefaultDestination</Name>
-					<Comment><![CDATA[ Input default destination update from Host messaging(MsgControl.RECEIVE)]]></Comment>
-					<Type>DINT</Type>
-				</Var>
-				<Var>
 					<Name>GVL_IO.P6020_Faulted</Name>
 					<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.P6025_Faulted</Name>
-					<Comment><![CDATA[ P6025 Starter Faulted ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.P6030_Faulted</Name>
-					<Comment><![CDATA[ P6030 Starter Faulted ]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -1080,6 +1078,16 @@
 				</Var>
 				<Var>
 					<Name>SystemSafety.System_SafetyState.InRun</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6025_Faulted</Name>
+					<Comment><![CDATA[ P6025 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6030_Faulted</Name>
+					<Comment><![CDATA[ P6030 Starter Faulted ]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -1148,16 +1156,6 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>GVL_IO.DS_P6015</Name>
-					<Comment><![CDATA[P6015 Disconnect]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.DS_P6020</Name>
-					<Comment><![CDATA[P6020 Disconnect]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
 					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
@@ -1191,6 +1189,16 @@
 					<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
 					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6015</Name>
+					<Comment><![CDATA[P6015 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6020</Name>
+					<Comment><![CDATA[P6020 Disconnect]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.DS_P6025</Name>
@@ -1283,11 +1291,6 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>GVL_IO.ENC_9021_Period</Name>
-					<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
-					<Type>UDINT</Type>
-				</Var>
-				<Var>
 					<Name>GVL_IO.RIO4172_WcState</Name>
 					<Comment><![CDATA[ Remote IO Block 4172]]></Comment>
 					<Type>BOOL</Type>
@@ -1296,6 +1299,11 @@
 					<Name>GVL_IO.RIO5151_WcState</Name>
 					<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.ENC_9021_Period</Name>
+					<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
+					<Type>UDINT</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.RIO6171_WcState</Name>
@@ -1624,12 +1632,12 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Conveyors.P6010_VFD.ControlWord</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
 					<Type>INT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.ControlWord</Name>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>System.SysIntlksAllOk</Name>
@@ -1698,6 +1706,14 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>Conveyors.P7040_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
 					<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
 					<Comment><![CDATA[Panel	Tower Yellow Light]]></Comment>
 					<Type>BOOL</Type>
@@ -1706,14 +1722,6 @@
 					<Name>GVL_IO.LT_MainPanelStack_Green</Name>
 					<Comment><![CDATA[Panel	Tower Green Light]]></Comment>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Conveyors.P7040_VFD.ControlWord</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
-					<Type>INT</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.LT_7221_Red</Name>
@@ -2048,9 +2056,11 @@ Published]]></Comment>
 				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord6040_OK" VarB="StandardInputs^Standard Out Var 10" Size="1"/>
 				<Link VarA="PlcTask Inputs^GVL_IO.Remote_PullCord7004_OK" VarB="StandardInputs^Standard Out Var 11" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.Safety_SystemEstopsOK" VarB="StandardInputs^Standard Out Var 15" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.SecondFloorShaft_Estop_OK" VarB="StandardInputs^Standard Out Var 36" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.ComErr" VarB="StandardInputs^Standard Out Var 16" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.FBErr" VarB="StandardInputs^Standard Out Var 17" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.OtherErr" VarB="StandardInputs^Standard Out Var 18" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.ThirdFloorShaft_Estop_OK" VarB="StandardInputs^Standard Out Var 37" Size="1"/>
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.CommErrAck" VarB="StandardOutputs^Standard In Var 35" Size="1"/>
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.ErrAck" VarB="StandardOutputs^Standard In Var 1" Size="1"/>
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.Reset" VarB="StandardOutputs^Standard In Var 5" Size="1"/>

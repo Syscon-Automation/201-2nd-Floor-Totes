@@ -11,26 +11,22 @@ VAR
 	Safety_SystemEstopsOK AT %I* : BOOL;
 	{attribute 'OPC.UA.DA' := '1'}
 	Safety_PanelEstop AT %I* : BOOL;
+	{attribute 'OPC.UA.DA' := '1'}
 	ZoneSafe_EDM AT %I*: BOOL; 
+	{attribute 'OPC.UA.DA' := '1'}
+	SecondFloorShaft_Estop_OK AT %I* : BOOL;
+	{attribute 'OPC.UA.DA' := '1'}
+	ThirdFloorShaft_Estop_OK AT %I* : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Set System Safety Variables 
-System_SafetyState.ErrAck := GVL_IO.PB_SysReset OR System.HMI_PBSysReset;
-System_SafetyState.CommErrAck := GVL_IO.PB_SysReset OR System.HMI_PBSysReset;
-System_SafetyState.Reset := GVL_IO.PB_SysReset OR System.HMI_PBSysReset;
+System_SafetyState.ErrAck := System.Safety_Reset;
+System_SafetyState.CommErrAck := System.Safety_Reset;
+System_SafetyState.Reset := System.Safety_Reset;
 System_SafetyState.Run := TRUE;
 
 ]]></ST>
     </Implementation>
-    <LineIds Name="SystemSafety">
-      <LineId Id="5" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="310" Count="0" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="235" Count="0" />
-      <LineId Id="273" Count="0" />
-      <LineId Id="297" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

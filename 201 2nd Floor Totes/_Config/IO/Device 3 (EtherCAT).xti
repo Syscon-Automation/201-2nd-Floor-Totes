@@ -58,12 +58,12 @@
 			</SubItem>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
-			<BitSize>1</BitSize>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>1</Elements>
+				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -103,6 +103,15 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
 			<BitSize>5</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
@@ -118,15 +127,6 @@
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>1</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
-			<BitSize>7</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -306,7 +306,7 @@
 					<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 					<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
 					<SyncMan>00121c002400010003000000000000000800001224010000</SyncMan>
-					<SyncMan>001d1f002000010004000000000000000900001d20010000</SyncMan>
+					<SyncMan>001d20002000010004000000000000000900001d20010000</SyncMan>
 					<SyncMan>002e00002400000003000000000000000000002e24000000</SyncMan>
 					<SyncMan>002f00002000000004000000000000000000002f20000000</SyncMan>
 					<Fmmu>0000000000000000001200020100000001000000060000000200000000000000</Fmmu>
@@ -370,8 +370,14 @@
 						<Entry Name="Standard Out Var 18" Index="#x7000" Sub="#x07">
 							<Type>BIT</Type>
 						</Entry>
+						<Entry Name="Standard Out Var 36" Index="#x7000" Sub="#x08">
+							<Type>BIT</Type>
+						</Entry>
+						<Entry Name="Standard Out Var 37" Index="#x7000" Sub="#x09">
+							<Type>BIT</Type>
+						</Entry>
 						<Entry>
-							<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+							<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
 						</Entry>
 					</Pdo>
 					<Pdo Name="StandardOutputs" Index="#x17f0" InOut="1" Flags="#x2011" SyncMan="2">
