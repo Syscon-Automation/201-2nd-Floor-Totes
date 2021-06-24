@@ -70,7 +70,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[// Create instances of Buffer Processing Functions to initialize the buffers and data
-fb_SorterUpdateBuffer.Master := FALSE;
+fb_SorterUpdateBuffer.Master := TRUE;
 fb_SorterTransportBuffer.Master := TRUE;
 
 // Activate or de-activate logging
@@ -82,8 +82,8 @@ fb_SorterUpdateBuffer.Name := 'SYS UPDATE';
 fb_SorterTransportBuffer.Name := 'SYS TRANSPORT';
 
 fb_SorterUpdateBuffer(st_BufferData := st_SorterUpdateBuffer
-					, st_BufferFdbkIn := st_UpdateFdbkOut
-					, st_BufferFdbkOut => st_UpdateFdbkIn);
+					, st_BufferFdbkIn := st_UpdateFdbkIn
+					, st_BufferFdbkOut => st_UpdateFdbkOut);
 fb_SorterTransportBuffer(st_BufferData := st_SorterTransportBufferP6040
 					, st_BufferFdbkIn := st_TransportFdbkInP6040
 					, st_BufferFdbkOut => st_TransportFdbkOutP6040);
@@ -95,8 +95,6 @@ IF RxCounter_Old <> ServerControl.fbServer.aApplications[nConnectionIndex].RxCou
 	// Test the DeviceID and route the Transport accordingly
 	//	If there is only one possible DeviceID, this IF statement can be removed, but the fb_(TransportBuffer).AddItem call still has to be made
 	//	Also, the default destination needs to be passed per DeviceID
-	{warning 'TODO: Route messages based on DeviceID/EquipID'}									
-	{warning 'TODO: Update with correct DeviceID/EquipID'}									
 	IF DeviceID = Sorter.st_SorterCfg.EquipID THEN
 		fb_SorterTransportBuffer.AddItem(st_ItemToAdd := ItemTransport);
 		IF DefDestination <> 0 THEN 

@@ -278,6 +278,12 @@
     <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_RoundRobin.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_RoundRobinCfg.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_RoundRobinDest.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\DUTs\ST_Sorter.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -288,6 +294,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\Functions\FB_SorterLog.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\ProcessBuffers.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\SorterExample.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FunctionBlocks\Sorter\SorterProgram.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FunctionBlocks\Sorter\VISUs\ArrayInspection.TcVIS">
@@ -414,7 +429,7 @@
     <Compile Include="POUs\Photoeyes.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\ProcessBuffers.TcPOU">
+    <Compile Include="POUs\ProcessBuffers_6040.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\ProxSensors.TcPOU">

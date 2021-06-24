@@ -71,14 +71,19 @@ SysShrtPulseTmr(In_Trig:= TRUE , Cfg_OnTime:= SysShrtPlsOnTime, Cfg_OffTime:= Sy
 // Set up System Interlocks
 
 SysState.In_SystemIntlks.0 := GVL_IO.SystemAirPressure;
+SysState.In_SystemIntlks.1 := SystemSafety.System_SafetyState.InRun;
 
 // Setup the InterlockArray since persistent data items cannot by initilaized the same
+(*
 // Index 0
-
 cfgSysStateIntlksArry[0].Description := 'System Air Pressure';
 cfgSysStateIntlksArry[0].DeviceLabel := 'PS8222';
 cfgSysStateIntlksArry[0].OKState := TRUE;
-
+// Index 1
+cfgSysStateIntlksArry[1].Description := ' Safety Running';
+cfgSysStateIntlksArry[1].DeviceLabel := 'SYSTEM';
+cfgSysStateIntlksArry[1].OKState := TRUE;
+*)
 
 // Set up System Events
 
@@ -87,8 +92,12 @@ SysState.In_SystemEvents.1 := GVL_IO.Remote_PullCord6040_OK;
 SysState.In_SystemEvents.2 := GVL_IO.Remote_PullCord7004_OK;
 SysState.In_SystemEvents.3 := SystemSafety.SecondFloorShaft_Estop_OK;
 SysState.In_SystemEvents.4 := SystemSafety.ThirdFloorShaft_Estop_OK;
+SysState.In_SystemEvents.5 := SystemSafety.System_SafetyState.CommErrAck;
+SysState.In_SystemEvents.6 := SystemSafety.System_SafetyState.FBErr;
+SysState.In_SystemEvents.7 := SystemSafety.System_SafetyState.OtherErr;
 
 // Setup the EventArray since persistent data items cannot by initilaized the same
+(*
 // Index 0
 cfgSysStateEvntsArry[0].Description := 'Panel E-Stop';
 cfgSysStateEvntsArry[0].DeviceLabel := 'PB1';
@@ -114,7 +123,22 @@ cfgSysStateEvntsArry[4].Description := 'Third Floor Shaft EStop';
 cfgSysStateEvntsArry[4].DeviceLabel := 'Shaft';
 cfgSysStateEvntsArry[4].OKState := TRUE;
 cfgSysStateEvntsArry[4].StopCode := E_StopCodes.SystemStop;
-
+// Index 5
+cfgSysStateEvntsArry[5].Description := 'Safety Communication Error';
+cfgSysStateEvntsArry[5].DeviceLabel := 'SYSTEM';
+cfgSysStateEvntsArry[5].OKState := FALSE;
+cfgSysStateEvntsArry[5].StopCode := E_StopCodes.SystemStop;
+// Index 6
+cfgSysStateEvntsArry[6].Description := 'Safety Function Block Error';
+cfgSysStateEvntsArry[6].DeviceLabel := 'SYSTEM';
+cfgSysStateEvntsArry[6].OKState := FALSE;
+cfgSysStateEvntsArry[6].StopCode := E_StopCodes.SystemStop;
+// Index 7
+cfgSysStateEvntsArry[7].Description := 'Safety System Error';
+cfgSysStateEvntsArry[7].DeviceLabel := 'SYSTEM';
+cfgSysStateEvntsArry[7].OKState := FALSE;
+cfgSysStateEvntsArry[7].StopCode := E_StopCodes.SystemStop;
+*)
 // Function Call
 SysState(
     In_p_EquipStatePB:= SysStateCntrl_StatePB,

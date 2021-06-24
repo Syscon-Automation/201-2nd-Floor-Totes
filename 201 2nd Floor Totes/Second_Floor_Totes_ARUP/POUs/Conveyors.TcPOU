@@ -528,7 +528,8 @@ P6005_StatePB.AutoPB := System.Cnvyr_Auto;
 P6005_StatePB.ManPB := System.Cnvyr_Manual;
 P6005_StatePB.ResetPB := System.Cnvyr_Reset;
 P6005_StatePB.OfflinePB := System.Cnvyr_Offline;
-P6005SleepWakeTrig[1] := GVL_IO.From205_P3130_SendingProduct;		// Belive this will be an EAP photoeye from 3rd floor
+P6005SleepWakeTrig[1] := PhotoEyes.PE_1232.Out;
+P6005SleepWakeTrig[2] := GVL_IO.From205_P3130_SendingProduct;		// Belive this will be an EAP photoeye from 3rd floor
 
 GVL_IO.To205_P6005_IsRunning:= P6005_Status.Sts_IsRunning;
 
@@ -574,6 +575,11 @@ P6010_StatePB.ManPB := System.Cnvyr_Manual;
 P6010_StatePB.ResetPB := System.Cnvyr_Reset;
 P6010_StatePB.OfflinePB := System.Cnvyr_Offline;
 P6010SleepWakeTrig[1] := PhotoEyes.PE_1232.Out_OffFltrd;
+P6010SleepWakeTrig[5] := P6005SleepWakeTrig[1]
+						OR P6005SleepWakeTrig[2]
+						OR P6005SleepWakeTrig[3]
+						OR P6005SleepWakeTrig[4]
+						OR P6005SleepWakeTrig[5];
 // ADD an EAP photoeye from 3rd floor
 
 // Initialize the Equipment Type

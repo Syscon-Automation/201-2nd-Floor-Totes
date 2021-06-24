@@ -1055,16 +1055,6 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>GVL_IO.P6015_Faulted</Name>
-					<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.P6020_Faulted</Name>
-					<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>SystemSafety.System_SafetyState.ComErr</Name>
 					<Type>BOOL</Type>
 				</Var>
@@ -1078,6 +1068,16 @@
 				</Var>
 				<Var>
 					<Name>SystemSafety.System_SafetyState.InRun</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6015_Faulted</Name>
+					<Comment><![CDATA[ P6015 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P6020_Faulted</Name>
+					<Comment><![CDATA[ P6020 Starter Faulted ]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -1131,31 +1131,6 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>GVL_IO.P7035_Faulted</Name>
-					<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.P7045_Faulted</Name>
-					<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.DS_P6005</Name>
-					<Comment><![CDATA[P6005 Disconnect]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.DS_P6010</Name>
-					<Comment><![CDATA[P6010 Disconnect]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>GVL_IO.DS_P6011</Name>
-					<Comment><![CDATA[P6011 Disconnect]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>GVL_EquipArrays.aEquipStatusArray_In</Name>
 					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
@@ -1189,6 +1164,31 @@
 					<Name>GVL_EquipArrays.aSorterEquipStatusArray_In</Name>
 					<Comment><![CDATA[Array of Equipment Status Inbound]]></Comment>
 					<Type GUID="{2CB3960B-C549-9642-16DF-33E70B27DEEC}">ARRAY [1..25] OF ST_StateCntrlSts</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7035_Faulted</Name>
+					<Comment><![CDATA[ P7035 Starter Faulted ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.P7045_Faulted</Name>
+					<Comment><![CDATA[ P7045 Starter Faulted  ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6005</Name>
+					<Comment><![CDATA[P6005 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6010</Name>
+					<Comment><![CDATA[P6010 Disconnect]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.DS_P6011</Name>
+					<Comment><![CDATA[P6011 Disconnect]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.DS_P6015</Name>
@@ -1296,14 +1296,14 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>GVL_IO.RIO5151_WcState</Name>
-					<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>GVL_IO.ENC_9021_Period</Name>
 					<Comment><![CDATA[ Encoder Period, channel 1, 100ns resolution]]></Comment>
 					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>GVL_IO.RIO5151_WcState</Name>
+					<Comment><![CDATA[ Remote IO Block 5151]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.RIO6171_WcState</Name>
@@ -1632,12 +1632,12 @@
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
-					<Type>INT</Type>
-				</Var>
-				<Var>
 					<Name>Conveyors.P6010_VFD.ControlWord</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P6010_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
 				</Var>
 				<Var>
 					<Name>System.SysIntlksAllOk</Name>
@@ -1696,6 +1696,14 @@
 					<Type>INT</Type>
 				</Var>
 				<Var>
+					<Name>Conveyors.P7040_VFD.ControlWord</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
+					<Type>INT</Type>
+				</Var>
+				<Var>
 					<Name>GVL_IO.HornMainPanel</Name>
 					<Comment><![CDATA[Panel Tower Horn]]></Comment>
 					<Type>BOOL</Type>
@@ -1704,14 +1712,6 @@
 					<Name>GVL_IO.LT_MainPanelStack_Red</Name>
 					<Comment><![CDATA[Panel	Tower Red Light]]></Comment>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Conveyors.P7040_VFD.ControlWord</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Conveyors.P7040_VFD.TargetVelocity</Name>
-					<Type>INT</Type>
 				</Var>
 				<Var>
 					<Name>GVL_IO.LT_MainPanelStack_Yellow</Name>
@@ -2059,6 +2059,7 @@ Published]]></Comment>
 				<Link VarA="PlcTask Inputs^SystemSafety.SecondFloorShaft_Estop_OK" VarB="StandardInputs^Standard Out Var 36" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.ComErr" VarB="StandardInputs^Standard Out Var 16" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.FBErr" VarB="StandardInputs^Standard Out Var 17" Size="1"/>
+				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.InRun" VarB="StandardInputs^Standard Out Var 38" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.System_SafetyState.OtherErr" VarB="StandardInputs^Standard Out Var 18" Size="1"/>
 				<Link VarA="PlcTask Inputs^SystemSafety.ThirdFloorShaft_Estop_OK" VarB="StandardInputs^Standard Out Var 37" Size="1"/>
 				<Link VarA="PlcTask Outputs^SystemSafety.System_SafetyState.CommErrAck" VarB="StandardOutputs^Standard In Var 35" Size="1"/>

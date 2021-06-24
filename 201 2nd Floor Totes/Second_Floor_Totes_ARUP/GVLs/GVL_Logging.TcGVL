@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.4">
   <GVL Name="GVL_Logging" Id="{21c578c0-5373-4478-a2a3-aab1d8780efe}">
     <Declaration><![CDATA[// Comment out attribute to allow direct access to this variable
 // {attribute 'qualified_only'} 
@@ -38,11 +38,18 @@ VAR_GLOBAL CONSTANT
 	DIVERT3			:	INT := 3;
 	DIVERT4			:	INT := 4;
 	DIVERT5			:	INT := 5;
+	DIVERT6			:	INT := 6;
+	DIVERT7			:	INT := 7;
+	DIVERT8			:	INT := 8;
 	CONFIRM1		:	INT := 16;
 	CONFIRM2		:	INT := 17;
 	CONFIRM3		:	INT := 18;
 	CONFIRM4		:	INT := 19;
 	CONFIRM5		:	INT := 20;
+	CONFIRM6		:	INT := 21;
+	CONFIRM7		:	INT := 22;
+	CONFIRM8		:	INT := 23;
+	LANEFULL		:	INT := 31;
 
 	// nSorterLogEnable constants
 	SORTER_INDUCT		:	INT	:= 0;

@@ -8,8 +8,8 @@
 			<Licenses CacheOrCheckLicensesOnStartup="true">
 				<Target>
 					<ManualSelect>{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</ManualSelect>
-					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{BDCC0070-42D5-49AE-ABF1-1D4434813D60}</TargetSelect>
+					<TargetSelect TargetId="2">{66689887-CCBD-452C-AC9A-039D997C6E66}</TargetSelect>
 					<TargetSelect TargetId="2">{87DBEEFC-A548-4B37-9797-C9521D3A43A2}</TargetSelect>
 					<LicenseDevice DongleHardwareId="2" DongleDevice="#x03020002" DongleLevel="60" DongleSystemId="{0D135651-FD1B-A17D-5CF5-B08E3E2D471C}"/>
 				</Target>
@@ -36,21 +36,7 @@
 			<Project File="Second_Floor_Totes_ARUP.xti"/>
 		</Plc>
 		<Safety>
-			<Project GUID="{73D6BB41-CE6E-4107-83C1-D7B3E7AD5099}" Name="2nd Floor Totes Safety" PrjFilePath="2nd Floor Totes Safety\2nd Floor Totes Safety.splcproj" TmcFilePath="2nd Floor Totes Safety\2nd Floor Totes Safety.tmc" GeneralArchiveSettings="#x000f" TargetArchiveSettings="#x0007" FileArchiveSettings="#x000e">
-				<Instance Id="#x01010020" KeepUnrestoredLinks="2">
-					<Name>2nd Floor Totes Safety Instance</Name>
-					<TmcDesc GUID="{72A6D5B8-E98C-4604-8B90-09D1F8AB38A9}">
-						<Name>Safety</Name>
-						<InitSequence>PO</InitSequence>
-						<Contexts>
-							<Context>
-								<Id>1</Id>
-								<Name>Default</Name>
-							</Context>
-						</Contexts>
-					</TmcDesc>
-				</Instance>
-			</Project>
+			<Project File="2nd Floor Totes Safety.xti"/>
 		</Safety>
 		<Io>
 			<Device File="Device 1 (RT-Ethernet Protocol).xti" Id="1"/>
