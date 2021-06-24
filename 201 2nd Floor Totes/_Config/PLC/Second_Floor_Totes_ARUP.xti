@@ -853,186 +853,6 @@
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>PhotoEyes.PE_1232.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_1162.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_1081.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_1231.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_1161.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_4121.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_6181.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_6201.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_6261.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_7171.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_6241.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_12261.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_12221.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_16181.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_4271.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_4201.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_4071.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_6302.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_12301.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_12231.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_15121.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_15181.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_15261.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_16111.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_16301.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_16131.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_16201.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_7151.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_7191.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_7211.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_7241.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_8141.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_8171.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_8181.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_8221.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>PhotoEyes.PE_8211.In_PE</Name>
-					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>GVL_IO.PanelEstop_OK</Name>
 					<Type>BOOL</Type>
 				</Var>
@@ -1362,6 +1182,186 @@
 				</Var>
 				<Var>
 					<Name>GVL_IO.From205_P3130_SendingProduct</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1232.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1162.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1081.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1231.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_1161.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4121.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7171.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6241.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12221.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4271.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_4071.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_6302.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12301.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_12231.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15121.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_15261.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16111.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16301.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16131.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_16201.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7151.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7191.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7211.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_7241.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8141.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8171.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8181.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8221.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>PhotoEyes.PE_8211.In_PE</Name>
+					<Comment><![CDATA[ Mapped IO input for PE]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
